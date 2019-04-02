@@ -1,28 +1,31 @@
-ProCalc 
-A free powerful professional multifunctional calculator. 
-ProCalc carries out calculations related to various areas of mathematics: matrices, combinatorics, calculus, etc. Our calculator will become an indispensable assistant for students, programmers and engineers.
+# ProTest — A free powerful program for educational tests
+## Overview
+**ProTest** is a revolution in a world of testing systems. Testing become easier than ever before. 
 
-Make your life easier. Install it now for free (under GPLv2 copyleft) 
+Make your life easier. Install it now for free _(under GPLv2 copyleft)_
 
-Brief description
-Usage:
- • Choose on of the sub-calculators to perform tasks:
- • • Matrix calculator
- • • Fractions calculator
- • • Combinatorial stuff calculator
- • • Polynomials calculator
- • • Probability and statistics
- • • Functions stuff
+## Brief usage description
+### General info:
+	Program runs in two modes: teacher mode and student mode. 
+	First, you have to authorize in our system. Then, mode will be selected automatically.
 
-Notes:
-	• The program will go on forever 'till you press «No» in continue menu
+### Teacher mode allows you to:
+	• Add/Edit/Delete questions
+	• Show/Edit students info
+  
+### Student mode allows you to:
+	• Pass the training
+	• Pass the testing on the topic
+	• Pass the final test
+    
+### Notes:
+	• Our system uses «SQLite» as a database system
 	• Contact anton2920@gmail.com if any issue occurs
 	• Enjoy! :)
 
-Installation guide
-General stuff
-To install this program you need `libm.so` and `libSDL2.so` (see `Installation notes`) dynamic libraries.
-Then perform: 
+## Installation guide
+### General stuff
+Perform: 
 ```bash
 sh ./autogen.sh
 ./configure
@@ -31,11 +34,8 @@ sudo make install
 ```
 After that, run `ldconfig(8)`.  Do `sudo ldconfig`, there's no harm in it.
 
-Installation notes
-You can build ProCalc without SDL (SDL2), but it will have limited functionality. If you are sure, that you have `libSDL2.so` installed on your system, you can specify its path via `LDFLAGS`. For that, instead of `./configure` run `./configure LDFLAGS=-L/path/to/SDL2/lib`. To specify `SDL2.h` use `./configure CPPFLAGS=-I /path/to/SDL2/header`
-
-Licence
+## Licence
 It distributes only under GPLv2 licence. Go to https://www.gnu.org/licenses/ for more information
 
-Copyright 
+## Copyright 
 © 2019 Tushino Software LLC
