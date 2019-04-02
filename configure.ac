@@ -1,7 +1,7 @@
 # Autoconf requirements
 
 # Initialize, but use more options. Note parameters brackts and whitespace.
-AC_INIT([ProCalc], [1.0], [anton2920@gmail.com])
+AC_INIT([ProTest], [1.0], [anton2920@gmail.com])
 
 # Safety check - list a source file that wouldn't be in other directories:
 AC_CONFIG_SRCDIR([src/main.cpp])
@@ -29,25 +29,6 @@ LT_INIT
 
 AC_ENABLE_SHARED
 AC_PROG_LIBTOOL
-
-# Check for SDL2
-AC_SEARCH_LIBS([SDL_Init], [SDL2 SDL], [], [
-	AC_MSG_WARN([without SDL ProCalc is not able to plot a graph])
-	])
-
-AC_CHECK_HEADERS([SDL2/SDL.h], [], [])
-
-AC_CHECK_HEADERS([SDL/SDL.h], [], [],
-[#ifndef HAVE_SDL2_SDL_H && HAVE_SDL_H
-#include <SDL/SDL.h>
-endif
-])
-
-AC_CHECK_HEADERS([SDL.h], [], [],
-[#ifndef HAVE_SDL2_SDL_H && HAVE_SDL_SDL_H
-#include <SDL.h>
-#endif
-])
 
 # Check for essential libraries 
 AC_SEARCH_LIBS([sin], [m], [], [
