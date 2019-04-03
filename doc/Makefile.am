@@ -1,2 +1,2 @@
 docdir = $(datadir)/doc/@PACKAGE@
-doc_DATA = README ChangeLog
+doc_DATA = DB.md ChangeLog

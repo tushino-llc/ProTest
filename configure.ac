@@ -30,10 +30,10 @@ LT_INIT
 AC_ENABLE_SHARED
 AC_PROG_LIBTOOL
 
+# Check for Qt
+AX_HAVE_QT
+
 # Check for essential libraries 
-AC_SEARCH_LIBS([sin], [m], [], [
-	AC_MSG_ERROR([unable to find math lib])
-	])
 
 AC_SEARCH_LIBS([printf], [c], [], [
 	AC_MSG_ERROR([unable to find c lib])
