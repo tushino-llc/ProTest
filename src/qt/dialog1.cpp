@@ -189,7 +189,8 @@ void Dialog1::on_pushSignUp_clicked()
 {
 
     /* Initializing variables */
-    char *login, *pass, *fn, *ln;
+    char *login, *pass, *fn, *ln, *hel = new char[100];
+    strcpy(hel, "Hello, ");
     QString temp;
     QByteArray temp_ba;
 
@@ -197,21 +198,25 @@ void Dialog1::on_pushSignUp_clicked()
     if (ui->lineEditPass->text() == ui->lineEditPass_2->text()) {
         temp = ui->lineEditLogin->text();
         temp_ba = temp.toLocal8Bit();
-        login = new char[temp_ba.length()];
+        login = strdup(temp_ba);
 
         temp = ui->lineEditPass->text();
         temp_ba = temp.toLocal8Bit();
-        pass = new char[temp_ba.length()];
+        pass = strdup(temp_ba);
 
         temp = ui->lineEditFN->text();
         temp_ba = temp.toLocal8Bit();
-        fn = new char[temp_ba.length()];
+        fn = strdup(temp_ba);
 
         temp = ui->lineEditLN->text();
         temp_ba = temp.toLocal8Bit();
-        ln = new char[temp_ba.length()];
+        ln = strdup(temp_ba);
 
         QMessageBox::about(this, "Done!", "Signed up successfully!");
+        strcat(hel, fn);
+        strcat(hel, " ");
+        strcat(hel, ln);
+        QMessageBox::about(this, "Successfull sign up!", hel);
     } else {
         QMessageBox::critical(this, "Error!", "Password mismatch!");
     }
