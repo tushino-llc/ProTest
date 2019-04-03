@@ -8,7 +8,6 @@ struct User {
   char * login;
   char * first_name;
   char * last_name;
-  
 }
 ```
 ### Question
@@ -65,3 +64,14 @@ struct Marks {
 - Фильтрацию делайте сами
 - `Marks db_get_user_marks(int user_id)` - Возвращает объект оценок одного пользователя или NULL если не ок
 - `User[] db_get_users_sorted(int * size, char * by, int desc)` - Возвращает динамичекий массив студентов в базе. Записывает длину массива в переменную size. Сортирует по оценкам,  by - название темы, или 'average', или 'final'. Если desc == 0, то сортируется по возрастанию, 1 - по убыванию
+
+## 1.4. Примечание
+Названия тем выглядят так:
+- loops
+- arrays
+- strings
+- recursion
+- structs
+- files
+- pointers
+- dynamic
