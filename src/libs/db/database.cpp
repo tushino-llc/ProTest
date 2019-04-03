@@ -9,6 +9,11 @@ int db_open()
     return 0;
 }
 
+void db_close()
+{
+    sqlite3_close(db);
+}
+
 int db_delete_question(int id)
 {
     int rc;
@@ -24,7 +29,11 @@ int db_delete_question(int id)
     if (rc != SQLITE_DONE && rc != SQLITE_OK)
         return -1;
 
-    return 0;
+    // only 1 row must be affected
+    if (sqlite3_changes(db) != 1)
+        return -1;
+
+    return SQLITE_OK;
 }
 
 int db_delete_user(int id)
@@ -42,5 +51,9 @@ int db_delete_user(int id)
     if (rc != SQLITE_DONE && rc != SQLITE_OK)
         return -1;
 
-    return 0;
+    // only 1 row must be affected
+    if (sqlite3_changes(db) != 1)
+        return -1;
+
+    return SQLITE_OK;
 }
