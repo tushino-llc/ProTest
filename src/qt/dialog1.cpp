@@ -217,6 +217,11 @@ void Dialog1::on_pushSignUp_clicked()
         strcat(hel, " ");
         strcat(hel, ln);
         QMessageBox::about(this, "Successfull sign up!", hel);
+
+        free(login);
+        free(pass);
+        free(fn);
+        free(ln);
     } else {
         QMessageBox::critical(this, "Error!", "Password mismatch!");
     }
