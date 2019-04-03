@@ -6,22 +6,22 @@ Make your life easier. Install it now for free _(under GPLv2 copyleft)_
 
 ## Brief usage description
 ### General info:
-	Program runs in two modes: teacher mode and student mode. 
-	First, you have to authorize in our system. Then, mode will be selected automatically.
+Program runs in two modes: teacher mode and student mode. First, you have to authorize in our system. Then, mode will be selected automatically.
 
 ### Teacher mode allows you to:
-	• Add/Edit/Delete questions
-	• Show/Edit students info
+* Add/Edit/Delete questions
+* Show/Edit students info
   
 ### Student mode allows you to:
-	• Pass the training
-	• Pass the testing on the topic
-	• Pass the final test
+* Pass the training
+* Pass the testing on the topic
+* Pass the final test
     
 ### Notes:
-	• Our system uses «SQLite» as a database system
-	• Contact anton2920@gmail.com if any issue occurs
-	• Enjoy! :)
+* Our system uses «SQLite» as a database system
+* You can find all necessary documentation in `doc` folder
+* Contact anton2920@gmail.com if any issue occurs
+* Enjoy! :)
 
 ## Installation guide
 ### General stuff
