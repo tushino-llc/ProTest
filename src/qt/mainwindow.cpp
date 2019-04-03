@@ -41,6 +41,7 @@ MainWindow::MainWindow(QWidget *parent) :
             ui->lineLogin->setText(login);
             ui->linePass->setText(pass);
             ui->checkBox->setCheckState(Qt::CheckState::Checked);
+            // MainWindow::on_pushButtonSignIn_clicked();
         }
         fclose(fp);
     }
@@ -92,14 +93,30 @@ void MainWindow::on_pushButtonSignIn_clicked()
 
 void MainWindow::on_pushButtonSignUp_clicked()
 {
-    //    QMessageBox::StandardButton reply = QMessageBox::critical(this, "Error!", "No more disk space. Delete Windows?", QMessageBox::Yes);
-    //    if (reply == QMessageBox::Yes) {
-    //        this->close();
-    //    }
-
     /* Main part */
     hide();
     dialog1 = new Dialog1(this);
+    dialog1->SetLogin(ui->lineLogin->text());
+    dialog1->SetPass(ui->linePass->text());
     dialog1->show();
-    //this->close();
+}
+
+void MainWindow::on_lineLogin_textChanged(const QString &arg1)
+{
+    /* Main part */
+    if (arg1 != "" && ui->linePass->text() != "") {
+        ui->pushButtonSignIn->setEnabled(true);
+    } else {
+        ui->pushButtonSignIn->setEnabled(false);
+    }
+}
+
+void MainWindow::on_linePass_textChanged(const QString &arg1)
+{
+    /* Main part */
+    if (arg1 != "" && ui->lineLogin->text() != "") {
+        ui->pushButtonSignIn->setEnabled(true);
+    } else {
+        ui->pushButtonSignIn->setEnabled(false);
+    }
 }

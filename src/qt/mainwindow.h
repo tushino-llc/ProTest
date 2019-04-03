@@ -22,6 +22,8 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QStyle>
+#include <QDesktopWidget>
 #include <QMessageBox>
 #include "dialog1.h"
 #include <cstdio>
@@ -54,6 +56,10 @@ private slots:
     void on_pushButtonSignIn_clicked();
 
     void on_pushButtonSignUp_clicked();
+
+    void on_lineLogin_textChanged(const QString &arg1);
+
+    void on_linePass_textChanged(const QString &arg1);
 
 private:
     Ui::MainWindow *ui;

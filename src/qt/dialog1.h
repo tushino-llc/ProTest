@@ -22,6 +22,8 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 #define DIALOG1_H
 
 #include <QDialog>
+#include <QMessageBox>
+#include <stdlib.h>
 
 namespace Ui {
 class Dialog1;
@@ -34,6 +36,29 @@ class Dialog1 : public QDialog
 public:
     explicit Dialog1(QWidget *parent = nullptr);
     ~Dialog1();
+    void SetLogin(class QString);
+    void SetPass(class QString);
+
+private slots:
+    void on_lineEditPass_2_textChanged(const QString &arg1);
+
+    void on_lineEditPass_2_editingFinished();
+
+    void on_lineEditFN_textChanged(const QString &arg1);
+
+    void on_lineEditLN_textChanged(const QString &arg1);
+
+    void on_lineEditLogin_textChanged(const QString &arg1);
+
+    void on_lineEditPass_textChanged(const QString &arg1);
+
+    void on_radioStudent_toggled(bool checked);
+
+    void on_radioTeacher_toggled(bool checked);
+
+    void on_lineEditPass_editingFinished();
+
+    void on_pushSignUp_clicked();
 
 private:
     Ui::Dialog1 *ui;
