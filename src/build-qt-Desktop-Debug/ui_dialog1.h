@@ -22,109 +22,112 @@
 
 QT_BEGIN_NAMESPACE
 
-class Ui_Dialog
+class Ui_Dialog1
 {
 public:
-    QLabel *label_4;
-    QLabel *label;
-    QLabel *label_3;
-    QLabel *label_2;
-    QLineEdit *lineEdit_2;
-    QLineEdit *lineEdit;
-    QLabel *label_5;
-    QLabel *label_6;
     QLineEdit *lineEdit_3;
+    QRadioButton *radioButton_2;
+    QLabel *label_2;
+    QLabel *label_4;
+    QLabel *label_6;
+    QLineEdit *lineEdit_2;
     QLineEdit *lineEdit_4;
     QRadioButton *radioButton;
-    QRadioButton *radioButton_2;
+    QLabel *label;
+    QLineEdit *lineEdit;
+    QLabel *label_5;
+    QLabel *label_3;
     QPushButton *pushButton;
 
-    void setupUi(QDialog *Dialog)
+    void setupUi(QDialog *Dialog1)
     {
-        if (Dialog->objectName().isEmpty())
-            Dialog->setObjectName(QStringLiteral("Dialog"));
-        Dialog->resize(416, 501);
-        label_4 = new QLabel(Dialog);
-        label_4->setObjectName(QStringLiteral("label_4"));
-        label_4->setGeometry(QRect(110, 10, 191, 61));
-        QFont font;
-        font.setPointSize(40);
-        label_4->setFont(font);
-        label = new QLabel(Dialog);
-        label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(70, 50, 271, 51));
-        QFont font1;
-        font1.setPointSize(17);
-        label->setFont(font1);
-        label->setAlignment(Qt::AlignCenter);
-        label_3 = new QLabel(Dialog);
-        label_3->setObjectName(QStringLiteral("label_3"));
-        label_3->setGeometry(QRect(40, 300, 81, 20));
-        QFont font2;
-        font2.setPointSize(12);
-        label_3->setFont(font2);
-        label_2 = new QLabel(Dialog);
-        label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(40, 240, 59, 18));
-        label_2->setFont(font2);
-        lineEdit_2 = new QLineEdit(Dialog);
-        lineEdit_2->setObjectName(QStringLiteral("lineEdit_2"));
-        lineEdit_2->setGeometry(QRect(40, 320, 331, 32));
-        lineEdit = new QLineEdit(Dialog);
-        lineEdit->setObjectName(QStringLiteral("lineEdit"));
-        lineEdit->setGeometry(QRect(40, 260, 331, 32));
-        label_5 = new QLabel(Dialog);
-        label_5->setObjectName(QStringLiteral("label_5"));
-        label_5->setGeometry(QRect(40, 180, 81, 20));
-        label_5->setFont(font2);
-        label_6 = new QLabel(Dialog);
-        label_6->setObjectName(QStringLiteral("label_6"));
-        label_6->setGeometry(QRect(40, 120, 91, 18));
-        label_6->setFont(font2);
-        lineEdit_3 = new QLineEdit(Dialog);
+        if (Dialog1->objectName().isEmpty())
+            Dialog1->setObjectName(QStringLiteral("Dialog1"));
+        Dialog1->resize(391, 483);
+        Dialog1->setSizeGripEnabled(false);
+        lineEdit_3 = new QLineEdit(Dialog1);
         lineEdit_3->setObjectName(QStringLiteral("lineEdit_3"));
-        lineEdit_3->setGeometry(QRect(40, 200, 331, 32));
-        lineEdit_4 = new QLineEdit(Dialog);
-        lineEdit_4->setObjectName(QStringLiteral("lineEdit_4"));
-        lineEdit_4->setGeometry(QRect(40, 140, 331, 32));
-        radioButton = new QRadioButton(Dialog);
-        radioButton->setObjectName(QStringLiteral("radioButton"));
-        radioButton->setGeometry(QRect(40, 370, 91, 22));
-        radioButton->setFont(font2);
-        radioButton_2 = new QRadioButton(Dialog);
+        lineEdit_3->setGeometry(QRect(30, 200, 331, 32));
+        radioButton_2 = new QRadioButton(Dialog1);
         radioButton_2->setObjectName(QStringLiteral("radioButton_2"));
-        radioButton_2->setGeometry(QRect(280, 370, 91, 22));
-        radioButton_2->setFont(font2);
-        pushButton = new QPushButton(Dialog);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(40, 413, 331, 51));
+        radioButton_2->setGeometry(QRect(210, 370, 101, 22));
+        QFont font;
+        font.setPointSize(14);
+        radioButton_2->setFont(font);
+        label_2 = new QLabel(Dialog1);
+        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setGeometry(QRect(30, 240, 59, 18));
+        QFont font1;
+        font1.setPointSize(12);
+        label_2->setFont(font1);
+        label_4 = new QLabel(Dialog1);
+        label_4->setObjectName(QStringLiteral("label_4"));
+        label_4->setGeometry(QRect(100, 10, 191, 61));
+        QFont font2;
+        font2.setPointSize(40);
+        label_4->setFont(font2);
+        label_6 = new QLabel(Dialog1);
+        label_6->setObjectName(QStringLiteral("label_6"));
+        label_6->setGeometry(QRect(30, 120, 91, 18));
+        label_6->setFont(font1);
+        lineEdit_2 = new QLineEdit(Dialog1);
+        lineEdit_2->setObjectName(QStringLiteral("lineEdit_2"));
+        lineEdit_2->setGeometry(QRect(30, 320, 331, 32));
+        lineEdit_4 = new QLineEdit(Dialog1);
+        lineEdit_4->setObjectName(QStringLiteral("lineEdit_4"));
+        lineEdit_4->setGeometry(QRect(30, 140, 331, 32));
+        radioButton = new QRadioButton(Dialog1);
+        radioButton->setObjectName(QStringLiteral("radioButton"));
+        radioButton->setGeometry(QRect(90, 370, 101, 22));
+        radioButton->setFont(font);
+        label = new QLabel(Dialog1);
+        label->setObjectName(QStringLiteral("label"));
+        label->setGeometry(QRect(60, 50, 271, 51));
         QFont font3;
-        font3.setPointSize(16);
-        pushButton->setFont(font3);
+        font3.setPointSize(17);
+        label->setFont(font3);
+        label->setAlignment(Qt::AlignCenter);
+        lineEdit = new QLineEdit(Dialog1);
+        lineEdit->setObjectName(QStringLiteral("lineEdit"));
+        lineEdit->setGeometry(QRect(30, 260, 331, 32));
+        label_5 = new QLabel(Dialog1);
+        label_5->setObjectName(QStringLiteral("label_5"));
+        label_5->setGeometry(QRect(30, 180, 81, 20));
+        label_5->setFont(font1);
+        label_3 = new QLabel(Dialog1);
+        label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setGeometry(QRect(30, 300, 81, 20));
+        label_3->setFont(font1);
+        pushButton = new QPushButton(Dialog1);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+        pushButton->setGeometry(QRect(30, 413, 331, 51));
+        QFont font4;
+        font4.setPointSize(16);
+        pushButton->setFont(font4);
 
-        retranslateUi(Dialog);
+        retranslateUi(Dialog1);
 
-        QMetaObject::connectSlotsByName(Dialog);
+        QMetaObject::connectSlotsByName(Dialog1);
     } // setupUi
 
-    void retranslateUi(QDialog *Dialog)
+    void retranslateUi(QDialog *Dialog1)
     {
-        Dialog->setWindowTitle(QApplication::translate("Dialog", "Dialog", 0));
-        label_4->setText(QApplication::translate("Dialog", "ProTest", 0));
-        label->setText(QApplication::translate("Dialog", "Sign up", 0));
-        label_3->setText(QApplication::translate("Dialog", "Password", 0));
-        label_2->setText(QApplication::translate("Dialog", "Login", 0));
-        label_5->setText(QApplication::translate("Dialog", "Last name", 0));
-        label_6->setText(QApplication::translate("Dialog", "First name", 0));
-        radioButton->setText(QApplication::translate("Dialog", "Student", 0));
-        radioButton_2->setText(QApplication::translate("Dialog", "Teacher", 0));
-        pushButton->setText(QApplication::translate("Dialog", "Sign Up", 0));
+        Dialog1->setWindowTitle(QApplication::translate("Dialog1", "Sign Up", 0));
+        radioButton_2->setText(QApplication::translate("Dialog1", "Teacher", 0));
+        label_2->setText(QApplication::translate("Dialog1", "Login", 0));
+        label_4->setText(QApplication::translate("Dialog1", "ProTest", 0));
+        label_6->setText(QApplication::translate("Dialog1", "First name", 0));
+        radioButton->setText(QApplication::translate("Dialog1", "Student", 0));
+        label->setText(QApplication::translate("Dialog1", "Sign up", 0));
+        label_5->setText(QApplication::translate("Dialog1", "Last name", 0));
+        label_3->setText(QApplication::translate("Dialog1", "Password", 0));
+        pushButton->setText(QApplication::translate("Dialog1", "Sign Up", 0));
     } // retranslateUi
 
 };
 
 namespace Ui {
-    class Dialog: public Ui_Dialog {};
+    class Dialog1: public Ui_Dialog1 {};
 } // namespace Ui
 
 QT_END_NAMESPACE

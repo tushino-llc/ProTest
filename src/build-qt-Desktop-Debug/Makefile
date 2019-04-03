@@ -49,10 +49,14 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../qt/main.cpp \
-		../qt/mainwindow.cpp moc_mainwindow.cpp
+		../qt/mainwindow.cpp \
+		../qt/dialog1.cpp moc_mainwindow.cpp \
+		moc_dialog1.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
-		moc_mainwindow.o
+		dialog1.o \
+		moc_mainwindow.o \
+		moc_dialog1.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -111,8 +115,10 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exceptions.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
-		../qt/qt.pro ../qt/mainwindow.h ../qt/main.cpp \
-		../qt/mainwindow.cpp
+		../qt/qt.pro ../qt/mainwindow.h \
+		../qt/dialog1.h ../qt/main.cpp \
+		../qt/mainwindow.cpp \
+		../qt/dialog1.cpp
 QMAKE_TARGET  = qt
 DESTDIR       = 
 TARGET        = qt
@@ -263,8 +269,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../qt/mainwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../qt/main.cpp ../qt/mainwindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../qt/mainwindow.h ../qt/dialog1.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../qt/main.cpp ../qt/mainwindow.cpp ../qt/dialog1.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../qt/mainwindow.ui ../qt/dialog1.ui $(DISTDIR)/
 
 
@@ -290,11 +296,15 @@ benchmark: first
 
 compiler_rcc_make_all:
 compiler_rcc_clean:
-compiler_moc_header_make_all: moc_mainwindow.cpp
+compiler_moc_header_make_all: moc_mainwindow.cpp moc_dialog1.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp
-moc_mainwindow.cpp: ../qt/mainwindow.h
+	-$(DEL_FILE) moc_mainwindow.cpp moc_dialog1.cpp
+moc_mainwindow.cpp: ../qt/dialog1.h \
+		../qt/mainwindow.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/anton/ProTest/src/qt -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../qt/mainwindow.h -o moc_mainwindow.cpp
+
+moc_dialog1.cpp: ../qt/dialog1.h
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/anton/ProTest/src/qt -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../qt/dialog1.h -o moc_dialog1.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -317,15 +327,24 @@ compiler_clean: compiler_moc_header_clean compiler_uic_clean
 
 ####### Compile
 
-main.o: ../qt/main.cpp ../qt/mainwindow.h
+main.o: ../qt/main.cpp ../qt/mainwindow.h \
+		../qt/dialog1.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../qt/main.cpp
 
 mainwindow.o: ../qt/mainwindow.cpp ../qt/mainwindow.h \
+		../qt/dialog1.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../qt/mainwindow.cpp
 
+dialog1.o: ../qt/dialog1.cpp ../qt/dialog1.h \
+		ui_dialog1.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dialog1.o ../qt/dialog1.cpp
+
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
+
+moc_dialog1.o: moc_dialog1.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_dialog1.o moc_dialog1.cpp
 
 ####### Install
 

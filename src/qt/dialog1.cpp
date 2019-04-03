@@ -18,14 +18,17 @@ You should have received a copy of the GNU General Public License
 along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "mainwindow.h"
-#include <QApplication>
+#include "dialog1.h"
+#include "ui_dialog1.h"
 
-int main(int argc, char *argv[])
+Dialog1::Dialog1(QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::Dialog1)
 {
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
+    ui->setupUi(this);
+}
 
-    return a.exec();
+Dialog1::~Dialog1()
+{
+    delete ui;
 }
