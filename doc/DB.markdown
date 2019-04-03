@@ -3,6 +3,8 @@
 ### User
 ```
 struct User {
+  bool admin;
+  int id;
   char * login;
   char * first_name;
   char * last_name;
@@ -25,3 +27,12 @@ struct Question {
 - `Question[10] db_get_test(char * theme)` - возвращает массив из 10 рандомных вопросов темы *theme* (см. **Примечание** в конце)
 - `Question[40] db_get_final_test()` - рандомит 40 вопросов из любых тем
 - `void db_set_mark(int user_id, char * theme, int mark)` - ставит пользователю с ID *user_id* оценку *mark* по теме *theme*
+
+## 1.3. Функции (Режим преподавателя)
+
+### Управление вопросами
+
+- `int db_add_question(char * theme, char * value, char * ans1, char * ans2, char * ans3, char * ans4, int correct)` - Добавляет вопрос; Возвращает id вопроса, или -1 в случае ошибки
+- `int db_update_question(int id, char * value, char * ans1, char * ans2, char * ans3, char * ans4, int correct)` - Изменяет вопрос; Возвращает 0 если ОК, или -1 если не ОК.
+- `int db_delete_question(int id)` - Удаляет вопрос. Возвращает 0 если ОК, или -1 если не ОК.
+
