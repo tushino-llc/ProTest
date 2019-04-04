@@ -27,6 +27,36 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 #include "sqlite3.h"
 
 
+
+/**
+*
+*   THIS FILE IS NOT LINKED TO MAIN HEADER YET
+*
+*/
+
+#include "sqlite.h"
+
+struct User {
+    int id;
+    bool admin;
+    char * login;
+    char * first_name;
+    char * last_name;
+};
+
+struct Question {
+    int id;
+    int theme;
+    char * value;
+    char * ans[4];
+    int correct;
+};
+
+struct Marks {
+    int user_id;
+    int[10] values;
+};
+
 int db_open();
 
 int db_delete_question(int id);
