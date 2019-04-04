@@ -19,7 +19,8 @@ SOURCES += mainwindow.cpp \
     ../libs/db/sqlite3.c \
     ../libs/main_menu.cpp \
     ../main.cpp \
-    qt_main.cpp
+    qt_main.cpp \
+    mainwindow_teach.cpp
 
 HEADERS  += mainwindow.h \
     dialog1.h \
@@ -40,10 +41,12 @@ HEADERS  += mainwindow.h \
     ../headers/sqlite3.h \
     ../headers/teacher_menu.h \
     ../headers/tests_main_header.h \
-    ../headers/main_menu.h
+    ../headers/main_menu.h \
+    mainwindow_teach.h
 
 FORMS    += mainwindow.ui \
-    dialog1.ui
+    dialog1.ui \
+    mainwindow_teach.ui
 
 LIBS += \
     ../libs/libcrypt/lib/libtomcrypt.a \

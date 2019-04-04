@@ -26,16 +26,6 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 
 #include "sqlite3.h"
 
-
-
-/**
-*
-*   THIS FILE IS NOT LINKED TO MAIN HEADER YET
-*
-*/
-
-#include "sqlite.h"
-
 struct User {
     int id;
     bool admin;
@@ -54,7 +44,7 @@ struct Question {
 
 struct Marks {
     int user_id;
-    int[10] values;
+    int values[10];
 };
 
 int db_open();

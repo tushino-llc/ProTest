@@ -120,3 +120,15 @@ void MainWindow::on_linePass_textChanged(const QString &arg1)
         ui->pushButtonSignIn->setEnabled(false);
     }
 }
+
+void MainWindow::SetLogin_main(class QString str) {
+
+    /* Initializing variables */
+    ui->lineLogin->setText(str);
+}
+
+void MainWindow::SetPass_main(class QString str) {
+
+    /* Initializing variables */
+    ui->linePass->setText(str);
+}

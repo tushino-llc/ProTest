@@ -54,8 +54,10 @@ SOURCES       = ../qt/mainwindow.cpp \
 		../libs/db/sqlite3.c \
 		../libs/main_menu.cpp \
 		../main.cpp \
-		../qt/qt_main.cpp moc_mainwindow.cpp \
-		moc_dialog1.cpp
+		../qt/qt_main.cpp \
+		../qt/mainwindow_teach.cpp moc_mainwindow.cpp \
+		moc_dialog1.cpp \
+		moc_mainwindow_teach.cpp
 OBJECTS       = mainwindow.o \
 		dialog1.o \
 		database.o \
@@ -63,8 +65,10 @@ OBJECTS       = mainwindow.o \
 		main_menu.o \
 		main.o \
 		qt_main.o \
+		mainwindow_teach.o \
 		moc_mainwindow.o \
-		moc_dialog1.o
+		moc_dialog1.o \
+		moc_mainwindow_teach.o
 DIST          = ../Makefile.am \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
@@ -143,13 +147,15 @@ DIST          = ../Makefile.am \
 		../headers/sqlite3.h \
 		../headers/teacher_menu.h \
 		../headers/tests_main_header.h \
-		../headers/main_menu.h ../qt/mainwindow.cpp \
+		../headers/main_menu.h \
+		../qt/mainwindow_teach.h ../qt/mainwindow.cpp \
 		../qt/dialog1.cpp \
 		../libs/db/database.cpp \
 		../libs/db/sqlite3.c \
 		../libs/main_menu.cpp \
 		../main.cpp \
-		../qt/qt_main.cpp
+		../qt/qt_main.cpp \
+		../qt/mainwindow_teach.cpp
 QMAKE_TARGET  = qt
 DESTDIR       = 
 TARGET        = qt
@@ -158,7 +164,7 @@ TARGET        = qt
 first: all
 ####### Build rules
 
-$(TARGET): ui_mainwindow.h ui_dialog1.h $(OBJECTS)  
+$(TARGET): ui_mainwindow.h ui_dialog1.h ui_mainwindow_teach.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: ../qt/qt.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64/qmake.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -300,9 +306,9 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../qt/mainwindow.h ../qt/dialog1.h ../libs/libcrypt/include/tomcrypt.h ../libs/libcrypt/include/tomcrypt_argchk.h ../libs/libcrypt/include/tomcrypt_cfg.h ../libs/libcrypt/include/tomcrypt_cipher.h ../libs/libcrypt/include/tomcrypt_custom.h ../libs/libcrypt/include/tomcrypt_hash.h ../libs/libcrypt/include/tomcrypt_mac.h ../libs/libcrypt/include/tomcrypt_macros.h ../libs/libcrypt/include/tomcrypt_math.h ../libs/libcrypt/include/tomcrypt_misc.h ../libs/libcrypt/include/tomcrypt_pk.h ../libs/libcrypt/include/tomcrypt_pkcs.h ../libs/libcrypt/include/tomcrypt_prng.h ../headers/database.h ../headers/sqlite3.h ../headers/teacher_menu.h ../headers/tests_main_header.h ../headers/main_menu.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../qt/mainwindow.cpp ../qt/dialog1.cpp ../libs/db/database.cpp ../libs/db/sqlite3.c ../libs/main_menu.cpp ../main.cpp ../qt/qt_main.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../qt/mainwindow.ui ../qt/dialog1.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../qt/mainwindow.h ../qt/dialog1.h ../libs/libcrypt/include/tomcrypt.h ../libs/libcrypt/include/tomcrypt_argchk.h ../libs/libcrypt/include/tomcrypt_cfg.h ../libs/libcrypt/include/tomcrypt_cipher.h ../libs/libcrypt/include/tomcrypt_custom.h ../libs/libcrypt/include/tomcrypt_hash.h ../libs/libcrypt/include/tomcrypt_mac.h ../libs/libcrypt/include/tomcrypt_macros.h ../libs/libcrypt/include/tomcrypt_math.h ../libs/libcrypt/include/tomcrypt_misc.h ../libs/libcrypt/include/tomcrypt_pk.h ../libs/libcrypt/include/tomcrypt_pkcs.h ../libs/libcrypt/include/tomcrypt_prng.h ../headers/database.h ../headers/sqlite3.h ../headers/teacher_menu.h ../headers/tests_main_header.h ../headers/main_menu.h ../qt/mainwindow_teach.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../qt/mainwindow.cpp ../qt/dialog1.cpp ../libs/db/database.cpp ../libs/db/sqlite3.c ../libs/main_menu.cpp ../main.cpp ../qt/qt_main.cpp ../qt/mainwindow_teach.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../qt/mainwindow.ui ../qt/dialog1.ui ../qt/mainwindow_teach.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -327,9 +333,9 @@ benchmark: first
 
 compiler_rcc_make_all:
 compiler_rcc_clean:
-compiler_moc_header_make_all: moc_mainwindow.cpp moc_dialog1.cpp
+compiler_moc_header_make_all: moc_mainwindow.cpp moc_dialog1.cpp moc_mainwindow_teach.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp moc_dialog1.cpp
+	-$(DEL_FILE) moc_mainwindow.cpp moc_dialog1.cpp moc_mainwindow_teach.cpp
 moc_mainwindow.cpp: ../qt/dialog1.h \
 		../headers/tests_main_header.h \
 		../headers/sqlite3.h \
@@ -373,16 +379,22 @@ moc_dialog1.cpp: ../headers/tests_main_header.h \
 		../qt/dialog1.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/anton/ProTest/src/qt -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../qt/dialog1.h -o moc_dialog1.cpp
 
+moc_mainwindow_teach.cpp: ../qt/mainwindow_teach.h
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/anton/ProTest/src/qt -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../qt/mainwindow_teach.h -o moc_mainwindow_teach.cpp
+
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h ui_dialog1.h
+compiler_uic_make_all: ui_mainwindow.h ui_dialog1.h ui_mainwindow_teach.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h ui_dialog1.h
+	-$(DEL_FILE) ui_mainwindow.h ui_dialog1.h ui_mainwindow_teach.h
 ui_mainwindow.h: ../qt/mainwindow.ui
 	/usr/lib/x86_64-linux-gnu/qt5/bin/uic ../qt/mainwindow.ui -o ui_mainwindow.h
 
 ui_dialog1.h: ../qt/dialog1.ui
 	/usr/lib/x86_64-linux-gnu/qt5/bin/uic ../qt/dialog1.ui -o ui_dialog1.h
+
+ui_mainwindow_teach.h: ../qt/mainwindow_teach.ui
+	/usr/lib/x86_64-linux-gnu/qt5/bin/uic ../qt/mainwindow_teach.ui -o ui_mainwindow_teach.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -508,11 +520,18 @@ qt_main.o: ../qt/qt_main.cpp ../qt/mainwindow.h \
 		../headers/main_menu.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qt_main.o ../qt/qt_main.cpp
 
+mainwindow_teach.o: ../qt/mainwindow_teach.cpp ../qt/mainwindow_teach.h \
+		ui_mainwindow_teach.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow_teach.o ../qt/mainwindow_teach.cpp
+
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
 
 moc_dialog1.o: moc_dialog1.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_dialog1.o moc_dialog1.cpp
+
+moc_mainwindow_teach.o: moc_mainwindow_teach.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow_teach.o moc_mainwindow_teach.cpp
 
 ####### Install
 
