@@ -72,3 +72,53 @@ int db_delete_user(int id)
     
     return SQLITE_OK;
 }
+
+
+User db_login(char * login, char * password)
+{
+    int rc;
+    User user = {0};
+
+    sqlite3_stmt * st = nullptr;
+    rc = sqlite3_prepare_v2(db, "SELECT COUNT(*) FROM `users` WHERE login = ? AND pass = ?", -1, &st, nullptr);
+    if (rc != SQLITE_OK)
+        return user;
+
+    rc = sqlite3_bind_text(st, 1, login, -1, SQLITE_STATIC); // wow, it`s working! (idk why)
+    rc = sqlite3_bind_text(st, 2, password, -1, SQLITE_STATIC);
+
+    if (rc != SQLITE_OK)
+        return user;
+
+    rc = sqlite3_step(st);
+
+    int res = sqlite3_column_int(st, 0);
+
+    if(res != 1)
+        // user not found
+        return user;
+
+    rc = sqlite3_prepare_v2(db, "SELECT * FROM `users` WHERE login = ?", -1, &st, nullptr);
+    rc = sqlite3_bind_text(st, 1, login, -1, SQLITE_STATIC);
+
+    if (rc != SQLITE_OK)
+        // Oops, something went wrong
+        return user;
+
+    sqlite3_step(st);
+
+    // write user data to object
+    res = sqlite3_column_int(st, 0);
+    user.id = res;
+    auto name = sqlite3_column_text(st, 1);
+    user.login = (char *)name;
+    // skip password column
+    name = sqlite3_column_text(st, 3);
+    user.first_name = (char *)name;
+    name = sqlite3_column_text(st, 4);
+    user.last_name = (char *)name;
+    res = sqlite3_column_int(st, 5);
+    user.admin = res != 0;
+
+    return user;
+}
