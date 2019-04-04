@@ -118,6 +118,13 @@ public:
         lineEditPass_2->setObjectName(QStringLiteral("lineEditPass_2"));
         lineEditPass_2->setGeometry(QRect(30, 380, 331, 32));
         lineEditPass_2->setEchoMode(QLineEdit::Password);
+        QWidget::setTabOrder(lineEditFN, lineEditLN);
+        QWidget::setTabOrder(lineEditLN, lineEditLogin);
+        QWidget::setTabOrder(lineEditLogin, lineEditPass);
+        QWidget::setTabOrder(lineEditPass, lineEditPass_2);
+        QWidget::setTabOrder(lineEditPass_2, radioStudent);
+        QWidget::setTabOrder(radioStudent, radioTeacher);
+        QWidget::setTabOrder(radioTeacher, pushSignUp);
 
         retranslateUi(Dialog1);
 

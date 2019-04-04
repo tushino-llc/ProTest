@@ -134,6 +134,10 @@ public:
         formLayout_2->setWidget(1, QFormLayout::SpanningRole, linePass);
 
         MainWindow->setCentralWidget(centralWidget);
+        QWidget::setTabOrder(lineLogin, linePass);
+        QWidget::setTabOrder(linePass, checkBox);
+        QWidget::setTabOrder(checkBox, pushButtonSignIn);
+        QWidget::setTabOrder(pushButtonSignIn, pushButtonSignUp);
 
         retranslateUi(MainWindow);
 

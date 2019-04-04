@@ -60,13 +60,14 @@ void Dialog1::on_lineEditPass_2_textChanged(const QString &arg1)
         ui->pushSignUp->setEnabled(false);
     }
 
-    if (arg1 != ui->lineEditPass->text()) {
-
-        ui->lineEditPass->setStyleSheet("QLineEdit {background: rgb(255, 255, 0); selection-background-color: rgb(250, 150, 0); }");
-        ui->lineEditPass_2->setStyleSheet("QLineEdit {background: rgb(255, 255, 0); selection-background-color: rgb(250, 150, 0); }");
-    } else {
-        ui->lineEditPass->setStyleSheet("QLineEdit {background: rgb(150, 255, 0); selection-background-color: rgb(100, 250, 0); }");
-        ui->lineEditPass_2->setStyleSheet("QLineEdit {background: rgb(150, 255, 0); selection-background-color: rgb(100, 250, 0); }");
+    if (ui->lineEditPass->text() != "") {
+        if (arg1 != ui->lineEditPass->text()) {
+            ui->lineEditPass->setStyleSheet("QLineEdit {background: rgb(255, 255, 0); selection-background-color: rgb(250, 150, 0); }");
+            ui->lineEditPass_2->setStyleSheet("QLineEdit {background: rgb(255, 255, 0); selection-background-color: rgb(250, 150, 0); }");
+        } else {
+            ui->lineEditPass->setStyleSheet("QLineEdit {background: rgb(150, 255, 0); selection-background-color: rgb(100, 250, 0); }");
+            ui->lineEditPass_2->setStyleSheet("QLineEdit {background: rgb(150, 255, 0); selection-background-color: rgb(100, 250, 0); }");
+        }
     }
 
     if (arg1 == "") {
@@ -78,17 +79,19 @@ void Dialog1::on_lineEditPass_2_textChanged(const QString &arg1)
 void Dialog1::on_lineEditPass_2_editingFinished()
 {
     /* Main part */
-    if (ui->lineEditPass_2->text() != ui->lineEditPass->text()) {
-        ui->lineEditPass->setStyleSheet("QLineEdit {background: rgb(255, 80, 80); selection-background-color: rgb(255, 0, 0); }");
-        ui->lineEditPass_2->setStyleSheet("QLineEdit {background: rgb(255, 80, 80); selection-background-color: rgb(255, 0, 0); }");
-    } else {
-        ui->lineEditPass->setStyleSheet("QLineEdit {background: rgb(150, 255, 0); selection-background-color: rgb(100, 250, 0); }");
-        ui->lineEditPass_2->setStyleSheet("QLineEdit {background: rgb(150, 255, 0); selection-background-color: rgb(100, 250, 0); }");
-    }
+    if (ui->lineEditPass_2->text() != "" && ui->lineEditPass->text() != ""){
+        if (ui->lineEditPass_2->text() != ui->lineEditPass->text()) {
+            ui->lineEditPass->setStyleSheet("QLineEdit {background: rgb(255, 80, 80); selection-background-color: rgb(255, 0, 0); }");
+            ui->lineEditPass_2->setStyleSheet("QLineEdit {background: rgb(255, 80, 80); selection-background-color: rgb(255, 0, 0); }");
+        } else {
+            ui->lineEditPass->setStyleSheet("QLineEdit {background: rgb(150, 255, 0); selection-background-color: rgb(100, 250, 0); }");
+            ui->lineEditPass_2->setStyleSheet("QLineEdit {background: rgb(150, 255, 0); selection-background-color: rgb(100, 250, 0); }");
+        }
 
-    if (ui->lineEditPass_2->text() == "") {
-        ui->lineEditPass->setStyleSheet("");
-        ui->lineEditPass_2->setStyleSheet("");
+        if (ui->lineEditPass_2->text() == "") {
+            ui->lineEditPass->setStyleSheet("");
+            ui->lineEditPass_2->setStyleSheet("");
+        }
     }
 }
 
@@ -139,13 +142,19 @@ void Dialog1::on_lineEditPass_textChanged(const QString &arg1)
         ui->pushSignUp->setEnabled(false);
     }
 
-    if (arg1 != ui->lineEditPass_2->text() && ui->lineEditPass_2->text() != "") {
+    if (ui->lineEditPass_2->text() != "") {
+        if (arg1 != ui->lineEditPass_2->text() && ui->lineEditPass_2->text() != "") {
+            ui->lineEditPass->setStyleSheet("QLineEdit {background: rgb(255, 255, 0); selection-background-color: rgb(250, 150, 0); }");
+            ui->lineEditPass_2->setStyleSheet("QLineEdit {background: rgb(255, 255, 0); selection-background-color: rgb(250, 150, 0); }");
+        } else {
+            ui->lineEditPass->setStyleSheet("QLineEdit {background: rgb(150, 255, 0); selection-background-color: rgb(100, 250, 0); }");
+            ui->lineEditPass_2->setStyleSheet("QLineEdit {background: rgb(150, 255, 0); selection-background-color: rgb(100, 250, 0); }");
+        }
+    }
 
-        ui->lineEditPass->setStyleSheet("QLineEdit {background: rgb(255, 255, 0); selection-background-color: rgb(250, 150, 0); }");
-        ui->lineEditPass_2->setStyleSheet("QLineEdit {background: rgb(255, 255, 0); selection-background-color: rgb(250, 150, 0); }");
-    } else {
-        ui->lineEditPass->setStyleSheet("QLineEdit {background: rgb(150, 255, 0); selection-background-color: rgb(100, 250, 0); }");
-        ui->lineEditPass_2->setStyleSheet("QLineEdit {background: rgb(150, 255, 0); selection-background-color: rgb(100, 250, 0); }");
+    if (arg1 == "") {
+        ui->lineEditPass->setStyleSheet("");
+        ui->lineEditPass_2->setStyleSheet("");
     }
 
 }
@@ -177,12 +186,14 @@ void Dialog1::on_radioTeacher_toggled(bool checked)
 void Dialog1::on_lineEditPass_editingFinished()
 {
     /* Main part */
-    if (ui->lineEditPass_2->text() != ui->lineEditPass->text()) {
-        ui->lineEditPass->setStyleSheet("QLineEdit {background: rgb(255, 80, 80); selection-background-color: rgb(255, 0, 0); }");
-        ui->lineEditPass_2->setStyleSheet("QLineEdit {background: rgb(255, 80, 80); selection-background-color: rgb(255, 0, 0); }");
-    } else {
-        ui->lineEditPass->setStyleSheet("QLineEdit {background: rgb(150, 255, 0); selection-background-color: rgb(100, 250, 0); }");
-        ui->lineEditPass_2->setStyleSheet("QLineEdit {background: rgb(150, 255, 0); selection-background-color: rgb(100, 250, 0); }");
+    if (ui->lineEditPass->text() != "" && ui->lineEditPass_2->text() != "") {
+        if (ui->lineEditPass_2->text() != ui->lineEditPass->text()) {
+            ui->lineEditPass->setStyleSheet("QLineEdit {background: rgb(255, 80, 80); selection-background-color: rgb(255, 0, 0); }");
+            ui->lineEditPass_2->setStyleSheet("QLineEdit {background: rgb(255, 80, 80); selection-background-color: rgb(255, 0, 0); }");
+        } else {
+            ui->lineEditPass->setStyleSheet("QLineEdit {background: rgb(150, 255, 0); selection-background-color: rgb(100, 250, 0); }");
+            ui->lineEditPass_2->setStyleSheet("QLineEdit {background: rgb(150, 255, 0); selection-background-color: rgb(100, 250, 0); }");
+        }
     }
 }
 

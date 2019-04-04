@@ -1,21 +1,21 @@
 /*
-ProTest — powerful multifunctional calculator
+ProTest — free powerful program for educational tests
 Copyright © 2019 Tushino Software LLC
 
-This file is part of ProCalc.
+This file is part of ProTest.
 
-ProCalc is free software: you can redistribute it and/or modify
+ProTest is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 2 of the License, or
 (at your option) any later version.
 
-ProCalc is distributed in the hope that it will be useful,
+ProTest is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with ProCalc. If not, see <https://www.gnu.org/licenses/>.
+along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "../headers/tests_main_header.h"
@@ -133,23 +133,19 @@ int main_menu(void) {
     while (1) {
         printf(" ------------------------------------------------------------\n"
 "|                                                            |\n"
-"|                     >> ProCalc v1.0 <<                     |\n"
+"|                     >> ProTest v1.0 <<                     |\n"
 "|                                                            |\n"
-"|  >> Choose a type of a calculator:                         |\n"
+"|  >> Choose a mode:                                         |\n"
 "|                                                            |\n"
-"|       1) Matrix calculator                                 |\n"
-"|       2) Fractions calculator                              |\n"
-"|       3) Combinatorial stuff calculator                    |\n"
-"|       4) Polynomials calculator                            |\n"
-"|       5) Probability and statistics                        |\n"
-"|       6) Functions stuff                                   |\n"
+"|       1) Teacher's mode                                    |\n"
+"|       2) Student's mode                                    |\n"
 "|                                                            |\n"
 "|       >> Type \"quit\" to terminate this program <<          |\n"
 "|                                                            |\n");
         printf("| Answer: ");
         func = getchar();
         prt_ln();
-        if (isdigit(func) && func >= '1' && func <= '6') {
+        if (isdigit(func) && func >= '1' && func <= '2') {
             func -= '0';
             if ((junk = getchar()) != '\n') {
                 while ((junk = getchar()) != '\n')

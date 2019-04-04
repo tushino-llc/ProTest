@@ -271,6 +271,16 @@
    </property>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>lineEditFN</tabstop>
+  <tabstop>lineEditLN</tabstop>
+  <tabstop>lineEditLogin</tabstop>
+  <tabstop>lineEditPass</tabstop>
+  <tabstop>lineEditPass_2</tabstop>
+  <tabstop>radioStudent</tabstop>
+  <tabstop>radioTeacher</tabstop>
+  <tabstop>pushSignUp</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
