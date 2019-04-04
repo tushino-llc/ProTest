@@ -38,7 +38,7 @@ AC_CHECK_HEADERS([QApplication QDialog QMessageBox QMainWindow QStyle QDesktopWi
 	])
 
 # Check for essential libraries 
-AC_SEARCH_LIBS([unixDlClose], [dl], [], [
+AC_SEARCH_LIBS([dlclose], [dl], [], [
 	AC_MSG_ERROR([unable to find dl lib])
 	])
 
