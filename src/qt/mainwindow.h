@@ -26,6 +26,7 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 #include <QDesktopWidget>
 #include <QMessageBox>
 #include "dialog1.h"
+#include "mainwindow_teach.h"
 #include "../headers/tests_main_header.h"
 
 namespace Ui {
@@ -60,6 +61,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     Dialog1 *dialog1;
+    MainWindow_teach *mwt;
 };
 
 #endif // MAINWINDOW_H

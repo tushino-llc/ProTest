@@ -80,6 +80,19 @@ void MainWindow::on_pushButtonSignIn_clicked()
             FILE *fp = fopen("remember.lp", "wb");
             fclose(fp);
         }
+
+        mwt = new MainWindow_teach(this);
+        mwt->setGeometry(
+                    QStyle::alignedRect(
+                        Qt::LeftToRight,
+                        Qt::AlignCenter,
+                        mwt->size(),
+                        qApp->desktop()->availableGeometry()
+                    )
+                );
+        mwt->show();
+        this->hide();
+
     } else {
         QMessageBox::StandardButton reply;
         reply = QMessageBox::critical(this, "Error!", "Wrong login or password!", QMessageBox::Yes);

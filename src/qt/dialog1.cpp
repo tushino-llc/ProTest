@@ -201,10 +201,11 @@ void Dialog1::on_pushSignUp_clicked()
 {
 
     /* Initializing variables */
-    char *login, *pass, *fn, *ln, *hel = new char[100];
+    char *login, *pass, *fn, *ln, *hel = new char[100], *q1;
     strcpy(hel, "Hello, ");
     QString temp, Qlogin, Qpass;
     QByteArray temp_ba;
+    QMessageBox::StandardButton reply;
 
     /* Main part */
     if (ui->lineEditPass->text() == ui->lineEditPass_2->text()) {
@@ -224,38 +225,52 @@ void Dialog1::on_pushSignUp_clicked()
         temp_ba = temp.toLocal8Bit();
         ln = strdup(temp_ba);
 
-        QMessageBox::about(this, "Done!", "Signed up successfully!");
-        strcat(hel, fn);
-        strcat(hel, " ");
-        strcat(hel, ln);
-        QMessageBox::about(this, "Successfull sign up!", hel);
+        q1 = new char[strlen("Is that OK?\n\nLogin: \nFirst name: \nLast name: \n") + strlen(login) + strlen(fn) + strlen(ln)];
+        strcpy(q1, "");
+        strcat(q1, "Is that OK?\n\nLogin: ");
+        strcat(q1, login);
+        strcat(q1, "\nFirst name: ");
+        strcat(q1, fn);
+        strcat(q1, "\nLast name: ");
+        strcat(q1, ln);
 
+        reply = QMessageBox::question(this, "Sign Up", q1, QMessageBox::Yes | QMessageBox::No);
+        if (reply == QMessageBox::Yes) {
+            QMessageBox::about(this, "Done!", "Signed up successfully!");
+            strcat(hel, fn);
+            strcat(hel, " ");
+            strcat(hel, ln);
+            QMessageBox::about(this, "Successfull sign up!", hel);
+
+            /* Forum's code */
+            QObject *p = this;
+            do
+            {
+                p = p->parent();
+                } while (p->parent() != nullptr);
+
+            MainWindow *mw = qobject_cast<MainWindow *>(p);
+            if (!mw)
+            {
+                // couldnt find main window
+            }
+            else
+            {
+                mw->SetLogin(Qlogin);
+                mw->SetPass(Qpass);
+                mw->show();
+                hide();
+
+                this->hide();
+            }
+        }
+
+        free(q1);
         free(login);
         free(pass);
         free(fn);
         free(ln);
-
-        this->hide();
-
-        QObject *p = this;
-        do
-        {
-            p = p->parent();
-            } while (p->parent() != nullptr);
-
-        MainWindow *mw = qobject_cast<MainWindow *>(p);
-        if (!mw)
-        {
-            // couldnt find main window
-        }
-        else
-        {
-            mw->SetLogin(Qlogin);
-            mw->SetPass(Qpass);
-            mw->show();
-            hide();
-        }
-
+        free(hel);
     } else {
         QMessageBox::critical(this, "Error!", "Password mismatch!");
     }
