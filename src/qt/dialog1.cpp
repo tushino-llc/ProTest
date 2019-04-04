@@ -20,6 +20,7 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 
 #include "dialog1.h"
 #include "ui_dialog1.h"
+#include "mainwindow.h"
 
 Dialog1::Dialog1(QWidget *parent) :
     QDialog(parent),
@@ -191,24 +192,24 @@ void Dialog1::on_pushSignUp_clicked()
     /* Initializing variables */
     char *login, *pass, *fn, *ln, *hel = new char[100];
     strcpy(hel, "Hello, ");
-    QString temp;
+    QString temp, Qlogin, Qpass;
     QByteArray temp_ba;
 
     /* Main part */
     if (ui->lineEditPass->text() == ui->lineEditPass_2->text()) {
-        temp = ui->lineEditLogin->text();
-        temp_ba = temp.toLocal8Bit();
+        Qlogin = ui->lineEditLogin->text();
+        temp_ba = Qlogin.toLocal8Bit();
         login = strdup(temp_ba);
 
-        temp = ui->lineEditPass->text();
-        temp_ba = temp.toLocal8Bit();
+        Qpass = ui->lineEditPass->text();
+        temp_ba = Qpass.toLocal8Bit();
         pass = strdup(temp_ba);
 
         temp = ui->lineEditFN->text();
         temp_ba = temp.toLocal8Bit();
         fn = strdup(temp_ba);
 
-        temp = ui->lineEditLN->text();
+        temp = ui->lineEditLN->text(); 
         temp_ba = temp.toLocal8Bit();
         ln = strdup(temp_ba);
 
@@ -222,6 +223,28 @@ void Dialog1::on_pushSignUp_clicked()
         free(pass);
         free(fn);
         free(ln);
+
+        this->hide();
+
+        QObject *p = this;
+        do
+        {
+            p = p->parent();
+            } while (p->parent() != nullptr);
+
+        MainWindow *mw = qobject_cast<MainWindow *>(p);
+        if (!mw)
+        {
+            // couldnt find main window
+        }
+        else
+        {
+            mw->SetLogin(Qlogin);
+            mw->SetPass(Qpass);
+            mw->show();
+            hide();
+        }
+
     } else {
         QMessageBox::critical(this, "Error!", "Password mismatch!");
     }

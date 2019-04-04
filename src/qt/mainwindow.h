@@ -45,8 +45,8 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    void SetLogin_main(class QString);
-    void SetPass_main(class QString);
+    void SetLogin(class QString);
+    void SetPass(class QString);
 
 private slots:
     void on_pushButtonSignIn_clicked();

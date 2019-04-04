@@ -73,8 +73,6 @@ void MainWindow::on_pushButtonSignIn_clicked()
                 strcpy(str.login, array.data());
                 array = pass.toLocal8Bit();
                 strcpy(str.pass, array.data());
-//                str.login = login;
-//                str.pass = pass;
                 fwrite(&str, sizeof(str), 1, fp);
                 fclose(fp);
             }
@@ -99,6 +97,10 @@ void MainWindow::on_pushButtonSignUp_clicked()
     dialog1->SetLogin(ui->lineLogin->text());
     dialog1->SetPass(ui->linePass->text());
     dialog1->show();
+
+    //ui->lineLogin->setText(dialog1->GetLogin());
+    //ui->linePass->setText(dialog1->GetPass());
+    //show();
 }
 
 void MainWindow::on_lineLogin_textChanged(const QString &arg1)
@@ -121,14 +123,13 @@ void MainWindow::on_linePass_textChanged(const QString &arg1)
     }
 }
 
-void MainWindow::SetLogin_main(class QString str) {
+void MainWindow::SetLogin(class QString str) {
 
-    /* Initializing variables */
+    /* Main part */
     ui->lineLogin->setText(str);
 }
+void MainWindow::SetPass(class QString str) {
 
-void MainWindow::SetPass_main(class QString str) {
-
-    /* Initializing variables */
+    /* Main part */
     ui->linePass->setText(str);
 }
