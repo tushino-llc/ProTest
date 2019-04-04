@@ -14,10 +14,36 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    dialog1.cpp
+    dialog1.cpp \
+    ../libs/db/database.cpp \
+    ../libs/teacher.cpp \
+    ../libs/teacher_menu.cpp \
+    ../libs/db/sqlite3.c \
+    ../main_main.cpp
 
 HEADERS  += mainwindow.h \
-    dialog1.h
+    dialog1.h \
+    ../libs/libcrypt/include/tomcrypt.h \
+    ../libs/libcrypt/include/tomcrypt_argchk.h \
+    ../libs/libcrypt/include/tomcrypt_cfg.h \
+    ../libs/libcrypt/include/tomcrypt_cipher.h \
+    ../libs/libcrypt/include/tomcrypt_custom.h \
+    ../libs/libcrypt/include/tomcrypt_hash.h \
+    ../libs/libcrypt/include/tomcrypt_mac.h \
+    ../libs/libcrypt/include/tomcrypt_macros.h \
+    ../libs/libcrypt/include/tomcrypt_math.h \
+    ../libs/libcrypt/include/tomcrypt_misc.h \
+    ../libs/libcrypt/include/tomcrypt_pk.h \
+    ../libs/libcrypt/include/tomcrypt_pkcs.h \
+    ../libs/libcrypt/include/tomcrypt_prng.h \
+    ../headers/database.h \
+    ../headers/sqlite3.h \
+    ../headers/teacher_menu.h \
+    ../headers/tests_main_header.h
 
 FORMS    += mainwindow.ui \
     dialog1.ui
+
+DISTFILES += \
+    ../Makefile.am \
+    ../libs/libcrypt/lib/libtomcrypt.a

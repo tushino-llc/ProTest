@@ -1,6 +1,6 @@
 /*
-ProTest — free powerful program for educational tests
-Copyright © 2019 Tushino Software LLC
+ProTest â€” free powerful program for educational tests
+Copyright Â© 2019 Tushino Software LLC
 
 This file is part of ProTest.
 
@@ -17,13 +17,14 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 */
-#include "tests_main_header.h"
+
+#include "../headers/tests_main_header.h"
 
 void edit_questions_teacher()
 {
 	int sign;
 	do {
-			printf(" ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––\n"
+			printf(" Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–\n"
 				"|                                                            |\n"
 				"|                      >> ProTest v1.0 <<                    |\n"
 				"|                                                            |\n"
@@ -55,7 +56,7 @@ void working_with_the_list_of_students()
 	int sign;
 	do {
 		
-			printf(" ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––\n"
+			printf(" Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–\n"
 				"|                                                            |\n"
 				"|                      >> ProTest v1.0 <<                    |\n"
 				"|                                                            |\n"
@@ -89,7 +90,7 @@ void view_the_list_of_students_with_grades()
 	int sign;
 	do {
 
-		printf(" ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––\n"
+		printf(" Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–\n"
 			"|                                                            |\n"
 			"|                      >> ProTest v1.0 <<                    |\n"
 			"|                                                            |\n"
@@ -124,7 +125,7 @@ void teacher_menu_0()
 	int sign;
 	do {
 		
-			printf(" ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––\n"
+			printf(" Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–\n"
 				"|                                                            |\n"
 				"|                      >> ProTest v1.0 <<                    |\n"
 				"|                                                            |\n"

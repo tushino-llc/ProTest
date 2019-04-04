@@ -18,28 +18,8 @@ You should have received a copy of the GNU General Public License
 along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef TEACHER_MENU_H
-#define TEACHER_MENU_H
-#include "tests_main_header.h"
-
-void teacher_menu_0();
-
-// Questions
-void delete_the_question();
-void add_a_question();
-void change_the_question();
-
-// Students
-void delete_student_account();
-void to_add_a_new_account_for_a_student();
-void to_see_the_change_of_a_students_progress();
-void view_the_list_of_students_with_grades();
-
-// Results
-void view_scores_on_all_topics();  
-void view_estimates_on_a_specific_topic(); 
-void view_scores_for_the_final_test(); 
-void view_the_average_score();
-
-#endif
-
+/* main() {
+ *
+ *  Insert menu code here
+ * }
+*/

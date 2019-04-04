@@ -50,14 +50,26 @@ OBJECTS_DIR   = ./
 
 SOURCES       = ../qt/main.cpp \
 		../qt/mainwindow.cpp \
-		../qt/dialog1.cpp moc_mainwindow.cpp \
+		../qt/dialog1.cpp \
+		../libs/db/database.cpp \
+		../libs/teacher.cpp \
+		../libs/teacher_menu.cpp \
+		../libs/db/sqlite3.c \
+		../main_main.cpp moc_mainwindow.cpp \
 		moc_dialog1.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		dialog1.o \
+		database.o \
+		teacher.o \
+		teacher_menu.o \
+		sqlite3.o \
+		main_main.o \
 		moc_mainwindow.o \
 		moc_dialog1.o
-DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
+DIST          = ../Makefile.am \
+		../libs/libcrypt/lib/libtomcrypt.a \
+		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/sanitize.conf \
@@ -116,9 +128,31 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
 		../qt/qt.pro ../qt/mainwindow.h \
-		../qt/dialog1.h ../qt/main.cpp \
+		../qt/dialog1.h \
+		../libs/libcrypt/include/tomcrypt.h \
+		../libs/libcrypt/include/tomcrypt_argchk.h \
+		../libs/libcrypt/include/tomcrypt_cfg.h \
+		../libs/libcrypt/include/tomcrypt_cipher.h \
+		../libs/libcrypt/include/tomcrypt_custom.h \
+		../libs/libcrypt/include/tomcrypt_hash.h \
+		../libs/libcrypt/include/tomcrypt_mac.h \
+		../libs/libcrypt/include/tomcrypt_macros.h \
+		../libs/libcrypt/include/tomcrypt_math.h \
+		../libs/libcrypt/include/tomcrypt_misc.h \
+		../libs/libcrypt/include/tomcrypt_pk.h \
+		../libs/libcrypt/include/tomcrypt_pkcs.h \
+		../libs/libcrypt/include/tomcrypt_prng.h \
+		../headers/database.h \
+		../headers/sqlite3.h \
+		../headers/teacher_menu.h \
+		../headers/tests_main_header.h ../qt/main.cpp \
 		../qt/mainwindow.cpp \
-		../qt/dialog1.cpp
+		../qt/dialog1.cpp \
+		../libs/db/database.cpp \
+		../libs/teacher.cpp \
+		../libs/teacher_menu.cpp \
+		../libs/db/sqlite3.c \
+		../main_main.cpp
 QMAKE_TARGET  = qt
 DESTDIR       = 
 TARGET        = qt
@@ -269,8 +303,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../qt/mainwindow.h ../qt/dialog1.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../qt/main.cpp ../qt/mainwindow.cpp ../qt/dialog1.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../qt/mainwindow.h ../qt/dialog1.h ../libs/libcrypt/include/tomcrypt.h ../libs/libcrypt/include/tomcrypt_argchk.h ../libs/libcrypt/include/tomcrypt_cfg.h ../libs/libcrypt/include/tomcrypt_cipher.h ../libs/libcrypt/include/tomcrypt_custom.h ../libs/libcrypt/include/tomcrypt_hash.h ../libs/libcrypt/include/tomcrypt_mac.h ../libs/libcrypt/include/tomcrypt_macros.h ../libs/libcrypt/include/tomcrypt_math.h ../libs/libcrypt/include/tomcrypt_misc.h ../libs/libcrypt/include/tomcrypt_pk.h ../libs/libcrypt/include/tomcrypt_pkcs.h ../libs/libcrypt/include/tomcrypt_prng.h ../headers/database.h ../headers/sqlite3.h ../headers/teacher_menu.h ../headers/tests_main_header.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../qt/main.cpp ../qt/mainwindow.cpp ../qt/dialog1.cpp ../libs/db/database.cpp ../libs/teacher.cpp ../libs/teacher_menu.cpp ../libs/db/sqlite3.c ../main_main.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../qt/mainwindow.ui ../qt/dialog1.ui $(DISTDIR)/
 
 
@@ -339,6 +373,21 @@ mainwindow.o: ../qt/mainwindow.cpp ../qt/mainwindow.h \
 dialog1.o: ../qt/dialog1.cpp ../qt/dialog1.h \
 		ui_dialog1.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dialog1.o ../qt/dialog1.cpp
+
+database.o: ../libs/db/database.cpp ../headers/database.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o database.o ../libs/db/database.cpp
+
+teacher.o: ../libs/teacher.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o teacher.o ../libs/teacher.cpp
+
+teacher_menu.o: ../libs/teacher_menu.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o teacher_menu.o ../libs/teacher_menu.cpp
+
+sqlite3.o: ../libs/db/sqlite3.c 
+	$(CC) -c $(CFLAGS) $(INCPATH) -o sqlite3.o ../libs/db/sqlite3.c
+
+main_main.o: ../main_main.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main_main.o ../main_main.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
