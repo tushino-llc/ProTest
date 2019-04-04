@@ -1,6 +1,6 @@
-/*
-ProTest — free powerful program for educational tests
-Copyright © 2019 Tushino Software LLC
+ï»¿/*
+ProTest â€” free powerful program for educational tests
+Copyright Â© 2019 Tushino Software LLC
 
 This file is part of ProTest.
 
