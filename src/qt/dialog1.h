@@ -23,7 +23,7 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 
 #include <QDialog>
 #include <QMessageBox>
-#include <stdlib.h>
+#include "../headers/tests_main_header.h"
 
 namespace Ui {
 class Dialog1;

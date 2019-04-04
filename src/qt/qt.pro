@@ -11,15 +11,15 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = qt
 TEMPLATE = app
 
-
-SOURCES += main.cpp\
-        mainwindow.cpp \
+SOURCES += mainwindow.cpp \
     dialog1.cpp \
     ../libs/db/database.cpp \
-    ../libs/teacher.cpp \
-    ../libs/teacher_menu.cpp \
+    #../libs/teacher.cpp \
+    #../libs/teacher_menu.cpp \
     ../libs/db/sqlite3.c \
-    ../main_main.cpp
+    ../libs/main_menu.cpp \
+    ../main.cpp \
+    qt_main.cpp
 
 HEADERS  += mainwindow.h \
     dialog1.h \
@@ -39,7 +39,8 @@ HEADERS  += mainwindow.h \
     ../headers/database.h \
     ../headers/sqlite3.h \
     ../headers/teacher_menu.h \
-    ../headers/tests_main_header.h
+    ../headers/tests_main_header.h \
+    ../headers/main_menu.h
 
 FORMS    += mainwindow.ui \
     dialog1.ui
@@ -50,4 +51,3 @@ LIBS += \
 
 DISTFILES += \
     ../Makefile.am \
-    ../libs/libcrypt/lib/libtomcrypt.a

@@ -48,27 +48,24 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = ../qt/main.cpp \
-		../qt/mainwindow.cpp \
+SOURCES       = ../qt/mainwindow.cpp \
 		../qt/dialog1.cpp \
 		../libs/db/database.cpp \
-		../libs/teacher.cpp \
-		../libs/teacher_menu.cpp \
 		../libs/db/sqlite3.c \
-		../main_main.cpp moc_mainwindow.cpp \
+		../libs/main_menu.cpp \
+		../main.cpp \
+		../qt/qt_main.cpp moc_mainwindow.cpp \
 		moc_dialog1.cpp
-OBJECTS       = main.o \
-		mainwindow.o \
+OBJECTS       = mainwindow.o \
 		dialog1.o \
 		database.o \
-		teacher.o \
-		teacher_menu.o \
 		sqlite3.o \
-		main_main.o \
+		main_menu.o \
+		main.o \
+		qt_main.o \
 		moc_mainwindow.o \
 		moc_dialog1.o
 DIST          = ../Makefile.am \
-		../libs/libcrypt/lib/libtomcrypt.a \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -145,14 +142,14 @@ DIST          = ../Makefile.am \
 		../headers/database.h \
 		../headers/sqlite3.h \
 		../headers/teacher_menu.h \
-		../headers/tests_main_header.h ../qt/main.cpp \
-		../qt/mainwindow.cpp \
+		../headers/tests_main_header.h \
+		../headers/main_menu.h ../qt/mainwindow.cpp \
 		../qt/dialog1.cpp \
 		../libs/db/database.cpp \
-		../libs/teacher.cpp \
-		../libs/teacher_menu.cpp \
 		../libs/db/sqlite3.c \
-		../main_main.cpp
+		../libs/main_menu.cpp \
+		../main.cpp \
+		../qt/qt_main.cpp
 QMAKE_TARGET  = qt
 DESTDIR       = 
 TARGET        = qt
@@ -303,8 +300,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../qt/mainwindow.h ../qt/dialog1.h ../libs/libcrypt/include/tomcrypt.h ../libs/libcrypt/include/tomcrypt_argchk.h ../libs/libcrypt/include/tomcrypt_cfg.h ../libs/libcrypt/include/tomcrypt_cipher.h ../libs/libcrypt/include/tomcrypt_custom.h ../libs/libcrypt/include/tomcrypt_hash.h ../libs/libcrypt/include/tomcrypt_mac.h ../libs/libcrypt/include/tomcrypt_macros.h ../libs/libcrypt/include/tomcrypt_math.h ../libs/libcrypt/include/tomcrypt_misc.h ../libs/libcrypt/include/tomcrypt_pk.h ../libs/libcrypt/include/tomcrypt_pkcs.h ../libs/libcrypt/include/tomcrypt_prng.h ../headers/database.h ../headers/sqlite3.h ../headers/teacher_menu.h ../headers/tests_main_header.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../qt/main.cpp ../qt/mainwindow.cpp ../qt/dialog1.cpp ../libs/db/database.cpp ../libs/teacher.cpp ../libs/teacher_menu.cpp ../libs/db/sqlite3.c ../main_main.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../qt/mainwindow.h ../qt/dialog1.h ../libs/libcrypt/include/tomcrypt.h ../libs/libcrypt/include/tomcrypt_argchk.h ../libs/libcrypt/include/tomcrypt_cfg.h ../libs/libcrypt/include/tomcrypt_cipher.h ../libs/libcrypt/include/tomcrypt_custom.h ../libs/libcrypt/include/tomcrypt_hash.h ../libs/libcrypt/include/tomcrypt_mac.h ../libs/libcrypt/include/tomcrypt_macros.h ../libs/libcrypt/include/tomcrypt_math.h ../libs/libcrypt/include/tomcrypt_misc.h ../libs/libcrypt/include/tomcrypt_pk.h ../libs/libcrypt/include/tomcrypt_pkcs.h ../libs/libcrypt/include/tomcrypt_prng.h ../headers/database.h ../headers/sqlite3.h ../headers/teacher_menu.h ../headers/tests_main_header.h ../headers/main_menu.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../qt/mainwindow.cpp ../qt/dialog1.cpp ../libs/db/database.cpp ../libs/db/sqlite3.c ../libs/main_menu.cpp ../main.cpp ../qt/qt_main.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../qt/mainwindow.ui ../qt/dialog1.ui $(DISTDIR)/
 
 
@@ -334,10 +331,46 @@ compiler_moc_header_make_all: moc_mainwindow.cpp moc_dialog1.cpp
 compiler_moc_header_clean:
 	-$(DEL_FILE) moc_mainwindow.cpp moc_dialog1.cpp
 moc_mainwindow.cpp: ../qt/dialog1.h \
+		../headers/tests_main_header.h \
+		../headers/sqlite3.h \
+		../headers/database.h \
+		../headers/teacher_menu.h \
+		../libs/libcrypt/include/tomcrypt.h \
+		../libs/libcrypt/include/tomcrypt_custom.h \
+		../libs/libcrypt/include/tomcrypt_cfg.h \
+		../libs/libcrypt/include/tomcrypt_macros.h \
+		../libs/libcrypt/include/tomcrypt_cipher.h \
+		../libs/libcrypt/include/tomcrypt_hash.h \
+		../libs/libcrypt/include/tomcrypt_mac.h \
+		../libs/libcrypt/include/tomcrypt_prng.h \
+		../libs/libcrypt/include/tomcrypt_pk.h \
+		../libs/libcrypt/include/tomcrypt_math.h \
+		../libs/libcrypt/include/tomcrypt_misc.h \
+		../libs/libcrypt/include/tomcrypt_argchk.h \
+		../libs/libcrypt/include/tomcrypt_pkcs.h \
+		../headers/main_menu.h \
 		../qt/mainwindow.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/anton/ProTest/src/qt -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../qt/mainwindow.h -o moc_mainwindow.cpp
 
-moc_dialog1.cpp: ../qt/dialog1.h
+moc_dialog1.cpp: ../headers/tests_main_header.h \
+		../headers/sqlite3.h \
+		../headers/database.h \
+		../headers/teacher_menu.h \
+		../libs/libcrypt/include/tomcrypt.h \
+		../libs/libcrypt/include/tomcrypt_custom.h \
+		../libs/libcrypt/include/tomcrypt_cfg.h \
+		../libs/libcrypt/include/tomcrypt_macros.h \
+		../libs/libcrypt/include/tomcrypt_cipher.h \
+		../libs/libcrypt/include/tomcrypt_hash.h \
+		../libs/libcrypt/include/tomcrypt_mac.h \
+		../libs/libcrypt/include/tomcrypt_prng.h \
+		../libs/libcrypt/include/tomcrypt_pk.h \
+		../libs/libcrypt/include/tomcrypt_math.h \
+		../libs/libcrypt/include/tomcrypt_misc.h \
+		../libs/libcrypt/include/tomcrypt_argchk.h \
+		../libs/libcrypt/include/tomcrypt_pkcs.h \
+		../headers/main_menu.h \
+		../qt/dialog1.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/anton/ProTest/src/qt -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../qt/dialog1.h -o moc_dialog1.cpp
 
 compiler_moc_source_make_all:
@@ -361,27 +394,9 @@ compiler_clean: compiler_moc_header_clean compiler_uic_clean
 
 ####### Compile
 
-main.o: ../qt/main.cpp ../qt/mainwindow.h \
-		../qt/dialog1.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../qt/main.cpp
-
 mainwindow.o: ../qt/mainwindow.cpp ../qt/mainwindow.h \
 		../qt/dialog1.h \
-		ui_mainwindow.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../qt/mainwindow.cpp
-
-dialog1.o: ../qt/dialog1.cpp ../qt/dialog1.h \
-		ui_dialog1.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dialog1.o ../qt/dialog1.cpp
-
-database.o: ../libs/db/database.cpp ../headers/database.h \
-		../headers/sqlite3.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o database.o ../libs/db/database.cpp
-
-teacher.o: ../libs/teacher.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o teacher.o ../libs/teacher.cpp
-
-teacher_menu.o: ../libs/teacher_menu.cpp ../headers/tests_main_header.h \
+		../headers/tests_main_header.h \
 		../headers/sqlite3.h \
 		../headers/database.h \
 		../headers/teacher_menu.h \
@@ -397,14 +412,101 @@ teacher_menu.o: ../libs/teacher_menu.cpp ../headers/tests_main_header.h \
 		../libs/libcrypt/include/tomcrypt_math.h \
 		../libs/libcrypt/include/tomcrypt_misc.h \
 		../libs/libcrypt/include/tomcrypt_argchk.h \
-		../libs/libcrypt/include/tomcrypt_pkcs.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o teacher_menu.o ../libs/teacher_menu.cpp
+		../libs/libcrypt/include/tomcrypt_pkcs.h \
+		../headers/main_menu.h \
+		ui_mainwindow.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../qt/mainwindow.cpp
+
+dialog1.o: ../qt/dialog1.cpp ../qt/dialog1.h \
+		../headers/tests_main_header.h \
+		../headers/sqlite3.h \
+		../headers/database.h \
+		../headers/teacher_menu.h \
+		../libs/libcrypt/include/tomcrypt.h \
+		../libs/libcrypt/include/tomcrypt_custom.h \
+		../libs/libcrypt/include/tomcrypt_cfg.h \
+		../libs/libcrypt/include/tomcrypt_macros.h \
+		../libs/libcrypt/include/tomcrypt_cipher.h \
+		../libs/libcrypt/include/tomcrypt_hash.h \
+		../libs/libcrypt/include/tomcrypt_mac.h \
+		../libs/libcrypt/include/tomcrypt_prng.h \
+		../libs/libcrypt/include/tomcrypt_pk.h \
+		../libs/libcrypt/include/tomcrypt_math.h \
+		../libs/libcrypt/include/tomcrypt_misc.h \
+		../libs/libcrypt/include/tomcrypt_argchk.h \
+		../libs/libcrypt/include/tomcrypt_pkcs.h \
+		../headers/main_menu.h \
+		ui_dialog1.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dialog1.o ../qt/dialog1.cpp
+
+database.o: ../libs/db/database.cpp ../headers/database.h \
+		../headers/sqlite3.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o database.o ../libs/db/database.cpp
 
 sqlite3.o: ../libs/db/sqlite3.c 
 	$(CC) -c $(CFLAGS) $(INCPATH) -o sqlite3.o ../libs/db/sqlite3.c
 
-main_main.o: ../main_main.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main_main.o ../main_main.cpp
+main_menu.o: ../libs/main_menu.cpp ../headers/tests_main_header.h \
+		../headers/sqlite3.h \
+		../headers/database.h \
+		../headers/teacher_menu.h \
+		../libs/libcrypt/include/tomcrypt.h \
+		../libs/libcrypt/include/tomcrypt_custom.h \
+		../libs/libcrypt/include/tomcrypt_cfg.h \
+		../libs/libcrypt/include/tomcrypt_macros.h \
+		../libs/libcrypt/include/tomcrypt_cipher.h \
+		../libs/libcrypt/include/tomcrypt_hash.h \
+		../libs/libcrypt/include/tomcrypt_mac.h \
+		../libs/libcrypt/include/tomcrypt_prng.h \
+		../libs/libcrypt/include/tomcrypt_pk.h \
+		../libs/libcrypt/include/tomcrypt_math.h \
+		../libs/libcrypt/include/tomcrypt_misc.h \
+		../libs/libcrypt/include/tomcrypt_argchk.h \
+		../libs/libcrypt/include/tomcrypt_pkcs.h \
+		../headers/main_menu.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main_menu.o ../libs/main_menu.cpp
+
+main.o: ../main.cpp ../headers/tests_main_header.h \
+		../headers/sqlite3.h \
+		../headers/database.h \
+		../headers/teacher_menu.h \
+		../libs/libcrypt/include/tomcrypt.h \
+		../libs/libcrypt/include/tomcrypt_custom.h \
+		../libs/libcrypt/include/tomcrypt_cfg.h \
+		../libs/libcrypt/include/tomcrypt_macros.h \
+		../libs/libcrypt/include/tomcrypt_cipher.h \
+		../libs/libcrypt/include/tomcrypt_hash.h \
+		../libs/libcrypt/include/tomcrypt_mac.h \
+		../libs/libcrypt/include/tomcrypt_prng.h \
+		../libs/libcrypt/include/tomcrypt_pk.h \
+		../libs/libcrypt/include/tomcrypt_math.h \
+		../libs/libcrypt/include/tomcrypt_misc.h \
+		../libs/libcrypt/include/tomcrypt_argchk.h \
+		../libs/libcrypt/include/tomcrypt_pkcs.h \
+		../headers/main_menu.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../main.cpp
+
+qt_main.o: ../qt/qt_main.cpp ../qt/mainwindow.h \
+		../qt/dialog1.h \
+		../headers/tests_main_header.h \
+		../headers/sqlite3.h \
+		../headers/database.h \
+		../headers/teacher_menu.h \
+		../libs/libcrypt/include/tomcrypt.h \
+		../libs/libcrypt/include/tomcrypt_custom.h \
+		../libs/libcrypt/include/tomcrypt_cfg.h \
+		../libs/libcrypt/include/tomcrypt_macros.h \
+		../libs/libcrypt/include/tomcrypt_cipher.h \
+		../libs/libcrypt/include/tomcrypt_hash.h \
+		../libs/libcrypt/include/tomcrypt_mac.h \
+		../libs/libcrypt/include/tomcrypt_prng.h \
+		../libs/libcrypt/include/tomcrypt_pk.h \
+		../libs/libcrypt/include/tomcrypt_math.h \
+		../libs/libcrypt/include/tomcrypt_misc.h \
+		../libs/libcrypt/include/tomcrypt_argchk.h \
+		../libs/libcrypt/include/tomcrypt_pkcs.h \
+		../headers/main_menu.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qt_main.o ../qt/qt_main.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

@@ -21,7 +21,7 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 #include "mainwindow.h"
 #include <QApplication>
 
-int main(int argc, char *argv[])
+int qt_main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MainWindow w;

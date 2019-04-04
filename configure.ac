@@ -35,11 +35,15 @@ AX_HAVE_QT
 
 # Check for essential libraries 
 
+AC_SEARCH_LIBS([unixDlClose], [dl], [], [
+	AC_MSG_ERROR([unable to find dl lib])
+	])
+
 AC_SEARCH_LIBS([printf], [c], [], [
 	AC_MSG_ERROR([unable to find c lib])
 	])
 
-AC_CHECK_HEADERS([cstdio cmath iostream string exception vector map stdlib.h sstream cfloat], [], [
+AC_CHECK_HEADERS([cstdio iostream cstring stdlib.h], [], [
 	AC_MSG_ERROR([unable to find necessary headers])
 	])
 

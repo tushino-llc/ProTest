@@ -18,8 +18,29 @@ You should have received a copy of the GNU General Public License
 along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 */
 
-/* main() {
- *
- *  Insert menu code here
- * }
-*/
+#include "headers/tests_main_header.h"
+
+int main(int argc, char *argv[]) {
+    /* Initializing variables */
+    int func;
+
+    /* Locale problems */
+#ifdef _WIN32
+system("chcp 65001 > nul");
+#endif
+
+    /* Main part */
+#if (HAVE_QT == 1)
+    qt_main(argc, argv);
+#else
+    do {
+        func = main_menu();
+        if (func == -1) {
+            break;
+        }
+    } while (menu_continue());
+
+    /* Returning value */
+    return 0;
+#endif
+}

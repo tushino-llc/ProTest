@@ -26,8 +26,7 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 #include <QDesktopWidget>
 #include <QMessageBox>
 #include "dialog1.h"
-#include <cstdio>
-#include <cstring>
+#include "../headers/tests_main_header.h"
 
 namespace Ui {
 class MainWindow;
@@ -36,11 +35,6 @@ struct Log_pass {
     char login[15];
     char pass[30];
 };
-
-//struct Log_pass {
-//    QString login;
-//    QString pass;
-//};
 
 }
 

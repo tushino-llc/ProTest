@@ -21,17 +21,34 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 #ifndef TESTS_MAIN_HEADER_FILE
 #define TESTS_MAIN_HEADER_FILE
 
+/* Macros */
+#define HAVE_QT (1)
+
 /* Include config.h */
 // #include "config.h"
 
-/* Include general headers */ // Must be conditional
-#include <cstdio>
-#include <iostream>
+/* Include general headers */
+//#if (HAVE_CSTDIO == 1)
+    #include <cstdio>
+//#endif
+//#if (HAVE_IOSTREAM == 1)
+    #include <iostream>
+//#endif
+//#if (HAVE_CSTRING == 1)
+    #include <cstring>
+//#endif
+//#if (HAVE_STDLIB_H == 1)
+    #include <stdlib.h>
+//#endif
 
 /* Include local headers */
 #include "sqlite3.h"
 #include "database.h"
 #include "teacher_menu.h"
 #include "../libs/libcrypt/include/tomcrypt.h"
+#include "main_menu.h"
+
+/* qt_main.cpp */
+int qt_main(int, char *[]);
 
 #endif
