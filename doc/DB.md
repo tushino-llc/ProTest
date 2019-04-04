@@ -3,8 +3,8 @@
 ### User
 ```
 struct User {
-  bool admin;
   int id;
+  bool admin;
   char * login;
   char * first_name;
   char * last_name;
@@ -14,7 +14,7 @@ struct User {
 ```
 struct Question {
   int id;
-  char * theme;
+  int theme;
   char * value;
   char * ans[4];
   int correct;
@@ -25,29 +25,22 @@ struct Question {
 ```
 struct Marks {
   int user_id;
-  int loops;
-  int arrays;
-  int strings;
-  int recursion;
-  int structs;
-  int files;
-  int pointers;
-  int dynamic;
-  int average;
-  int final;
+  int[] values;
 }
 ```
+*values* - массив оценок по порядку следования тем (см. **Примечание** в конце). Последние 2 элемента - среднее и оценка за итоговый тест.
 
 ## 1.2. Функции (Режим студента)
 
-- `User db_login(char * login, char * password)` - возвращает null в случае ошибки, или объект пользователя при успешной авторизации
-- `Question[10] db_get_test(char * theme)` - возвращает массив из 10 рандомных вопросов темы *theme* (см. **Примечание** в конце)
+- `User db_login(char * login, char * password)` - возвращает объект пользователя (при ошибке - с пустыми полями)
+**Здесь и далее password - значение пароля, а не хэш**
+- `Question[10] db_get_test(char * theme)` - возвращает массив из 10 рандомных вопросов темы *theme* (см. **Примечание**)
 - `Question[40] db_get_final_test()` - рандомит 40 вопросов из любых тем
 - `int db_set_mark(int user_id, char * theme, int mark)` - ставит пользователю с ID *user_id* оценку *mark* по теме *theme* (или *final*); Возвращает 0, если ОК, или -1 если не ОК.
 
 ## 1.3. Функции (Режим преподавателя)
 
-- `User db_login_admin(char * login, char * password)` - возвращает null в случае ошибки, или объект пользователя при успешной авторизации
+- `User db_login_admin(char * login, char * password)` - возвращает объект пользователя (при ошибке - с пустыми полями). Проверяет наличие прав преподавателя.
 
 ### Управление вопросами
 
@@ -57,21 +50,23 @@ struct Marks {
 
 ### Работа со студентами
 
-- `int db_add_user(User user, char * password)` - Добавляет нового пользователя с правами **студента** (значение поля admin и id не важно); Возвращает id пользователя, или -1 в случае ошибки 
+- `int db_add_user(User user, char * password)` - Добавляет нового пользователя с правами **студента** (значение поля admin и id не важно); Возвращает id пользователя, или -1 в случае ошибки
 - `int db_add_admin(User user, char * password)` - Добавляет нового пользователя с правами **преподавателя** (значение поля admin и id не важно); Возвращает id пользователя, или -1 в случае ошибки 
 - `int db_delete_user(int id)` - Удаляет пользователя; Возвращает 0, если ОК, или -1 если не ОК.
 - `User[] db_get_users(int * size)` - Возвращает динамичекий массив **всех** студентов в базе (не преподавателей). Записывает длину массива в переменную size.
 - Фильтрацию делайте сами
-- `Marks db_get_user_marks(int user_id)` - Возвращает объект оценок одного пользователя или NULL если не ок
-- `User[] db_get_users_sorted(int * size, char * by, int desc)` - Возвращает динамичекий массив студентов в базе. Записывает длину массива в переменную size. Сортирует по оценкам,  by - название темы, или 'average', или 'final'. Если desc == 0, то сортируется по возрастанию, 1 - по убыванию
+- `Marks db_get_user_marks(int user_id)` - Возвращает объект оценок одного пользователя (c пустыми полями если не ок)
+- `User[] db_get_users_sorted(int * size, int by, int desc)` - Возвращает динамичекий массив студентов в базе. Записывает длину массива в переменную size. Сортирует по оценкам,  by - номер темы в массиве (с нуля естессна), по которой сортируем. Если desc == 0, то сортируется по возрастанию, 1 - по убыванию
 
 ## 1.4. Примечание
-Названия тем выглядят так:
-- loops
-- arrays
-- strings
-- recursion
-- structs
-- files
-- pointers
-- dynamic
+Порядок оценок в массиве:
+- \[0\] - loops
+- \[1\] - arrays
+- \[2\] - strings
+- \[3\] - recursion
+- \[4\] - structs
+- \[5\] - files
+- \[6\] - pointers
+- \[7\] - dynamic
+- \[8\] - average
+- \[9\] - final
