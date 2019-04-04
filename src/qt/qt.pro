@@ -44,6 +44,10 @@ HEADERS  += mainwindow.h \
 FORMS    += mainwindow.ui \
     dialog1.ui
 
+LIBS += \
+    ../libs/libcrypt/lib/libtomcrypt.a \
+    -ldl \
+
 DISTFILES += \
     ../Makefile.am \
     ../libs/libcrypt/lib/libtomcrypt.a

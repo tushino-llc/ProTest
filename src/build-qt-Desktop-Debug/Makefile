@@ -36,7 +36,7 @@ DISTNAME      = qt1.0.0
 DISTDIR = /home/anton/ProTest/src/build-qt-Desktop-Debug/.tmp/qt1.0.0
 LINK          = g++
 LFLAGS        = -m64
-LIBS          = $(SUBLIBS) -L/usr/X11R6/lib64 -lQt5Widgets -lQt5Gui -lQt5Core -lGL -lpthread 
+LIBS          = $(SUBLIBS) -L/usr/X11R6/lib64 ../libs/libcrypt/lib/libtomcrypt.a -ldl -lQt5Widgets -lQt5Gui -lQt5Core -lGL -lpthread 
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -374,13 +374,30 @@ dialog1.o: ../qt/dialog1.cpp ../qt/dialog1.h \
 		ui_dialog1.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dialog1.o ../qt/dialog1.cpp
 
-database.o: ../libs/db/database.cpp ../headers/database.h
+database.o: ../libs/db/database.cpp ../headers/database.h \
+		../headers/sqlite3.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o database.o ../libs/db/database.cpp
 
 teacher.o: ../libs/teacher.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o teacher.o ../libs/teacher.cpp
 
-teacher_menu.o: ../libs/teacher_menu.cpp 
+teacher_menu.o: ../libs/teacher_menu.cpp ../headers/tests_main_header.h \
+		../headers/sqlite3.h \
+		../headers/database.h \
+		../headers/teacher_menu.h \
+		../libs/libcrypt/include/tomcrypt.h \
+		../libs/libcrypt/include/tomcrypt_custom.h \
+		../libs/libcrypt/include/tomcrypt_cfg.h \
+		../libs/libcrypt/include/tomcrypt_macros.h \
+		../libs/libcrypt/include/tomcrypt_cipher.h \
+		../libs/libcrypt/include/tomcrypt_hash.h \
+		../libs/libcrypt/include/tomcrypt_mac.h \
+		../libs/libcrypt/include/tomcrypt_prng.h \
+		../libs/libcrypt/include/tomcrypt_pk.h \
+		../libs/libcrypt/include/tomcrypt_math.h \
+		../libs/libcrypt/include/tomcrypt_misc.h \
+		../libs/libcrypt/include/tomcrypt_argchk.h \
+		../libs/libcrypt/include/tomcrypt_pkcs.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o teacher_menu.o ../libs/teacher_menu.cpp
 
 sqlite3.o: ../libs/db/sqlite3.c 
