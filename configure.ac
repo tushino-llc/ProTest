@@ -33,8 +33,11 @@ AC_PROG_LIBTOOL
 # Check for Qt
 AX_HAVE_QT
 
-# Check for essential libraries 
+AC_CHECK_HEADERS([QApplication QDialog QMessageBox QMainWindow QStyle QDesktopWidget QMessageBox], [], [
+	AC_MSG_WARN([unable to find Qt headers])
+	])
 
+# Check for essential libraries 
 AC_SEARCH_LIBS([unixDlClose], [dl], [], [
 	AC_MSG_ERROR([unable to find dl lib])
 	])
@@ -69,3 +72,4 @@ echo "| CXX           = $CXX"
 echo "| CXXFLAGS      = $CXXFLAGS"
 echo "| LDFLAGS       = $LDFLAGS"
 echo "| ARFLAGS       = $ARFLAGS"
+echo "| Qt            = $have_qt"
