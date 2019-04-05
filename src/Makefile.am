@@ -21,7 +21,7 @@ libs/libcrypt/include/tomcrypt_custom.h libs/libcrypt/include/tomcrypt_cipher.h 
 libs/libcrypt/include/tomcrypt_argchk.h libs/libcrypt/include/tomcrypt.h build-qt-Desktop-Debug/moc_predefs.h
 # headers/teacher_menu.h
 
-lib_LTLIBRARIES = libmainmenu.la libdatabse.la libqt_cpp.la # libteacher.la
+lib_LTLIBRARIES = libmainmenu.la libqt_cpp.la # libdatabse.la libteacher.la
 
 # libmainmenu.la
 libmainmenu_la_LDFLAGS = -version-info 0:0:0
