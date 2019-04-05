@@ -300,3 +300,33 @@ int db_set_mark(int user_id, int theme, int mark)
     return SQLITE_OK;
 
 }
+
+int db_update_question(Question question)
+{
+
+    int rc;
+    sqlite3_stmt * st = nullptr;
+    
+    rc = sqlite3_prepare_v2(db, "UPDATE `questions` SET theme = ?, value = ?, ans1 = ?, ans2 = ?, ans3 = ?, ans4 = ?, correct = ? WHERE id = ?", -1, &st, nullptr);
+    sqlite3_bind_int( st, 1, question.theme);
+    sqlite3_bind_text( st, 2, question.value, -1,SQLITE_STATIC);
+    sqlite3_bind_text( st, 3, question.ans[0], -1,SQLITE_STATIC);
+    sqlite3_bind_text( st, 4, question.ans[1], -1,SQLITE_STATIC);
+    sqlite3_bind_text( st, 5, question.ans[2], -1,SQLITE_STATIC);
+    sqlite3_bind_text( st, 6, question.ans[3], -1,SQLITE_STATIC);
+    sqlite3_bind_int( st, 7, question.correct );
+    sqlite3_bind_int( st, 8, question.id );
+
+    if (rc != SQLITE_OK)
+        return -1;
+
+    rc= sqlite3_step(st);
+    if (rc != SQLITE_DONE && rc != SQLITE_OK)
+        return -1;
+
+    // only 1 row must be affected
+    if (sqlite3_changes(db) != 1)
+        return -1;
+
+    return SQLITE_OK;
+}
