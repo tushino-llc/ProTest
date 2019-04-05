@@ -170,7 +170,7 @@ int db_add_user(User user, char * password)
 {
     int rc;
     sqlite3_stmt * st = nullptr;
-    
+
     rc = sqlite3_prepare_v2(db, "INSERT INTO `users` VALUES (NULL, ?, ?, ?, ?, ?)", -1, &st, nullptr);
     sqlite3_bind_text( st, 1, user.login, -1,SQLITE_STATIC);
     sqlite3_bind_text( st, 2, password, -1,SQLITE_STATIC);
@@ -182,21 +182,11 @@ int db_add_user(User user, char * password)
         return -1;
 
     rc = sqlite3_step(st);
-    if (rc != SQLITE_DONE && rc != SQLITE_OK)
+    if (rc != SQLITE_DONE)
         return -1;
 
-    rc = sqlite3_prepare_v2(db, "SELECT last_insert_rowid()", -1, &st, nullptr);
 
-    if (rc != SQLITE_OK)
-        return -1;
-    
-    rc= sqlite3_step(st);
-    if (rc != SQLITE_DONE && rc != SQLITE_OK)
-        return -1;
-
-    int res = sqlite3_column_int(st, 0);
-
-    return res;
+    return (int) sqlite3_last_insert_rowid(db);
 }
 
 int int db_add_question(Question question)
