@@ -9,7 +9,7 @@ bin_PROGRAMS = ProTest
 
 ProTest_SOURCES = main.cpp
 ProTest_CPPFLAGS = $(CXXFLAGS) $(QT_CXXFLAGS) -Wall -Wextra -std=c++11
-ProTest_LDADD = libmainmenu.la libdatabse.la libqt_cpp.la # libteacher.la
+ProTest_LDADD = libmainmenu.la libqt_cpp.la # libdatabse.la libteacher.la
 ProTest_LDFLAGS = $(LDFLAGS) $(QT_LIBS)
 
 include_HEADERS = headers/tests_main_header.h headers/database.h headers/main_menu.h headers/sqlite3.h qt/dialog1.h \
@@ -29,9 +29,9 @@ libmainmenu_la_SOURCES = libs/main_menu.cpp
 libmainmenu_la_CPPFLAGS = $(ProTest_CPPFLAGS)
 
 # libdatabse.la
-libdatabse_la_LDFLAGS = -version-info 0:0:0
-libdatabse_la_SOURCES = libs/db/database.cpp libs/db/sqlite3.c
-libdatabse_la_CPPFLAGS = $(ProTest_CPPFLAGS)
+#libdatabse_la_LDFLAGS = -version-info 0:0:0
+#libdatabse_la_SOURCES = libs/db/database.cpp libs/db/sqlite3.c
+#libdatabse_la_CPPFLAGS = $(ProTest_CPPFLAGS)
 
 # libqt_cpp.la
 libqt_cpp_la_LDFLAGS = -version-info 0:0:0 $(QT_LIBS)
