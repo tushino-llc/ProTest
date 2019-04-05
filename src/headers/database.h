@@ -25,7 +25,6 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "sqlite3.h"
-#include <string.h>
 
 struct User {
     int id;

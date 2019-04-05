@@ -19,7 +19,7 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "dialog1.h"
-#include "ui_dialog1.h"
+#include "../build-qt-Desktop-Debug/ui_dialog1.h"
 #include "mainwindow.h"
 
 Dialog1::Dialog1(QWidget *parent) :

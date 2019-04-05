@@ -19,7 +19,7 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
+#include "../build-qt-Desktop-Debug/ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),

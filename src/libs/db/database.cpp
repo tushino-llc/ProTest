@@ -1,4 +1,4 @@
-#include "../../headers/database.h"
+#include "../../headers/tests_main_header.h"
 
 sqlite3 * db = nullptr;
 
