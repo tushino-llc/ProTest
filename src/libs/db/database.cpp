@@ -165,3 +165,41 @@ Question * db_get_test(int theme)
 
     return questions;
 }
+//not working function
+int db_add_user(User user, char * password)
+{
+    int rc;
+    sqlite3_stmt * st = nullptr;
+    
+    rc = sqlite3_prepare_v2(db, "INSERT INTO `users` VALUES (NULL, ?, ?, ?, ?, ?)", -1, &st, nullptr);
+    sqlite3_bind_text( st, 1, user.login, -1,SQLITE_STATIC);
+    sqlite3_bind_text( st, 2, password, -1,SQLITE_STATIC);
+    sqlite3_bind_text( st, 3, user.first_name, -1,SQLITE_STATIC);
+    sqlite3_bind_text( st, 4, user.last_name, -1,SQLITE_STATIC);
+    sqlite3_bind_int( st, 5, (int)user.admin);
+
+    if (rc != SQLITE_OK)
+        return -1;
+
+
+    rc = sqlite3_step(st);
+    if (rc != SQLITE_DONE && rc != SQLITE_OK)
+        return -1;
+
+
+    rc = sqlite3_prepare_v2(db, "SELECT last_insert_rowid()", -1, &st, nullptr);
+
+    if (rc != SQLITE_OK)
+        return -1;
+    
+
+    rc= sqlite3_step(st);
+    if (rc != SQLITE_DONE && rc != SQLITE_OK)
+        return -1;
+
+    int res = sqlite3_column_int(st, 0);
+
+
+    return res;
+}
+
