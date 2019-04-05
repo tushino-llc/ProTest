@@ -19,19 +19,11 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 */
 #include "../headers/tests_main_header.h"
 
-struct User {
-	int id;
-	bool admin;
-	char * login;
-	char * first_name;
-	char * last_name;
-};
-
 // Questions
 void delete_the_question()
 {
 	int error, id;	
-	for (int j = 0; j < question.id; j++)
+	for (int j = 0; j < question.id; ++j)
 	{
 		std::cout <<"id = "<< id << " Question: "<< question.value << std::endl;
 	}
@@ -64,7 +56,7 @@ void add_a_question()
 void change_the_question()
 {
 	int error, id;
-	for (int j = 0; j < question.id; j++)
+	for (int j = 0; j < question.id; ++j)
 	{
 		std::cout << "id = " << id << " Question: " << question.value << std::endl;
 	}
@@ -91,7 +83,7 @@ void delete_student_account()
 	
 	User * db_get_users(&size);
 	
-	for (int i = 0; i < size; i++)
+	for (int i = 0; i < size; ++i)
 	{
 		std::cout << "id = " << user.id << " Student: " << user.first_name << user.last_name << std::endl;
 	}
@@ -124,7 +116,7 @@ void to_see_the_change_of_a_students_progress()
 	int error, size = 0, id;
 	User * db_get_users(&size);
 
-	for (int i = 0; i < size; i++)
+	for (int i = 0; i < size; ++i)
 	{
 		std::cout << "id = " << user.id << " Student: " << user.first_name << user.last_name << std::endl;
 	}
@@ -147,7 +139,7 @@ void view_scores_on_all_topics()
 	int id, size = 0;
 	User * db_get_users(&size);
 
-	for (int i = 0; i < size; i++)
+	for (int i = 0; i < size; ++i)
 	{
 		Marks db_get_user_marks(i);
 		std::cout << " " << user.first_name << " " << user.last_name;
@@ -194,86 +186,79 @@ void view_estimates_on_a_specific_topic()
 	{
 		desc = 0; 
 		User * db_get_users_sorted(&size, by, desc);
-		for (int i = 0; i < size; i++)
+		for (int i = 0; i < size; ++i)
 		{
 			Marks db_get_user_marks(i);
-			std::cout << " " << user.first_name << " " << user.last_name << " " << marks.values[by]<< " ";
-			printf("\n");
+			std::cout << " " << user.first_name << " " << user.last_name << " " << marks.values[by]<< " " << std::endl;
 		}
 	} break;
 	case 2: 
 	{
 		desc = 1;
 		User * db_get_users_sorted(&size, by, desc);
-		for (int i = 0; i < size; i++)
+		for (int i = 0; i < size; ++i)
 		{
 			Marks db_get_user_marks(i);
-			std::cout << " " << user.first_name << " " << user.last_name << " " << marks.values[by] << " ";
-			printf("\n");
+			std::cout << " " << user.first_name << " " << user.last_name << " " << marks.values[by] << " " << std::endl;
 		}
 	} break;
 	case 3: 
 	{
 		User * db_get_users(&size);
-		for (int i = 0; i < size; i++)
+		for (int i = 0; i < size; ++i)
 		{
 			if (marks.values[by] == 5)
 			{
 				Marks db_get_user_marks(i);
-				std::cout << " " << user.first_name << " " << user.last_name << " " << marks.values[by] << " ";
-				printf("\n");
+				std::cout << " " << user.first_name << " " << user.last_name << " " << marks.values[by] << " " << std::endl;
 			}
 		}
 	} break;
 	case 4: 
 	{
 		User * db_get_users(&size);
-		for (int i = 0; i < size; i++)
+		for (int i = 0; i < size; ++i)
 		{
 			if (marks.values[by] == 4)
 			{
 				Marks db_get_user_marks(i);
-				std::cout << " " << user.first_name << " " << user.last_name << " " << marks.values[by] << " ";
-				printf("\n");
+				std::cout << " " << user.first_name << " " << user.last_name << " " << marks.values[by] << " " << std::endl;
 			}
 		}
 	} break;
 	case 5:
 	{
 		User * db_get_users(&size);
-		for (int i = 0; i < size; i++)
+		for (int i = 0; i < size; ++i)
 		{
 			if (marks.values[by] == 3)
 			{
 				Marks db_get_user_marks(i);
-				std::cout << " " << user.first_name << " " << user.last_name << " " << marks.values[by] << " ";
-				printf("\n");
+				std::cout << " " << user.first_name << " " << user.last_name << " " << marks.values[by] << " " << std::endl;
 			}
 		}
 	} break;
 	case 6:
 	{
 		User * db_get_users(&size);
-		for (int i = 0; i < size; i++)
+		for (int i = 0; i < size; ++i)
 		{
 			if (marks.values[by] == 2)
 			{
 				Marks db_get_user_marks(i);
-				std::cout << " " << user.first_name << " " << user.last_name << " " << marks.values[by] << " ";
-				printf("\n");
+				std::cout << " " << user.first_name << " " << user.last_name << " " << marks.values[by] << " " << std::endl;
 			}
 		}
 	} break;
 	case 7:
 	{
 		User * db_get_users(&size);
-		for (int i = 0; i < size; i++)
+		for (int i = 0; i < size; ++i)
 		{
 			if (marks.values[by] == 1)
 			{
 				Marks db_get_user_marks(i);
-				std::cout << " " << user.first_name << " " << user.last_name << " " << marks.values[by] << " ";
-				printf("\n");
+				std::cout << " " << user.first_name << " " << user.last_name << " " << marks.values[by] << " " << std::endl;
 			}
 		}
 	} break;
@@ -281,26 +266,24 @@ void view_estimates_on_a_specific_topic()
 }
 void view_scores_for_the_final_test()
 {
-	int size = 0, by = 9, desc = 0;
+	int size = 0, by = 9, desc = 1;
 	User * db_get_users_sorted(&size, by, desc);
 
-	for (int i = 0; i < size; i++)
+	for (int i = 0; i < size; ++i)
 	{
 		Marks db_get_user_marks(i);
-		std::cout << " " << user.first_name << " " << user.last_name << " " << marks.values[by] << " ";
-		printf("\n");
+		std::cout << " " << user.first_name << " " << user.last_name << " " << marks.values[by] << " " << std::endl;
 	}
 }
 void view_the_average_score()
 {
-	int size = 0, by = 8, desc = 0;
+	int size = 0, by = 8, desc = 1;
 	User * db_get_users_sorted(&size, by, desc);
 
-	for (int i = 0; i < size; i++)
+	for (int i = 0; i < size; ++i)
 	{
 		Marks db_get_user_marks(i);
-		std::cout << " " << user.first_name << " " << user.last_name << " " << marks.values[by] << " ";
-		printf("\n");
+		std::cout << " " << user.first_name << " " << user.last_name << " " << marks.values[by] << " " << std::endl;
 	}
 }
 
