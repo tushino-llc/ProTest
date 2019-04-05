@@ -250,3 +250,53 @@ Question * db_get_final_test()
 
     return questions;
 }
+
+int db_set_mark(int user_id, int theme, int mark)
+{
+    int rc;
+    char * value;
+    sqlite3_stmt * st = nullptr;
+
+    switch(theme)
+    {
+        case 0: value = "loops";
+            break;
+        case 1: value = "arrays";
+            break;
+        case 2: value = "strings";
+            break;
+        case 3: value = "recursion";
+            break;
+        case 4: value = "structs";
+            break;
+        case 5: value = "files";
+            break;
+        case 6: value = "pointers";
+            break;
+        case 7: value = "dynamic";
+            break;
+        case 8: value = "average";
+            break;
+        case 9: value = "final";
+            break;
+    }
+
+    rc = sqlite3_prepare_v2(db, "UPDATE `marks` SET ? = ? WHERE user_id = ?", -1, &st, nullptr);
+    sqlite3_bind_text( st, 1, value, -1, SQLITE_STATIC);
+    sqlite3_bind_int( st, 2, mark );
+    sqlite3_bind_int( st, 3, user_id );
+
+    if (rc != SQLITE_OK)
+        return -1;
+
+    rc= sqlite3_step(st);
+    if (rc != SQLITE_DONE && rc != SQLITE_OK)
+        return -1;
+
+    // only 1 row must be affected
+    if (sqlite3_changes(db) != 1)
+        return -1;
+
+    return SQLITE_OK;
+
+}
