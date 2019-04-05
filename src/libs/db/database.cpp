@@ -18,8 +18,8 @@ void db_close()
 int db_delete_question(int id)
 {
     int rc;
-
     sqlite3_stmt * st = nullptr;
+
     rc = sqlite3_prepare_v2(db, "DELETE FROM `questions` WHERE id = ?", -1, &st, nullptr);
     sqlite3_bind_int( st, 1, id );
 
@@ -27,11 +27,7 @@ int db_delete_question(int id)
         return -1;
 
     rc= sqlite3_step(st);
-    if (rc != SQLITE_DONE && rc != SQLITE_OK)
-        return -1;
-
-    // only 1 row must be affected
-    if (sqlite3_changes(db) != 1)
+    if (rc != SQLITE_DONE || sqlite3_changes(db) != 1)
         return -1;
 
     return SQLITE_OK;
@@ -40,8 +36,8 @@ int db_delete_question(int id)
 int db_delete_user(int id)
 {
     int rc;
-
     sqlite3_stmt * st = nullptr;
+
     rc = sqlite3_prepare_v2(db, "DELETE FROM `users` WHERE id = ?", -1, &st, nullptr);
     sqlite3_bind_int( st, 1, id );
 
@@ -49,13 +45,9 @@ int db_delete_user(int id)
         return -1;
 
     rc= sqlite3_step(st);
-    if (rc != SQLITE_DONE && rc != SQLITE_OK)
+    if (rc != SQLITE_DONE || sqlite3_changes(db) != 1)
         return -1;
 
-    // only 1 row must be affected
-    if (sqlite3_changes(db) != 1)
-        return -1;
-    
     rc = sqlite3_prepare_v2(db, "DELETE FROM `marks` WHERE user_id = ?", -1, &st, nullptr);
     sqlite3_bind_int( st, 1, id );
 
@@ -63,13 +55,9 @@ int db_delete_user(int id)
         return -1;
 
     rc= sqlite3_step(st);
-    if (rc != SQLITE_DONE && rc != SQLITE_OK)
+    if (rc != SQLITE_DONE || sqlite3_changes(db) != 1)
         return -1;
 
-    // only 1 row must be affected
-    if (sqlite3_changes(db) != 1)
-        return -1;
-    
     return SQLITE_OK;
 }
 
@@ -172,11 +160,11 @@ int db_add_user(User user, char * password)
     sqlite3_stmt * st = nullptr;
 
     rc = sqlite3_prepare_v2(db, "INSERT INTO `users` VALUES (NULL, ?, ?, ?, ?, ?)", -1, &st, nullptr);
-    sqlite3_bind_text( st, 1, user.login, -1,SQLITE_STATIC);
-    sqlite3_bind_text( st, 2, password, -1,SQLITE_STATIC);
-    sqlite3_bind_text( st, 3, user.first_name, -1,SQLITE_STATIC);
-    sqlite3_bind_text( st, 4, user.last_name, -1,SQLITE_STATIC);
-    sqlite3_bind_int( st, 5, (int)user.admin);
+    sqlite3_bind_text( st, 1, user.login, -1, SQLITE_STATIC);
+    sqlite3_bind_text( st, 2, password, -1, SQLITE_STATIC);
+    sqlite3_bind_text( st, 3, user.first_name, -1, SQLITE_STATIC);
+    sqlite3_bind_text( st, 4, user.last_name, -1, SQLITE_STATIC);
+    sqlite3_bind_int( st, 5, (int) user.admin);
 
     if (rc != SQLITE_OK)
         return -1;
@@ -189,18 +177,18 @@ int db_add_user(User user, char * password)
     return (int) sqlite3_last_insert_rowid(db);
 }
 
-int int db_add_question(Question question)
+int db_add_question(Question question)
 {
     int rc;
     sqlite3_stmt * st = nullptr;
 
     rc = sqlite3_prepare_v2(db, "INSERT INTO `questions` VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)", -1, &st, nullptr);
     sqlite3_bind_int( st, 1, question.theme);
-    sqlite3_bind_text( st, 2, question.value, -1,SQLITE_STATIC);
-    sqlite3_bind_text( st, 3, question.ans[0], -1,SQLITE_STATIC);
-    sqlite3_bind_text( st, 4, question.ans[1], -1,SQLITE_STATIC);
-    sqlite3_bind_text( st, 5, question.ans[2], -1,SQLITE_STATIC);
-    sqlite3_bind_text( st, 6, question.ans[3], -1,SQLITE_STATIC);
+    sqlite3_bind_text( st, 2, question.value, -1, SQLITE_STATIC);
+    sqlite3_bind_text( st, 3, question.ans[0], -1, SQLITE_STATIC);
+    sqlite3_bind_text( st, 4, question.ans[1], -1, SQLITE_STATIC);
+    sqlite3_bind_text( st, 5, question.ans[2], -1, SQLITE_STATIC);
+    sqlite3_bind_text( st, 6, question.ans[3], -1, SQLITE_STATIC);
     sqlite3_bind_int( st, 7, question.correct);
 
     if (rc != SQLITE_OK)
