@@ -1,4 +1,4 @@
-/*
+﻿/*
 ProTest — free powerful program for educational tests
 Copyright © 2019 Tushino Software LLC
 
@@ -17,12 +17,12 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 */
-
 #ifndef TEACHER_MENU_H
 #define TEACHER_MENU_H
 #include "tests_main_header.h"
 
-void teacher_menu_0();
+void teacher_menu();
+void input_teacher();
 
 // Questions
 void delete_the_question();

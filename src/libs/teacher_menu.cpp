@@ -1,4 +1,4 @@
-/*
+﻿/*
 ProTest — free powerful program for educational tests
 Copyright © 2019 Tushino Software LLC
 
@@ -17,14 +17,28 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 */
+#include "tests_main_header.h"
 
-#include "../headers/tests_main_header.h"
+void input_teacher()
+{
+	int error, sign;
+	char password[20], name[20];
+	do {
+		error = User db_login_admin(login, password);
+		if (error == NULL) { printf("| Error! Account not found. Try again? [1 - yes; 0 - no] \n"); }
+		do {
+			scanf("%d", &sign);
+		} while ((sign > 1) || (sign < 0));
+	} while (sign == 1);
+
+	if (error != NULL) { teacher_menu_0(); }
+}
 
 void edit_questions_teacher()
 {
 	int sign;
 	do {
-			printf(" \n"
+			printf(" ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––\n"
 				"|                                                            |\n"
 				"|                      >> ProTest v1.0 <<                    |\n"
 				"|                                                            |\n"
@@ -50,13 +64,12 @@ void edit_questions_teacher()
 
 	} while (sign != 0);
 }
-
 void working_with_the_list_of_students()
 {
 	int sign;
 	do {
 		
-			printf(" \n"
+			printf(" ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––\n"
 				"|                                                            |\n"
 				"|                      >> ProTest v1.0 <<                    |\n"
 				"|                                                            |\n"
@@ -84,13 +97,12 @@ void working_with_the_list_of_students()
 
 	} while (sign != 0);
 }
-
 void view_the_list_of_students_with_grades()
 {
 	int sign;
 	do {
 
-		printf(" \n"
+		printf(" ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––\n"
 			"|                                                            |\n"
 			"|                      >> ProTest v1.0 <<                    |\n"
 			"|                                                            |\n"
@@ -118,14 +130,12 @@ void view_the_list_of_students_with_grades()
 
 	} while (sign != 0);
 }
-
-
 void teacher_menu_0()
 {
 	int sign;
 	do {
 		
-			printf(" \n"
+			printf(" ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––\n"
 				"|                                                            |\n"
 				"|                      >> ProTest v1.0 <<                    |\n"
 				"|                                                            |\n"
