@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.8.2, 2019-04-06T00:21:20. -->
+<!-- Written by QtCreator 4.8.2, 2019-04-06T00:51:42. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -58,8 +58,11 @@
    <valuelist type="QVariantList" key="ClangCodeModel.CustomCommandLineKey"/>
    <value type="bool" key="ClangCodeModel.UseGlobalConfig">true</value>
    <value type="bool" key="ClangTools.BuildBeforeAnalysis">false</value>
+   <value type="QString" key="ClangTools.DiagnosticConfig">Builtin.TidyAndClazy</value>
    <valuelist type="QVariantList" key="ClangTools.SelectedDirs"/>
-   <valuelist type="QVariantList" key="ClangTools.SelectedFiles"/>
+   <valuelist type="QVariantList" key="ClangTools.SelectedFiles">
+    <value type="QString">/home/anton/ProTest/src/qt/dialog1.cpp</value>
+   </valuelist>
    <valuelist type="QVariantList" key="ClangTools.SuppressedDiagnostics"/>
    <value type="bool" key="ClangTools.UseGlobalSettings">true</value>
   </valuemap>
