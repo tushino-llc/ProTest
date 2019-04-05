@@ -257,29 +257,7 @@ int db_set_mark(int user_id, int theme, int mark)
     char * value;
     sqlite3_stmt * st = nullptr;
 
-    switch(theme)
-    {
-        case 0: value = "loops";
-            break;
-        case 1: value = "arrays";
-            break;
-        case 2: value = "strings";
-            break;
-        case 3: value = "recursion";
-            break;
-        case 4: value = "structs";
-            break;
-        case 5: value = "files";
-            break;
-        case 6: value = "pointers";
-            break;
-        case 7: value = "dynamic";
-            break;
-        case 8: value = "average";
-            break;
-        case 9: value = "final";
-            break;
-    }
+    strcpy(value, db_get_theme_by_id(theme));
 
     rc = sqlite3_prepare_v2(db, "UPDATE `marks` SET ? = ? WHERE user_id = ?", -1, &st, nullptr);
     sqlite3_bind_text( st, 1, value, -1, SQLITE_STATIC);
@@ -299,6 +277,24 @@ int db_set_mark(int user_id, int theme, int mark)
 
     return SQLITE_OK;
 
+}
+
+char * db_get_theme_by_id(int index)
+{
+    switch(index)
+    {
+        case 0:  return (char *)"loops";
+        case 1:  return (char *)"arrays";
+        case 2:  return (char *)"strings";
+        case 3:  return (char *)"recursion";
+        case 4:  return (char *)"structs";
+        case 5:  return (char *)"files";
+        case 6:  return (char *)"pointers";
+        case 7:  return (char *)"dynamic";
+        case 8:  return (char *)"average";
+        case 9:  return (char *)"final";
+        default: return (char *)"loops";
+    }
 }
 
 int db_update_question(Question question)
@@ -354,6 +350,66 @@ User * db_get_users(int * size)
     auto users = new User[n];
 
     rc = sqlite3_prepare_v2(db, "SELECT * FROM `users`;", -1, &st, nullptr);
+    if (rc != SQLITE_OK)
+        return nullptr;
+
+    int i = 0, num;
+    rc = sqlite3_step(st);
+
+    while (rc != SQLITE_DONE && rc != SQLITE_OK)
+    {
+        num = sqlite3_column_int(st, 0);
+        users[i].id = num;
+
+        auto text = (char *) sqlite3_column_text(st, 1);
+        strcpy(users[i].login, text);
+        // skip password column
+        text = (char *) sqlite3_column_text(st, 3);
+        strcpy( users[i].first_name, text );
+        text = (char *) sqlite3_column_text(st, 4);
+        strcpy( users[i].last_name, text );
+
+        num = sqlite3_column_int(st, 5);
+        users[i].admin = num != 0;
+
+        delete(text);
+        rc = sqlite3_step(st);
+        i++;
+    }
+
+    return users;
+}
+
+
+User * db_get_users_sorted(int * size, int by, int desc)
+{
+    sqlite3_stmt * st = nullptr;
+    *size = 0; // by default
+
+    // get number of users
+    int rc = sqlite3_prepare_v2(db, "SELECT count(*) FROM `users`;", -1, &st, nullptr);
+
+    if (rc != SQLITE_OK)
+        return nullptr;
+    rc = sqlite3_step(st);
+    if (rc != SQLITE_DONE && rc != SQLITE_ROW)
+        return nullptr;
+
+    int n = sqlite3_column_int(st, 0);
+
+    if (n <= 0)
+        return nullptr;
+
+    *size = n;
+    auto users = new User[n];
+
+    // build a query with some kostyl
+    char query[512] = "SELECT users.* FROM `users` as users JOIN `marks` AS m on m.user_id = users.id ORDER BY m."; // FUCK YEAH!
+    strcat(query, db_get_theme_by_id(by));
+    if (desc)
+        strcat(query, " DESC;");
+
+    rc = sqlite3_prepare_v2(db, query, -1, &st, nullptr);
     if (rc != SQLITE_OK)
         return nullptr;
 
