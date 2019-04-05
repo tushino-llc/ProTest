@@ -31,11 +31,11 @@ AC_ENABLE_SHARED
 AC_PROG_LIBTOOL
 
 # Check for Qt
-FIND_QT
+AX_HAVE_QT
 
-AC_CHECK_HEADERS([QApplication QDialog QMessageBox QMainWindow QStyle QDesktopWidget QMessageBox], [], [
-	AC_MSG_WARN([unable to find Qt headers])
-	])
+#AC_CHECK_HEADERS([QApplication QDialog QMessageBox QMainWindow QStyle QDesktopWidget QMessageBox], [], [
+#	AC_MSG_WARN([unable to find Qt headers])
+#	])
 
 # Check for essential libraries 
 AC_SEARCH_LIBS([dlclose], [dl], [], [
@@ -73,7 +73,12 @@ echo "| CXX           = $CXX"
 echo "| CXXFLAGS      = $CXXFLAGS"
 echo "| LDFLAGS       = $LDFLAGS"
 echo "| ARFLAGS       = $ARFLAGS"
-echo "| Qt            = $have_qt5_libs"
-echo "| QT_LIBS       = $GPGME_QT_LIBS"
-echo "| QT_CFLAGS     = $GPGME_QT_CFLAGS"
+echo "| With-Qt       = $have_qt"
+echo "| QT_CXXFLAGS   = $QT_CXXFLAGS"
+echo "| QT_LIBS       = $QT_LIBS"
+echo "| QT_MOC        = $QT_MOC"
+echo "| QT_UIC        = $QT_UIC"
+echo "| QT_LRELEASE   = $QT_LRELEASE"
+echo "| QT_LUPDATE    = $QT_LUPDATE"
+echo "| QT_DIR        = $QT_DIR"
 echo " ---------------------------------"

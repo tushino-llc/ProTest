@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.6.1
+** Created by: Qt User Interface Compiler version 5.12.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -10,12 +10,9 @@
 #define UI_MAINWINDOW_H
 
 #include <QtCore/QVariant>
-#include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QFormLayout>
-#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
@@ -45,7 +42,7 @@ public:
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
-            MainWindow->setObjectName(QStringLiteral("MainWindow"));
+            MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
         MainWindow->resize(474, 366);
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
         sizePolicy.setHorizontalStretch(0);
@@ -58,48 +55,48 @@ public:
         MainWindow->setDocumentMode(false);
         MainWindow->setDockNestingEnabled(true);
         centralWidget = new QWidget(MainWindow);
-        centralWidget->setObjectName(QStringLiteral("centralWidget"));
+        centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         pushButtonSignIn = new QPushButton(centralWidget);
-        pushButtonSignIn->setObjectName(QStringLiteral("pushButtonSignIn"));
+        pushButtonSignIn->setObjectName(QString::fromUtf8("pushButtonSignIn"));
         pushButtonSignIn->setEnabled(false);
         pushButtonSignIn->setGeometry(QRect(70, 290, 161, 51));
         QFont font;
         font.setPointSize(15);
         pushButtonSignIn->setFont(font);
         pushButtonSignUp = new QPushButton(centralWidget);
-        pushButtonSignUp->setObjectName(QStringLiteral("pushButtonSignUp"));
+        pushButtonSignUp->setObjectName(QString::fromUtf8("pushButtonSignUp"));
         pushButtonSignUp->setGeometry(QRect(240, 290, 161, 51));
         pushButtonSignUp->setFont(font);
         checkBox = new QCheckBox(centralWidget);
-        checkBox->setObjectName(QStringLiteral("checkBox"));
+        checkBox->setObjectName(QString::fromUtf8("checkBox"));
         checkBox->setGeometry(QRect(70, 250, 151, 22));
         QFont font1;
         font1.setPointSize(11);
         checkBox->setFont(font1);
         label = new QLabel(centralWidget);
-        label->setObjectName(QStringLiteral("label"));
+        label->setObjectName(QString::fromUtf8("label"));
         label->setGeometry(QRect(100, 50, 271, 51));
         QFont font2;
         font2.setPointSize(17);
         label->setFont(font2);
         label->setAlignment(Qt::AlignCenter);
         label_4 = new QLabel(centralWidget);
-        label_4->setObjectName(QStringLiteral("label_4"));
+        label_4->setObjectName(QString::fromUtf8("label_4"));
         label_4->setGeometry(QRect(140, 10, 191, 61));
         QFont font3;
         font3.setPointSize(40);
         label_4->setFont(font3);
         label_4->setAlignment(Qt::AlignCenter);
         layoutWidget = new QWidget(centralWidget);
-        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
         layoutWidget->setGeometry(QRect(70, 120, 331, 56));
         formLayout = new QFormLayout(layoutWidget);
         formLayout->setSpacing(6);
         formLayout->setContentsMargins(11, 11, 11, 11);
-        formLayout->setObjectName(QStringLiteral("formLayout"));
+        formLayout->setObjectName(QString::fromUtf8("formLayout"));
         formLayout->setContentsMargins(0, 0, 0, 0);
         label_2 = new QLabel(layoutWidget);
-        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setObjectName(QString::fromUtf8("label_2"));
         QFont font4;
         font4.setPointSize(12);
         label_2->setFont(font4);
@@ -108,27 +105,27 @@ public:
         formLayout->setWidget(0, QFormLayout::LabelRole, label_2);
 
         lineLogin = new QLineEdit(layoutWidget);
-        lineLogin->setObjectName(QStringLiteral("lineLogin"));
+        lineLogin->setObjectName(QString::fromUtf8("lineLogin"));
 
         formLayout->setWidget(1, QFormLayout::SpanningRole, lineLogin);
 
         layoutWidget1 = new QWidget(centralWidget);
-        layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
+        layoutWidget1->setObjectName(QString::fromUtf8("layoutWidget1"));
         layoutWidget1->setGeometry(QRect(70, 180, 331, 56));
         formLayout_2 = new QFormLayout(layoutWidget1);
         formLayout_2->setSpacing(6);
         formLayout_2->setContentsMargins(11, 11, 11, 11);
-        formLayout_2->setObjectName(QStringLiteral("formLayout_2"));
+        formLayout_2->setObjectName(QString::fromUtf8("formLayout_2"));
         formLayout_2->setContentsMargins(0, 0, 0, 0);
         label_3 = new QLabel(layoutWidget1);
-        label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setObjectName(QString::fromUtf8("label_3"));
         label_3->setFont(font4);
         label_3->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
 
         formLayout_2->setWidget(0, QFormLayout::LabelRole, label_3);
 
         linePass = new QLineEdit(layoutWidget1);
-        linePass->setObjectName(QStringLiteral("linePass"));
+        linePass->setObjectName(QString::fromUtf8("linePass"));
         linePass->setEchoMode(QLineEdit::Password);
 
         formLayout_2->setWidget(1, QFormLayout::SpanningRole, linePass);
@@ -146,14 +143,14 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "ProTest", 0));
-        pushButtonSignIn->setText(QApplication::translate("MainWindow", "Sign In", 0));
-        pushButtonSignUp->setText(QApplication::translate("MainWindow", "Sign Up", 0));
-        checkBox->setText(QApplication::translate("MainWindow", "Remember me", 0));
-        label->setText(QApplication::translate("MainWindow", "Authorize", 0));
-        label_4->setText(QApplication::translate("MainWindow", "ProTest", 0));
-        label_2->setText(QApplication::translate("MainWindow", "Login", 0));
-        label_3->setText(QApplication::translate("MainWindow", "Password", 0));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "ProTest", nullptr));
+        pushButtonSignIn->setText(QApplication::translate("MainWindow", "Sign In", nullptr));
+        pushButtonSignUp->setText(QApplication::translate("MainWindow", "Sign Up", nullptr));
+        checkBox->setText(QApplication::translate("MainWindow", "Remember me", nullptr));
+        label->setText(QApplication::translate("MainWindow", "Authorize", nullptr));
+        label_4->setText(QApplication::translate("MainWindow", "ProTest", nullptr));
+        label_2->setText(QApplication::translate("MainWindow", "Login", nullptr));
+        label_3->setText(QApplication::translate("MainWindow", "Password", nullptr));
     } // retranslateUi
 
 };
