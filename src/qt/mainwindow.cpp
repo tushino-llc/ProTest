@@ -90,6 +90,7 @@ void MainWindow::on_pushButtonSignIn_clicked()
                         qApp->desktop()->availableGeometry()
                     )
                 );
+        mwt->Set_init_mode(0);
         mwt->show();
         this->hide();
 

@@ -31,7 +31,7 @@ AC_ENABLE_SHARED
 AC_PROG_LIBTOOL
 
 # Check for Qt
-AX_HAVE_QT
+AT_WITH_QT
 
 AC_CHECK_HEADERS([QApplication QDialog QMessageBox QMainWindow QStyle QDesktopWidget QMessageBox], [], [
 	AC_MSG_WARN([unable to find Qt headers])
@@ -67,9 +67,11 @@ AC_TYPE_UINT8_T
 AC_OUTPUT
 
 echo 
+echo " ---------------------------------"
 echo "| Options used to compile and link:"
 echo "| CXX           = $CXX"
 echo "| CXXFLAGS      = $CXXFLAGS"
 echo "| LDFLAGS       = $LDFLAGS"
 echo "| ARFLAGS       = $ARFLAGS"
 echo "| Qt            = $have_qt"
+echo " ---------------------------------"

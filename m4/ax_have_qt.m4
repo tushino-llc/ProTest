@@ -1,515 +1,771 @@
-# ===========================================================================
-#        http://www.gnu.org/software/autoconf-archive/ax_have_qt.html
-# ===========================================================================
+# Build Qt apps with the autotools (Autoconf/Automake).
+# M4 macros.
 #
-# SYNOPSIS
+# This file is part of AutoTroll.
 #
-#   AX_HAVE_QT [--with-Qt-dir=DIR] [--with-Qt-lib-dir=DIR] [--with-Qt-lib=LIB]
-#   AX_HAVE_QT [--with-Qt-include-dir=DIR] [--with-Qt-bin-dir=DIR] [--with-Qt-lib-dir=DIR] [--with-Qt-lib=LIB]
+# Copyright (C) 2006-2018  Benoit Sigoure <benoit.sigoure@lrde.epita.fr>
+# Copyright (C) 2012-2017  Werner Lemberg <wl@gnu.org>
 #
-# DESCRIPTION
+# AutoTroll is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
 #
-#   Searches common directories for Qt include files, libraries and Qt
-#   binary utilities. The macro supports several different versions of the
-#   Qt framework being installed on the same machine. Without options, the
-#   macro is designed to look for the latest library, i.e., the highest
-#   definition of QT_VERSION in qglobal.h. By use of one or more options a
-#   different library may be selected. There are two different sets of
-#   options. Both sets contain the option --with-Qt-lib=LIB which can be
-#   used to force the use of a particular version of the library file when
-#   more than one are available. LIB must be in the form as it would appear
-#   behind the "-l" option to the compiler. Examples for LIB would be
-#   "qt-mt" for the multi-threaded version and "qt" for the regular version.
-#   In addition to this, the first set consists of an option
-#   --with-Qt-dir=DIR which can be used when the installation conforms to
-#   Trolltech's standard installation, which means that header files are in
-#   DIR/include, binary utilities are in DIR/bin and the library is in
-#   DIR/lib. The second set of options can be used to indicate individual
-#   locations for the header files, the binary utilities and the library
-#   file, in addition to the specific version of the library file.
+# This program is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
 #
-#   The following shell variable is set to either "yes" or "no":
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+# 02110-1301, USA.
 #
-#     have_qt
+# In addition, as a special exception, the copyright holders of
+# AutoTroll give you unlimited permission to copy, distribute and
+# modify the configure scripts that are the output of Autoconf when
+# processing the macros of AutoTroll.  You need not follow the terms
+# of the GNU General Public License when using or distributing such
+# scripts, even though portions of the text of AutoTroll appear in
+# them.  The GNU General Public License (GPL) does govern all other
+# use of the material that constitutes AutoTroll.
 #
-#   Additionally, the following variables are exported:
-#
-#     QT_CXXFLAGS
-#     QT_LIBS
-#     QT_MOC
-#     QT_UIC
-#     QT_LRELEASE
-#     QT_LUPDATE
-#     QT_DIR
-#
-#   which respectively contain an "-I" flag pointing to the Qt include
-#   directory (and "-DQT_THREAD_SUPPORT" when LIB is "qt-mt"), link flags
-#   necessary to link with Qt and X, the name of the meta object compiler
-#   and the user interface compiler both with full path, and finaly the
-#   variable QTDIR as Trolltech likes to see it defined (if possible).
-#
-#   Example lines for Makefile.in:
-#
-#     CXXFLAGS = @QT_CXXFLAGS@
-#     MOC      = @QT_MOC@
-#
-#   After the variables have been set, a trial compile and link is performed
-#   to check the correct functioning of the meta object compiler. This test
-#   may fail when the different detected elements stem from different
-#   releases of the Qt framework. In that case, an error message is emitted
-#   and configure stops.
-#
-#   No common variables such as $LIBS or $CFLAGS are polluted.
-#
-#   Options:
-#
-#   --with-Qt-dir=DIR: DIR is equal to $QTDIR if you have followed the
-#   installation instructions of Trolltech. Header files are in DIR/include,
-#   binary utilities are in DIR/bin and the library is in DIR/lib.
-#
-#   --with-Qt-include-dir=DIR: Qt header files are in DIR.
-#
-#   --with-Qt-bin-dir=DIR: Qt utilities such as moc and uic are in DIR.
-#
-#   --with-Qt-lib-dir=DIR: The Qt library is in DIR.
-#
-#   --with-Qt-lib=LIB: Use -lLIB to link with the Qt library.
-#
-#   If some option "=no" or, equivalently, a --without-Qt-* version is given
-#   in stead of a --with-Qt-*, "have_qt" is set to "no" and the other
-#   variables are set to the empty string.
-#
-# LICENSE
-#
-#   Copyright (c) 2008 Bastiaan Veelo <Bastiaan@Veelo.net>
-#
-#   Copying and distribution of this file, with or without modification, are
-#   permitted in any medium without royalty provided the copyright notice
-#   and this notice are preserved. This file is offered as-is, without any
-#   warranty.
+# This special exception to the GPL applies to versions of AutoTroll
+# released by the copyright holders of AutoTroll.  Note that people
+# who make modified versions of AutoTroll are not obligated to grant
+# this special exception for their modified versions; it is their
+# choice whether to do so.  The GNU General Public License gives
+# permission to release a modified version without this exception;
+# this exception also makes it possible to release a modified version
+# which carries forward this exception.
 
-#serial 9
+ # ------------- #
+ # DOCUMENTATION #
+ # ------------- #
 
-dnl Calls AX_PATH_QT_DIRECT (contained in this file) as a subroutine.
-AU_ALIAS([BNV_HAVE_QT], [AX_HAVE_QT])
-AC_DEFUN([AX_HAVE_QT],
-[
-  AC_REQUIRE([AC_PROG_CXX])
-  AC_REQUIRE([AC_PATH_X])
-  AC_REQUIRE([AC_PATH_XTRA])
+# Disclaimer: Tested with Qt 4.2, 4.8, and Qt 5.x only.  Feedback
+# welcome.  Simply invoke AT_WITH_QT in your configure.ac.  AT_WITH_QT
+# can take arguments which are documented in depth below.  The default
+# arguments are equivalent to the default .pro file generated by
+# qmake.
+#
+# Invoking AT_WITH_QT will do the following:
+#
+#  - Add option `--with-qt[=ARG]' to your configure script.  Possible
+#    values for ARG are `yes' (which is the default) and `no' to
+#    enable and disable Qt support, respectively, or a path to the
+#    directory which contains the Qt binaries in case you have a
+#    non-stardard location.
+#
+#  - Add option `--without-qt', which is equivalent to `--with-qt=no'.
+#
+#  - On MacOS, add `-spec macx-g++' to qmake.  This can be overridden
+#    with the QMAKESPEC environment variable, for example
+#
+#      QMAKESPEC='macx-clang' ./configure ...
+#
+#    (The QMAKESPEC variable is honoured for non-MacOS builds also.)
+#
+#  - If Qt support is enabled, define C preprocessor macro HAVE_QT.
+#
+#  - Find the programs `qmake', `moc', `uic', and `rcc' and save them
+#    in the make variables $(QMAKE), $(MOC), $(UIC), and $(RCC).
+#
+#  - Save the path to Qt binaries in $(QT_PATH).
+#
+#  - Find the flags necessary to compile and link Qt, that is:
+#
+#     * $(QT_DEFINES): -D's defined by qmake.
+#     * $(QT_CFLAGS): CFLAGS as defined by qmake (C?!)
+#     * $(QT_CXXFLAGS): CXXFLAGS as defined by qmake.
+#     * $(QT_INCPATH): -I's defined by qmake.
+#     * $(QT_CPPFLAGS): Same as $(QT_DEFINES) + $(QT_INCPATH).
+#     * $(QT_LFLAGS): LFLAGS defined by qmake.
+#     * $(QT_LDFLAGS): Same thing as $(QT_LFLAGS).
+#     * $(QT_LIBS): LIBS defined by qmake.
+#
+#  - Provide @QT_STATIC_PLUGINS@, which holds some additional C++
+#    declarations necessary for linking with static Qt plugins (for
+#    dynamic Qt builds it contains a dummy typedef declaration
+#    instead).  Use this substitution in a `foo.cpp.in' C++ template
+#    file or something similar, which must be registered in
+#    configure.ac's call to AC_CONFIG_FILES so that a proper `foo.cpp'
+#    file gets created.  Then compile and link `foo.cpp' with your
+#    program in the usual automake way.
+#
+#    NOTE: It is not possible to automatically detect whether a Qt
+#    release earlier than version 5 is built as a static library!  For
+#    this reason, @QT_STATIC_PLUGINS@ always contains the dummy
+#    typedef declaration if not using Qt5.
+#
+# You *MUST* invoke $(MOC) and/or $(UIC) by yourself where necessary.
+# AutoTroll provides you with Makerules to ease this; here is a sample
+# Makefile.am to use with AutoTroll which builds the code given in
+# chapter 7 of the Qt Tutorial
+# (http://doc.trolltech.com/4.2/tutorial-t7.html).
+#
+# -------------------------------------------------------------------------
+# include $(top_srcdir)/build-aux/autotroll.mk
+#
+# ACLOCAL_AMFLAGS = -I build-aux
+#
+# bin_PROGRAMS = lcdrange
+# lcdrange_SOURCES  = $(BUILT_SOURCES) lcdrange.cpp lcdrange.h main.cpp
+# lcdrange_CXXFLAGS = $(QT_CXXFLAGS) $(AM_CXXFLAGS)
+# lcdrange_CPPFLAGS = $(QT_CPPFLAGS) $(AM_CPPFLAGS)
+# lcdrange_LDFLAGS  = $(QT_LDFLAGS) $(LDFLAGS)
+# lcdrange_LDADD    = $(QT_LIBS) $(LDADD)
+#
+# BUILT_SOURCES = lcdrange.moc.cpp
+# -------------------------------------------------------------------------
+#
+# Note that your MOC, UIC, and RCC files *MUST* be listed explicitly
+# in BUILT_SOURCES.  If you name them properly (e.g. `.moc.cc',
+# `.qrc.cc', `.ui.cc' -- of course you can use `.cpp' or `.cxx' or
+# `.C' rather than `.cc') AutoTroll will build them automagically for
+# you, using implicit rules defined in `autotroll.mk'.
 
-  AC_MSG_CHECKING(for Qt)
+m4_define([_AUTOTROLL_SERIAL],
+  [m4_translit([
+# serial 15
+], [#
+], [])])
 
-  AC_ARG_WITH([Qt-dir],
-              AS_HELP_STRING([--with-Qt-dir=DIR],
-                             [DIR is equal to $QTDIR if you have followed the
-                              installation instructions of Trolltech. Header
-                              files are in DIR/include, binary utilities are
-                              in DIR/bin. The library is in DIR/lib, unless
-                              --with-Qt-lib-dir is also set.]))
-  AC_ARG_WITH([Qt-include-dir],
-              AS_HELP_STRING([--with-Qt-include-dir=DIR],
-                             [Qt header files are in DIR]))
-  AC_ARG_WITH([Qt-bin-dir],
-              AS_HELP_STRING([--with-Qt-bin-dir=DIR],
-                             [Qt utilities such as moc and uic are in DIR]))
-  AC_ARG_WITH([Qt-lib-dir],
-              AS_HELP_STRING([--with-Qt-lib-dir=DIR],
-                             [The Qt library is in DIR]))
-  AC_ARG_WITH([Qt-lib],
-              AS_HELP_STRING([--with-Qt-lib=LIB],
-                             [Use -lLIB to link with the Qt library]))
-  if test x"$with_Qt_dir" = x"no" ||
-     test x"$with_Qt_include-dir" = x"no" ||
-     test x"$with_Qt_bin_dir" = x"no" ||
-     test x"$with_Qt_lib_dir" = x"no" ||
-     test x"$with_Qt_lib" = x"no"; then
-    # user disabled Qt. Leave cache alone.
-    have_qt="User disabled Qt."
-  else
-    # "yes" is a bogus option
-    if test x"$with_Qt_dir" = xyes; then
-      with_Qt_dir=
-    fi
-    if test x"$with_Qt_include_dir" = xyes; then
-      with_Qt_include_dir=
-    fi
-    if test x"$with_Qt_bin_dir" = xyes; then
-      with_Qt_bin_dir=
-    fi
-    if test x"$with_Qt_lib_dir" = xyes; then
-      with_Qt_lib_dir=
-    fi
-    if test x"$with_Qt_lib" = xyes; then
-      with_Qt_lib=
-    fi
-    # No Qt unless we discover otherwise
-    have_qt=no
-    # Check whether we are requested to link with a specific version
-    if test x"$with_Qt_lib" != x; then
-      ax_qt_lib="$with_Qt_lib"
-    fi
-    # Check whether we were supplied with an answer already
-    if test x"$with_Qt_dir" != x; then
-      have_qt=yes
-      ax_qt_dir="$with_Qt_dir"
-      ax_qt_include_dir="$with_Qt_dir/include"
-      ax_qt_bin_dir="$with_Qt_dir/bin"
-      ax_qt_lib_dir="$with_Qt_dir/lib"
-      # Only search for the lib if the user did not define one already
-      if test x"$ax_qt_lib" = x; then
-        ax_qt_lib="`ls $ax_qt_lib_dir/libqt* | sed -n 1p |
-                     sed s@$ax_qt_lib_dir/lib@@ | [sed s@[.].*@@]`"
-      fi
-      ax_qt_LIBS="-L$ax_qt_lib_dir -l$ax_qt_lib $X_PRE_LIBS $X_LIBS -lX11 -lXext -lXmu -lXt -lXi $X_EXTRA_LIBS"
-    else
-      # Use cached value or do search, starting with suggestions from
-      # the command line
-      AC_CACHE_VAL(ax_cv_have_qt,
-      [
-        # We are not given a solution and there is no cached value.
-        ax_qt_dir=NO
-        ax_qt_include_dir=NO
-        ax_qt_lib_dir=NO
-        if test x"$ax_qt_lib" = x; then
-          ax_qt_lib=NO
-        fi
-        AX_PATH_QT_DIRECT
-        if test "$ax_qt_dir" = NO ||
-           test "$ax_qt_include_dir" = NO ||
-           test "$ax_qt_lib_dir" = NO ||
-           test "$ax_qt_lib" = NO; then
-          # Problem with finding complete Qt.  Cache the known absence of Qt.
-          ax_cv_have_qt="have_qt=no"
-        else
-          # Record where we found Qt for the cache.
-          ax_cv_have_qt="have_qt=yes                  \
-                       ax_qt_dir=$ax_qt_dir          \
-               ax_qt_include_dir=$ax_qt_include_dir  \
-                   ax_qt_bin_dir=$ax_qt_bin_dir      \
-                      ax_qt_LIBS=\"$ax_qt_LIBS\""
-        fi
-      ])dnl
-      eval "$ax_cv_have_qt"
-    fi # all $ax_qt_* are set
-  fi   # $have_qt reflects the system status
-  if test x"$have_qt" = xyes; then
-    QT_CXXFLAGS="-I$ax_qt_include_dir"
-    if test x"$ax_qt_lib" = xqt-mt; then
-        QT_CXXFLAGS="$QT_CXXFLAGS -DQT_THREAD_SUPPORT"
-    fi
-    QT_DIR="$ax_qt_dir"
-    QT_LIBS="$ax_qt_LIBS"
-    # If ax_qt_dir is defined, utilities are expected to be in the
-    # bin subdirectory
-    if test x"$ax_qt_dir" != x; then
-        if test -x "$ax_qt_dir/bin/uic"; then
-          QT_UIC="$ax_qt_dir/bin/uic"
-        else
-          # Old versions of Qt don't have uic
-          QT_UIC=
-        fi
-      QT_MOC="$ax_qt_dir/bin/moc"
-      QT_LRELEASE="$ax_qt_dir/bin/lrelease"
-      QT_LUPDATE="$ax_qt_dir/bin/lupdate"
-    else
-      # Or maybe we are told where to look for the utilities
-      if test x"$ax_qt_bin_dir" != x; then
-        if test -x "$ax_qt_bin_dir/uic"; then
-          QT_UIC="$ax_qt_bin_dir/uic"
-        else
-          # Old versions of Qt don't have uic
-          QT_UIC=
-        fi
-        QT_MOC="$ax_qt_bin_dir/moc"
-        QT_LRELEASE="$ax_qt_bin_dir/lrelease"
-        QT_LUPDATE="$ax_qt_bin_dir/lupdate"
-      else
-      # Last possibility is that they are in $PATH
-        QT_UIC="`which uic`"
-        QT_MOC="`which moc`"
-        QT_LRELEASE="`which lrelease`"
-        QT_LUPDATE="`which lupdate`"
-      fi
-    fi
-    # All variables are defined, report the result
-    AC_MSG_RESULT([$have_qt:
-    QT_CXXFLAGS=$QT_CXXFLAGS
-    QT_DIR=$QT_DIR
-    QT_LIBS=$QT_LIBS
-    QT_UIC=$QT_UIC
-    QT_MOC=$QT_MOC
-    QT_LRELEASE=$QT_LRELEASE
-    QT_LUPDATE=$QT_LUPDATE])
-  else
-    # Qt was not found
-    QT_CXXFLAGS=
-    QT_DIR=
-    QT_LIBS=
-    QT_UIC=
-    QT_MOC=
-    QT_LRELEASE=
-    QT_LUPDATE=
-    AC_MSG_RESULT($have_qt)
-  fi
-  AC_SUBST(QT_CXXFLAGS)
-  AC_SUBST(QT_DIR)
-  AC_SUBST(QT_LIBS)
-  AC_SUBST(QT_UIC)
-  AC_SUBST(QT_MOC)
-  AC_SUBST(QT_LRELEASE)
-  AC_SUBST(QT_LUPDATE)
 
-  #### Being paranoid:
-  if test x"$have_qt" = xyes; then
-    AC_MSG_CHECKING(correct functioning of Qt installation)
-    AC_CACHE_VAL(ax_cv_qt_test_result,
-    [
-      cat > ax_qt_test.h << EOF
-#include <qobject.h>
-class Test : public QObject
+m4_ifdef([AX_INSTEAD_IF],
+  [],
+  [AC_DEFUN([AX_INSTEAD_IF],
+    [m4_ifval([$1],
+      [AC_MSG_WARN([$2])
+       [$1]],
+      [AC_MSG_ERROR([$2])])])])
+
+
+# AX_PATH_TOOLS(VARIABLE, PROGS-TO-CHECK-FOR, [VALUE-IF-NOT-FOUND], [PATH])
+# -------------------------------------------------------------------------
+AC_DEFUN([AX_PATH_TOOLS],
+  [for ax_tool in $2; do
+     AC_PATH_TOOL([$1], [$ax_tool], [], [$4])
+     test -n "$$1" && break
+   done
+   m4_ifval([$3], [test -n "$$1" || $1="$3"])
+  ])
+
+
+m4_pattern_forbid([^AT_])
+m4_pattern_forbid([^_AT_])
+
+
+# AT_WITH_QT([QT_modules], [QT_config], [QT_misc], [RUN-IF-FAILED], [RUN-IF-OK])
+# ------------------------------------------------------------------------------
+# Enable Qt support and add an option --with-qt to the configure
+# script.
+#
+# The QT_modules argument is optional and defines extra modules to
+# enable or disable (it's equivalent to the QT variable in .pro
+# files).  Modules can be specified as follows:
+#
+# AT_WITH_QT   =>  No argument -> No QT value.
+#                                 Qmake sets it to "core gui" by
+#                                 default.
+# AT_WITH_QT([xml])   =>  QT += xml
+# AT_WITH_QT([+xml])  =>  QT += xml
+# AT_WITH_QT([-gui])  =>  QT -= gui
+# AT_WITH_QT([xml -gui +sql svg])  =>  QT += xml sql svg
+#                                      QT -= gui
+#
+# The QT_config argument is also optional and follows the same
+# convention as QT_modules.  Instead of changing the QT variable, it
+# changes the CONFIG variable, which is used to tweak configuration
+# and compiler options.
+#
+# The last argument, QT_misc (also optional) will be copied as-is the
+# .pro file used to guess how to compile Qt apps.  You may use it to
+# further tweak the build process of Qt apps if tweaking the QT or
+# CONFIG variables isn't enough for you (for example, to control which
+# static plugins get used).
+#
+# RUN-IF-FAILED is arbitrary code to execute if Qt cannot be found or
+# if any problem happens.  If this argument is omitted, then
+# AC_MSG_ERROR will be called.  RUN-IF-OK is arbitrary code to execute
+# if Qt was successfully found.
+
+AC_DEFUN([AT_WITH_QT],
+  [AC_REQUIRE([AC_CANONICAL_HOST])
+   AC_REQUIRE([AC_CANONICAL_BUILD])
+   AC_REQUIRE([AC_PROG_CXX])
+
+   echo "$as_me: this is autotroll.m4[]_AUTOTROLL_SERIAL" \
+     >& AS_MESSAGE_LOG_FD
+
+   # This is a hack to get decent flow control with `break'.
+   for _qt_ignored in once; do
+
+     AC_ARG_WITH([qt],
+       AS_HELP_STRING([--with-qt@<:@=ARG@:>@],
+         [Qt support.  ARG can be `yes' (the default), `no',
+          or a path to Qt binaries; if `yes' or empty,
+          use PATH and some default directories to find Qt binaries]))
+
+     if test x"$with_qt" = x"no"; then
+       break
+     else
+       AC_DEFINE([HAVE_QT],[1],
+         [Define if the Qt framework is available.])
+     fi
+
+     if test x"$with_qt" = x"yes"; then
+       QT_PATH=
+     else
+       QT_PATH=$with_qt
+     fi
+
+     # Find Qt.
+     AC_ARG_VAR([QT_PATH],
+       [path to Qt binaries])
+
+     # Find qmake.
+     AC_ARG_VAR([QMAKE],
+       [Qt Makefile generator command])
+     AX_PATH_TOOLS([QMAKE],
+       [qmake qmake-qt5 qmake-qt4 qmake-qt3],
+       [missing],
+       [$QT_PATH:$PATH])
+     if test x"$QMAKE" = xmissing; then
+       AX_INSTEAD_IF([$4],
+         [Cannot find qmake.  Try --with-qt=PATH.])
+       break
+     fi
+
+     # Find moc (Meta Object Compiler).
+     AC_ARG_VAR([MOC],
+       [Qt Meta Object Compiler command])
+     AX_PATH_TOOLS([MOC],
+       [moc moc-qt5 moc-qt4 moc-qt3],
+       [missing],
+       [$QT_PATH:$PATH])
+     if test x"$MOC" = xmissing; then
+       AX_INSTEAD_IF([$4],
+         [Cannot find moc (Meta Object Compiler).  Try --with-qt=PATH.])
+       break
+     fi
+
+     # Find uic (User Interface Compiler).
+     AC_ARG_VAR([UIC],
+       [Qt User Interface Compiler command])
+     AX_PATH_TOOLS([UIC],
+       [uic uic-qt5 uic-qt4 uic-qt3 uic3],
+       [missing],
+       [$QT_PATH:$PATH])
+     if test x"$UIC" = xmissing; then
+       AX_INSTEAD_IF([$4],
+         [Cannot find uic (User Interface Compiler).  Try --with-qt=PATH.])
+       break
+     fi
+
+     # Find rcc (Qt Resource Compiler).
+     AC_ARG_VAR([RCC],
+       [Qt Resource Compiler command])
+     AX_PATH_TOOLS([RCC],
+       [rcc rcc-qt5],
+       [missing],
+       [$QT_PATH:$PATH])
+     if test x"$RCC" = xmissing; then
+       AC_MSG_WARN(
+         [Cannot find rcc (Qt Resource Compiler).  Try --with-qt=PATH.])
+     fi
+
+     AC_MSG_CHECKING([whether host operating system is Darwin])
+     at_darwin=no
+     at_qmake_args=
+     case $host_os in
+       dnl (
+       darwin*)
+         at_darwin=yes
+         ;;
+     esac
+     AC_MSG_RESULT([$at_darwin])
+
+     AC_MSG_CHECKING([whether QMAKESPEC environment variable is set])
+     if test x"$QMAKESPEC" = x; then
+       if test x"$at_darwin" = xyes; then
+         at_qmake_args='-spec macx-g++'
+         AC_MSG_RESULT([no, using $at_qmake_args])
+       else
+         AC_MSG_RESULT([no])
+       fi
+     else
+       AC_MSG_RESULT([yes, using $QMAKESPEC])
+     fi
+
+     # If we don't know the path to Qt, guess it from the path to
+     # qmake.
+     if test x"$QT_PATH" = x; then
+       QT_PATH=`dirname "$QMAKE"`
+     fi
+     if test x"$QT_PATH" = x; then
+       AX_INSTEAD_IF([$4],
+         [Cannot find your Qt installation.  Try --with-qt=PATH.])
+       break
+     fi
+     AC_SUBST([QT_PATH])
+
+     # Get ready to build a test-app with Qt.
+     if mkdir conftest.dir \
+        && cd conftest.dir; then
+       :
+     else
+       AX_INSTEAD_IF([$4],
+         [Cannot mkdir conftest.dir or cd to that directory.])
+       break
+     fi
+
+     cat >conftest.h <<_ASEOF
+
+#include <QObject>
+
+class Foo: public QObject
 {
-Q_OBJECT
+  Q_OBJECT;
 public:
-  Test() {}
-  ~Test() {}
-public slots:
-  void receive() {}
-signals:
-  void send();
+  Foo();
+  ~Foo() {}
+public Q_SLOTS:
+  void setValue(int value);
+Q_SIGNALS:
+  void valueChanged(int newValue);
+private:
+  int value_;
 };
-EOF
 
-      cat > ax_qt_main.$ac_ext << EOF
-#include "ax_qt_test.h"
-#include <qapplication.h>
-int main( int argc, char **argv )
+_ASEOF
+
+     cat >conftest.cpp <<_ASEOF
+
+#include "conftest.h"
+
+Foo::Foo()
+  : value_ (42)
 {
-  QApplication app( argc, argv );
-  Test t;
-  QObject::connect( &t, SIGNAL(send()), &t, SLOT(receive()) );
+  connect(this, SIGNAL(valueChanged(int)),
+          this, SLOT(setValue(int)));
 }
+
+void Foo::setValue(int value)
+{
+  value_ = value;
+}
+
+int main()
+{
+  Foo f;
+}
+
+_ASEOF
+
+     if $QMAKE -project; then
+       :
+     else
+       AX_INSTEAD_IF([$4],
+         [Calling $QMAKE -project failed.])
+       break
+     fi
+
+     # Find the .pro file generated by qmake.
+     pro_file=conftest.dir.pro
+     test -f $pro_file || pro_file=`echo *.pro`
+     if test -f "$pro_file"; then
+       :
+     else
+       AX_INSTEAD_IF([$4],
+         [Can't find the .pro file generated by Qmake.])
+       break
+     fi
+
+     dnl This is for Qt5; for Qt4 it does nothing special.
+     _AT_TWEAK_PRO_FILE([QT], [+widgets])
+
+     dnl Tweak the value of QT in the .pro file if we have a first
+     dnl argument.
+     m4_ifval([$1],
+       [_AT_TWEAK_PRO_FILE([QT], [$1])])
+
+     dnl Tweak the value of CONFIG in the .pro file if we have a
+     dnl second argument.
+     m4_ifval([$2],
+       [_AT_TWEAK_PRO_FILE([CONFIG], [$2])])
+
+     m4_ifval([$3],
+       [ # Add the extra-settings the user wants to set in the .pro
+         # file.
+         echo "$3" >>"$pro_file"
+       ])
+
+     echo "$as_me:$LINENO: Invoking $QMAKE on $pro_file" \
+       >& AS_MESSAGE_LOG_FD
+     sed 's/^/| /' "$pro_file" >& AS_MESSAGE_LOG_FD
+
+     if $QMAKE $at_qmake_args; then
+       :
+     else
+       AX_INSTEAD_IF([$4],
+         [Calling $QMAKE $at_qmake_args failed.])
+       break
+     fi
+
+     # QMake has a very annoying misfeature: Sometimes it generates
+     # Makefiles where all the references to the files from the Qt
+     # installation are relative.  We can't use them as-is because if
+     # we take, say, a -I../../usr/include/Qt from that Makefile, the
+     # flag is invalid as soon as we use it in another (sub)
+     # directory.  So what this perl pass does is that it rewrites all
+     # relative paths to absolute paths.  Another problem when
+     # building on Cygwin is that QMake mixes paths with backslashes
+     # and forward slashes and paths must be handled with extra care
+     # because of the stupid Windows drive letters.
+     echo "$as_me:$LINENO: fixing the Makefiles:" Makefile* \
+       >& AS_MESSAGE_LOG_FD
+     cat >fixmk.pl <<\EOF
+
+[
+ use strict;
+ use Cwd qw(cwd abs_path);
+
+ # This variable is useful on Cygwin for the following reason: Say
+ # that you are in `/' (that is, in fact you are in C:/cygwin, or
+ # something like that).  If you `cd ..' then obviously you remain in
+ # `/' (that is in C:/cygwin).  QMake generates paths that are
+ # relative to C:/ (or another drive letter, whatever) so the trick to
+ # get the `..' resolved properly is to prepend the absolute path of
+ # the current working directory in a Windows-style.  C:/cygwin/../
+ # will properly become C:/.
+ my $d = "";
+ my $r2a = 0;
+ my $b2f = 0;
+
+ my $cygwin = 0;
+ if ($^O eq "cygwin") {
+   $cygwin = 1;
+   $d = cwd();
+   $d = `cygpath --mixed '$d'`;
+   chomp($d);
+   $d .= "/";
+ }
+
+ sub rel2abs($)
+ {
+   my $p = $d . shift;
+   # print "r2a p=$p";
+   -e $p || return $p;
+   if ($cygwin) {
+     $p = `cygpath --mixed '$p'`;
+     chomp($p);
+   }
+   else {
+    # Do not use abs_path on Cygwin: it incorrectly resolves the paths
+    # that are relative to C:/ rather than `/'.
+     $p = abs_path($p);
+   }
+   # print " -> $p\n";
+   ++$r2a;
+   return $p;
+ }
+
+ # Only useful on Cygwin.
+ sub back2forward($)
+ {
+   my $p = shift;
+   # print "b2f p=$p";
+   -e $p || return $p;
+   $p = `cygpath --mixed '$p'`;
+   chomp($p);
+   # print " -> $p\n";
+   ++$b2f;
+   return $p;
+ }
+
+ foreach my $mk (@ARGV)
+ {
+   next if $mk =~ /~$/;
+   open(MK, $mk) or die("open $mk: $!");
+   # print "mk=$mk\n";
+   my $file = join("", <MK>);
+   close(MK) or die("close $mk: $!");
+   rename $mk, $mk . "~" or die("rename $mk: $!");
+   $file =~ s{(?:\.\.[\\/])+(?:[^"'\s:]+)}{rel2abs($&)}gse;
+   $file =~ s{(?:[a-zA-Z]:[\\/])?(?:[^"\s]+\\[^"\s:]+)+}
+             {back2forward($&)}gse if $cygwin;
+   open(MK, ">", $mk) or die("open >$mk: $!");
+   print MK $file;
+   close(MK) or die("close >$mk: $!");
+   print "$mk: updated $r2a relative paths and $b2f backslash-style paths\n";
+   $r2a = 0;
+   $b2f = 0;
+ }
+]
+
 EOF
 
-      ax_cv_qt_test_result="failure"
-      ax_try_1="$QT_MOC ax_qt_test.h -o moc_ax_qt_test.$ac_ext >/dev/null 2>/dev/null"
-      AC_TRY_EVAL(ax_try_1)
-      if test x"$ac_status" != x0; then
-        echo "$ax_err_1" >&AC_FD_CC
-        echo "configure: could not run $QT_MOC on:" >&AC_FD_CC
-        cat ax_qt_test.h >&AC_FD_CC
-      else
-        ax_try_2="$CXX $QT_CXXFLAGS -c $CXXFLAGS -o moc_ax_qt_test.o moc_ax_qt_test.$ac_ext >/dev/null 2>/dev/null"
-        AC_TRY_EVAL(ax_try_2)
-        if test x"$ac_status" != x0; then
-          echo "$ax_err_2" >&AC_FD_CC
-          echo "configure: could not compile:" >&AC_FD_CC
-          cat moc_ax_qt_test.$ac_ext >&AC_FD_CC
+     perl >& AS_MESSAGE_LOG_FD -w fixmk.pl Makefile* \
+     || AC_MSG_WARN([failed to fix the Makefiles generated by $QMAKE])
+     rm -f fixmk.pl
+
+     # Try to compile a simple Qt app.
+     AC_CACHE_CHECK([whether we can build a simple Qt application],
+       [at_cv_qt_build],
+       [at_cv_qt_build=ko
+        : ${MAKE=make}
+
+        if $MAKE >& AS_MESSAGE_LOG_FD 2>&1; then
+          at_cv_qt_build='ok, looks like Qt 4 or Qt 5'
         else
-          ax_try_3="$CXX $QT_CXXFLAGS -c $CXXFLAGS -o ax_qt_main.o ax_qt_main.$ac_ext >/dev/null 2>/dev/null"
-          AC_TRY_EVAL(ax_try_3)
-          if test x"$ac_status" != x0; then
-            echo "$ax_err_3" >&AC_FD_CC
-            echo "configure: could not compile:" >&AC_FD_CC
-            cat ax_qt_main.$ac_ext >&AC_FD_CC
+          echo "$as_me:$LINENO: Build failed, trying to #include <qobject.h> instead" \
+            >& AS_MESSAGE_LOG_FD
+          sed 's/<QObject>/<qobject.h>/' conftest.h > tmp.h \
+            && mv tmp.h conftest.h
+          if $MAKE >& AS_MESSAGE_LOG_FD 2>&1; then
+            at_cv_qt_build='ok, looks like Qt 3'
           else
-            ax_try_4="$CXX -o ax_qt_main ax_qt_main.o moc_ax_qt_test.o $QT_LIBS $LIBS >/dev/null 2>/dev/null"
-            AC_TRY_EVAL(ax_try_4)
-            if test x"$ac_status" != x0; then
-              echo "$ax_err_4" >&AC_FD_CC
+            # Sometimes (such as on Debian) build will fail because Qt
+            # hasn't been installed in debug mode and qmake tries (by
+            # default) to build apps in debug mode => Try again in
+            # release mode.
+            echo "$as_me:$LINENO: Build failed, trying to enforce release mode" \
+              >& AS_MESSAGE_LOG_FD
+
+            _AT_TWEAK_PRO_FILE([CONFIG], [+release])
+
+            sed 's/<qobject.h>/<QObject>/' conftest.h > tmp.h \
+              && mv tmp.h conftest.h
+            if $MAKE >& AS_MESSAGE_LOG_FD 2>&1; then
+              at_cv_qt_build='ok, looks like Qt 4 or Qt 5, release mode forced'
             else
-              ax_cv_qt_test_result="success"
-            fi
-          fi
-        fi
-      fi
-    ])dnl AC_CACHE_VAL ax_cv_qt_test_result
-    AC_MSG_RESULT([$ax_cv_qt_test_result])
-    if test x"$ax_cv_qt_test_result" = "xfailure"; then
-      AC_MSG_ERROR([Failed to find matching components of a complete
-                  Qt installation. Try using more options,
-                  see ./configure --help.])
-    fi
+              echo "$as_me:$LINENO: Build failed, trying to #include <qobject.h> instead" \
+                >& AS_MESSAGE_LOG_FD
+              sed 's/<QObject>/<qobject.h>/' conftest.h > tmp.h \
+                && mv tmp.h conftest.h
+              if $MAKE >& AS_MESSAGE_LOG_FD 2>&1; then
+                at_cv_qt_build='ok, looks like Qt 3, release mode forced'
+              else
+                at_cv_qt_build=ko
+                echo "$as_me:$LINENO: failed program was:" \
+                  >& AS_MESSAGE_LOG_FD
+                sed 's/^/| /' conftest.h >& AS_MESSAGE_LOG_FD
+                echo "$as_me:$LINENO: failed program was:" \
+                  >& AS_MESSAGE_LOG_FD
+                sed 's/^/| /' conftest.cpp >& AS_MESSAGE_LOG_FD
+              fi # if make with Qt3-style #include and release mode forced.
+            fi # if make with Qt4/5-style #include and release mode forced.
+          fi # if make with Qt3-style #include.
+        fi # if make with Qt4/5-style #include.
+       ])dnl end: AC_CACHE_CHECK(at_cv_qt_build)
 
-    rm -f ax_qt_test.h moc_ax_qt_test.$ac_ext moc_ax_qt_test.o \
-          ax_qt_main.$ac_ext ax_qt_main.o ax_qt_main
-  fi
-])
+     if test x"$at_cv_qt_build" = xko; then
+       AX_INSTEAD_IF([$4],
+         [Cannot build a test Qt program])
+       cd ..
+       break
+     fi
 
-dnl Internal subroutine of AX_HAVE_QT
-dnl Set ax_qt_dir ax_qt_include_dir ax_qt_bin_dir ax_qt_lib_dir ax_qt_lib
-AC_DEFUN([AX_PATH_QT_DIRECT],
-[
-  ## Binary utilities ##
-  if test x"$with_Qt_bin_dir" != x; then
-    ax_qt_bin_dir=$with_Qt_bin_dir
-  fi
-  ## Look for header files ##
-  if test x"$with_Qt_include_dir" != x; then
-    ax_qt_include_dir="$with_Qt_include_dir"
-  else
-    # The following header file is expected to define QT_VERSION.
-    qt_direct_test_header=qglobal.h
-    # Look for the header file in a standard set of common directories.
-    ax_include_path_list="
-      /usr/include
-      `ls -dr ${QTDIR}/include 2>/dev/null`
-      `ls -dr /usr/include/qt* 2>/dev/null`
-      `ls -dr /usr/lib/qt*/include 2>/dev/null`
-      `ls -dr /usr/local/qt*/include 2>/dev/null`
-      `ls -dr /opt/qt*/include 2>/dev/null`
-      `ls -dr /Developer/qt*/include 2>/dev/null`
-    "
-    for ax_dir in $ax_include_path_list; do
-      if test -r "$ax_dir/$qt_direct_test_header"; then
-        ax_dirs="$ax_dirs $ax_dir"
-      fi
-    done
-    # Now look for the newest in this list
-    ax_prev_ver=0
-    for ax_dir in $ax_dirs; do
-      ax_this_ver=`egrep -w '#define QT_VERSION' $ax_dir/$qt_direct_test_header | sed s/'#define QT_VERSION'//`
-      if expr $ax_this_ver '>' $ax_prev_ver > /dev/null; then
-        ax_qt_include_dir=$ax_dir
-        ax_prev_ver=$ax_this_ver
-      fi
-    done
-  fi dnl Found header files.
+     QT_VERSION_MAJOR=`echo "$at_cv_qt_build" | sed 's/[[^0-9]]*//g'`
+     AC_SUBST([QT_VERSION_MAJOR])
 
-  # Are these headers located in a traditional Trolltech installation?
-  # That would be $ax_qt_include_dir stripped from its last element:
-  ax_possible_qt_dir=`dirname $ax_qt_include_dir`
-  if (test -x $ax_possible_qt_dir/bin/moc) &&
-     ((ls $ax_possible_qt_dir/lib/libqt* > /dev/null 2>/dev/null) ||
-      (ls $ax_possible_qt_dir/lib64/libqt* > /dev/null 2>/dev/null)); then
-    # Then the rest is a piece of cake
-    ax_qt_dir=$ax_possible_qt_dir
-    ax_qt_bin_dir="$ax_qt_dir/bin"
-    if test x"$with_Qt_lib_dir" != x; then
-      ax_qt_lib_dir="$with_Qt_lib_dir"
-    else
-      if (test -d $ax_qt_dir/lib64); then
-  ax_qt_lib_dir="$ax_qt_dir/lib64"
-      else
-  ax_qt_lib_dir="$ax_qt_dir/lib"
-      fi
-    fi
-    # Only look for lib if the user did not supply it already
-    if test x"$ax_qt_lib" = xNO; then
-      ax_qt_lib="`ls $ax_qt_lib_dir/libqt* | sed -n 1p |
-                   sed s@$ax_qt_lib_dir/lib@@ | [sed s@[.].*@@]`"
-    fi
-    ax_qt_LIBS="-L$ax_qt_lib_dir -l$ax_qt_lib $X_PRE_LIBS $X_LIBS -lX11 -lXext -lXmu -lXt -lXi $X_EXTRA_LIBS"
-  else
-    # There is no valid definition for $QTDIR as Trolltech likes to see it
-    ax_qt_dir=
-    ## Look for Qt library ##
-    if test x"$with_Qt_lib_dir" != x; then
-      ax_qt_lib_dir="$with_Qt_lib_dir"
-      # Only look for lib if the user did not supply it already
-      if test x"$ax_qt_lib" = xNO; then
-        ax_qt_lib="`ls $ax_qt_lib_dir/libqt* | sed -n 1p |
-                     sed s@$ax_qt_lib_dir/lib@@ | [sed s@[.].*@@]`"
-      fi
-      ax_qt_LIBS="-L$ax_qt_lib_dir -l$ax_qt_lib $X_PRE_LIBS $X_LIBS -lX11 -lXext -lXmu -lXt -lXi $X_EXTRA_LIBS"
-    else
-      # Normally, when there is no traditional Trolltech installation,
-      # the library is installed in a place where the linker finds it
-      # automatically.
-      # If the user did not define the library name, try with qt
-      if test x"$ax_qt_lib" = xNO; then
-        ax_qt_lib=qt
-      fi
-      qt_direct_test_header=qapplication.h
-      qt_direct_test_main="
-        int argc;
-        char ** argv;
-        QApplication app(argc,argv);
-      "
-      # See if we find the library without any special options.
-      # Don't add top $LIBS permanently yet
-      ax_save_LIBS="$LIBS"
-      LIBS="-l$ax_qt_lib $X_PRE_LIBS $X_LIBS -lX11 -lXext -lXmu -lXt -lXi $X_EXTRA_LIBS"
-      ax_qt_LIBS="$LIBS"
-      ax_save_CXXFLAGS="$CXXFLAGS"
-      CXXFLAGS="-I$ax_qt_include_dir"
-      AC_TRY_LINK([#include <$qt_direct_test_header>],
-        $qt_direct_test_main,
-      [
-        # Success.
-        # We can link with no special library directory.
-        ax_qt_lib_dir=
-      ], [
-        # That did not work. Try the multi-threaded version
-        echo "Non-critical error, please neglect the above." >&AC_FD_CC
-        ax_qt_lib=qt-mt
-        LIBS="-l$ax_qt_lib $X_PRE_LIBS $X_LIBS -lX11 -lXext -lXmu -lXt -lXi $X_EXTRA_LIBS"
-        AC_TRY_LINK([#include <$qt_direct_test_header>],
-          $qt_direct_test_main,
-        [
-          # Success.
-          # We can link with no special library directory.
-          ax_qt_lib_dir=
-        ], [
-          # That did not work. Try the OpenGL version
-          echo "Non-critical error, please neglect the above." >&AC_FD_CC
-          ax_qt_lib=qt-gl
-          LIBS="-l$ax_qt_lib $X_PRE_LIBS $X_LIBS -lX11 -lXext -lXmu -lXt -lXi $X_EXTRA_LIBS"
-          AC_TRY_LINK([#include <$qt_direct_test_header>],
-            $qt_direct_test_main,
-          [
-            # Success.
-            # We can link with no special library directory.
-            ax_qt_lib_dir=
-          ], [
-            # That did not work. Maybe a library version I don't know about?
-            echo "Non-critical error, please neglect the above." >&AC_FD_CC
-            # Look for some Qt lib in a standard set of common directories.
-            ax_dir_list="
-              `echo $ax_qt_includes | sed ss/includess`
-              /lib
-        /usr/lib64
-              /usr/lib
-        /usr/local/lib64
-              /usr/local/lib
-        /opt/lib64
-              /opt/lib
-              `ls -dr /usr/lib64/qt* 2>/dev/null`
-              `ls -dr /usr/lib64/qt*/lib64 2>/dev/null`
-              `ls -dr /usr/lib/qt* 2>/dev/null`
-              `ls -dr /usr/local/qt* 2>/dev/null`
-              `ls -dr /opt/qt* 2>/dev/null`
-            "
-            for ax_dir in $ax_dir_list; do
-              if ls $ax_dir/libqt* >/dev/null 2>/dev/null; then
-                # Gamble that it's the first one...
-                ax_qt_lib="`ls $ax_dir/libqt* | sed -n 1p |
-                            sed s@$ax_dir/lib@@ | sed s/[[.]].*//`"
-                ax_qt_lib_dir="$ax_dir"
-                break
-              fi
-            done
-            # Try with that one
-            LIBS="-l$ax_qt_lib $X_PRE_LIBS $X_LIBS -lX11 -lXext -lXmu -lXt -lXi $X_EXTRA_LIBS"
-            AC_TRY_LINK([#include <$qt_direct_test_header>],
-              $qt_direct_test_main,
-            [
-              # Success.
-              # We can link with no special library directory.
-              ax_qt_lib_dir=
-            ], [
-             : # Leave ax_qt_lib_dir defined
-            ])
-          ])
-        ])
-      ])
-      if test x"$ax_qt_lib_dir" != x; then
-        ax_qt_LIBS="-L$ax_qt_lib_dir $LIBS"
-      else
-        ax_qt_LIBS="$LIBS"
-      fi
-      LIBS="$ax_save_LIBS"
-      CXXFLAGS="$ax_save_CXXFLAGS"
-    fi dnl $with_Qt_lib_dir was not given
-  fi dnl Done setting up for non-traditional Trolltech installation
-])
+     # This sed filter is applied after an expression of the form
+     # /^FOO.*=/!d; it starts by removing the beginning of the line,
+     # removing references to SUBLIBS, removing unnecessary
+     # whitespaces at the beginning, and prefixes all variable uses by
+     # QT_.
+     qt_sed_filter='s///;
+                    s/$(SUBLIBS)//g;
+                    s/^ *//;
+                    s/\$(\(@<:@A-Z_@:>@@<:@A-Z_@:>@*\))/$(QT_\1)/g'
+
+     # Find the Makefile (qmake happens to generate a fake Makefile
+     # which invokes a Makefile.Debug or Makefile.Release).  If we
+     # have both, we'll pick the Makefile.Release.  The reason is that
+     # this release uses -Os and debug -g.  We can override -Os by
+     # passing another -O but we usually don't override -g.
+     if test -f Makefile.Release; then
+       at_mfile='Makefile.Release'
+     else
+       at_mfile='Makefile'
+     fi
+     if test -f $at_mfile; then
+       :
+     else
+       AX_INSTEAD_IF([$4],
+         [Cannot find the Makefile generated by qmake.])
+       cd ..
+       break
+     fi
+
+     # Find the DEFINES of Qt (should have been named CPPFLAGS).
+     AC_CACHE_CHECK([for the DEFINES to use with Qt],
+       [at_cv_env_QT_DEFINES],
+       [at_cv_env_QT_DEFINES=`sed "/^DEFINES@<:@^A-Z=@:>@*=/!d;
+                                   $qt_sed_filter" $at_mfile`])
+     AC_SUBST([QT_DEFINES],
+       [$at_cv_env_QT_DEFINES])
+
+     # Find the CFLAGS of Qt.  (We can use Qt in C?!)
+     AC_CACHE_CHECK([for the CFLAGS to use with Qt],
+       [at_cv_env_QT_CFLAGS],
+       [at_cv_env_QT_CFLAGS=`sed "/^CFLAGS@<:@^A-Z=@:>@*=/!d;
+                                  $qt_sed_filter" $at_mfile`])
+     AC_SUBST([QT_CFLAGS],
+       [$at_cv_env_QT_CFLAGS])
+
+     # Find the CXXFLAGS of Qt.
+     AC_CACHE_CHECK([for the CXXFLAGS to use with Qt],
+       [at_cv_env_QT_CXXFLAGS],
+       [at_cv_env_QT_CXXFLAGS=`sed "/^CXXFLAGS@<:@^A-Z=@:>@*=/!d;
+                                    $qt_sed_filter" $at_mfile`])
+     AC_SUBST([QT_CXXFLAGS],
+       [$at_cv_env_QT_CXXFLAGS])
+
+     # Find the INCPATH of Qt.
+     AC_CACHE_CHECK([for the INCPATH to use with Qt],
+       [at_cv_env_QT_INCPATH],
+       [at_cv_env_QT_INCPATH=`sed "/^INCPATH@<:@^A-Z=@:>@*=/!d;
+                                   $qt_sed_filter" $at_mfile`])
+     AC_SUBST([QT_INCPATH],
+       [$at_cv_env_QT_INCPATH])
+
+     AC_SUBST([QT_CPPFLAGS],
+       ["$at_cv_env_QT_DEFINES $at_cv_env_QT_INCPATH"])
+
+     # Find the LFLAGS of Qt (should have been named LDFLAGS).
+     AC_CACHE_CHECK([for the LDFLAGS to use with Qt],
+       [at_cv_env_QT_LDFLAGS],
+       [at_cv_env_QT_LDFLAGS=`sed "/^LFLAGS@<:@^A-Z=@:>@*=/!d;
+                                   $qt_sed_filter" $at_mfile`])
+     AC_SUBST([QT_LFLAGS],
+       [$at_cv_env_QT_LDFLAGS])
+     AC_SUBST([QT_LDFLAGS],
+       [$at_cv_env_QT_LDFLAGS])
+
+     # Find the LIBS of Qt.
+     AC_CACHE_CHECK([for the LIBS to use with Qt],
+      [at_cv_env_QT_LIBS],
+      [at_cv_env_QT_LIBS=`sed "/^LIBS@<:@^A-Z@:>@*=/!d;
+                               $qt_sed_filter" $at_mfile`
+       if test x$at_darwin = xyes; then
+         # Fix QT_LIBS: as of today Libtool (GNU Libtool 1.5.23a)
+         # doesn't handle -F properly.  The "bug" has been fixed on 22
+         # October 2006 by Peter O'Gorman but we provide backward
+         # compatibility here.
+         at_cv_env_QT_LIBS=`echo "$at_cv_env_QT_LIBS" \
+                            | sed 's/^-F/-Wl,-F/;
+                                   s/ -F/ -Wl,-F/g'`
+       fi])
+     AC_SUBST([QT_LIBS],
+       [$at_cv_env_QT_LIBS])
+
+     # We can't use AC_CACHE_CHECK for data that contains newlines.
+     AC_MSG_CHECKING([for necessary static plugin code])
+     # find static plugin data generated by qmake
+     if test -f conftest.dir_plugin_import.cpp; then
+       QT_STATIC_PLUGINS=`cat conftest.dir_plugin_import.cpp`
+     else
+       QT_STATIC_PLUGINS="\
+// We have Qt earlier than version 5 or a dynamic build.
+// Provide dummy typedef to avoid empty source code.
+typedef int _qt_not_a_static_build;"
+     fi
+     AC_SUBST([QT_STATIC_PLUGINS])
+     AM_SUBST_NOTMAKE([QT_STATIC_PLUGINS])
+     AC_MSG_RESULT([$QT_STATIC_PLUGINS])
+
+     cd .. && rm -rf conftest.dir
+
+     # Run the user code
+     $5
+
+   done  # end hack (useless FOR to be able to use break)
+  ])
+
+
+# AT_REQUIRE_QT_VERSION(QT_version, [RUN-IF-FAILED], [RUN-IF-OK])
+# ---------------------------------------------------------------
+# Check (using qmake) that Qt's version "matches" QT_version.  Must be
+# run *AFTER* AT_WITH_QT.  Requires autoconf 2.60.
+#
+# This macro is ignored if Qt support has been disabled (using
+# `--with-qt=no' or `--without-qt').
+#
+# RUN-IF-FAILED is arbitrary code to execute if Qt cannot be found or
+# if any problem happens.  If this argument is omitted, then
+# AC_MSG_ERROR will be called.  RUN-IF-OK is arbitrary code to execute
+# if Qt was successfully found.
+#
+# This macro provides the Qt version in $(QT_VERSION).
+
+AC_DEFUN([AT_REQUIRE_QT_VERSION],
+  [AC_PREREQ([2.60])
+
+   # This is a hack to get decent flow control with `break'.
+   for _qt_ignored in once; do
+
+     if test x"$with_qt" = x"no"; then
+       break
+     fi
+
+     if test x"$QMAKE" = x; then
+       AX_INSTEAD_IF([$2],
+        [\$QMAKE is empty.  Did you invoke AT@&t@_WITH_QT before AT@&t@_REQUIRE_QT_VERSION?])
+       break
+     fi
+
+     AC_CACHE_CHECK([for Qt's version],
+       [at_cv_QT_VERSION],
+       [echo "$as_me:$LINENO: Running $QMAKE --version:" \
+          >& AS_MESSAGE_LOG_FD
+        $QMAKE --version >& AS_MESSAGE_LOG_FD 2>&1
+        qmake_version_sed=['/^.*\([0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*\).*$/!d;s//\1/']
+        at_cv_QT_VERSION=`$QMAKE --version 2>&1 \
+                          | sed "$qmake_version_sed"`])
+     if test x"$at_cv_QT_VERSION" = x; then
+       AX_INSTEAD_IF([$2],
+         [Cannot detect Qt's version.])
+       break
+     fi
+     AC_SUBST([QT_VERSION],
+       [$at_cv_QT_VERSION])
+     AS_VERSION_COMPARE([$QT_VERSION], [$1],
+       [AX_INSTEAD_IF([$2],
+          [This package requires Qt $1 or above.])
+        break])
+
+     # Run the user code
+     $3
+
+   done  # end hack (useless FOR to be able to use break)
+  ])
+
+
+# _AT_TWEAK_PRO_FILE(QT_VAR, VALUE)
+# ---------------------------------
+# @internal.  Tweak the variable QT_VAR in the .pro file.  VALUE is an
+# IFS-separated list of values, and each value is rewritten as
+# follows:
+#
+#   +value  => QT_VAR += value
+#   -value  => QT_VAR -= value
+#    value  => QT_VAR += value
+
+AC_DEFUN([_AT_TWEAK_PRO_FILE],
+  [ # Tweak the value of $1 in the .pro file for $2.
+   qt_conf=''
+   for at_mod in $2; do
+     at_mod=`echo "$at_mod" | sed 's/^-//; tough
+                                   s/^+//; beef
+                                   :ough
+                                   s/^/$1 -= /;n
+                                   :eef
+                                   s/^/$1 += /'`
+     qt_conf="\
+$qt_conf
+$at_mod"
+   done
+    echo "$qt_conf" | sed 1d >>"$pro_file"
+  ])
