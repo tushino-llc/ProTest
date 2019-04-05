@@ -122,3 +122,46 @@ User db_login(char * login, char * password)
 
     return user;
 }
+
+Question * db_get_test(int theme)
+{
+    int rc;
+    auto * questions = new Question[10];
+
+    sqlite3_stmt * st = nullptr;
+    rc = sqlite3_prepare_v2(db, "SELECT * FROM `questions` WHERE `theme`=? ORDER BY random() LIMIT 10", -1, &st, nullptr);
+    if (rc != SQLITE_OK)
+        return nullptr;
+
+    rc = sqlite3_bind_int(st, 1, theme);
+    if (rc != SQLITE_OK)
+        return nullptr;
+
+    int i = 0, num;
+    rc = sqlite3_step(st);
+
+    while (rc != SQLITE_DONE && rc != SQLITE_OK && i < 10)
+    {
+        num = sqlite3_column_int(st, 0);
+        questions[i].id = num;
+        num = sqlite3_column_int(st, 1);
+        questions[i].theme = num;
+
+        auto text = (char *) sqlite3_column_text(st, 2);
+        strcpy( questions[i].value, text );
+        delete(text);
+
+        for (int j = 3; j < 7; j++) {
+            text = (char *) sqlite3_column_text(st, j);
+            strcpy( questions[i].ans[j-3], text );
+        }
+
+        num = sqlite3_column_int(st, 7);
+        questions[i].correct = num;
+
+        rc = sqlite3_step(st);
+        i++;
+    }
+
+    return questions;
+}

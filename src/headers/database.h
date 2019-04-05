@@ -37,8 +37,8 @@ struct User {
 struct Question {
     int id;
     int theme;
-    char * value;
-    char * ans[4];
+    char value[256];
+    char ans[4][256];
     int correct;
 };
 
@@ -54,3 +54,4 @@ int db_delete_user(int id);
 void db_close();
 
 User db_login(char * login, char * password);
+Question * db_get_test(int theme);
