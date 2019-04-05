@@ -89,7 +89,7 @@ void delete_student_account()
 {
 	int error, id, size = 0;
 	
-	User[] db_get_users(&size);
+	User * db_get_users(&size);
 	
 	for (int i = 0; i < size; i++)
 	{
@@ -122,7 +122,7 @@ void to_add_a_new_account_for_a_student()
 void to_see_the_change_of_a_students_progress()
 {
 	int error, size = 0, id;
-	User[] db_get_users(&size);
+	User * db_get_users(&size);
 
 	for (int i = 0; i < size; i++)
 	{
@@ -145,7 +145,7 @@ void to_see_the_change_of_a_students_progress()
 void view_scores_on_all_topics()
 {
 	int id, size = 0;
-	User[] db_get_users(&size);
+	User * db_get_users(&size);
 
 	for (int i = 0; i < size; i++)
 	{
