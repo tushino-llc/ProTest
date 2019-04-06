@@ -472,3 +472,30 @@ int db_grant_admin(int id)
 
     return SQLITE_OK;
 }
+
+int db_update_user(User user, char * password)
+{
+    int rc;
+    sqlite3_stmt * st = nullptr;
+
+    rc = sqlite3_prepare_v2(db, "UPDATE `users` SET login = ?, pass = ?, first_name = ?, last_name = ?, admin = ? WHERE id = ?", -1, &st, nullptr);
+    sqlite3_bind_text( st, 1, user.login, -1,SQLITE_STATIC);
+    sqlite3_bind_text( st, 2, password, -1,SQLITE_STATIC);
+    sqlite3_bind_text( st, 3, user.first_name, -1,SQLITE_STATIC);
+    sqlite3_bind_text( st, 4, user.last_name, -1,SQLITE_STATIC);
+    sqlite3_bind_int( st, 5, (int)user.admin);
+    sqlite3_bind_int( st, 6, user.id);
+
+    if (rc != SQLITE_OK)
+        return -1;
+
+    rc= sqlite3_step(st);
+    if (rc != SQLITE_DONE && rc != SQLITE_OK)
+        return -1;
+
+    // only 1 row must be affected
+    if (sqlite3_changes(db) != 1)
+        return -1;
+
+    return SQLITE_OK;
+}
