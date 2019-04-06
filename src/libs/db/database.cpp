@@ -61,7 +61,6 @@ int db_delete_user(int id)
     return SQLITE_OK;
 }
 
-
 User db_login(char * login, char * password)
 {
     int rc;
@@ -99,12 +98,12 @@ User db_login(char * login, char * password)
     res = sqlite3_column_int(st, 0);
     user.id = res;
     auto name = sqlite3_column_text(st, 1);
-    user.login = (char *)name;
+    strcpy(user.login, (char *)name);
     // skip password column
     name = sqlite3_column_text(st, 3);
-    user.first_name = (char *)name;
+    strcpy(user.first_name, (char *)name);
     name = sqlite3_column_text(st, 4);
-    user.last_name = (char *)name;
+    strcpy(user.last_name, (char *)name);
     res = sqlite3_column_int(st, 5);
     user.admin = res != 0;
 
@@ -159,12 +158,11 @@ int db_add_user(User user, char * password)
     int rc;
     sqlite3_stmt * st = nullptr;
 
-    rc = sqlite3_prepare_v2(db, "INSERT INTO `users` VALUES (NULL, ?, ?, ?, ?, ?)", -1, &st, nullptr);
+    rc = sqlite3_prepare_v2(db, "INSERT INTO `users` VALUES (NULL, ?, ?, ?, ?, 0)", -1, &st, nullptr);
     sqlite3_bind_text( st, 1, user.login, -1, SQLITE_STATIC);
     sqlite3_bind_text( st, 2, password, -1, SQLITE_STATIC);
     sqlite3_bind_text( st, 3, user.first_name, -1, SQLITE_STATIC);
     sqlite3_bind_text( st, 4, user.last_name, -1, SQLITE_STATIC);
-    sqlite3_bind_int( st, 5, (int) user.admin);
 
     if (rc != SQLITE_OK)
         return -1;
@@ -175,6 +173,22 @@ int db_add_user(User user, char * password)
 
 
     return (int) sqlite3_last_insert_rowid(db);
+}
+
+int db_add_admin(User user, char * password)
+{
+    int rc;
+    sqlite3_stmt * st = nullptr;
+
+    int id = db_add_user(user, password);
+    if (id == -1)
+        return -1;
+
+    rc = db_grant_admin(id);
+    if (rc == SQLITE_OK)
+        return id;
+    else
+        return -1;
 }
 
 int db_add_question(Question question)
@@ -254,7 +268,7 @@ Question * db_get_final_test()
 int db_set_mark(int user_id, int theme, int mark)
 {
     int rc;
-    char * value;
+    char * value = nullptr;
     sqlite3_stmt * st = nullptr;
 
     strcpy(value, db_get_theme_by_id(theme));
@@ -380,7 +394,6 @@ User * db_get_users(int * size)
     return users;
 }
 
-
 User * db_get_users_sorted(int * size, int by, int desc)
 {
     sqlite3_stmt * st = nullptr;
@@ -438,4 +451,24 @@ User * db_get_users_sorted(int * size, int by, int desc)
     }
 
     return users;
+}
+
+
+int db_grant_admin(int id)
+{
+    sqlite3_stmt * st = nullptr;
+
+    // get number of users
+    int rc = sqlite3_prepare_v2(db, "UPDATE `users` SET admin=1 WHERE id=?", -1, &st, nullptr);
+    if (rc != SQLITE_OK)
+        return -1;
+    rc = sqlite3_bind_int(st, 1, id);
+    if (rc != SQLITE_OK)
+        return -1;
+
+    rc = sqlite3_step(st);
+    if (rc != SQLITE_DONE && rc != SQLITE_ROW)
+        return -1;
+
+    return SQLITE_OK;
 }

@@ -18,20 +18,14 @@ You should have received a copy of the GNU General Public License
 along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 */
 
-/**
-*
-*   THIS FILE IS NOT LINKED TO MAIN HEADER YET
-*
-*/
-
 #include "sqlite3.h"
 
 struct User {
     int id;
     bool admin;
-    char * login;
-    char * first_name;
-    char * last_name;
+    char login[256];
+    char first_name[256];
+    char last_name[256];
 };
 
 struct Question {
