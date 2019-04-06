@@ -13,10 +13,10 @@ TEMPLATE = app
 
 SOURCES += mainwindow.cpp \
     dialog1.cpp \
-    ../libs/db/database.cpp \
+    #../libs/db/database.cpp \
     #../libs/teacher.cpp \
     #../libs/teacher_menu.cpp \
-    ../libs/db/sqlite3.c \
+    #../libs/db/sqlite3.c \
     ../libs/main_menu.cpp \
     ../main.cpp \
     qt_main.cpp \

@@ -22,10 +22,10 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 #define TESTS_MAIN_HEADER_FILE
 
 /* Macros */
-#define HAVE_QT (1)
+
 
 /* Include config.h */
-// #include "config.h"
+#include "config.h"
 
 /* Include general headers */
 //#if (HAVE_CSTDIO == 1)

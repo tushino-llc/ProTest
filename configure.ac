@@ -31,7 +31,18 @@ AC_ENABLE_SHARED
 AC_PROG_LIBTOOL
 
 # Check for Qt
-AX_HAVE_QT
+AC_ARG_WITH([Qt], [AC_HELP_STRING([--without-Qt], [force build without graphical UI based on Qt5])], [have_qt=no], [t_qt=true])
+if test x$t_qt = xtrue; then
+	AX_HAVE_QT
+
+	# Define in config.h
+	if test "x$have_qt" = xyes; then
+		AC_DEFINE([HAVE_QT], [1], [Define if Qt will be used])
+	fi
+fi
+
+# Qt test for Makefile.am
+AM_CONDITIONAL([HAVE_QT], [test "x$have_qt" = xyes])
 
 #AC_CHECK_HEADERS([QApplication QDialog QMessageBox QMainWindow QStyle QDesktopWidget QMessageBox], [], [
 #	AC_MSG_WARN([unable to find Qt headers])
