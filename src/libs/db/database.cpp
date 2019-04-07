@@ -61,6 +61,70 @@ int db_delete_user(int id)
     return SQLITE_OK;
 }
 
+User db_get_user(int id)
+{
+    sqlite3_stmt * st = nullptr;
+
+    User user = {0};
+
+    int rc = sqlite3_prepare_v2(db, "SELECT * FROM `users` WHERE id=?;", -1, &st, nullptr);
+    if (rc != SQLITE_OK)
+        return user;
+
+    rc = sqlite3_bind_int(st, 1, id);
+    if (rc != SQLITE_OK)
+        return user;
+
+    rc = sqlite3_step(st);
+    if (rc != SQLITE_DONE && rc != SQLITE_OK && rc != SQLITE_ROW)
+        return user;
+
+    int num = sqlite3_column_int(st, 0);
+    user.id = num;
+
+    auto text = (char *) sqlite3_column_text(st, 1);
+    strcpy(user.login, text);
+    // skip password column
+    text = (char *) sqlite3_column_text(st, 3);
+    strcpy( user.first_name, text );
+    text = (char *) sqlite3_column_text(st, 4);
+    strcpy( user.last_name, text );
+
+    num = sqlite3_column_int(st, 5);
+    user.admin = num != 0;
+
+    delete(text);
+
+    return user;
+}
+
+Marks db_get_user_marks(int user_id)
+{
+    sqlite3_stmt * st = nullptr;
+
+    Marks marks = {0};
+
+    int rc = sqlite3_prepare_v2(db, "SELECT * FROM `marks` WHERE user_id=?;", -1, &st, nullptr);
+    if (rc != SQLITE_OK)
+        return marks;
+
+    rc = sqlite3_bind_int(st, 1, user_id);
+    if (rc != SQLITE_OK)
+        return marks;
+
+    rc = sqlite3_step(st);
+
+    if (rc != SQLITE_DONE && rc != SQLITE_OK && rc != SQLITE_ROW)
+        return marks;
+
+    marks.user_id = sqlite3_column_int(st, 0);
+
+    for (int i = 0; i < 10; i++)
+        marks.values[i] = sqlite3_column_int(st, i+1);
+
+    return marks;
+}
+
 User db_login(char * login, char * password)
 {
     int rc;
@@ -452,7 +516,6 @@ User * db_get_users_sorted(int * size, int by, int desc)
 
     return users;
 }
-
 
 int db_grant_admin(int id)
 {
