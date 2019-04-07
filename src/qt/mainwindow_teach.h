@@ -2,6 +2,7 @@
 #define MAINWINDOW_TEACH_H
 
 #include <QMainWindow>
+#include <QMessageBox>
 
 namespace Ui {
 class MainWindow_teach;
@@ -17,9 +18,17 @@ public:
     void Set_init_mode(int);
 
 private slots:
-    void on_actionStudents_2_triggered(bool checked);
+    void on_actionStudents_2_triggered();
 
-    void on_actionQuestions_triggered(bool checked);
+    void on_actionQuestions_triggered();
+
+    void on_actionExit_triggered();
+
+    void on_comboBox_currentIndexChanged(int index);
+
+    void on_actionAllow_triggered();
+
+    void on_actionLog_out_triggered();
 
 private:
     Ui::MainWindow_teach *ui;

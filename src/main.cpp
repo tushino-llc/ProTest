@@ -21,18 +21,21 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 #include "headers/tests_main_header.h"
 
 int main(int argc, char *argv[]) {
-    /* Initializing variables */
-    int func;
 
     /* Locale problems */
 #ifdef _WIN32
 system("chcp 65001 > nul");
 #endif
 
-    /* Main part */
+    /* Check for Qt */
 #if (HAVE_QT == 1)
     qt_main(argc, argv);
 #else
+
+    /* Initializing variables */
+    int func;
+
+    /* Main part */
     do {
         func = main_menu();
         if (func == -1) {

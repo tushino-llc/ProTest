@@ -202,6 +202,7 @@ void Dialog1::on_pushSignUp_clicked()
 
     /* Initializing variables */
     char *login, *pass, *fn, *ln, *hel = new char[100], *q1;
+    int role;
     strcpy(hel, "Hello, ");
     QString temp, Qlogin, Qpass;
     QByteArray temp_ba;
@@ -225,7 +226,9 @@ void Dialog1::on_pushSignUp_clicked()
         temp_ba = temp.toLocal8Bit();
         ln = strdup(temp_ba);
 
-        q1 = new char[strlen("Is that OK?\n\nLogin: \nFirst name: \nLast name: \n") + strlen(login) + strlen(fn) + strlen(ln)];
+        role = (ui->radioStudent->isChecked()) ? 1 : 2;
+
+        q1 = new char[strlen("Is that OK?\n\nLogin: \nFirst name: \nLast name: \n") + strlen(login) + strlen(fn) + strlen(ln) + 7];
         strcpy(q1, "");
         strcat(q1, "Is that OK?\n\nLogin: ");
         strcat(q1, login);
@@ -233,6 +236,8 @@ void Dialog1::on_pushSignUp_clicked()
         strcat(q1, fn);
         strcat(q1, "\nLast name: ");
         strcat(q1, ln);
+        strcat(q1, "\nRole: ");
+        strcat(q1, (role == 1) ? "Student" : "Teacher");
 
         reply = QMessageBox::question(this, "Sign Up", q1, QMessageBox::Yes | QMessageBox::No);
         if (reply == QMessageBox::Yes) {

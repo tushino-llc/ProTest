@@ -42,7 +42,8 @@ HEADERS  += mainwindow.h \
     ../headers/teacher_menu.h \
     ../headers/tests_main_header.h \
     ../headers/main_menu.h \
-    mainwindow_teach.h
+    mainwindow_teach.h \
+    ../headers/config.h
 
 FORMS    += mainwindow.ui \
     dialog1.ui \
