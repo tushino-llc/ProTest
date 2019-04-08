@@ -41,11 +41,47 @@ struct Marks {
     int values[10];
 };
 
-int db_open();
+/**
+*   INITIALIZATION
+*/
 
-int db_delete_question(int id);
-int db_delete_user(int id);
+int db_open();
 void db_close();
 
+/**
+*   USERS
+*/
+
 User db_login(char * login, char * password);
+int db_add_user(User user, char * password);
+int db_add_admin(User user, char * password);
+int db_grant_admin(int id);
+int db_update_user(User user, char * password);
+int db_delete_user(int id);
+User db_get_user(int id);
+User * db_get_users(int * size);
+User * db_get_users_sorted(int * size, int by, int desc);
+
+/**
+*   MARKS
+*/
+
+int db_set_mark(int user_id, int theme, int mark);
+Marks db_get_user_marks(int user_id);
+
+/**
+*   QUESTIONS AND TESTS
+*/
+
 Question * db_get_test(int theme);
+Question * db_get_final_test();
+
+int db_add_question(Question question);
+int db_delete_question(int id);
+int db_update_question(Question question);
+
+/**
+*   UTILITIES
+*/
+
+char * db_get_theme_by_id(int index);
