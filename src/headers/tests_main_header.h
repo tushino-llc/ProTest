@@ -47,6 +47,7 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 #include "teacher_menu.h"
 #include "../libs/libcrypt/include/tomcrypt.h"
 #include "main_menu.h"
+#include "student_menu.h"
 
 /* qt_main.cpp */
 int qt_main(int, char *[]);
