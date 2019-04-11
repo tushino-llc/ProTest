@@ -10,6 +10,13 @@ int db_open()
     return 0;
 }
 
+int db_open(const char * name)
+{
+    if(sqlite3_open(name, &db) != SQLITE_OK)
+        return -1;
+    return 0;
+}
+
 void db_close()
 {
     sqlite3_close(db);

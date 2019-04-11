@@ -46,6 +46,7 @@ struct Marks {
 */
 
 int db_open();
+int db_open(const char * name);
 void db_close();
 
 /**
