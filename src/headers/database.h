@@ -76,6 +76,8 @@ Marks db_get_user_marks(int user_id);
 
 Question * db_get_test(int theme);
 Question * db_get_final_test();
+Question * db_get_questions(int * size)
+Question db_get_question_by_id(int id);
 
 int db_add_question(Question question);
 int db_delete_question(int id);
