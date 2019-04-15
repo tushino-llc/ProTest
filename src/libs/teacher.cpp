@@ -22,8 +22,9 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 // Questions
 void delete_the_question()
 {
-	int error, id;	
-	for (int j = 0; j < question.id; ++j)
+	int error, id, size;
+	Question * db_get_questions(&size);
+	for (int j = 0; j < size; ++j)
 	{
 		std::cout <<"id = "<< id << " Question: "<< question.value << std::endl;
 	}
@@ -45,6 +46,7 @@ void delete_the_question()
 void add_a_question()
 {
 	int error;
+	Question question = { 0, 0, 0, 0, 0 };
 	do {
 		error = db_add_question(question);
 		if (error == -1) { printf("| Error! The question could not be added. Try again? [1 - yes; 0 - no] \n"); }
@@ -53,10 +55,13 @@ void add_a_question()
 		} while ((error > 1) || (error < 0));
 	} while (error == 1);
 }
+
 void change_the_question()
 {
-	int error, id;
-	for (int j = 0; j < question.id; ++j)
+	int error, id, size;
+	Question question = { 0, 0, 0, 0, 0 };
+	Question * db_get_questions(&size);
+	for (int j = 0; j < size; ++j)
 	{
 		std::cout << "id = " << id << " Question: " << question.value << std::endl;
 	}
