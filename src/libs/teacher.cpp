@@ -17,7 +17,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 */
-# include "../ headers / tests_main_header.h"
+#include "../ headers / tests_main_header.h"
 
 const int Size_St = 100;
 const int Size_Q = 240;
@@ -121,7 +121,8 @@ void to_add_a_new_account_for_a_student()
 	char password[30];
 
 	printf("\n| Enter the password ");
-	scanf("%s", &password);
+	fgets(password, 30, stdin);
+	Dialog1::field_test(password);
 
 	if (size < Size_St)
 	{
