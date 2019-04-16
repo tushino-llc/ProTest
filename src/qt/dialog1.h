@@ -38,6 +38,8 @@ public:
     ~Dialog1();
     void SetLogin(class QString);
     void SetPass(class QString);
+    void SignUp();
+    void AddStudent();
 
 private slots:
     void on_lineEditPass_2_textChanged(const QString &arg1);

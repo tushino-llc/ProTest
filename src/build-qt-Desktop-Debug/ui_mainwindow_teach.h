@@ -188,6 +188,7 @@ public:
 
         pushButton_add = new QPushButton(groupBox);
         pushButton_add->setObjectName(QString::fromUtf8("pushButton_add"));
+        pushButton_add->setEnabled(false);
         QSizePolicy sizePolicy2(QSizePolicy::Fixed, QSizePolicy::Fixed);
         sizePolicy2.setHorizontalStretch(0);
         sizePolicy2.setVerticalStretch(0);

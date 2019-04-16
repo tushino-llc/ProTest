@@ -68,7 +68,33 @@ void MainWindow_teach::on_comboBox_currentIndexChanged(int index)
 {
     char a[10];
     sprintf(a, "%d", index);
-    ui->lineFN->setText(a);
+    if (index) {
+        ui->lineFN->setText(a);
+    } else {
+        ui->actionAllow->setChecked(false);
+        ui->lineLoops->setReadOnly(true);
+        ui->lineArrays->setReadOnly(true);
+        ui->lineStrings->setReadOnly(true);
+        ui->lineRecursion->setReadOnly(true);
+        ui->lineStructures->setReadOnly(true);
+        ui->lineFiles->setReadOnly(true);
+        ui->linePointers->setReadOnly(true);
+        ui->lineDyn_Mem->setReadOnly(true);
+        ui->lineFinal->setReadOnly(true);
+
+        ui->lineFN->setText("");
+        ui->lineLN->setText("");
+        ui->lineLogin->setText("");
+        ui->lineLoops->setText("");
+        ui->lineArrays->setText("");
+        ui->lineStrings->setText("");
+        ui->lineRecursion->setText("");
+        ui->lineStructures->setText("");
+        ui->lineFiles->setText("");
+        ui->linePointers->setText("");
+        ui->lineDyn_Mem->setText("");
+        ui->lineFinal->setText("");
+    }
 
     ui->pushButton_rm->setEnabled((index) ? true : false);
 }
@@ -153,11 +179,35 @@ void MainWindow_teach::on_actionOpen_Database_triggered()
             strcat(fnln, " ");
             strcat(fnln, (usr + i)->last_name);
             ui->comboBox->addItem(fnln);
+//            ui->tableWidget->
         }
         delete usr;
+        ui->pushButton_add->setEnabled(true);
     } else {
         QMessageBox::critical(this, "Error!", "Couldn't open database!");
     }
 
     delete fnln;
+}
+
+void MainWindow_teach::on_actionClose_Database_triggered()
+{
+
+    /* Main part */
+    db_close();
+    ui->comboBox->clear();
+    ui->comboBox->addItem("Choose a student...");
+    ui->pushButton_add->setEnabled(false);
+}
+
+void MainWindow_teach::on_pushButton_add_clicked()
+{
+
+    /* Initializing variables */
+    Dialog1 dialog1;
+
+    /* Main part */
+    dialog1.setModal(true);
+    dialog1.AddStudent();
+    dialog1.exec();
 }

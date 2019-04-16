@@ -21,6 +21,7 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 #include "dialog1.h"
 #include "../build-qt-Desktop-Debug/ui_dialog1.h"
 #include "mainwindow.h"
+#include "mainwindow_teach.h"
 
 Dialog1::Dialog1(QWidget *parent) :
     QDialog(parent),
@@ -47,6 +48,25 @@ void Dialog1::SetPass(class QString str) {
     ui->lineEditPass->setText(str);
     ui->lineEditPass->setStyleSheet("");
     ui->lineEditPass_2->setStyleSheet("");
+}
+
+void Dialog1::SignUp() {
+
+    /* Main part */
+    ui->label->setText("Sign up");
+    ui->pushSignUp->setText("Sign up");
+    ui->radioTeacher->setCheckable(true);
+    ui->radioStudent->setChecked(false);
+    ui->radioTeacher->setChecked(false);
+}
+
+void Dialog1::AddStudent() {
+
+    /* Main part */
+    ui->label->setText("Add student");
+    ui->pushSignUp->setText("Add");
+    ui->radioTeacher->setCheckable(false);
+    ui->radioStudent->setChecked(true);
 }
 
 void Dialog1::on_lineEditPass_2_textChanged(const QString &arg1)
@@ -268,19 +288,23 @@ void Dialog1::on_pushSignUp_clicked()
                         p = p->parent();
                         } while (p->parent() != nullptr);
 
-                    MainWindow *mw = qobject_cast<MainWindow *>(p);
-                    if (!mw)
-                    {
-                        // couldnt find main window
-                    }
-                    else
-                    {
-                        mw->SetLogin(Qlogin);
-                        mw->SetPass(Qpass);
-                        mw->show();
-                        hide();
+                    if (ui->label->text() == "Sign up") {
+                        MainWindow *mw = qobject_cast<MainWindow *>(p);
+                        if (!mw)
+                        {
+                            // couldnt find main window
+                        }
+                        else
+                        {
+                            mw->SetLogin(Qlogin);
+                            mw->SetPass(Qpass);
+                            mw->show();
+                            hide();
 
-                        this->hide();
+                            this->hide();
+                        }
+                    } else if (ui->label->text() == "Add student") {
+                            this->hide();
                     }
                 }
             }
@@ -299,5 +323,4 @@ void Dialog1::on_pushSignUp_clicked()
     }
 
     db_close();
-
 }

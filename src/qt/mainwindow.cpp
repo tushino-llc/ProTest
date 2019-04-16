@@ -128,6 +128,7 @@ void MainWindow::on_pushButtonSignUp_clicked()
     dialog1 = new Dialog1(this);
     dialog1->SetLogin(ui->lineLogin->text());
     dialog1->SetPass(ui->linePass->text());
+    dialog1->SignUp();
     dialog1->show();
 
     //ui->lineLogin->setText(dialog1->GetLogin());
