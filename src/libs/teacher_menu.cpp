@@ -19,20 +19,6 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 */
 #include "tests_main_header.h"
 
-void input_teacher()
-{
-	int error, sign;
-	char password[20], name[20];
-	do {
-		error = User db_login_admin(login, password);
-		if (error == NULL) { printf("| Error! Account not found. Try again? [1 - yes; 0 - no] \n"); }
-		do {
-			scanf("%d", &sign);
-		} while ((sign > 1) || (sign < 0));
-	} while (sign == 1);
-
-	if (error != NULL) { teacher_menu_0(); }
-}
 
 void edit_questions_teacher()
 {
@@ -158,4 +144,13 @@ void teacher_menu_0()
 		}
 
 	} while (sign != 0);
+}
+
+void input_teacher()
+{
+	User user;
+	int error, sign;
+	char password[20], login[20];
+	user = db_login(login, password);
+	if (user.admin != false) { teacher_menu_0(); }
 }
