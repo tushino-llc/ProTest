@@ -145,12 +145,16 @@ void teacher_menu_0()
 
 	} while (sign != 0);
 }
-
 void input_teacher()
 {
 	User user;
 	int error, sign;
 	char password[20], login[20];
+	
+	printf("| Enter the username ");
+	gets(login);
+	printf("\n| Enter the password ");
+	gets(password);
 	user = db_login(login, password);
 	if (user.admin != false) { teacher_menu_0(); }
 }
