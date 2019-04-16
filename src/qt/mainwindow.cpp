@@ -75,7 +75,7 @@ void MainWindow::on_pushButtonSignIn_clicked()
             strcat(name, " ");
             strcat(name, usr.last_name);
             strcat(name, "!");
-            QMessageBox::about(this, "Succesful login!", name);
+            QMessageBox::information(this, "Succesful login!", name);
             delete name;
             if (ui->checkBox->checkState()) {
                 FILE *fp;

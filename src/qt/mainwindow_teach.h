@@ -38,8 +38,11 @@ private slots:
 
     void on_pushButton_add_clicked();
 
+    void init_users();
+
 private:
     Ui::MainWindow_teach *ui;
+    Dialog1 *dialog1;
 };
 
 #endif // MAINWINDOW_TEACH_H

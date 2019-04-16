@@ -66,6 +66,8 @@ void Dialog1::AddStudent() {
     ui->label->setText("Add student");
     ui->pushSignUp->setText("Add");
     ui->radioTeacher->setCheckable(false);
+//    ui->radioTeacher->setVisible(false);
+    ui->radioTeacher->setEnabled(false);
     ui->radioStudent->setChecked(true);
 }
 
@@ -221,16 +223,21 @@ void Dialog1::on_pushSignUp_clicked()
 {
 
     /* Initializing variables */
-    char *login, *pass, *fn, *ln, *hel = new char[100], *q1;
-    int role;
-    strcpy(hel, "Hello, ");
-    QString temp, Qlogin, Qpass;
+    extern sqlite3 * db;
+    char *login, *pass, *fn, *ln;
+    int role, id = -1, res = -1;
+    QString Qlogin, Qpass, Q1, Qfn, Qln;
     QByteArray temp_ba;
     QMessageBox::StandardButton reply;
     struct User usr;
 
     /* Main part */
-    if (db_open(PATH_TO_DB) == 0) {
+    if (db == nullptr) {
+        res = db_open(PATH_TO_DB);
+    } else {
+        res = 0;
+    }
+    if (res != -1) {
         if (ui->lineEditPass->text() == ui->lineEditPass_2->text()) {
             Qlogin = ui->lineEditLogin->text();
             temp_ba = Qlogin.toLocal8Bit();
@@ -240,28 +247,30 @@ void Dialog1::on_pushSignUp_clicked()
             temp_ba = Qpass.toLocal8Bit();
             pass = strdup(temp_ba);
 
-            temp = ui->lineEditFN->text();
-            temp_ba = temp.toLocal8Bit();
+            Qfn = ui->lineEditFN->text();
+            temp_ba = Qfn.toLocal8Bit();
             fn = strdup(temp_ba);
 
-            temp = ui->lineEditLN->text();
-            temp_ba = temp.toLocal8Bit();
+            Qln = ui->lineEditLN->text();
+            temp_ba = Qln.toLocal8Bit();
             ln = strdup(temp_ba);
 
             role = (ui->radioStudent->isChecked()) ? 1 : 2;
 
-            q1 = new char[strlen("Is that OK?\n\nLogin: \nFirst name: \nLast name: \n") + strlen(login) + strlen(fn) + strlen(ln) + 7];
-            strcpy(q1, "");
-            strcat(q1, "Is that OK?\n\nLogin: ");
-            strcat(q1, login);
-            strcat(q1, "\nFirst name: ");
-            strcat(q1, fn);
-            strcat(q1, "\nLast name: ");
-            strcat(q1, ln);
-            strcat(q1, "\nRole: ");
-            strcat(q1, (role == 1) ? "Student" : "Teacher");
+//            q1 = (char *) calloc(strlen("Is that OK?\n\nLogin: \nFirst name: \nLast name: \n") + strlen(login) + strlen(fn) + strlen(ln) + 8, sizeof(char));
+//            strcat(q1, "Is that OK?\n\nLogin: ");
+//            strcat(q1, login);
+//            strcat(q1, "\nFirst name: ");
+//            strcat(q1, fn);
+//            strcat(q1, "\nLast name: ");
+//            strcat(q1, ln);
+//            strcat(q1, "\nRole: ");
+//            strcat(q1, (role == 1) ? "Student" : "Teacher");
 
-            reply = QMessageBox::question(this, "Sign Up", q1, QMessageBox::Yes | QMessageBox::No);
+            Q1 = "Is that OK?\n\nLogin: " + Qlogin + "\nFirst name: " + Qfn + "\nLast name: " +
+                    Qln + "\nRole: " + ((role == 1) ? "Student" : "Teacher");
+
+            reply = QMessageBox::question(this, ui->label->text(), Q1, QMessageBox::Yes | QMessageBox::No);
             if (reply == QMessageBox::Yes) {
                 usr = db_login(login, pass);
                 if (usr.id != 0) {
@@ -271,24 +280,25 @@ void Dialog1::on_pushSignUp_clicked()
                     strcpy(usr.first_name, fn);
                     strcpy(usr.last_name, ln);
                     if (role == 2) {
-                        db_add_admin(usr, pass);
+                        id = db_add_admin(usr, pass);
                     } else if (role == 1) {
-                        db_add_user(usr, pass);
+                        id = db_add_user(usr, pass);
                     }
-                    QMessageBox::about(this, "Done!", "Signed up successfully!");
-                    strcat(hel, fn);
-                    strcat(hel, " ");
-                    strcat(hel, ln);
-                    QMessageBox::about(this, "Successfull sign up!", hel);
+
+                    if (id && ui->label->text() == "Sign up") {
+                        QMessageBox::information(this, "Done!", "Signed up successfully!");
+                    } else if (id == -1) {
+                        QMessageBox::critical(this, "Error!", "Failed to create user!");
+                    }
 
                     /* Forum's code */
-                    QObject *p = this;
-                    do
-                    {
-                        p = p->parent();
+                    if (ui->label->text() == "Sign up") {
+                        QObject *p = this;
+                        do
+                        {
+                            p = p->parent();
                         } while (p->parent() != nullptr);
 
-                    if (ui->label->text() == "Sign up") {
                         MainWindow *mw = qobject_cast<MainWindow *>(p);
                         if (!mw)
                         {
@@ -299,7 +309,6 @@ void Dialog1::on_pushSignUp_clicked()
                             mw->SetLogin(Qlogin);
                             mw->SetPass(Qpass);
                             mw->show();
-                            hide();
 
                             this->hide();
                         }
@@ -309,12 +318,11 @@ void Dialog1::on_pushSignUp_clicked()
                 }
             }
 
-            delete q1;
             free(login);
             free(pass);
             free(fn);
             free(ln);
-            free(hel);
+//            free(q1);
         } else {
             QMessageBox::critical(this, "Error!", "Password mismatch!");
         }
@@ -322,5 +330,7 @@ void Dialog1::on_pushSignUp_clicked()
         QMessageBox::critical(this, "Error!", "Couldn't open database!");
     }
 
-    db_close();
+    if (ui->label->text() == "Sign up") {
+        db_close();
+    }
 }

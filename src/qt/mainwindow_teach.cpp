@@ -165,29 +165,14 @@ void MainWindow_teach::on_actionOpen_Database_triggered()
     /* Initializing variables */
     QString file_name = QFileDialog::getOpenFileName(this, "Open database", PATH_TO_DB);
     QByteArray arr = file_name.toLocal8Bit();
-    char *fnln;
-    fnln = new char[513];
-    struct User *usr;
-    int size;
+
 
     /* Main part */
-    if (db_open(arr.data()) == 0) {
-        usr = db_get_users(&size);
-        for (int i = 0; i < size; ++i) {
-            strcpy(fnln, "");
-            strcat(fnln, (usr + i)->first_name);
-            strcat(fnln, " ");
-            strcat(fnln, (usr + i)->last_name);
-            ui->comboBox->addItem(fnln);
-//            ui->tableWidget->
-        }
-        delete usr;
-        ui->pushButton_add->setEnabled(true);
+    if (db_open(arr.data()) != -1) {
+        init_users();
     } else {
         QMessageBox::critical(this, "Error!", "Couldn't open database!");
     }
-
-    delete fnln;
 }
 
 void MainWindow_teach::on_actionClose_Database_triggered()
@@ -204,10 +189,33 @@ void MainWindow_teach::on_pushButton_add_clicked()
 {
 
     /* Initializing variables */
-    Dialog1 dialog1;
+    dialog1 = new Dialog1(this);
 
     /* Main part */
-    dialog1.setModal(true);
-    dialog1.AddStudent();
-    dialog1.exec();
+    dialog1->setModal(true);
+    dialog1->AddStudent();
+    dialog1->show();
+
+    init_users();
+}
+
+void MainWindow_teach::init_users() {
+
+    /* Initializing variables */
+    int size;
+    struct User *usr;
+    char fnln[513];
+
+    /* Main part */
+    usr = db_get_users(&size);
+    for (int i = 0; i < size; ++i) {
+        strcpy(fnln, "");
+        strcat(fnln, (usr + i)->first_name);
+        strcat(fnln, " ");
+        strcat(fnln, (usr + i)->last_name);
+        ui->comboBox->addItem(fnln);
+//            ui->tableWidget->
+    }
+    delete usr;
+    ui->pushButton_add->setEnabled(true);
 }
