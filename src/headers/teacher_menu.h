@@ -19,7 +19,7 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 */
 #ifndef TEACHER_MENU_H
 #define TEACHER_MENU_H
-#include "tests_main_header.h"
+# include "../ headers / tests_main_header.h"
 
 void teacher_menu_0();
 void input_teacher();
