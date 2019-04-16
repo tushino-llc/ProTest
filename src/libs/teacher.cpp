@@ -119,6 +119,10 @@ void to_add_a_new_account_for_a_student()
 	User user[Size_St];
 	db_get_users(&size);
 	char password[20];
+
+	printf("\n| Enter the password ");
+	gets(password);
+
 	if (size < Size_St)
 	{
 		do {
