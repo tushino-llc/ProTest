@@ -10,6 +10,13 @@ int db_open()
     return 0;
 }
 
+int db_open(const char * name)
+{
+    if(sqlite3_open(name, &db) != SQLITE_OK)
+        return -1;
+    return 0;
+}
+
 void db_close()
 {
     sqlite3_close(db);
@@ -215,6 +222,99 @@ Question * db_get_test(int theme)
     }
 
     return questions;
+}
+
+Question * db_get_questions(int * size)
+{
+    sqlite3_stmt * st = nullptr;
+    *size = 0; // by default
+
+    // get number of questions
+    int rc = sqlite3_prepare_v2(db, "SELECT count(*) FROM `questions`;", -1, &st, nullptr);
+
+    if (rc != SQLITE_OK)
+        return nullptr;
+    rc = sqlite3_step(st);
+    if (rc != SQLITE_DONE && rc != SQLITE_ROW)
+        return nullptr;
+
+    int n = sqlite3_column_int(st, 0);
+
+    if (n <= 0)
+        return nullptr;
+
+    *size = n;
+    auto questions = new Question[n];
+
+    rc = sqlite3_prepare_v2(db, "SELECT * FROM `questions`;", -1, &st, nullptr);
+    if (rc != SQLITE_OK)
+        return nullptr;
+
+    int i = 0, num;
+    rc = sqlite3_step(st);
+
+    while (rc != SQLITE_DONE && rc != SQLITE_OK)
+    {
+        num = sqlite3_column_int(st, 0);
+        questions[i].id = num;
+        num = sqlite3_column_int(st, 1);
+        questions[i].theme = num;
+
+        auto text = (char *) sqlite3_column_text(st, 2);
+        strcpy( questions[i].value, text );
+        delete(text);
+
+        for (int j = 3; j < 7; j++) {
+            text = (char *) sqlite3_column_text(st, j);
+            strcpy( questions[i].ans[j-3], text );
+        }
+
+        num = sqlite3_column_int(st, 7);
+        questions[i].correct = num;
+
+        rc = sqlite3_step(st);
+        i++;
+    }
+
+    return questions;
+}
+
+Question db_get_question_by_id(int id)
+{
+    sqlite3_stmt * st = nullptr;
+
+    Question q = {0};
+
+    int rc = sqlite3_prepare_v2(db, "SELECT * FROM `questions` WHERE id = ?;", -1, &st, nullptr);
+    if (rc != SQLITE_OK)
+        return q;
+
+    rc = sqlite3_bind_int(st, 1, id);
+    if (rc != SQLITE_OK)
+        return q;
+
+    rc = sqlite3_step(st);
+    if (rc != SQLITE_DONE && rc != SQLITE_OK && rc != SQLITE_ROW)
+        return q;
+
+    int num = sqlite3_column_int(st, 0);
+    q.id = num;
+    num = sqlite3_column_int(st, 1);
+    q.theme = num;
+
+    auto text = (char *) sqlite3_column_text(st, 2);
+    strcpy( q.value, text );
+    delete(text);
+
+    for (int j = 3; j < 7; j++) {
+        text = (char *) sqlite3_column_text(st, j);
+        strcpy( q.ans[j-3], text );
+    }
+
+    num = sqlite3_column_int(st, 7);
+    q.correct = num;
+
+    return q;
 }
 
 int db_add_user(User user, char * password)
