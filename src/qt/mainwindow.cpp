@@ -60,46 +60,64 @@ void MainWindow::on_pushButtonSignIn_clicked()
     /* I/O flow */
     login = ui->lineLogin->text();
     pass = ui->linePass->text();
+    struct User usr;
+    char *name = nullptr;
 
-    if (login == "admin" && pass == "6585") {
-        QMessageBox::about(this, "Succesful login!", "Hello, Anatoliy Borisovish!");
-        if (ui->checkBox->checkState()) {
-            FILE *fp;
-            if ((fp = fopen("remember.lp", "wb")) == nullptr) {
-                QMessageBox::critical(this, "Error!", "Couldn't save your login and password. \"Remember me\" feature won't work for some reason");
+    if (db_open(PATH_TO_DB) != -1) {
+        QByteArray lg = login.toLocal8Bit();
+        QByteArray ps = pass.toLocal8Bit();
+        usr = db_login(lg.data(), ps.data());
+        if (usr.id != 0) {
+            name = new char[strlen(usr.first_name) + strlen(usr.last_name) + strlen("Hello,   !")];
+            strcpy(name, "");
+            strcat(name, "Hello, ");
+            strcat(name, usr.first_name);
+            strcat(name, " ");
+            strcat(name, usr.last_name);
+            strcat(name, "!");
+            QMessageBox::about(this, "Succesful login!", name);
+            delete name;
+            if (ui->checkBox->checkState()) {
+                FILE *fp;
+                if ((fp = fopen("remember.lp", "wb")) == nullptr) {
+                    QMessageBox::critical(this, "Error!", "Couldn't save your login and password. \"Remember me\" feature won't work for some reason");
+                } else {
+                    Ui::Log_pass str;
+                    QByteArray array = login.toLocal8Bit();
+                    strcpy(str.login, array.data());
+                    array = pass.toLocal8Bit();
+                    strcpy(str.pass, array.data());
+                    fwrite(&str, sizeof(str), 1, fp);
+                    fclose(fp);
+                }
             } else {
-                Ui::Log_pass str;
-                QByteArray array = login.toLocal8Bit();
-                strcpy(str.login, array.data());
-                array = pass.toLocal8Bit();
-                strcpy(str.pass, array.data());
-                fwrite(&str, sizeof(str), 1, fp);
+                FILE *fp = fopen("remember.lp", "wb");
                 fclose(fp);
             }
+
+            if (usr.admin) {
+                mwt = new MainWindow_teach(this);
+                mwt->setGeometry(
+                            QStyle::alignedRect(
+                                Qt::LeftToRight,
+                                Qt::AlignCenter,
+                                mwt->size(),
+                                qApp->desktop()->availableGeometry()
+                            )
+                        );
+                mwt->Set_init_mode(0);
+                mwt->show();
+                this->hide();
+            }
         } else {
-            FILE *fp = fopen("remember.lp", "wb");
-            fclose(fp);
+            QMessageBox::StandardButton reply;
+            reply = QMessageBox::critical(this, "Error!", "Wrong login or password!", QMessageBox::Yes);
+            if (reply == QMessageBox::Yes) {
+                ui->linePass->setText("");
+            }
         }
 
-        mwt = new MainWindow_teach(this);
-        mwt->setGeometry(
-                    QStyle::alignedRect(
-                        Qt::LeftToRight,
-                        Qt::AlignCenter,
-                        mwt->size(),
-                        qApp->desktop()->availableGeometry()
-                    )
-                );
-        mwt->Set_init_mode(0);
-        mwt->show();
-        this->hide();
-
-    } else {
-        QMessageBox::StandardButton reply;
-        reply = QMessageBox::critical(this, "Error!", "Wrong login or password!", QMessageBox::Yes);
-        if (reply == QMessageBox::Yes) {
-            ui->linePass->setText("");
-        }
+        db_close();
     }
 }
 

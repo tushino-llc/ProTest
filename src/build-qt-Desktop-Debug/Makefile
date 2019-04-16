@@ -74,6 +74,7 @@ OBJECTS       = mainwindow.o \
 		moc_dialog1.o \
 		moc_mainwindow_teach.o
 DIST          = ../Makefile.am \
+		../db/data.sqlite \
 		/usr/local/Qt/5.12.2/gcc_64/mkspecs/features/spec_pre.prf \
 		/usr/local/Qt/5.12.2/gcc_64/mkspecs/common/unix.conf \
 		/usr/local/Qt/5.12.2/gcc_64/mkspecs/common/linux.conf \
@@ -886,6 +887,7 @@ moc_mainwindow.cpp: ../qt/mainwindow.h \
 		../libs/libcrypt/include/tomcrypt_argchk.h \
 		../libs/libcrypt/include/tomcrypt_pkcs.h \
 		../headers/main_menu.h \
+		../headers/student_menu.h \
 		../qt/mainwindow_teach.h \
 		moc_predefs.h \
 		/usr/local/Qt/5.12.2/gcc_64/bin/moc
@@ -1017,6 +1019,7 @@ moc_dialog1.cpp: ../qt/dialog1.h \
 		../libs/libcrypt/include/tomcrypt_argchk.h \
 		../libs/libcrypt/include/tomcrypt_pkcs.h \
 		../headers/main_menu.h \
+		../headers/student_menu.h \
 		moc_predefs.h \
 		/usr/local/Qt/5.12.2/gcc_64/bin/moc
 	/usr/local/Qt/5.12.2/gcc_64/bin/moc $(DEFINES) --include /home/anton/ProTest/src/build-qt-Desktop-Debug/moc_predefs.h -I/usr/local/Qt/5.12.2/gcc_64/mkspecs/linux-g++ -I/home/anton/ProTest/src/qt -I/usr/local/Qt/5.12.2/gcc_64/include -I/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets -I/usr/local/Qt/5.12.2/gcc_64/include/QtGui -I/usr/local/Qt/5.12.2/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../qt/dialog1.h -o moc_dialog1.cpp
@@ -1299,6 +1302,7 @@ mainwindow.o: ../qt/mainwindow.cpp ../qt/mainwindow.h \
 		../libs/libcrypt/include/tomcrypt_argchk.h \
 		../libs/libcrypt/include/tomcrypt_pkcs.h \
 		../headers/main_menu.h \
+		../headers/student_menu.h \
 		../qt/mainwindow_teach.h \
 		ui_mainwindow.h \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/QVariant \
@@ -1458,6 +1462,7 @@ dialog1.o: ../qt/dialog1.cpp ../qt/dialog1.h \
 		../libs/libcrypt/include/tomcrypt_argchk.h \
 		../libs/libcrypt/include/tomcrypt_pkcs.h \
 		../headers/main_menu.h \
+		../headers/student_menu.h \
 		ui_dialog1.h \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/QVariant \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QApplication \
@@ -1510,7 +1515,8 @@ database.o: ../libs/db/database.cpp ../headers/tests_main_header.h \
 		../libs/libcrypt/include/tomcrypt_misc.h \
 		../libs/libcrypt/include/tomcrypt_argchk.h \
 		../libs/libcrypt/include/tomcrypt_pkcs.h \
-		../headers/main_menu.h
+		../headers/main_menu.h \
+		../headers/student_menu.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o database.o ../libs/db/database.cpp
 
 sqlite3.o: ../libs/db/sqlite3.c 
@@ -1534,7 +1540,8 @@ main_menu.o: ../libs/main_menu.cpp ../headers/tests_main_header.h \
 		../libs/libcrypt/include/tomcrypt_misc.h \
 		../libs/libcrypt/include/tomcrypt_argchk.h \
 		../libs/libcrypt/include/tomcrypt_pkcs.h \
-		../headers/main_menu.h
+		../headers/main_menu.h \
+		../headers/student_menu.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main_menu.o ../libs/main_menu.cpp
 
 main.o: ../main.cpp ../headers/tests_main_header.h \
@@ -1555,7 +1562,8 @@ main.o: ../main.cpp ../headers/tests_main_header.h \
 		../libs/libcrypt/include/tomcrypt_misc.h \
 		../libs/libcrypt/include/tomcrypt_argchk.h \
 		../libs/libcrypt/include/tomcrypt_pkcs.h \
-		../headers/main_menu.h
+		../headers/main_menu.h \
+		../headers/student_menu.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../main.cpp
 
 qt_main.o: ../qt/qt_main.cpp ../qt/mainwindow.h \
@@ -1693,6 +1701,7 @@ qt_main.o: ../qt/qt_main.cpp ../qt/mainwindow.h \
 		../libs/libcrypt/include/tomcrypt_argchk.h \
 		../libs/libcrypt/include/tomcrypt_pkcs.h \
 		../headers/main_menu.h \
+		../headers/student_menu.h \
 		../qt/mainwindow_teach.h \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QApplication \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qapplication.h \
@@ -1838,6 +1847,7 @@ mainwindow_teach.o: ../qt/mainwindow_teach.cpp ../qt/mainwindow_teach.h \
 		../libs/libcrypt/include/tomcrypt_argchk.h \
 		../libs/libcrypt/include/tomcrypt_pkcs.h \
 		../headers/main_menu.h \
+		../headers/student_menu.h \
 		ui_mainwindow_teach.h \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/QVariant \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QAction \

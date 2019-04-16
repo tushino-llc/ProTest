@@ -207,77 +207,97 @@ void Dialog1::on_pushSignUp_clicked()
     QString temp, Qlogin, Qpass;
     QByteArray temp_ba;
     QMessageBox::StandardButton reply;
+    struct User usr;
 
     /* Main part */
-    if (ui->lineEditPass->text() == ui->lineEditPass_2->text()) {
-        Qlogin = ui->lineEditLogin->text();
-        temp_ba = Qlogin.toLocal8Bit();
-        login = strdup(temp_ba);
+    if (db_open(PATH_TO_DB) == 0) {
+        if (ui->lineEditPass->text() == ui->lineEditPass_2->text()) {
+            Qlogin = ui->lineEditLogin->text();
+            temp_ba = Qlogin.toLocal8Bit();
+            login = strdup(temp_ba);
 
-        Qpass = ui->lineEditPass->text();
-        temp_ba = Qpass.toLocal8Bit();
-        pass = strdup(temp_ba);
+            Qpass = ui->lineEditPass->text();
+            temp_ba = Qpass.toLocal8Bit();
+            pass = strdup(temp_ba);
 
-        temp = ui->lineEditFN->text();
-        temp_ba = temp.toLocal8Bit();
-        fn = strdup(temp_ba);
+            temp = ui->lineEditFN->text();
+            temp_ba = temp.toLocal8Bit();
+            fn = strdup(temp_ba);
 
-        temp = ui->lineEditLN->text(); 
-        temp_ba = temp.toLocal8Bit();
-        ln = strdup(temp_ba);
+            temp = ui->lineEditLN->text();
+            temp_ba = temp.toLocal8Bit();
+            ln = strdup(temp_ba);
 
-        role = (ui->radioStudent->isChecked()) ? 1 : 2;
+            role = (ui->radioStudent->isChecked()) ? 1 : 2;
 
-        q1 = new char[strlen("Is that OK?\n\nLogin: \nFirst name: \nLast name: \n") + strlen(login) + strlen(fn) + strlen(ln) + 7];
-        strcpy(q1, "");
-        strcat(q1, "Is that OK?\n\nLogin: ");
-        strcat(q1, login);
-        strcat(q1, "\nFirst name: ");
-        strcat(q1, fn);
-        strcat(q1, "\nLast name: ");
-        strcat(q1, ln);
-        strcat(q1, "\nRole: ");
-        strcat(q1, (role == 1) ? "Student" : "Teacher");
+            q1 = new char[strlen("Is that OK?\n\nLogin: \nFirst name: \nLast name: \n") + strlen(login) + strlen(fn) + strlen(ln) + 7];
+            strcpy(q1, "");
+            strcat(q1, "Is that OK?\n\nLogin: ");
+            strcat(q1, login);
+            strcat(q1, "\nFirst name: ");
+            strcat(q1, fn);
+            strcat(q1, "\nLast name: ");
+            strcat(q1, ln);
+            strcat(q1, "\nRole: ");
+            strcat(q1, (role == 1) ? "Student" : "Teacher");
 
-        reply = QMessageBox::question(this, "Sign Up", q1, QMessageBox::Yes | QMessageBox::No);
-        if (reply == QMessageBox::Yes) {
-            QMessageBox::about(this, "Done!", "Signed up successfully!");
-            strcat(hel, fn);
-            strcat(hel, " ");
-            strcat(hel, ln);
-            QMessageBox::about(this, "Successfull sign up!", hel);
+            reply = QMessageBox::question(this, "Sign Up", q1, QMessageBox::Yes | QMessageBox::No);
+            if (reply == QMessageBox::Yes) {
+                usr = db_login(login, pass);
+                if (usr.id != 0) {
+                    QMessageBox::critical(this, "Error!", "User with that login already exists!");
+                } else {
+                    strcpy(usr.login, login);
+                    strcpy(usr.first_name, fn);
+                    strcpy(usr.last_name, ln);
+                    if (role == 2) {
+                        db_add_admin(usr, pass);
+                    } else if (role == 1) {
+                        db_add_user(usr, pass);
+                    }
+                    QMessageBox::about(this, "Done!", "Signed up successfully!");
+                    strcat(hel, fn);
+                    strcat(hel, " ");
+                    strcat(hel, ln);
+                    QMessageBox::about(this, "Successfull sign up!", hel);
 
-            /* Forum's code */
-            QObject *p = this;
-            do
-            {
-                p = p->parent();
-                } while (p->parent() != nullptr);
+                    /* Forum's code */
+                    QObject *p = this;
+                    do
+                    {
+                        p = p->parent();
+                        } while (p->parent() != nullptr);
 
-            MainWindow *mw = qobject_cast<MainWindow *>(p);
-            if (!mw)
-            {
-                // couldnt find main window
+                    MainWindow *mw = qobject_cast<MainWindow *>(p);
+                    if (!mw)
+                    {
+                        // couldnt find main window
+                    }
+                    else
+                    {
+                        mw->SetLogin(Qlogin);
+                        mw->SetPass(Qpass);
+                        mw->show();
+                        hide();
+
+                        this->hide();
+                    }
+                }
             }
-            else
-            {
-                mw->SetLogin(Qlogin);
-                mw->SetPass(Qpass);
-                mw->show();
-                hide();
 
-                this->hide();
-            }
+            delete q1;
+            free(login);
+            free(pass);
+            free(fn);
+            free(ln);
+            free(hel);
+        } else {
+            QMessageBox::critical(this, "Error!", "Password mismatch!");
         }
-
-        free(q1);
-        free(login);
-        free(pass);
-        free(fn);
-        free(ln);
-        free(hel);
     } else {
-        QMessageBox::critical(this, "Error!", "Password mismatch!");
+        QMessageBox::critical(this, "Error!", "Couldn't open database!");
     }
+
+    db_close();
 
 }

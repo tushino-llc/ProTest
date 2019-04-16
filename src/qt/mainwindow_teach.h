@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QMessageBox>
+#include <QFileDialog>
 
 namespace Ui {
 class MainWindow_teach;
@@ -29,6 +30,8 @@ private slots:
     void on_actionAllow_triggered();
 
     void on_actionLog_out_triggered();
+
+    void on_actionOpen_Database_triggered();
 
 private:
     Ui::MainWindow_teach *ui;

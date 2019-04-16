@@ -67,20 +67,10 @@
                   <string>Choose a student...</string>
                  </property>
                 </item>
-                <item>
-                 <property name="text">
-                  <string>Pavlovsky Anton</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>Ahmetich Barab</string>
-                 </property>
-                </item>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton_2">
+               <widget class="QPushButton" name="pushButton_add">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                   <horstretch>0</horstretch>
@@ -98,7 +88,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton">
+               <widget class="QPushButton" name="pushButton_rm">
                 <property name="enabled">
                  <bool>false</bool>
                 </property>
@@ -639,7 +629,6 @@
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionNew_Database"/>
     <addaction name="actionOpen_Database"/>
     <addaction name="separator"/>
     <addaction name="actionClose_Database"/>
@@ -680,20 +669,6 @@
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
-  <action name="actionNew_Database">
-   <property name="text">
-    <string>New Database</string>
-   </property>
-   <property name="toolTip">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ctrl + N&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+N</string>
-   </property>
-   <property name="visible">
-    <bool>false</bool>
-   </property>
-  </action>
   <action name="actionOpen_Database">
    <property name="text">
     <string>Open Database</string>

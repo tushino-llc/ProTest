@@ -66,11 +66,11 @@ void MainWindow_teach::on_actionExit_triggered()
 
 void MainWindow_teach::on_comboBox_currentIndexChanged(int index)
 {
-    char a[2];
+    char a[10];
     sprintf(a, "%d", index);
     ui->lineFN->setText(a);
 
-    ui->pushButton->setEnabled((index) ? true : false);
+    ui->pushButton_rm->setEnabled((index) ? true : false);
 }
 
 void MainWindow_teach::on_actionAllow_triggered()
@@ -132,4 +132,32 @@ void MainWindow_teach::on_actionLog_out_triggered()
             this->hide();
         }
     }
+}
+
+void MainWindow_teach::on_actionOpen_Database_triggered()
+{
+    /* Initializing variables */
+    QString file_name = QFileDialog::getOpenFileName(this, "Open database", PATH_TO_DB);
+    QByteArray arr = file_name.toLocal8Bit();
+    char *fnln;
+    fnln = new char[513];
+    struct User *usr;
+    int size;
+
+    /* Main part */
+    if (db_open(arr.data()) == 0) {
+        usr = db_get_users(&size);
+        for (int i = 0; i < size; ++i) {
+            strcpy(fnln, "");
+            strcat(fnln, (usr + i)->first_name);
+            strcat(fnln, " ");
+            strcat(fnln, (usr + i)->last_name);
+            ui->comboBox->addItem(fnln);
+        }
+        delete usr;
+    } else {
+        QMessageBox::critical(this, "Error!", "Couldn't open database!");
+    }
+
+    delete fnln;
 }

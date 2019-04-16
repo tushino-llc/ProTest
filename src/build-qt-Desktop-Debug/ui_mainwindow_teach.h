@@ -37,7 +37,6 @@ QT_BEGIN_NAMESPACE
 class Ui_MainWindow_teach
 {
 public:
-    QAction *actionNew_Database;
     QAction *actionOpen_Database;
     QAction *actionClose_Database;
     QAction *actionCut;
@@ -62,8 +61,8 @@ public:
     QFormLayout *formLayout_5;
     QHBoxLayout *horizontalLayout_2;
     QComboBox *comboBox;
-    QPushButton *pushButton_2;
-    QPushButton *pushButton;
+    QPushButton *pushButton_add;
+    QPushButton *pushButton_rm;
     QHBoxLayout *horizontalLayout;
     QGroupBox *groupBox_3;
     QGridLayout *gridLayout_2;
@@ -115,9 +114,6 @@ public:
         if (MainWindow_teach->objectName().isEmpty())
             MainWindow_teach->setObjectName(QString::fromUtf8("MainWindow_teach"));
         MainWindow_teach->resize(1133, 645);
-        actionNew_Database = new QAction(MainWindow_teach);
-        actionNew_Database->setObjectName(QString::fromUtf8("actionNew_Database"));
-        actionNew_Database->setVisible(false);
         actionOpen_Database = new QAction(MainWindow_teach);
         actionOpen_Database->setObjectName(QString::fromUtf8("actionOpen_Database"));
         actionClose_Database = new QAction(MainWindow_teach);
@@ -182,8 +178,6 @@ public:
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
         comboBox = new QComboBox(groupBox);
         comboBox->addItem(QString());
-        comboBox->addItem(QString());
-        comboBox->addItem(QString());
         comboBox->setObjectName(QString::fromUtf8("comboBox"));
         QFont font;
         font.setPointSize(11);
@@ -192,25 +186,25 @@ public:
 
         horizontalLayout_2->addWidget(comboBox);
 
-        pushButton_2 = new QPushButton(groupBox);
-        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
+        pushButton_add = new QPushButton(groupBox);
+        pushButton_add->setObjectName(QString::fromUtf8("pushButton_add"));
         QSizePolicy sizePolicy2(QSizePolicy::Fixed, QSizePolicy::Fixed);
         sizePolicy2.setHorizontalStretch(0);
         sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(pushButton_2->sizePolicy().hasHeightForWidth());
-        pushButton_2->setSizePolicy(sizePolicy2);
-        pushButton_2->setFont(font);
+        sizePolicy2.setHeightForWidth(pushButton_add->sizePolicy().hasHeightForWidth());
+        pushButton_add->setSizePolicy(sizePolicy2);
+        pushButton_add->setFont(font);
 
-        horizontalLayout_2->addWidget(pushButton_2);
+        horizontalLayout_2->addWidget(pushButton_add);
 
-        pushButton = new QPushButton(groupBox);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setEnabled(false);
-        sizePolicy2.setHeightForWidth(pushButton->sizePolicy().hasHeightForWidth());
-        pushButton->setSizePolicy(sizePolicy2);
-        pushButton->setFont(font);
+        pushButton_rm = new QPushButton(groupBox);
+        pushButton_rm->setObjectName(QString::fromUtf8("pushButton_rm"));
+        pushButton_rm->setEnabled(false);
+        sizePolicy2.setHeightForWidth(pushButton_rm->sizePolicy().hasHeightForWidth());
+        pushButton_rm->setSizePolicy(sizePolicy2);
+        pushButton_rm->setFont(font);
 
-        horizontalLayout_2->addWidget(pushButton);
+        horizontalLayout_2->addWidget(pushButton_rm);
 
 
         formLayout_5->setLayout(0, QFormLayout::SpanningRole, horizontalLayout_2);
@@ -529,7 +523,6 @@ public:
         menubar->addAction(menuEdit->menuAction());
         menubar->addAction(menuWindow->menuAction());
         menubar->addAction(menuHelp->menuAction());
-        menuFile->addAction(actionNew_Database);
         menuFile->addAction(actionOpen_Database);
         menuFile->addSeparator();
         menuFile->addAction(actionClose_Database);
@@ -560,13 +553,6 @@ public:
     void retranslateUi(QMainWindow *MainWindow_teach)
     {
         MainWindow_teach->setWindowTitle(QApplication::translate("MainWindow_teach", "Teacher's mode", nullptr));
-        actionNew_Database->setText(QApplication::translate("MainWindow_teach", "New Database", nullptr));
-#ifndef QT_NO_TOOLTIP
-        actionNew_Database->setToolTip(QApplication::translate("MainWindow_teach", "<html><head/><body><p>Ctrl + N</p></body></html>", nullptr));
-#endif // QT_NO_TOOLTIP
-#ifndef QT_NO_SHORTCUT
-        actionNew_Database->setShortcut(QApplication::translate("MainWindow_teach", "Ctrl+N", nullptr));
-#endif // QT_NO_SHORTCUT
         actionOpen_Database->setText(QApplication::translate("MainWindow_teach", "Open Database", nullptr));
 #ifndef QT_NO_TOOLTIP
         actionOpen_Database->setToolTip(QApplication::translate("MainWindow_teach", "<html><head/><body><p>Ctrl + O</p></body></html>", nullptr));
@@ -622,12 +608,10 @@ public:
 #endif // QT_NO_SHORTCUT
         groupBox->setTitle(QString());
         comboBox->setItemText(0, QApplication::translate("MainWindow_teach", "Choose a student...", nullptr));
-        comboBox->setItemText(1, QApplication::translate("MainWindow_teach", "Pavlovsky Anton", nullptr));
-        comboBox->setItemText(2, QApplication::translate("MainWindow_teach", "Ahmetich Barab", nullptr));
 
         comboBox->setCurrentText(QApplication::translate("MainWindow_teach", "Choose a student...", nullptr));
-        pushButton_2->setText(QApplication::translate("MainWindow_teach", "+", nullptr));
-        pushButton->setText(QApplication::translate("MainWindow_teach", "-", nullptr));
+        pushButton_add->setText(QApplication::translate("MainWindow_teach", "+", nullptr));
+        pushButton_rm->setText(QApplication::translate("MainWindow_teach", "-", nullptr));
         groupBox_3->setTitle(QApplication::translate("MainWindow_teach", "Credentials", nullptr));
         label_2->setText(QApplication::translate("MainWindow_teach", "First name", nullptr));
         label_3->setText(QApplication::translate("MainWindow_teach", "Last name", nullptr));

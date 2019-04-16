@@ -574,7 +574,7 @@ User * db_get_users(int * size)
         num = sqlite3_column_int(st, 5);
         users[i].admin = num != 0;
 
-        delete(text);
+//        delete(text);
         rc = sqlite3_step(st);
         i++;
     }
