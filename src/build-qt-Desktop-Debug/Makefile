@@ -54,6 +54,8 @@ OBJECTS_DIR   = ./
 
 SOURCES       = ../qt/mainwindow.cpp \
 		../qt/dialog1.cpp \
+		../libs/db/database.cpp \
+		../libs/db/sqlite3.c \
 		../libs/main_menu.cpp \
 		../main.cpp \
 		../qt/qt_main.cpp \
@@ -62,6 +64,8 @@ SOURCES       = ../qt/mainwindow.cpp \
 		moc_mainwindow_teach.cpp
 OBJECTS       = mainwindow.o \
 		dialog1.o \
+		database.o \
+		sqlite3.o \
 		main_menu.o \
 		main.o \
 		qt_main.o \
@@ -285,6 +289,8 @@ DIST          = ../Makefile.am \
 		../qt/mainwindow_teach.h \
 		../headers/config.h ../qt/mainwindow.cpp \
 		../qt/dialog1.cpp \
+		../libs/db/database.cpp \
+		../libs/db/sqlite3.c \
 		../libs/main_menu.cpp \
 		../main.cpp \
 		../qt/qt_main.cpp \
@@ -709,7 +715,7 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/local/Qt/5.12.2/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../qt/mainwindow.h ../qt/dialog1.h ../libs/libcrypt/include/tomcrypt.h ../libs/libcrypt/include/tomcrypt_argchk.h ../libs/libcrypt/include/tomcrypt_cfg.h ../libs/libcrypt/include/tomcrypt_cipher.h ../libs/libcrypt/include/tomcrypt_custom.h ../libs/libcrypt/include/tomcrypt_hash.h ../libs/libcrypt/include/tomcrypt_mac.h ../libs/libcrypt/include/tomcrypt_macros.h ../libs/libcrypt/include/tomcrypt_math.h ../libs/libcrypt/include/tomcrypt_misc.h ../libs/libcrypt/include/tomcrypt_pk.h ../libs/libcrypt/include/tomcrypt_pkcs.h ../libs/libcrypt/include/tomcrypt_prng.h ../headers/database.h ../headers/sqlite3.h ../headers/teacher_menu.h ../headers/tests_main_header.h ../headers/main_menu.h ../qt/mainwindow_teach.h ../headers/config.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../qt/mainwindow.cpp ../qt/dialog1.cpp ../libs/main_menu.cpp ../main.cpp ../qt/qt_main.cpp ../qt/mainwindow_teach.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../qt/mainwindow.cpp ../qt/dialog1.cpp ../libs/db/database.cpp ../libs/db/sqlite3.c ../libs/main_menu.cpp ../main.cpp ../qt/qt_main.cpp ../qt/mainwindow_teach.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../qt/mainwindow.ui ../qt/dialog1.ui ../qt/mainwindow_teach.ui $(DISTDIR)/
 
 
@@ -1122,6 +1128,9 @@ moc_mainwindow_teach.cpp: ../qt/mainwindow_teach.h \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qtouchdevice.h \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qtabwidget.h \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qicon.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QMessageBox \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qmessagebox.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qdialog.h \
 		moc_predefs.h \
 		/usr/local/Qt/5.12.2/gcc_64/bin/moc
 	/usr/local/Qt/5.12.2/gcc_64/bin/moc $(DEFINES) --include /home/anton/ProTest/src/build-qt-Desktop-Debug/moc_predefs.h -I/usr/local/Qt/5.12.2/gcc_64/mkspecs/linux-g++ -I/home/anton/ProTest/src/qt -I/usr/local/Qt/5.12.2/gcc_64/include -I/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets -I/usr/local/Qt/5.12.2/gcc_64/include/QtGui -I/usr/local/Qt/5.12.2/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../qt/mainwindow_teach.h -o moc_mainwindow_teach.cpp
@@ -1483,6 +1492,30 @@ dialog1.o: ../qt/dialog1.cpp ../qt/dialog1.h \
 		../qt/mainwindow_teach.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dialog1.o ../qt/dialog1.cpp
 
+database.o: ../libs/db/database.cpp ../headers/tests_main_header.h \
+		../headers/config.h \
+		../headers/sqlite3.h \
+		../headers/database.h \
+		../headers/teacher_menu.h \
+		../libs/libcrypt/include/tomcrypt.h \
+		../libs/libcrypt/include/tomcrypt_custom.h \
+		../libs/libcrypt/include/tomcrypt_cfg.h \
+		../libs/libcrypt/include/tomcrypt_macros.h \
+		../libs/libcrypt/include/tomcrypt_cipher.h \
+		../libs/libcrypt/include/tomcrypt_hash.h \
+		../libs/libcrypt/include/tomcrypt_mac.h \
+		../libs/libcrypt/include/tomcrypt_prng.h \
+		../libs/libcrypt/include/tomcrypt_pk.h \
+		../libs/libcrypt/include/tomcrypt_math.h \
+		../libs/libcrypt/include/tomcrypt_misc.h \
+		../libs/libcrypt/include/tomcrypt_argchk.h \
+		../libs/libcrypt/include/tomcrypt_pkcs.h \
+		../headers/main_menu.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o database.o ../libs/db/database.cpp
+
+sqlite3.o: ../libs/db/sqlite3.c 
+	$(CC) -c $(CFLAGS) $(INCPATH) -o sqlite3.o ../libs/db/sqlite3.c
+
 main_menu.o: ../libs/main_menu.cpp ../headers/tests_main_header.h \
 		../headers/config.h \
 		../headers/sqlite3.h \
@@ -1776,6 +1809,35 @@ mainwindow_teach.o: ../qt/mainwindow_teach.cpp ../qt/mainwindow_teach.h \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qtouchdevice.h \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qtabwidget.h \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qicon.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QMessageBox \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qmessagebox.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qdialog.h \
+		../qt/mainwindow.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QStyle \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qstyle.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QDesktopWidget \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../qt/dialog1.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QDialog \
+		../headers/tests_main_header.h \
+		../headers/config.h \
+		../headers/sqlite3.h \
+		../headers/database.h \
+		../headers/teacher_menu.h \
+		../libs/libcrypt/include/tomcrypt.h \
+		../libs/libcrypt/include/tomcrypt_custom.h \
+		../libs/libcrypt/include/tomcrypt_cfg.h \
+		../libs/libcrypt/include/tomcrypt_macros.h \
+		../libs/libcrypt/include/tomcrypt_cipher.h \
+		../libs/libcrypt/include/tomcrypt_hash.h \
+		../libs/libcrypt/include/tomcrypt_mac.h \
+		../libs/libcrypt/include/tomcrypt_prng.h \
+		../libs/libcrypt/include/tomcrypt_pk.h \
+		../libs/libcrypt/include/tomcrypt_math.h \
+		../libs/libcrypt/include/tomcrypt_misc.h \
+		../libs/libcrypt/include/tomcrypt_argchk.h \
+		../libs/libcrypt/include/tomcrypt_pkcs.h \
+		../headers/main_menu.h \
 		ui_mainwindow_teach.h \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/QVariant \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QAction \
@@ -1785,7 +1847,6 @@ mainwindow_teach.o: ../qt/mainwindow_teach.cpp ../qt/mainwindow_teach.h \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qapplication.h \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qcoreapplication.h \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qeventloop.h \
-		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qdesktopwidget.h \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qguiapplication.h \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qinputmethod.h \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QCheckBox \
@@ -1800,29 +1861,49 @@ mainwindow_teach.o: ../qt/mainwindow_teach.cpp ../qt/mainwindow_teach.h \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qregularexpression.h \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qslider.h \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qabstractslider.h \
-		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qstyle.h \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qtabbar.h \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qrubberband.h \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qframe.h \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qabstractitemmodel.h \
-		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QGridLayout \
-		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qgridlayout.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QFormLayout \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qformlayout.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QLayout \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qlayout.h \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qlayoutitem.h \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qboxlayout.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qgridlayout.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QGridLayout \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QGroupBox \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qgroupbox.h \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QHBoxLayout \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QHeaderView \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qheaderview.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qabstractitemview.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qitemselectionmodel.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QLabel \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qlabel.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QLineEdit \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qlineedit.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qtextcursor.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qtextformat.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qpen.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qtextoption.h \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QMenu \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qmenu.h \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QMenuBar \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qmenubar.h \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QPushButton \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qpushbutton.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QSplitter \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qsplitter.h \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QStackedWidget \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qstackedwidget.h \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QStatusBar \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qstatusbar.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QTableWidget \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qtablewidget.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qtableview.h \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QVBoxLayout \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow_teach.o ../qt/mainwindow_teach.cpp

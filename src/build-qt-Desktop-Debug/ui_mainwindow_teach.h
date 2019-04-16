@@ -59,8 +59,11 @@ public:
     QVBoxLayout *verticalLayout;
     QSplitter *splitter;
     QGroupBox *groupBox;
-    QVBoxLayout *verticalLayout_2;
+    QFormLayout *formLayout_5;
+    QHBoxLayout *horizontalLayout_2;
     QComboBox *comboBox;
+    QPushButton *pushButton_2;
+    QPushButton *pushButton;
     QHBoxLayout *horizontalLayout;
     QGroupBox *groupBox_3;
     QGridLayout *gridLayout_2;
@@ -96,10 +99,6 @@ public:
     QLineEdit *lineDyn_Mem;
     QLineEdit *lineFinal;
     QLabel *label_5;
-    QGroupBox *groupBox_2;
-    QVBoxLayout *verticalLayout_3;
-    QPushButton *pushButton_2;
-    QPushButton *pushButton;
     QTableWidget *tableWidget;
     QWidget *page_2;
     QCheckBox *checkBox;
@@ -115,9 +114,10 @@ public:
     {
         if (MainWindow_teach->objectName().isEmpty())
             MainWindow_teach->setObjectName(QString::fromUtf8("MainWindow_teach"));
-        MainWindow_teach->resize(1133, 654);
+        MainWindow_teach->resize(1133, 645);
         actionNew_Database = new QAction(MainWindow_teach);
         actionNew_Database->setObjectName(QString::fromUtf8("actionNew_Database"));
+        actionNew_Database->setVisible(false);
         actionOpen_Database = new QAction(MainWindow_teach);
         actionOpen_Database->setObjectName(QString::fromUtf8("actionOpen_Database"));
         actionClose_Database = new QAction(MainWindow_teach);
@@ -168,6 +168,7 @@ public:
         sizePolicy.setHeightForWidth(splitter->sizePolicy().hasHeightForWidth());
         splitter->setSizePolicy(sizePolicy);
         splitter->setOrientation(Qt::Vertical);
+        splitter->setHandleWidth(10);
         groupBox = new QGroupBox(splitter);
         groupBox->setObjectName(QString::fromUtf8("groupBox"));
         QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Preferred);
@@ -175,8 +176,10 @@ public:
         sizePolicy1.setVerticalStretch(0);
         sizePolicy1.setHeightForWidth(groupBox->sizePolicy().hasHeightForWidth());
         groupBox->setSizePolicy(sizePolicy1);
-        verticalLayout_2 = new QVBoxLayout(groupBox);
-        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
+        formLayout_5 = new QFormLayout(groupBox);
+        formLayout_5->setObjectName(QString::fromUtf8("formLayout_5"));
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
         comboBox = new QComboBox(groupBox);
         comboBox->addItem(QString());
         comboBox->addItem(QString());
@@ -187,7 +190,30 @@ public:
         comboBox->setFont(font);
         comboBox->setEditable(false);
 
-        verticalLayout_2->addWidget(comboBox);
+        horizontalLayout_2->addWidget(comboBox);
+
+        pushButton_2 = new QPushButton(groupBox);
+        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
+        QSizePolicy sizePolicy2(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(pushButton_2->sizePolicy().hasHeightForWidth());
+        pushButton_2->setSizePolicy(sizePolicy2);
+        pushButton_2->setFont(font);
+
+        horizontalLayout_2->addWidget(pushButton_2);
+
+        pushButton = new QPushButton(groupBox);
+        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+        pushButton->setEnabled(false);
+        sizePolicy2.setHeightForWidth(pushButton->sizePolicy().hasHeightForWidth());
+        pushButton->setSizePolicy(sizePolicy2);
+        pushButton->setFont(font);
+
+        horizontalLayout_2->addWidget(pushButton);
+
+
+        formLayout_5->setLayout(0, QFormLayout::SpanningRole, horizontalLayout_2);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
@@ -255,6 +281,11 @@ public:
 
         lineLoops = new QLineEdit(groupBox_4);
         lineLoops->setObjectName(QString::fromUtf8("lineLoops"));
+        QSizePolicy sizePolicy3(QSizePolicy::Preferred, QSizePolicy::Fixed);
+        sizePolicy3.setHorizontalStretch(0);
+        sizePolicy3.setVerticalStretch(0);
+        sizePolicy3.setHeightForWidth(lineLoops->sizePolicy().hasHeightForWidth());
+        lineLoops->setSizePolicy(sizePolicy3);
         lineLoops->setReadOnly(true);
 
         formLayout_2->setWidget(0, QFormLayout::FieldRole, lineLoops);
@@ -384,27 +415,7 @@ public:
         horizontalLayout->addWidget(groupBox_4);
 
 
-        verticalLayout_2->addLayout(horizontalLayout);
-
-        groupBox_2 = new QGroupBox(groupBox);
-        groupBox_2->setObjectName(QString::fromUtf8("groupBox_2"));
-        verticalLayout_3 = new QVBoxLayout(groupBox_2);
-        verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
-        pushButton_2 = new QPushButton(groupBox_2);
-        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        pushButton_2->setFont(font);
-
-        verticalLayout_3->addWidget(pushButton_2);
-
-        pushButton = new QPushButton(groupBox_2);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setEnabled(false);
-        pushButton->setFont(font);
-
-        verticalLayout_3->addWidget(pushButton);
-
-
-        verticalLayout_2->addWidget(groupBox_2);
+        formLayout_5->setLayout(1, QFormLayout::SpanningRole, horizontalLayout);
 
         splitter->addWidget(groupBox);
         tableWidget = new QTableWidget(splitter);
@@ -446,69 +457,19 @@ public:
         QTableWidgetItem *__qtablewidgetitem11 = new QTableWidgetItem();
         __qtablewidgetitem11->setTextAlignment(Qt::AlignCenter);
         tableWidget->setHorizontalHeaderItem(11, __qtablewidgetitem11);
-        if (tableWidget->rowCount() < 2)
-            tableWidget->setRowCount(2);
-        QTableWidgetItem *__qtablewidgetitem12 = new QTableWidgetItem();
-        __qtablewidgetitem12->setTextAlignment(Qt::AlignCenter);
-        tableWidget->setItem(0, 0, __qtablewidgetitem12);
-        QTableWidgetItem *__qtablewidgetitem13 = new QTableWidgetItem();
-        __qtablewidgetitem13->setTextAlignment(Qt::AlignCenter);
-        tableWidget->setItem(0, 1, __qtablewidgetitem13);
-        QTableWidgetItem *__qtablewidgetitem14 = new QTableWidgetItem();
-        tableWidget->setItem(0, 2, __qtablewidgetitem14);
-        QTableWidgetItem *__qtablewidgetitem15 = new QTableWidgetItem();
-        tableWidget->setItem(0, 3, __qtablewidgetitem15);
-        QTableWidgetItem *__qtablewidgetitem16 = new QTableWidgetItem();
-        tableWidget->setItem(0, 4, __qtablewidgetitem16);
-        QTableWidgetItem *__qtablewidgetitem17 = new QTableWidgetItem();
-        tableWidget->setItem(0, 5, __qtablewidgetitem17);
-        QTableWidgetItem *__qtablewidgetitem18 = new QTableWidgetItem();
-        tableWidget->setItem(0, 6, __qtablewidgetitem18);
-        QTableWidgetItem *__qtablewidgetitem19 = new QTableWidgetItem();
-        tableWidget->setItem(0, 7, __qtablewidgetitem19);
-        QTableWidgetItem *__qtablewidgetitem20 = new QTableWidgetItem();
-        tableWidget->setItem(0, 8, __qtablewidgetitem20);
-        QTableWidgetItem *__qtablewidgetitem21 = new QTableWidgetItem();
-        tableWidget->setItem(0, 9, __qtablewidgetitem21);
-        QTableWidgetItem *__qtablewidgetitem22 = new QTableWidgetItem();
-        tableWidget->setItem(0, 10, __qtablewidgetitem22);
-        QTableWidgetItem *__qtablewidgetitem23 = new QTableWidgetItem();
-        tableWidget->setItem(0, 11, __qtablewidgetitem23);
-        QTableWidgetItem *__qtablewidgetitem24 = new QTableWidgetItem();
-        tableWidget->setItem(1, 0, __qtablewidgetitem24);
-        QTableWidgetItem *__qtablewidgetitem25 = new QTableWidgetItem();
-        tableWidget->setItem(1, 1, __qtablewidgetitem25);
-        QTableWidgetItem *__qtablewidgetitem26 = new QTableWidgetItem();
-        tableWidget->setItem(1, 2, __qtablewidgetitem26);
-        QTableWidgetItem *__qtablewidgetitem27 = new QTableWidgetItem();
-        tableWidget->setItem(1, 3, __qtablewidgetitem27);
-        QTableWidgetItem *__qtablewidgetitem28 = new QTableWidgetItem();
-        tableWidget->setItem(1, 4, __qtablewidgetitem28);
-        QTableWidgetItem *__qtablewidgetitem29 = new QTableWidgetItem();
-        tableWidget->setItem(1, 5, __qtablewidgetitem29);
-        QTableWidgetItem *__qtablewidgetitem30 = new QTableWidgetItem();
-        tableWidget->setItem(1, 6, __qtablewidgetitem30);
-        QTableWidgetItem *__qtablewidgetitem31 = new QTableWidgetItem();
-        tableWidget->setItem(1, 7, __qtablewidgetitem31);
-        QTableWidgetItem *__qtablewidgetitem32 = new QTableWidgetItem();
-        tableWidget->setItem(1, 8, __qtablewidgetitem32);
-        QTableWidgetItem *__qtablewidgetitem33 = new QTableWidgetItem();
-        tableWidget->setItem(1, 9, __qtablewidgetitem33);
-        QTableWidgetItem *__qtablewidgetitem34 = new QTableWidgetItem();
-        tableWidget->setItem(1, 10, __qtablewidgetitem34);
-        QTableWidgetItem *__qtablewidgetitem35 = new QTableWidgetItem();
-        tableWidget->setItem(1, 11, __qtablewidgetitem35);
+        if (tableWidget->rowCount() < 1)
+            tableWidget->setRowCount(1);
         tableWidget->setObjectName(QString::fromUtf8("tableWidget"));
-        QSizePolicy sizePolicy2(QSizePolicy::Expanding, QSizePolicy::Minimum);
-        sizePolicy2.setHorizontalStretch(0);
-        sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(tableWidget->sizePolicy().hasHeightForWidth());
-        tableWidget->setSizePolicy(sizePolicy2);
+        QSizePolicy sizePolicy4(QSizePolicy::Expanding, QSizePolicy::Minimum);
+        sizePolicy4.setHorizontalStretch(0);
+        sizePolicy4.setVerticalStretch(0);
+        sizePolicy4.setHeightForWidth(tableWidget->sizePolicy().hasHeightForWidth());
+        tableWidget->setSizePolicy(sizePolicy4);
         tableWidget->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
         tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
         tableWidget->setAlternatingRowColors(true);
         tableWidget->setSortingEnabled(true);
-        tableWidget->setRowCount(2);
+        tableWidget->setRowCount(1);
         splitter->addWidget(tableWidget);
         tableWidget->horizontalHeader()->setCascadingSectionResizes(false);
         tableWidget->horizontalHeader()->setDefaultSectionSize(90);
@@ -665,6 +626,8 @@ public:
         comboBox->setItemText(2, QApplication::translate("MainWindow_teach", "Ahmetich Barab", nullptr));
 
         comboBox->setCurrentText(QApplication::translate("MainWindow_teach", "Choose a student...", nullptr));
+        pushButton_2->setText(QApplication::translate("MainWindow_teach", "+", nullptr));
+        pushButton->setText(QApplication::translate("MainWindow_teach", "-", nullptr));
         groupBox_3->setTitle(QApplication::translate("MainWindow_teach", "Credentials", nullptr));
         label_2->setText(QApplication::translate("MainWindow_teach", "First name", nullptr));
         label_3->setText(QApplication::translate("MainWindow_teach", "Last name", nullptr));
@@ -680,9 +643,6 @@ public:
         label_12->setText(QApplication::translate("MainWindow_teach", "Dynamic memory", nullptr));
         label_13->setText(QApplication::translate("MainWindow_teach", "Final test result", nullptr));
         label_5->setText(QApplication::translate("MainWindow_teach", "Arithmetic mean of all results", nullptr));
-        groupBox_2->setTitle(QString());
-        pushButton_2->setText(QApplication::translate("MainWindow_teach", "Add student", nullptr));
-        pushButton->setText(QApplication::translate("MainWindow_teach", "Remove student", nullptr));
         QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
         ___qtablewidgetitem->setText(QApplication::translate("MainWindow_teach", "First name", nullptr));
         QTableWidgetItem *___qtablewidgetitem1 = tableWidget->horizontalHeaderItem(1);
@@ -707,59 +667,6 @@ public:
         ___qtablewidgetitem10->setText(QApplication::translate("MainWindow_teach", "Final test", nullptr));
         QTableWidgetItem *___qtablewidgetitem11 = tableWidget->horizontalHeaderItem(11);
         ___qtablewidgetitem11->setText(QApplication::translate("MainWindow_teach", "Mean", nullptr));
-
-        const bool __sortingEnabled = tableWidget->isSortingEnabled();
-        tableWidget->setSortingEnabled(false);
-        QTableWidgetItem *___qtablewidgetitem12 = tableWidget->item(0, 0);
-        ___qtablewidgetitem12->setText(QApplication::translate("MainWindow_teach", "Anton", nullptr));
-        QTableWidgetItem *___qtablewidgetitem13 = tableWidget->item(0, 1);
-        ___qtablewidgetitem13->setText(QApplication::translate("MainWindow_teach", "Pavlosvsky", nullptr));
-        QTableWidgetItem *___qtablewidgetitem14 = tableWidget->item(0, 2);
-        ___qtablewidgetitem14->setText(QApplication::translate("MainWindow_teach", "4.6", nullptr));
-        QTableWidgetItem *___qtablewidgetitem15 = tableWidget->item(0, 3);
-        ___qtablewidgetitem15->setText(QApplication::translate("MainWindow_teach", "4.9", nullptr));
-        QTableWidgetItem *___qtablewidgetitem16 = tableWidget->item(0, 4);
-        ___qtablewidgetitem16->setText(QApplication::translate("MainWindow_teach", "4.8", nullptr));
-        QTableWidgetItem *___qtablewidgetitem17 = tableWidget->item(0, 5);
-        ___qtablewidgetitem17->setText(QApplication::translate("MainWindow_teach", "5", nullptr));
-        QTableWidgetItem *___qtablewidgetitem18 = tableWidget->item(0, 6);
-        ___qtablewidgetitem18->setText(QApplication::translate("MainWindow_teach", "5", nullptr));
-        QTableWidgetItem *___qtablewidgetitem19 = tableWidget->item(0, 7);
-        ___qtablewidgetitem19->setText(QApplication::translate("MainWindow_teach", "4.8", nullptr));
-        QTableWidgetItem *___qtablewidgetitem20 = tableWidget->item(0, 8);
-        ___qtablewidgetitem20->setText(QApplication::translate("MainWindow_teach", "5", nullptr));
-        QTableWidgetItem *___qtablewidgetitem21 = tableWidget->item(0, 9);
-        ___qtablewidgetitem21->setText(QApplication::translate("MainWindow_teach", "4.9", nullptr));
-        QTableWidgetItem *___qtablewidgetitem22 = tableWidget->item(0, 10);
-        ___qtablewidgetitem22->setText(QApplication::translate("MainWindow_teach", "5.0", nullptr));
-        QTableWidgetItem *___qtablewidgetitem23 = tableWidget->item(0, 11);
-        ___qtablewidgetitem23->setText(QApplication::translate("MainWindow_teach", "4.73", nullptr));
-        QTableWidgetItem *___qtablewidgetitem24 = tableWidget->item(1, 0);
-        ___qtablewidgetitem24->setText(QApplication::translate("MainWindow_teach", "Barab", nullptr));
-        QTableWidgetItem *___qtablewidgetitem25 = tableWidget->item(1, 1);
-        ___qtablewidgetitem25->setText(QApplication::translate("MainWindow_teach", "Ahmetich", nullptr));
-        QTableWidgetItem *___qtablewidgetitem26 = tableWidget->item(1, 2);
-        ___qtablewidgetitem26->setText(QApplication::translate("MainWindow_teach", "4.7", nullptr));
-        QTableWidgetItem *___qtablewidgetitem27 = tableWidget->item(1, 3);
-        ___qtablewidgetitem27->setText(QApplication::translate("MainWindow_teach", "5.3", nullptr));
-        QTableWidgetItem *___qtablewidgetitem28 = tableWidget->item(1, 4);
-        ___qtablewidgetitem28->setText(QApplication::translate("MainWindow_teach", "6", nullptr));
-        QTableWidgetItem *___qtablewidgetitem29 = tableWidget->item(1, 5);
-        ___qtablewidgetitem29->setText(QApplication::translate("MainWindow_teach", "6", nullptr));
-        QTableWidgetItem *___qtablewidgetitem30 = tableWidget->item(1, 6);
-        ___qtablewidgetitem30->setText(QApplication::translate("MainWindow_teach", "6", nullptr));
-        QTableWidgetItem *___qtablewidgetitem31 = tableWidget->item(1, 7);
-        ___qtablewidgetitem31->setText(QApplication::translate("MainWindow_teach", "6", nullptr));
-        QTableWidgetItem *___qtablewidgetitem32 = tableWidget->item(1, 8);
-        ___qtablewidgetitem32->setText(QApplication::translate("MainWindow_teach", "6", nullptr));
-        QTableWidgetItem *___qtablewidgetitem33 = tableWidget->item(1, 9);
-        ___qtablewidgetitem33->setText(QApplication::translate("MainWindow_teach", "6", nullptr));
-        QTableWidgetItem *___qtablewidgetitem34 = tableWidget->item(1, 10);
-        ___qtablewidgetitem34->setText(QApplication::translate("MainWindow_teach", "6", nullptr));
-        QTableWidgetItem *___qtablewidgetitem35 = tableWidget->item(1, 11);
-        ___qtablewidgetitem35->setText(QApplication::translate("MainWindow_teach", "6", nullptr));
-        tableWidget->setSortingEnabled(__sortingEnabled);
-
         checkBox->setText(QApplication::translate("MainWindow_teach", "CheckBox", nullptr));
         checkBox_2->setText(QApplication::translate("MainWindow_teach", "CheckBox", nullptr));
         menuFile->setTitle(QApplication::translate("MainWindow_teach", "File", nullptr));

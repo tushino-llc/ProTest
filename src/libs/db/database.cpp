@@ -128,7 +128,7 @@ Marks db_get_user_marks(int user_id)
 User db_login(char * login, char * password)
 {
     int rc;
-    User user = {0};
+    User user = {};
 
     sqlite3_stmt * st = nullptr;
     rc = sqlite3_prepare_v2(db, "SELECT COUNT(*) FROM `users` WHERE login = ? AND pass = ?", -1, &st, nullptr);
@@ -335,12 +335,14 @@ int db_set_mark(int user_id, int theme, int mark)
     char * value = nullptr;
     sqlite3_stmt * st = nullptr;
 
-    strcpy(value, db_get_theme_by_id(theme));
+    value = db_get_theme_by_id(theme);
 
     rc = sqlite3_prepare_v2(db, "UPDATE `marks` SET ? = ? WHERE user_id = ?", -1, &st, nullptr);
     sqlite3_bind_text( st, 1, value, -1, SQLITE_STATIC);
     sqlite3_bind_int( st, 2, mark );
     sqlite3_bind_int( st, 3, user_id );
+
+    free(value);
 
     if (rc != SQLITE_OK)
         return -1;
@@ -361,17 +363,39 @@ char * db_get_theme_by_id(int index)
 {
     switch(index)
     {
-        case 0:  return (char *)"loops";
-        case 1:  return (char *)"arrays";
-        case 2:  return (char *)"strings";
-        case 3:  return (char *)"recursion";
-        case 4:  return (char *)"structs";
-        case 5:  return (char *)"files";
-        case 6:  return (char *)"pointers";
-        case 7:  return (char *)"dynamic";
-        case 8:  return (char *)"average";
-        case 9:  return (char *)"final";
-        default: return (char *)"loops";
+        // case 0:  return (char *)"loops";
+        case 0:
+            return strdup("loops");
+        // case 1:  return (char *)"arrays";
+        case 1:
+            return strdup("arrays");
+        // case 2:  return (char *)"strings";
+        case  2:
+            return strdup("strings");
+        // case 3:  return (char *)"recursion";
+        case 3:
+            return strdup("recursion");
+        // case 4:  return (char *)"structs";
+        case 4:
+            return strdup("structs");
+        // case 5:  return (char *)"files";
+        case 5:
+            return strdup("files");
+        // case 6:  return (char *)"pointers";
+        case 6:
+            return strdup("pointers");
+        // case 7:  return (char *)"dynamic";
+        case 7:
+            return strdup("dynamic");
+        // case 8:  return (char *)"average";
+        case 8:
+            return strdup("average");
+        // case 9:  return (char *)"final";
+        case 9:
+            return strdup("final");
+        // default: return (char *)"loops";
+        default:
+            return strdup("loops");
     }
 }
 
@@ -461,6 +485,7 @@ User * db_get_users(int * size)
 User * db_get_users_sorted(int * size, int by, int desc)
 {
     sqlite3_stmt * st = nullptr;
+    char *temp = nullptr;
     *size = 0; // by default
 
     // get number of users
@@ -482,7 +507,8 @@ User * db_get_users_sorted(int * size, int by, int desc)
 
     // build a query with some kostyl
     char query[512] = "SELECT users.* FROM `users` as users JOIN `marks` AS m on m.user_id = users.id ORDER BY m."; // FUCK YEAH!
-    strcat(query, db_get_theme_by_id(by));
+    strcat(query, (temp = db_get_theme_by_id(by)));
+    free(temp);
     if (desc)
         strcat(query, " DESC;");
 

@@ -18,6 +18,9 @@ You should have received a copy of the GNU General Public License
 along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 */
 
+#ifndef DB_MAIN_HEADER
+#define DB_MAIN_HEADER
+
 #include "sqlite3.h"
 
 struct User {
@@ -85,3 +88,5 @@ int db_update_question(Question question);
 */
 
 char * db_get_theme_by_id(int index);
+
+#endif

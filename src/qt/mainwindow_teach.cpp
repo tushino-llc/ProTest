@@ -21,16 +21,16 @@ void MainWindow_teach::Set_init_mode(int mode) {
         ui->actionStudents_2->setChecked(true);
         ui->actionQuestions->setChecked(false);
         ui->actionAllow->setVisible(true);
-        ui->actionNew_Database->setVisible(false);
-        ui->actionOpen_Database->setVisible(false);
-        ui->actionClose_Database->setVisible(false);
+        // ui->actionNew_Database->setVisible(false);
+        // ui->actionOpen_Database->setVisible(false);
+        // ui->actionClose_Database->setVisible(false);
     } else {
         ui->actionStudents_2->setChecked(false);
         ui->actionQuestions->setChecked(true);
         ui->actionAllow->setVisible(false);
-        ui->actionNew_Database->setVisible(true);
-        ui->actionOpen_Database->setVisible(true);
-        ui->actionClose_Database->setVisible(true);
+        // ui->actionNew_Database->setVisible(true);
+        // ui->actionOpen_Database->setVisible(true);
+        // ui->actionClose_Database->setVisible(true);
     }
 
 
