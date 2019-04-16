@@ -535,7 +535,7 @@ User * db_get_users(int * size)
     *size = 0; // by default
     
     // get number of users
-    int rc = sqlite3_prepare_v2(db, "SELECT count(*) FROM `users`;", -1, &st, nullptr);
+    int rc = sqlite3_prepare_v2(db, "SELECT count(*) FROM `users` WHERE `admin` = 0;", -1, &st, nullptr);
 
     if (rc != SQLITE_OK)
         return nullptr;
@@ -551,7 +551,7 @@ User * db_get_users(int * size)
     *size = n;
     auto users = new User[n];
 
-    rc = sqlite3_prepare_v2(db, "SELECT * FROM `users`;", -1, &st, nullptr);
+    rc = sqlite3_prepare_v2(db, "SELECT * FROM `users` WHERE `admin` = 0;", -1, &st, nullptr);
     if (rc != SQLITE_OK)
         return nullptr;
 
@@ -589,7 +589,7 @@ User * db_get_users_sorted(int * size, int by, int desc)
     *size = 0; // by default
 
     // get number of users
-    int rc = sqlite3_prepare_v2(db, "SELECT count(*) FROM `users`;", -1, &st, nullptr);
+    int rc = sqlite3_prepare_v2(db, "SELECT count(*) FROM `users` WHERE `admin` = 0;", -1, &st, nullptr);
 
     if (rc != SQLITE_OK)
         return nullptr;
@@ -606,7 +606,7 @@ User * db_get_users_sorted(int * size, int by, int desc)
     auto users = new User[n];
 
     // build a query with some kostyl
-    char query[512] = "SELECT users.* FROM `users` as users JOIN `marks` AS m on m.user_id = users.id ORDER BY m."; // FUCK YEAH!
+    char query[512] = "SELECT users.* FROM `users` as users JOIN `marks` AS m ON m.user_id = users.id AND `admin` = 0 ORDER BY m."; // FUCK YEAH!
     strcat(query, (temp = db_get_theme_by_id(by)));
     free(temp);
     if (desc)

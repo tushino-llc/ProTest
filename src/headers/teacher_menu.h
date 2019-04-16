@@ -21,7 +21,7 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 #define TEACHER_MENU_H
 #include "tests_main_header.h"
 
-void teacher_menu();
+void teacher_menu_0();
 void input_teacher();
 
 // Questions

@@ -17,16 +17,20 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 */
-#include "../headers/tests_main_header.h"
+#include "tests_main_header.h"
+
+const int Size_St = 100;
+const int Size_Q = 240;
 
 // Questions
 void delete_the_question()
 {
-	int error, id, size;
-	Question * db_get_questions(&size);
+	int error, id, size, i;
+	db_get_questions(&size);
+	Question question[Size_Q];
 	for (int j = 0; j < size; ++j)
 	{
-		std::cout <<"id = "<< id << " Question: "<< question.value << std::endl;
+		std::cout <<"id = "<< question[j].id << " Question: "<< question[j].value << std::endl;
 	}
 
 	printf("| Enter the id of the question you want to delete. \n");
@@ -45,33 +49,38 @@ void delete_the_question()
 }
 void add_a_question()
 {
-	int error;
-	Question question = { 0, 0, 0, 0, 0 };
+	int error, size;
+	db_get_questions(&size);
+	Question question[Size_Q];
 	do {
-		error = db_add_question(question);
+		error = db_add_question(question[size]);
 		if (error == -1) { printf("| Error! The question could not be added. Try again? [1 - yes; 0 - no] \n"); }
 		do {
 			scanf("%d", &error);
 		} while ((error > 1) || (error < 0));
 	} while (error == 1);
 }
-
 void change_the_question()
 {
-	int error, id, size;
-	Question question = { 0, 0, 0, 0, 0 };
-	Question * db_get_questions(&size);
+	int error, id, size, i;
+	
+	db_get_questions(&size);
+	Question question[Size_Q];
 	for (int j = 0; j < size; ++j)
 	{
-		std::cout << "id = " << id << " Question: " << question.value << std::endl;
+		std::cout << "id = " << question[j].id << " Question: " << question[j].value << std::endl;
 	}
 
 	printf("| Enter the id of the question you want to change. \n");
 	do {
 		scanf("%d", &id);
 	} while (id < 0);
+	for (int j = 0; j < size; ++j)
+	{
+		if (id == question[j].id) i = j;
+	}
 	do {	
-		error = db_update_question(question);
+		error = db_update_question(question[i]);
 	
 		if (error == -1) { printf("| Error! Unable to edit question. Try again? [1 - yes; 0 - no] \n"); }
 		do {
@@ -80,17 +89,16 @@ void change_the_question()
 	} while (error == 1);	
 }
 
-
 // Students
 void delete_student_account()
 {
 	int error, id, size = 0;
-	
-	User * db_get_users(&size);
-	
+	User user[Size_St];
+	db_get_users(&size);
+
 	for (int i = 0; i < size; ++i)
 	{
-		std::cout << "id = " << user.id << " Student: " << user.first_name << user.last_name << std::endl;
+		std::cout << "id = " << user[i].id << " Student: " << user[i].first_name << user[i].last_name << std::endl;
 	}
 
 	printf("| Enter the id of the student you want to delete. \n");
@@ -107,56 +115,62 @@ void delete_student_account()
 }
 void to_add_a_new_account_for_a_student()
 {
-	int error;
-	do {
-		error = db_add_user(user, &password);
-		if (error == -1) { printf("| Error! Failed to add new account. Try again? [1 - yes; 0 - no] \n"); }
+	int error, size;
+	User user[Size_St];
+	db_get_users(&size);
+	char password[20];
+	if (size < Size_St)
+	{
 		do {
-			scanf("%d", &error);
-		} while ((error > 1) || (error < 0));
-	} while (error == 1);
+			error = db_add_user(user[size], password);
+			if (error == -1) { printf("| Error! Failed to add new account. Try again? [1 - yes; 0 - no] \n"); }
+			do {
+				scanf("%d", &error);
+			} while ((error > 1) || (error < 0));
+		} while (error == 1);
+	}
+	else printf("| Error! Failed to add new account.\n");
 }
 void to_see_the_change_of_a_students_progress()
 {
-	int error, size = 0, id;
-	User * db_get_users(&size);
+	int  size = 0, id;
+	User user[Size_St];
+	db_get_users(&size);
 
 	for (int i = 0; i < size; ++i)
 	{
-		std::cout << "id = " << user.id << " Student: " << user.first_name << user.last_name << std::endl;
+		std::cout << "id = " << user[i].id << " Student: " << user[i].first_name << user[i].last_name << std::endl;
 	}
 	printf("| Enter the id of the student whose progress you want to see. \n");
 	do {
 		scanf("%d", &id);
 	} while (id < 0);
-	do{
-		error = Marks db_get_user_marks(id);
-		if (error == NULL) { printf("| Error! Try again? [1 - yes; 0 - no] \n"); }
-		do {
-			scanf("%d", &error);
-		} while ((error > 1) || (error < 0));
-	} while (error == 1);
+	db_get_user_marks(id);
 }
 
 // Results
 void view_scores_on_all_topics()
 {
+	User user[Size_St];
+	Marks marks[Size_St];
 	int id, size = 0;
-	User * db_get_users(&size);
+	db_get_users(&size);
 
 	for (int i = 0; i < size; ++i)
 	{
-		Marks db_get_user_marks(i);
-		std::cout << " " << user.first_name << " " << user.last_name;
+		db_get_user_marks(i);
+		std::cout << " " << user[i].first_name << " " << user[i].last_name;
 		for (int j = 0; j < 10; j++)
 		{
-			std::cout << " " << marks.values[j] << " ";
+			std::cout << " " << marks[j].values[j] << " ";
 		}
 		printf("\n");
 	}
 }
 void view_estimates_on_a_specific_topic()
 {
+	User user[Size_St];
+	Marks marks[Size_St];
 	int size = 0, desc, by, sort;
 
 	printf("| Chosen theme |"
@@ -184,86 +198,88 @@ void view_estimates_on_a_specific_topic()
 	do {
 		scanf("%d", &sort);
 	} while ((sort < 1) || (sort > 7));
-
+	
+	
 	switch (sort)
 	{
 	case 1: 
 	{
 		desc = 0; 
-		User * db_get_users_sorted(&size, by, desc);
+		
+		db_get_users_sorted(&size, by, desc);
 		for (int i = 0; i < size; ++i)
 		{
-			Marks db_get_user_marks(i);
-			std::cout << " " << user.first_name << " " << user.last_name << " " << marks.values[by]<< " " << std::endl;
+			db_get_user_marks(i);
+			std::cout << " " << user[i].first_name << " " << user[i].last_name << " " << marks[i].values[by]<< " " << std::endl;
 		}
 	} break;
 	case 2: 
 	{
 		desc = 1;
-		User * db_get_users_sorted(&size, by, desc);
+		db_get_users_sorted(&size, by, desc);
 		for (int i = 0; i < size; ++i)
 		{
-			Marks db_get_user_marks(i);
-			std::cout << " " << user.first_name << " " << user.last_name << " " << marks.values[by] << " " << std::endl;
+			db_get_user_marks(i);
+			std::cout << " " << user[i].first_name << " " << user[i].last_name << " " << marks[i].values[by] << " " << std::endl;
 		}
 	} break;
 	case 3: 
 	{
-		User * db_get_users(&size);
+		db_get_users(&size);
 		for (int i = 0; i < size; ++i)
 		{
-			if (marks.values[by] == 5)
+			if (marks[i].values[by] == 5)
 			{
-				Marks db_get_user_marks(i);
-				std::cout << " " << user.first_name << " " << user.last_name << " " << marks.values[by] << " " << std::endl;
+				db_get_user_marks(i);
+				std::cout << " " << user[i].first_name << " " << user[i].last_name << " " << marks[i].values[by] << " " << std::endl;
 			}
 		}
 	} break;
 	case 4: 
 	{
-		User * db_get_users(&size);
+		db_get_users(&size);
 		for (int i = 0; i < size; ++i)
 		{
-			if (marks.values[by] == 4)
+			if (marks[i].values[by] == 4)
 			{
-				Marks db_get_user_marks(i);
-				std::cout << " " << user.first_name << " " << user.last_name << " " << marks.values[by] << " " << std::endl;
+				db_get_user_marks(i);
+				std::cout << " " << user[i].first_name << " " << user[i].last_name << " " << marks[i].values[by] << " " << std::endl;
 			}
 		}
 	} break;
 	case 5:
 	{
-		User * db_get_users(&size);
+		db_get_users(&size);
 		for (int i = 0; i < size; ++i)
 		{
-			if (marks.values[by] == 3)
+			if (marks[i].values[by] == 3)
 			{
-				Marks db_get_user_marks(i);
-				std::cout << " " << user.first_name << " " << user.last_name << " " << marks.values[by] << " " << std::endl;
+				db_get_user_marks(i);
+				std::cout << " " << user[i].first_name << " " << user[i].last_name << " " << marks[i].values[by] << " " << std::endl;
 			}
 		}
 	} break;
 	case 6:
 	{
-		User * db_get_users(&size);
+		db_get_users(&size);
 		for (int i = 0; i < size; ++i)
 		{
-			if (marks.values[by] == 2)
+			if (marks[i].values[by] == 2)
 			{
-				Marks db_get_user_marks(i);
-				std::cout << " " << user.first_name << " " << user.last_name << " " << marks.values[by] << " " << std::endl;
+				db_get_user_marks(i);
+				std::cout << " " << user[i].first_name << " " << user[i].last_name << " " << marks[i].values[by] << " " << std::endl;
 			}
 		}
 	} break;
 	case 7:
 	{
-		User * db_get_users(&size);
+		db_get_users(&size);
 		for (int i = 0; i < size; ++i)
 		{
-			if (marks.values[by] == 1)
+			if (marks[i].values[by] == 1)
 			{
-				Marks db_get_user_marks(i);
-				std::cout << " " << user.first_name << " " << user.last_name << " " << marks.values[by] << " " << std::endl;
+				db_get_user_marks(i);
+				std::cout << " " << user[i].first_name << " " << user[i].last_name << " " << marks[i].values[by] << " " << std::endl;
 			}
 		}
 	} break;
@@ -271,24 +287,28 @@ void view_estimates_on_a_specific_topic()
 }
 void view_scores_for_the_final_test()
 {
+	User user[Size_St];
+	Marks marks[Size_St];
 	int size = 0, by = 9, desc = 1;
-	User * db_get_users_sorted(&size, by, desc);
+	db_get_users_sorted(&size, by, desc);
 
 	for (int i = 0; i < size; ++i)
 	{
-		Marks db_get_user_marks(i);
-		std::cout << " " << user.first_name << " " << user.last_name << " " << marks.values[by] << " " << std::endl;
+		db_get_user_marks(i);
+		std::cout << " " << user[i].first_name << " " << user[i].last_name << " " << marks[i].values[by] << " " << std::endl;
 	}
 }
 void view_the_average_score()
 {
+	User user[Size_St];
+	Marks marks[Size_St];
 	int size = 0, by = 8, desc = 1;
-	User * db_get_users_sorted(&size, by, desc);
+	db_get_users_sorted(&size, by, desc);
 
 	for (int i = 0; i < size; ++i)
 	{
-		Marks db_get_user_marks(i);
-		std::cout << " " << user.first_name << " " << user.last_name << " " << marks.values[by] << " " << std::endl;
+		db_get_user_marks(i);
+		std::cout << " " << user[i].first_name << " " << user[i].last_name << " " << marks[i].values[by] << " " << std::endl;
 	}
 }
 
