@@ -200,6 +200,168 @@
                  <string>Scores</string>
                 </property>
                 <layout class="QGridLayout" name="gridLayout">
+                 <item row="0" column="1">
+                  <layout class="QFormLayout" name="formLayout_3">
+                   <item row="0" column="0">
+                    <widget class="QLabel" name="label_10">
+                     <property name="font">
+                      <font>
+                       <pointsize>11</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>Recursion</string>
+                     </property>
+                     <property name="buddy">
+                      <cstring>lineRecursion</cstring>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="1">
+                    <widget class="QLineEdit" name="lineRecursion">
+                     <property name="readOnly">
+                      <bool>true</bool>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="0">
+                    <widget class="QLabel" name="label_9">
+                     <property name="font">
+                      <font>
+                       <pointsize>11</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>Structures</string>
+                     </property>
+                     <property name="buddy">
+                      <cstring>lineStructures</cstring>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="2" column="0">
+                    <widget class="QLabel" name="label_11">
+                     <property name="font">
+                      <font>
+                       <pointsize>11</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>Files</string>
+                     </property>
+                     <property name="buddy">
+                      <cstring>lineFiles</cstring>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="1">
+                    <widget class="QLineEdit" name="lineStructures">
+                     <property name="readOnly">
+                      <bool>true</bool>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="2" column="1">
+                    <widget class="QLineEdit" name="lineFiles">
+                     <property name="readOnly">
+                      <bool>true</bool>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item row="0" column="5">
+                  <layout class="QFormLayout" name="formLayout_4">
+                   <item row="0" column="0">
+                    <widget class="QLabel" name="label_4">
+                     <property name="font">
+                      <font>
+                       <pointsize>11</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>Pointers and adresses</string>
+                     </property>
+                     <property name="buddy">
+                      <cstring>linePointers</cstring>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="0">
+                    <widget class="QLabel" name="label_12">
+                     <property name="font">
+                      <font>
+                       <pointsize>11</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>Dynamic memory</string>
+                     </property>
+                     <property name="buddy">
+                      <cstring>lineDyn_Mem</cstring>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="2" column="0">
+                    <widget class="QLabel" name="label_13">
+                     <property name="font">
+                      <font>
+                       <pointsize>11</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>Final test result</string>
+                     </property>
+                     <property name="buddy">
+                      <cstring>lineFinal</cstring>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="1">
+                    <widget class="QLineEdit" name="linePointers">
+                     <property name="readOnly">
+                      <bool>true</bool>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="1">
+                    <widget class="QLineEdit" name="lineDyn_Mem">
+                     <property name="readOnly">
+                      <bool>true</bool>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="2" column="1">
+                    <widget class="QLineEdit" name="lineFinal">
+                     <property name="readOnly">
+                      <bool>true</bool>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item row="2" column="1">
+                  <widget class="QLineEdit" name="lineMean">
+                   <property name="readOnly">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="0">
+                  <widget class="QLabel" name="label_5">
+                   <property name="font">
+                    <font>
+                     <pointsize>11</pointsize>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>Arithmetic mean of all results</string>
+                   </property>
+                   <property name="buddy">
+                    <cstring>lineMean</cstring>
+                   </property>
+                  </widget>
+                 </item>
                  <item row="0" column="0">
                   <layout class="QFormLayout" name="formLayout_2">
                    <item row="0" column="0">
@@ -276,167 +438,29 @@
                    </item>
                   </layout>
                  </item>
-                 <item row="0" column="1">
-                  <layout class="QFormLayout" name="formLayout_3">
-                   <item row="0" column="0">
-                    <widget class="QLabel" name="label_10">
-                     <property name="font">
-                      <font>
-                       <pointsize>11</pointsize>
-                      </font>
+                 <item row="2" column="5">
+                  <layout class="QHBoxLayout" name="horizontalLayout_3">
+                   <item>
+                    <widget class="QPushButton" name="pushButton_2">
+                     <property name="enabled">
+                      <bool>false</bool>
                      </property>
                      <property name="text">
-                      <string>Recursion</string>
-                     </property>
-                     <property name="buddy">
-                      <cstring>lineRecursion</cstring>
+                      <string>Apply changes</string>
                      </property>
                     </widget>
                    </item>
-                   <item row="0" column="1">
-                    <widget class="QLineEdit" name="lineRecursion">
-                     <property name="readOnly">
-                      <bool>true</bool>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="1" column="0">
-                    <widget class="QLabel" name="label_9">
-                     <property name="font">
-                      <font>
-                       <pointsize>11</pointsize>
-                      </font>
+                   <item>
+                    <widget class="QPushButton" name="pushButton">
+                     <property name="enabled">
+                      <bool>false</bool>
                      </property>
                      <property name="text">
-                      <string>Structures</string>
-                     </property>
-                     <property name="buddy">
-                      <cstring>lineStructures</cstring>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="2" column="0">
-                    <widget class="QLabel" name="label_11">
-                     <property name="font">
-                      <font>
-                       <pointsize>11</pointsize>
-                      </font>
-                     </property>
-                     <property name="text">
-                      <string>Files</string>
-                     </property>
-                     <property name="buddy">
-                      <cstring>lineFiles</cstring>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="1" column="1">
-                    <widget class="QLineEdit" name="lineStructures">
-                     <property name="readOnly">
-                      <bool>true</bool>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="2" column="1">
-                    <widget class="QLineEdit" name="lineFiles">
-                     <property name="readOnly">
-                      <bool>true</bool>
+                      <string>Reset all scores</string>
                      </property>
                     </widget>
                    </item>
                   </layout>
-                 </item>
-                 <item row="2" column="1" colspan="2">
-                  <widget class="QLineEdit" name="lineMean">
-                   <property name="readOnly">
-                    <bool>true</bool>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="2">
-                  <layout class="QFormLayout" name="formLayout_4">
-                   <item row="0" column="0">
-                    <widget class="QLabel" name="label_4">
-                     <property name="font">
-                      <font>
-                       <pointsize>11</pointsize>
-                      </font>
-                     </property>
-                     <property name="text">
-                      <string>Pointers and adresses</string>
-                     </property>
-                     <property name="buddy">
-                      <cstring>linePointers</cstring>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="1" column="0">
-                    <widget class="QLabel" name="label_12">
-                     <property name="font">
-                      <font>
-                       <pointsize>11</pointsize>
-                      </font>
-                     </property>
-                     <property name="text">
-                      <string>Dynamic memory</string>
-                     </property>
-                     <property name="buddy">
-                      <cstring>lineDyn_Mem</cstring>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="2" column="0">
-                    <widget class="QLabel" name="label_13">
-                     <property name="font">
-                      <font>
-                       <pointsize>11</pointsize>
-                      </font>
-                     </property>
-                     <property name="text">
-                      <string>Final test result</string>
-                     </property>
-                     <property name="buddy">
-                      <cstring>lineFinal</cstring>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="1">
-                    <widget class="QLineEdit" name="linePointers">
-                     <property name="readOnly">
-                      <bool>true</bool>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="1" column="1">
-                    <widget class="QLineEdit" name="lineDyn_Mem">
-                     <property name="readOnly">
-                      <bool>true</bool>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="2" column="1">
-                    <widget class="QLineEdit" name="lineFinal">
-                     <property name="readOnly">
-                      <bool>true</bool>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
-                 </item>
-                 <item row="2" column="0">
-                  <widget class="QLabel" name="label_5">
-                   <property name="font">
-                    <font>
-                     <pointsize>11</pointsize>
-                    </font>
-                   </property>
-                   <property name="text">
-                    <string>Arithmetic mean of all results</string>
-                   </property>
-                   <property name="buddy">
-                    <cstring>lineMean</cstring>
-                   </property>
-                  </widget>
                  </item>
                 </layout>
                </widget>

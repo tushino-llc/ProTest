@@ -117,7 +117,7 @@ void MainWindow::on_pushButtonSignIn_clicked()
             }
         }
 
-        db_close();
+//        db_close();
     }
 }
 

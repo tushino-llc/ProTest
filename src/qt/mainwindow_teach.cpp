@@ -66,10 +66,49 @@ void MainWindow_teach::on_actionExit_triggered()
 
 void MainWindow_teach::on_comboBox_currentIndexChanged(int index)
 {
+    /* Initializing variables */
     char a[10];
     sprintf(a, "%d", index);
+    int id;
+    double mean = 0.0;
+    struct Marks mks;
+    struct User usr;
+
+    /* Main part */
     if (index) {
-        ui->lineFN->setText(a);
+        id = get_student_id(ui->comboBox->currentIndex());
+        mks = db_get_user_marks(id);
+        usr = db_get_user(id);
+        ui->lineFN->setText(usr.first_name);
+        ui->lineLN->setText(usr.last_name);
+        ui->lineLogin->setText(usr.login);
+        for (int i = 0; i < 10; ++i) {
+            if (i == 8) {
+                continue;
+            }
+            mean += mks.values[i];
+        }
+        mean /= 9;
+        sprintf(a, "%d", mks.values[0]);
+        ui->lineLoops->setText(a);
+        sprintf(a, "%d", mks.values[1]);
+        ui->lineArrays->setText(a);
+        sprintf(a, "%d", mks.values[2]);
+        ui->lineStrings->setText(a);
+        sprintf(a, "%d", mks.values[3]);
+        ui->lineRecursion->setText(a);
+        sprintf(a, "%d", mks.values[4]);
+        ui->lineStructures->setText(a);
+        sprintf(a, "%d", mks.values[5]);
+        ui->lineFiles->setText(a);
+        sprintf(a, "%d", mks.values[6]);
+        ui->linePointers->setText(a);
+        sprintf(a, "%d", mks.values[7]);
+        ui->lineDyn_Mem->setText(a);
+        sprintf(a, "%d", mks.values[9]);
+        ui->lineFinal->setText(a);
+        sprintf(a, "%6.3lf", mean);
+        ui->lineMean->setText(a);
     } else {
         ui->actionAllow->setChecked(false);
         ui->lineLoops->setReadOnly(true);
@@ -81,6 +120,8 @@ void MainWindow_teach::on_comboBox_currentIndexChanged(int index)
         ui->linePointers->setReadOnly(true);
         ui->lineDyn_Mem->setReadOnly(true);
         ui->lineFinal->setReadOnly(true);
+        ui->pushButton->setEnabled(false);
+        ui->pushButton_2->setEnabled(false);
 
         ui->lineFN->setText("");
         ui->lineLN->setText("");
@@ -94,6 +135,7 @@ void MainWindow_teach::on_comboBox_currentIndexChanged(int index)
         ui->linePointers->setText("");
         ui->lineDyn_Mem->setText("");
         ui->lineFinal->setText("");
+        ui->lineMean->setText("");
     }
 
     ui->pushButton_rm->setEnabled((index) ? true : false);
@@ -103,28 +145,34 @@ void MainWindow_teach::on_actionAllow_triggered()
 {
 
     /* Main part */
-    if ((ui->actionAllow->isChecked())) {
-        ui->actionAllow->setChecked(true);
-        ui->lineLoops->setReadOnly(false);
-        ui->lineArrays->setReadOnly(false);
-        ui->lineStrings->setReadOnly(false);
-        ui->lineRecursion->setReadOnly(false);
-        ui->lineStructures->setReadOnly(false);
-        ui->lineFiles->setReadOnly(false);
-        ui->linePointers->setReadOnly(false);
-        ui->lineDyn_Mem->setReadOnly(false);
-        ui->lineFinal->setReadOnly(false);
-    } else {
-        ui->actionAllow->setChecked(false);
-        ui->lineLoops->setReadOnly(true);
-        ui->lineArrays->setReadOnly(true);
-        ui->lineStrings->setReadOnly(true);
-        ui->lineRecursion->setReadOnly(true);
-        ui->lineStructures->setReadOnly(true);
-        ui->lineFiles->setReadOnly(true);
-        ui->linePointers->setReadOnly(true);
-        ui->lineDyn_Mem->setReadOnly(true);
-        ui->lineFinal->setReadOnly(true);
+    if (ui->comboBox->currentIndex()) {
+        if ((ui->actionAllow->isChecked())) {
+            ui->actionAllow->setChecked(true);
+            ui->lineLoops->setReadOnly(false);
+            ui->lineArrays->setReadOnly(false);
+            ui->lineStrings->setReadOnly(false);
+            ui->lineRecursion->setReadOnly(false);
+            ui->lineStructures->setReadOnly(false);
+            ui->lineFiles->setReadOnly(false);
+            ui->linePointers->setReadOnly(false);
+            ui->lineDyn_Mem->setReadOnly(false);
+            ui->lineFinal->setReadOnly(false);
+            ui->pushButton->setEnabled(true);
+            ui->pushButton_2->setEnabled(true);
+        } else {
+            ui->actionAllow->setChecked(false);
+            ui->lineLoops->setReadOnly(true);
+            ui->lineArrays->setReadOnly(true);
+            ui->lineStrings->setReadOnly(true);
+            ui->lineRecursion->setReadOnly(true);
+            ui->lineStructures->setReadOnly(true);
+            ui->lineFiles->setReadOnly(true);
+            ui->linePointers->setReadOnly(true);
+            ui->lineDyn_Mem->setReadOnly(true);
+            ui->lineFinal->setReadOnly(true);
+            ui->pushButton->setEnabled(false);
+            ui->pushButton_2->setEnabled(false);
+        }
     }
 }
 
@@ -168,11 +216,12 @@ void MainWindow_teach::on_actionOpen_Database_triggered()
 
 
     /* Main part */
-    if (db_open(arr.data()) != -1) {
+//    db_close();
+//    if (db_open(arr.data()) != -1) {
         init_users();
-    } else {
-        QMessageBox::critical(this, "Error!", "Couldn't open database!");
-    }
+//    } else {
+//        QMessageBox::critical(this, "Error!", "Couldn't open database!");
+//    }
 }
 
 void MainWindow_teach::on_actionClose_Database_triggered()
@@ -180,9 +229,7 @@ void MainWindow_teach::on_actionClose_Database_triggered()
 
     /* Main part */
     db_close();
-    ui->comboBox->clear();
-    ui->comboBox->addItem("Choose a student...");
-    ui->pushButton_add->setEnabled(false);
+    remove_users();
 }
 
 void MainWindow_teach::on_pushButton_add_clicked()
@@ -196,7 +243,11 @@ void MainWindow_teach::on_pushButton_add_clicked()
     dialog1->AddStudent();
     dialog1->show();
 
-    init_users();
+    while (dialog1->isModal()) {
+
+    }
+
+    refresh_users();
 }
 
 void MainWindow_teach::init_users() {
@@ -204,12 +255,15 @@ void MainWindow_teach::init_users() {
     /* Initializing variables */
     int size;
     struct User *usr;
-    char fnln[513];
+    char fnln[515], id[10];
 
     /* Main part */
     usr = db_get_users(&size);
     for (int i = 0; i < size; ++i) {
         strcpy(fnln, "");
+        sprintf(id, "%d", (usr + i)->id);
+        strcat(fnln, id);
+        strcat(fnln, ") ");
         strcat(fnln, (usr + i)->first_name);
         strcat(fnln, " ");
         strcat(fnln, (usr + i)->last_name);
@@ -218,4 +272,70 @@ void MainWindow_teach::init_users() {
     }
     delete usr;
     ui->pushButton_add->setEnabled(true);
+}
+
+void MainWindow_teach::remove_users() {
+
+    /* Main part */
+    ui->comboBox->clear();
+    ui->comboBox->clear();
+    ui->comboBox->addItem("Choose a student...");
+    ui->pushButton_add->setEnabled(false);
+}
+
+void MainWindow_teach::refresh_users() {
+
+    /* Main part */
+    remove_users();
+    init_users();
+}
+
+void MainWindow_teach::on_pushButton_rm_clicked()
+{
+
+    /* Initializing variables */
+    int id;
+    QMessageBox::StandardButton reply;
+
+    /* Main part */
+    id = get_student_id(ui->comboBox->currentIndex());
+    reply = QMessageBox::question(this, "Teacher's mode", "Are you sure you want to delete this student?",
+                                  QMessageBox::Yes | QMessageBox::No);
+    if (reply == QMessageBox::Yes) {
+        if (db_delete_user(id) != -1) {
+            refresh_users();
+        } else {
+            QMessageBox::critical(this, "Error!", "Couldn't delete this student!");
+        }
+    }
+}
+
+int MainWindow_teach::get_student_id(int index) {
+
+    /* Initializing variables */
+    int id;
+    QString Qstr;
+    QByteArray arr;
+    char id_s[10] = {};
+
+    /* Main part */
+    Qstr = ui->comboBox->itemText(index);
+    arr = Qstr.toLocal8Bit();
+    sprintf(id_s, "%s", arr.data());
+    *(id_s + strlen(id_s) - 1) = '\0';
+    id = atoi(id_s);
+
+    /* Returning value */
+    return id;
+}
+void MainWindow_teach::on_pushButton_2_clicked()
+{
+
+    /* Initializing variables */
+    int id = -1;
+    char a[10];
+
+    /* Main part */
+    id = get_student_id(ui->comboBox->currentIndex());
+
 }

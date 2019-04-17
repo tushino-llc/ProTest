@@ -100,8 +100,6 @@ User db_get_user(int id)
     num = sqlite3_column_int(st, 5);
     user.admin = num != 0;
 
-    delete(text);
-
     return user;
 }
 

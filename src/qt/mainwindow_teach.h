@@ -18,6 +18,7 @@ public:
     explicit MainWindow_teach(QWidget *parent = nullptr);
     ~MainWindow_teach();
     void Set_init_mode(int);
+    void refresh_users();
 
 private slots:
     void on_actionStudents_2_triggered();
@@ -39,6 +40,14 @@ private slots:
     void on_pushButton_add_clicked();
 
     void init_users();
+
+    void remove_users();
+
+    void on_pushButton_rm_clicked();
+
+    int get_student_id(int);
+
+    void on_pushButton_2_clicked();
 
 private:
     Ui::MainWindow_teach *ui;

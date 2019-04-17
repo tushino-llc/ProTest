@@ -75,13 +75,6 @@ public:
     QLineEdit *lineLogin;
     QGroupBox *groupBox_4;
     QGridLayout *gridLayout;
-    QFormLayout *formLayout_2;
-    QLabel *label_6;
-    QLineEdit *lineLoops;
-    QLineEdit *lineArrays;
-    QLineEdit *lineStrings;
-    QLabel *label_8;
-    QLabel *label_7;
     QFormLayout *formLayout_3;
     QLabel *label_10;
     QLineEdit *lineRecursion;
@@ -89,7 +82,6 @@ public:
     QLabel *label_11;
     QLineEdit *lineStructures;
     QLineEdit *lineFiles;
-    QLineEdit *lineMean;
     QFormLayout *formLayout_4;
     QLabel *label_4;
     QLabel *label_12;
@@ -97,7 +89,18 @@ public:
     QLineEdit *linePointers;
     QLineEdit *lineDyn_Mem;
     QLineEdit *lineFinal;
+    QLineEdit *lineMean;
     QLabel *label_5;
+    QFormLayout *formLayout_2;
+    QLabel *label_6;
+    QLineEdit *lineLoops;
+    QLineEdit *lineArrays;
+    QLineEdit *lineStrings;
+    QLabel *label_8;
+    QLabel *label_7;
+    QHBoxLayout *horizontalLayout_3;
+    QPushButton *pushButton_2;
+    QPushButton *pushButton;
     QTableWidget *tableWidget;
     QWidget *page_2;
     QCheckBox *checkBox;
@@ -266,6 +269,100 @@ public:
         groupBox_4->setObjectName(QString::fromUtf8("groupBox_4"));
         gridLayout = new QGridLayout(groupBox_4);
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
+        formLayout_3 = new QFormLayout();
+        formLayout_3->setObjectName(QString::fromUtf8("formLayout_3"));
+        label_10 = new QLabel(groupBox_4);
+        label_10->setObjectName(QString::fromUtf8("label_10"));
+        label_10->setFont(font);
+
+        formLayout_3->setWidget(0, QFormLayout::LabelRole, label_10);
+
+        lineRecursion = new QLineEdit(groupBox_4);
+        lineRecursion->setObjectName(QString::fromUtf8("lineRecursion"));
+        lineRecursion->setReadOnly(true);
+
+        formLayout_3->setWidget(0, QFormLayout::FieldRole, lineRecursion);
+
+        label_9 = new QLabel(groupBox_4);
+        label_9->setObjectName(QString::fromUtf8("label_9"));
+        label_9->setFont(font);
+
+        formLayout_3->setWidget(1, QFormLayout::LabelRole, label_9);
+
+        label_11 = new QLabel(groupBox_4);
+        label_11->setObjectName(QString::fromUtf8("label_11"));
+        label_11->setFont(font);
+
+        formLayout_3->setWidget(2, QFormLayout::LabelRole, label_11);
+
+        lineStructures = new QLineEdit(groupBox_4);
+        lineStructures->setObjectName(QString::fromUtf8("lineStructures"));
+        lineStructures->setReadOnly(true);
+
+        formLayout_3->setWidget(1, QFormLayout::FieldRole, lineStructures);
+
+        lineFiles = new QLineEdit(groupBox_4);
+        lineFiles->setObjectName(QString::fromUtf8("lineFiles"));
+        lineFiles->setReadOnly(true);
+
+        formLayout_3->setWidget(2, QFormLayout::FieldRole, lineFiles);
+
+
+        gridLayout->addLayout(formLayout_3, 0, 1, 1, 1);
+
+        formLayout_4 = new QFormLayout();
+        formLayout_4->setObjectName(QString::fromUtf8("formLayout_4"));
+        label_4 = new QLabel(groupBox_4);
+        label_4->setObjectName(QString::fromUtf8("label_4"));
+        label_4->setFont(font);
+
+        formLayout_4->setWidget(0, QFormLayout::LabelRole, label_4);
+
+        label_12 = new QLabel(groupBox_4);
+        label_12->setObjectName(QString::fromUtf8("label_12"));
+        label_12->setFont(font);
+
+        formLayout_4->setWidget(1, QFormLayout::LabelRole, label_12);
+
+        label_13 = new QLabel(groupBox_4);
+        label_13->setObjectName(QString::fromUtf8("label_13"));
+        label_13->setFont(font);
+
+        formLayout_4->setWidget(2, QFormLayout::LabelRole, label_13);
+
+        linePointers = new QLineEdit(groupBox_4);
+        linePointers->setObjectName(QString::fromUtf8("linePointers"));
+        linePointers->setReadOnly(true);
+
+        formLayout_4->setWidget(0, QFormLayout::FieldRole, linePointers);
+
+        lineDyn_Mem = new QLineEdit(groupBox_4);
+        lineDyn_Mem->setObjectName(QString::fromUtf8("lineDyn_Mem"));
+        lineDyn_Mem->setReadOnly(true);
+
+        formLayout_4->setWidget(1, QFormLayout::FieldRole, lineDyn_Mem);
+
+        lineFinal = new QLineEdit(groupBox_4);
+        lineFinal->setObjectName(QString::fromUtf8("lineFinal"));
+        lineFinal->setReadOnly(true);
+
+        formLayout_4->setWidget(2, QFormLayout::FieldRole, lineFinal);
+
+
+        gridLayout->addLayout(formLayout_4, 0, 5, 1, 1);
+
+        lineMean = new QLineEdit(groupBox_4);
+        lineMean->setObjectName(QString::fromUtf8("lineMean"));
+        lineMean->setReadOnly(true);
+
+        gridLayout->addWidget(lineMean, 2, 1, 1, 1);
+
+        label_5 = new QLabel(groupBox_4);
+        label_5->setObjectName(QString::fromUtf8("label_5"));
+        label_5->setFont(font);
+
+        gridLayout->addWidget(label_5, 2, 0, 1, 1);
+
         formLayout_2 = new QFormLayout();
         formLayout_2->setObjectName(QString::fromUtf8("formLayout_2"));
         label_6 = new QLabel(groupBox_4);
@@ -312,99 +409,22 @@ public:
 
         gridLayout->addLayout(formLayout_2, 0, 0, 1, 1);
 
-        formLayout_3 = new QFormLayout();
-        formLayout_3->setObjectName(QString::fromUtf8("formLayout_3"));
-        label_10 = new QLabel(groupBox_4);
-        label_10->setObjectName(QString::fromUtf8("label_10"));
-        label_10->setFont(font);
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
+        pushButton_2 = new QPushButton(groupBox_4);
+        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
+        pushButton_2->setEnabled(false);
 
-        formLayout_3->setWidget(0, QFormLayout::LabelRole, label_10);
+        horizontalLayout_3->addWidget(pushButton_2);
 
-        lineRecursion = new QLineEdit(groupBox_4);
-        lineRecursion->setObjectName(QString::fromUtf8("lineRecursion"));
-        lineRecursion->setReadOnly(true);
+        pushButton = new QPushButton(groupBox_4);
+        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+        pushButton->setEnabled(false);
 
-        formLayout_3->setWidget(0, QFormLayout::FieldRole, lineRecursion);
-
-        label_9 = new QLabel(groupBox_4);
-        label_9->setObjectName(QString::fromUtf8("label_9"));
-        label_9->setFont(font);
-
-        formLayout_3->setWidget(1, QFormLayout::LabelRole, label_9);
-
-        label_11 = new QLabel(groupBox_4);
-        label_11->setObjectName(QString::fromUtf8("label_11"));
-        label_11->setFont(font);
-
-        formLayout_3->setWidget(2, QFormLayout::LabelRole, label_11);
-
-        lineStructures = new QLineEdit(groupBox_4);
-        lineStructures->setObjectName(QString::fromUtf8("lineStructures"));
-        lineStructures->setReadOnly(true);
-
-        formLayout_3->setWidget(1, QFormLayout::FieldRole, lineStructures);
-
-        lineFiles = new QLineEdit(groupBox_4);
-        lineFiles->setObjectName(QString::fromUtf8("lineFiles"));
-        lineFiles->setReadOnly(true);
-
-        formLayout_3->setWidget(2, QFormLayout::FieldRole, lineFiles);
+        horizontalLayout_3->addWidget(pushButton);
 
 
-        gridLayout->addLayout(formLayout_3, 0, 1, 1, 1);
-
-        lineMean = new QLineEdit(groupBox_4);
-        lineMean->setObjectName(QString::fromUtf8("lineMean"));
-        lineMean->setReadOnly(true);
-
-        gridLayout->addWidget(lineMean, 2, 1, 1, 2);
-
-        formLayout_4 = new QFormLayout();
-        formLayout_4->setObjectName(QString::fromUtf8("formLayout_4"));
-        label_4 = new QLabel(groupBox_4);
-        label_4->setObjectName(QString::fromUtf8("label_4"));
-        label_4->setFont(font);
-
-        formLayout_4->setWidget(0, QFormLayout::LabelRole, label_4);
-
-        label_12 = new QLabel(groupBox_4);
-        label_12->setObjectName(QString::fromUtf8("label_12"));
-        label_12->setFont(font);
-
-        formLayout_4->setWidget(1, QFormLayout::LabelRole, label_12);
-
-        label_13 = new QLabel(groupBox_4);
-        label_13->setObjectName(QString::fromUtf8("label_13"));
-        label_13->setFont(font);
-
-        formLayout_4->setWidget(2, QFormLayout::LabelRole, label_13);
-
-        linePointers = new QLineEdit(groupBox_4);
-        linePointers->setObjectName(QString::fromUtf8("linePointers"));
-        linePointers->setReadOnly(true);
-
-        formLayout_4->setWidget(0, QFormLayout::FieldRole, linePointers);
-
-        lineDyn_Mem = new QLineEdit(groupBox_4);
-        lineDyn_Mem->setObjectName(QString::fromUtf8("lineDyn_Mem"));
-        lineDyn_Mem->setReadOnly(true);
-
-        formLayout_4->setWidget(1, QFormLayout::FieldRole, lineDyn_Mem);
-
-        lineFinal = new QLineEdit(groupBox_4);
-        lineFinal->setObjectName(QString::fromUtf8("lineFinal"));
-        lineFinal->setReadOnly(true);
-
-        formLayout_4->setWidget(2, QFormLayout::FieldRole, lineFinal);
-
-
-        gridLayout->addLayout(formLayout_4, 0, 2, 1, 1);
-
-        label_5 = new QLabel(groupBox_4);
-        label_5->setObjectName(QString::fromUtf8("label_5"));
-        label_5->setFont(font);
-
-        gridLayout->addWidget(label_5, 2, 0, 1, 1);
+        gridLayout->addLayout(horizontalLayout_3, 2, 5, 1, 1);
 
 
         horizontalLayout->addWidget(groupBox_4);
@@ -508,9 +528,6 @@ public:
         label_2->setBuddy(lineFN);
         label_3->setBuddy(lineLN);
         label->setBuddy(lineLogin);
-        label_6->setBuddy(lineLoops);
-        label_8->setBuddy(lineArrays);
-        label_7->setBuddy(lineStrings);
         label_10->setBuddy(lineRecursion);
         label_9->setBuddy(lineStructures);
         label_11->setBuddy(lineFiles);
@@ -518,6 +535,9 @@ public:
         label_12->setBuddy(lineDyn_Mem);
         label_13->setBuddy(lineFinal);
         label_5->setBuddy(lineMean);
+        label_6->setBuddy(lineLoops);
+        label_8->setBuddy(lineArrays);
+        label_7->setBuddy(lineStrings);
 #endif // QT_NO_SHORTCUT
 
         menubar->addAction(menuFile->menuAction());
@@ -618,9 +638,6 @@ public:
         label_3->setText(QApplication::translate("MainWindow_teach", "Last name", nullptr));
         label->setText(QApplication::translate("MainWindow_teach", "Login", nullptr));
         groupBox_4->setTitle(QApplication::translate("MainWindow_teach", "Scores", nullptr));
-        label_6->setText(QApplication::translate("MainWindow_teach", "Loops", nullptr));
-        label_8->setText(QApplication::translate("MainWindow_teach", "Arrays", nullptr));
-        label_7->setText(QApplication::translate("MainWindow_teach", "Strings", nullptr));
         label_10->setText(QApplication::translate("MainWindow_teach", "Recursion", nullptr));
         label_9->setText(QApplication::translate("MainWindow_teach", "Structures", nullptr));
         label_11->setText(QApplication::translate("MainWindow_teach", "Files", nullptr));
@@ -628,6 +645,11 @@ public:
         label_12->setText(QApplication::translate("MainWindow_teach", "Dynamic memory", nullptr));
         label_13->setText(QApplication::translate("MainWindow_teach", "Final test result", nullptr));
         label_5->setText(QApplication::translate("MainWindow_teach", "Arithmetic mean of all results", nullptr));
+        label_6->setText(QApplication::translate("MainWindow_teach", "Loops", nullptr));
+        label_8->setText(QApplication::translate("MainWindow_teach", "Arrays", nullptr));
+        label_7->setText(QApplication::translate("MainWindow_teach", "Strings", nullptr));
+        pushButton_2->setText(QApplication::translate("MainWindow_teach", "Apply changes", nullptr));
+        pushButton->setText(QApplication::translate("MainWindow_teach", "Reset all scores", nullptr));
         QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
         ___qtablewidgetitem->setText(QApplication::translate("MainWindow_teach", "First name", nullptr));
         QTableWidgetItem *___qtablewidgetitem1 = tableWidget->horizontalHeaderItem(1);

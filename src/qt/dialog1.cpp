@@ -241,21 +241,15 @@ void Dialog1::on_pushSignUp_clicked()
 {
 
     /* Initializing variables */
-    extern sqlite3 * db;
     char *login, *pass, *fn, *ln;
-    int role, id = -1, res = -1;
+    int role, id = -1;
     QString Qlogin, Qpass, Q1, Qfn, Qln;
     QByteArray temp_ba;
     QMessageBox::StandardButton reply;
     struct User usr;
 
     /* Main part */
-    if (db == nullptr) {
-        res = db_open(PATH_TO_DB);
-    } else {
-        res = 0;
-    }
-    if (res != -1) {
+    //if (db_open(PATH_TO_DB) != -1) {
         if (ui->lineEditPass->text() == ui->lineEditPass_2->text()) {
             Qlogin = ui->lineEditLogin->text();
             temp_ba = Qlogin.toLocal8Bit();
@@ -288,16 +282,16 @@ void Dialog1::on_pushSignUp_clicked()
                         strcpy(usr.login, login);
                         strcpy(usr.first_name, fn);
                         strcpy(usr.last_name, ln);
-                        if (role == 2) {
-                            id = db_add_admin(usr, pass);
-                        } else if (role == 1) {
+                        if (role == 1) {
                             id = db_add_user(usr, pass);
+                        } else if (role == 2) {
+                            id = db_add_admin(usr, pass);
                         }
 
-                        if (id && ui->label->text() == "Sign up") {
-                            QMessageBox::information(this, "Done!", "Signed up successfully!");
+                        if (id != -1) {
                             /* Forum's code */
                             if (ui->label->text() == "Sign up") {
+                                QMessageBox::information(this, "Done!", "Signed up successfully!");
                                 QObject *p = this;
                                 do
                                 {
@@ -318,9 +312,10 @@ void Dialog1::on_pushSignUp_clicked()
                                     this->hide();
                                 }
                             } else if (ui->label->text() == "Add student") {
-                                    this->hide();
+                                QMessageBox::information(this, "Done!", "Student was added successfully!");
+                                this->hide();
                             }
-                        } else if (id == -1) {
+                        } else {
                             QMessageBox::critical(this, "Error!", "Failed to create user!");
                         }
                     } else {
@@ -334,15 +329,16 @@ void Dialog1::on_pushSignUp_clicked()
             free(pass);
             free(fn);
             free(ln);
-//            free(q1);
         } else {
             QMessageBox::critical(this, "Error!", "Password mismatch!");
         }
-    } else {
-        QMessageBox::critical(this, "Error!", "Couldn't open database!");
-    }
+    //} else {
+    //    QMessageBox::critical(this, "Error!", "Couldn't open database!");
+    //}
 
     if (ui->label->text() == "Sign up") {
-        db_close();
+//        db_close();
+    } else {
+
     }
 }
