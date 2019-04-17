@@ -40,6 +40,7 @@ public:
     void SetPass(class QString);
     void SignUp();
     void AddStudent();
+    int field_check(char *);
 
 private slots:
     void on_lineEditPass_2_textChanged(const QString &arg1);

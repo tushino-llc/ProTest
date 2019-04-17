@@ -1,6 +1,6 @@
 #include "mainwindow_teach.h"
-#include "mainwindow.h"
 #include "../build-qt-Desktop-Debug/ui_mainwindow_teach.h"
+#include "mainwindow.h"
 
 MainWindow_teach::MainWindow_teach(QWidget *parent) :
     QMainWindow(parent),

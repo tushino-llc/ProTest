@@ -39,7 +39,7 @@ HEADERS  += mainwindow.h \
     ../libs/libcrypt/include/tomcrypt_prng.h \
     ../headers/database.h \
     ../headers/sqlite3.h \
-    ../headers/teacher_menu.h \
+    #../headers/teacher_menu.h \
     ../headers/tests_main_header.h \
     ../headers/main_menu.h \
     mainwindow_teach.h \
