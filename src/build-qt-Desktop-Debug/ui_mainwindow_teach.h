@@ -73,6 +73,8 @@ public:
     QLineEdit *lineLN;
     QLabel *label;
     QLineEdit *lineLogin;
+    QLabel *label_14;
+    QLineEdit *lineID;
     QGroupBox *groupBox_4;
     QGridLayout *gridLayout;
     QFormLayout *formLayout_3;
@@ -258,6 +260,18 @@ public:
         lineLogin->setReadOnly(true);
 
         formLayout->setWidget(2, QFormLayout::FieldRole, lineLogin);
+
+        label_14 = new QLabel(groupBox_3);
+        label_14->setObjectName(QString::fromUtf8("label_14"));
+        label_14->setFont(font1);
+
+        formLayout->setWidget(3, QFormLayout::LabelRole, label_14);
+
+        lineID = new QLineEdit(groupBox_3);
+        lineID->setObjectName(QString::fromUtf8("lineID"));
+        lineID->setReadOnly(true);
+
+        formLayout->setWidget(3, QFormLayout::FieldRole, lineID);
 
 
         gridLayout_2->addLayout(formLayout, 0, 0, 1, 1);
@@ -637,6 +651,7 @@ public:
         label_2->setText(QApplication::translate("MainWindow_teach", "First name", nullptr));
         label_3->setText(QApplication::translate("MainWindow_teach", "Last name", nullptr));
         label->setText(QApplication::translate("MainWindow_teach", "Login", nullptr));
+        label_14->setText(QApplication::translate("MainWindow_teach", "ID", nullptr));
         groupBox_4->setTitle(QApplication::translate("MainWindow_teach", "Scores", nullptr));
         label_10->setText(QApplication::translate("MainWindow_teach", "Recursion", nullptr));
         label_9->setText(QApplication::translate("MainWindow_teach", "Structures", nullptr));

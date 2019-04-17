@@ -49,6 +49,10 @@ private slots:
 
     void on_pushButton_2_clicked();
 
+    void on_pushButton_clicked();
+
+    double get_mean(int);
+
 private:
     Ui::MainWindow_teach *ui;
     Dialog1 *dialog1;

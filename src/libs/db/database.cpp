@@ -89,13 +89,16 @@ User db_get_user(int id)
     int num = sqlite3_column_int(st, 0);
     user.id = num;
 
-    auto text = (char *) sqlite3_column_text(st, 1);
+    char *text = strdup((char *) sqlite3_column_text(st, 1));
     strcpy(user.login, text);
+    free(text);
     // skip password column
-    text = (char *) sqlite3_column_text(st, 3);
-    strcpy( user.first_name, text );
-    text = (char *) sqlite3_column_text(st, 4);
-    strcpy( user.last_name, text );
+    text = strdup((char *) sqlite3_column_text(st, 3));
+    strcpy( user.first_name, text);
+    free(text);
+    text = strdup((char *) sqlite3_column_text(st, 4));
+    strcpy( user.last_name, text);
+    free(text);
 
     num = sqlite3_column_int(st, 5);
     user.admin = num != 0;
