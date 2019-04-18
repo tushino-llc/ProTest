@@ -706,3 +706,22 @@ int db_update_user(User user, char * password)
 
     return SQLITE_OK;
 }
+
+int db_get_id_by_login(const char * login)
+{
+    int rc;
+    sqlite3_stmt * st = nullptr;
+
+    rc = sqlite3_prepare_v2(db, "SELECT `id` FROM `users` WHERE `login` = ? LIMIT 1;", -1, &st, nullptr);
+    sqlite3_bind_text( st, 1, login, -1, SQLITE_STATIC);
+    if (rc != SQLITE_OK)
+        return -1;
+
+    rc= sqlite3_step(st);
+    if (rc != SQLITE_DONE && rc != SQLITE_OK && rc != SQLITE_ROW)
+        return -1;
+
+    int id = sqlite3_column_int(st, 0);
+
+    return id;
+}
