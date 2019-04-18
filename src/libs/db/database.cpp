@@ -333,6 +333,15 @@ int db_add_user(User user, char * password)
     rc = sqlite3_step(st);
     if (rc != SQLITE_DONE)
         return -1;
+    
+    rc = sqlite3_prepare_v2(db, "INSERT INTO 'marks' VALUES(last_insert_rowid(),0,0,0,0,0,0,0,0,0,0)", -1, &st, nullptr);
+
+    if (rc != SQLITE_OK)
+        return -1;
+
+    rc = sqlite3_step(st);
+    if (rc != SQLITE_DONE)
+        return -1;
 
 
     return (int) sqlite3_last_insert_rowid(db);
