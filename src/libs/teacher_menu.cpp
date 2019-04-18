@@ -21,41 +21,86 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 #include "../headers/tests_main_header.h"
 
 
-void edit_questions_teacher()
+int edit_questions_teacher()
 {
-	int sign;
-	do {
-			printf(" ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––\n"
-				"|                                                            |\n"
-				"|                      >> ProTest v1.0 <<                    |\n"
-				"|                                                            |\n"
-				"|  >> Choose action:                                         |\n"
-				"|                                                            |\n"
-				"|       1) Delete the question                               |\n"
-				"|       2) Add a question                                    |\n"
-				"|       3) Change the question                               |\n"
-				"|                                                            |\n"
-				"|       0) Backward                                          |\n");
+	/* Initializing variables */
+	int func, junk, n = 0;
 
-			do {
-			printf("| Answer: ");
-			scanf("%d", &sign);
-		} while ((sign > 3) || (sign < 0));
+	/* I/O flow */
+	while (1) {
+		printf(" ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––\n"
+			"|                                                            |\n"
+			"|                      >> ProTest v1.0 <<                    |\n"
+			"|                                                            |\n"
+			"|  >> Choose action:                                         |\n"
+			"|                                                            |\n"
+			"|       1) Delete the question                               |\n"
+			"|       2) Add a question                                    |\n"
+			"|       3) Change the question                               |\n"
+			"|                                                            |\n"
+			"|       >> Type \"quit\" to terminate this program <<          |\n"
+			"|                                                            |\n");
 
-		switch (sign)
-		{
-		case 1: delete_the_question(); break;
-		case 2: add_a_question(); break;
-		case 3: change_the_question(); break;
-		}
+		printf("| Answer: ");
+		func = getchar();
+		prt_ln();
+		if (isdigit(func) && func >= '1' && func <= '3') {
+			func -= '0';
+			if ((junk = getchar()) != '\n') {
+				while ((junk = getchar()) != '\n')
+					;
+				no_cmd();
+				continue;
+			}
 
-	} while (sign != 0);
+			switch (func) {
+			case 1:
+				delete_the_question();
+				break;
+			case 2:
+				add_a_question();
+				break;
+			case 3:
+				change_the_question();
+				break;
+			}
+
+				if (!n) {
+					continue;
+				}
+				else if (n == -1) {
+					return -1;
+				}
+				else {
+					return 0;
+				}
+
+			}
+			else if (func == 'q') {
+				if (quit_m()) {
+					return -1;
+				}
+				else {
+					continue;
+				}
+			}
+			else {
+				no_cmd();
+				if (func != '\n') {
+					while ((junk = getchar()) != '\n')
+						;
+				}
+				continue;
+			}
+	}
 }
-void working_with_the_list_of_students()
+int working_with_the_list_of_students()
 {
-	int sign;
-	do {
-		
+	/* Initializing variables */
+	int func, junk, n = 0;
+
+	/* I/O flow */
+	while (1) {
 			printf(" ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––\n"
 				"|                                                            |\n"
 				"|                      >> ProTest v1.0 <<                    |\n"
@@ -67,28 +112,73 @@ void working_with_the_list_of_students()
 				"|       3) To see the change of a student's progress         |\n"
 				"|       4) View the list of students with grades             |\n"
 				"|                                                            |\n"
-				"|       0) Backward                                          |\n");
+				"|       >> Type \"quit\" to terminate this program <<          |\n"
+				"|                                                            |\n");
 
-			do {
 			printf("| Answer: ");
-			scanf("%d", &sign);
-		} while ((sign > 4) || (sign < 0));
+			func = getchar();
+			prt_ln();
+			if (isdigit(func) && func >= '1' && func <= '3') {
+				func -= '0';
+				if ((junk = getchar()) != '\n') {
+					while ((junk = getchar()) != '\n')
+						;
+					no_cmd();
+					continue;
+				}
 
-		switch (sign)
-		{
-		case 1: delete_student_account(); break;
-		case 2: to_add_a_new_account_for_a_student(); break;	
-		case 3: to_see_the_change_of_a_students_progress(); break;
-		case 4: view_the_list_of_students_with_grades();  break;
-		}
+				switch (func) {
+				case 1: 
+					delete_student_account(); 
+					break;
+				case 2: 
+					to_add_a_new_account_for_a_student(); 
+					break;
+				case 3: 
+					to_see_the_change_of_a_students_progress(); 
+					break;
+				case 4: 
+					view_the_list_of_students_with_grades();  
+					break;
+				}
 
-	} while (sign != 0);
+				if (!n) {
+					continue;
+				}
+				else if (n == -1) {
+					return -1;
+				}
+				else {
+					return 0;
+				}
+
+			}
+			else if (func == 'q') {
+				if (quit_m()) {
+					return -1;
+				}
+				else {
+					continue;
+				}
+			}
+			else {
+				no_cmd();
+				if (func != '\n') {
+					while ((junk = getchar()) != '\n')
+						;
+				}
+				continue;
+			}
+	}
 }
-void view_the_list_of_students_with_grades()
-{
-	int sign;
-	do {
 
+int view_the_list_of_students_with_grades()
+{
+	/* Initializing variables */
+	int func, junk, n = 0;
+
+	/* I/O flow */
+	while (1) {
 		printf(" ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––\n"
 			"|                                                            |\n"
 			"|                      >> ProTest v1.0 <<                    |\n"
@@ -100,28 +190,72 @@ void view_the_list_of_students_with_grades()
 			"|       3) View scores for the final test                    |\n"
 			"|       4) View the average score                            |\n"
 			"|                                                            |\n"
-			"|       0) Backward                                          |\n");
+			"|       >> Type \"quit\" to terminate this program <<          |\n"
+			"|                                                            |\n");
 
-		do {
 			printf("| Answer: ");
-			scanf("%d", &sign);
-		} while ((sign > 4) || (sign < 0));
+			func = getchar();
+			prt_ln();
+			if (isdigit(func) && func >= '1' && func <= '3') {
+				func -= '0';
+				if ((junk = getchar()) != '\n') {
+					while ((junk = getchar()) != '\n')
+						;
+					no_cmd();
+					continue;
+				}
 
-		switch (sign)
-		{
-		case 1: view_scores_on_all_topics(); break;
-		case 2: view_estimates_on_a_specific_topic(); break;
-		case 3: view_scores_for_the_final_test(); break;
-		case 4:  view_the_average_score(); break;
-		}
+				switch (func) {
+				case 1: 
+					view_scores_on_all_topics(); 
+					break;
+				case 2: 
+					view_estimates_on_a_specific_topic(); 
+					break;
+				case 3: 
+					view_scores_for_the_final_test(); 
+					break;
+				case 4:  
+					view_the_average_score(); 
+					break;
+				}
 
-	} while (sign != 0);
+				if (!n) {
+					continue;
+				}
+				else if (n == -1) {
+					return -1;
+				}
+				else {
+					return 0;
+				}
+
+			}
+			else if (func == 'q') {
+				if (quit_m()) {
+					return -1;
+				}
+				else {
+					continue;
+				}
+			}
+			else {
+				no_cmd();
+				if (func != '\n') {
+					while ((junk = getchar()) != '\n')
+						;
+				}
+				continue;
+			}
+	}
 }
-void teacher_menu_0()
+int teacher_menu_0()
 {
-	int sign;
-	do {
-		
+	/* Initializing variables */
+	int func, junk, n = 0;
+
+	/* I/O flow */
+	while (1) {
 			printf(" ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––\n"
 				"|                                                            |\n"
 				"|                      >> ProTest v1.0 <<                    |\n"
@@ -131,20 +265,74 @@ void teacher_menu_0()
 				"|       1) Edit questions                                    |\n"
 				"|       2) Working with the list of students                 |\n"
 				"|                                                            |\n"
-				"|       0) Backward                                          |\n");
+				"|       >> Type \"quit\" to terminate this program <<          |\n"
+				"|                                                            |\n");
 
-			do {
 			printf("| Answer: ");
-			scanf("%d", &sign);
-		} while ((sign > 2) || (sign < 0));
+			func = getchar();
+			prt_ln();
+			if (isdigit(func) && func >= '1' && func <= '3') {
+				func -= '0';
+				if ((junk = getchar()) != '\n') {
+					while ((junk = getchar()) != '\n')
+						;
+					no_cmd();
+					continue;
+				}
 
-		switch (sign)
-		{
-		case 1: edit_questions_teacher(); break;
-		case 2: working_with_the_list_of_students(); break;
+				switch (func) {
+				case 1: 
+					edit_questions_teacher(); 
+					break;
+				case 2: 
+					working_with_the_list_of_students(); 
+					break;
+				}
+
+				if (!n) {
+					continue;
+				}
+				else if (n == -1) {
+					return -1;
+				}
+				else {
+					return 0;
+				}
+
+			}
+			else if (func == 'q') {
+				if (quit_m()) {
+					return -1;
+				}
+				else {
+					continue;
+				}
+			}
+			else {
+				no_cmd();
+				if (func != '\n') {
+					while ((junk = getchar()) != '\n')
+						;
+				}
+				continue;
+			}
+	}
+}
+
+int field_check_teacher(char *text) 
+{
+	/* Initializing variables */
+	int i;
+	char ch;
+	/* Main part */
+	for (i = 0; i < static_cast<int>(strlen(text)); ++i) {
+		ch = *(text + i);
+		if (ch == ' ' || ch == '\n' || ch == ' ') {
+			return 0;
 		}
-
-	} while (sign != 0);
+	}
+	/* Returning value */
+	return 1;
 }
 void input_teacher()
 {
@@ -153,10 +341,10 @@ void input_teacher()
 	
 	printf("| Enter the username ");
 	fgets(login, 256, stdin);
-	//Dialog1::field_test(login);
+	field_check_teacher(login);
 	printf("\n| Enter the password ");
 	fgets(password, 30, stdin);
-	//Dialog1::field_test(password);
+	field_check_teacher(password);
 	user = db_login(login, password);
 	if (user.admin != false) { teacher_menu_0(); }
 }

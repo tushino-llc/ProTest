@@ -20,9 +20,8 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 #ifndef TEACHER_MENU_H
 #define TEACHER_MENU_H
 #include "../headers/tests_main_header.h"
-//#include "../qt/dialog1.h"
 
-void teacher_menu_0();
+int teacher_menu_0();
 void input_teacher();
 
 // Questions
@@ -34,13 +33,13 @@ void change_the_question();
 void delete_student_account();
 void to_add_a_new_account_for_a_student();
 void to_see_the_change_of_a_students_progress();
-void view_the_list_of_students_with_grades();
+int view_the_list_of_students_with_grades();
 
 // Results
 void view_scores_on_all_topics();  
 void view_estimates_on_a_specific_topic(); 
 void view_scores_for_the_final_test(); 
 void view_the_average_score();
-
+int field_check_teacher(char *text);
 #endif
 
