@@ -20,6 +20,7 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 
 #include "mainwindow.h"
 #include "../build-qt-Desktop-Debug/ui_mainwindow.h"
+#include "../headers/database.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -117,7 +118,7 @@ void MainWindow::on_pushButtonSignIn_clicked()
             }
         }
 
-//        db_close();
+        db_close();
     }
 }
 

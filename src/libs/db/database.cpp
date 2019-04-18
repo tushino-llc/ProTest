@@ -1,5 +1,6 @@
 #include "../../headers/tests_main_header.h"
 
+sqlite3 *db = nullptr;
 
 int db_open()
 {

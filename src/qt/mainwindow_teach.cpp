@@ -1,6 +1,7 @@
 #include "mainwindow_teach.h"
 #include "../build-qt-Desktop-Debug/ui_mainwindow_teach.h"
 #include "mainwindow.h"
+#include "../headers/database.h"
 
 MainWindow_teach::MainWindow_teach(QWidget *parent) :
     QMainWindow(parent),
@@ -218,12 +219,11 @@ void MainWindow_teach::on_actionOpen_Database_triggered()
 
 
     /* Main part */
-//    db_close();
-//    if (db_open(arr.data()) != -1) {
+    if (db_open(arr.data()) != -1) {
         init_users();
-//    } else {
-//        QMessageBox::critical(this, "Error!", "Couldn't open database!");
-//    }
+    } else {
+        QMessageBox::critical(this, "Error!", "Couldn't open database!");
+    }
 }
 
 void MainWindow_teach::on_actionClose_Database_triggered()
@@ -244,10 +244,6 @@ void MainWindow_teach::on_pushButton_add_clicked()
     dialog1->setModal(true);
     dialog1->AddStudent();
     dialog1->show();
-
-    while (dialog1->isModal()) {
-
-    }
 
     refresh_users();
 }

@@ -18,8 +18,8 @@ You should have received a copy of the GNU General Public License
 along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MAIN_HEADER
-#define MAIN_HEADER
+#ifndef MAIN_HEADER_TEST
+#define MAIN_HEADER_TEST
 
 /* Macros */
 #define PATH_TO_DB ("../db/data.sqlite")

@@ -22,6 +22,7 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 #include "../build-qt-Desktop-Debug/ui_dialog1.h"
 #include "mainwindow.h"
 #include "mainwindow_teach.h"
+#include "../headers/database.h"
 
 Dialog1::Dialog1(QWidget *parent) :
     QDialog(parent),
@@ -249,7 +250,7 @@ void Dialog1::on_pushSignUp_clicked()
     struct User usr;
 
     /* Main part */
-    //if (db_open(PATH_TO_DB) != -1) {
+    if (db_open(PATH_TO_DB) != -1) {
         if (ui->lineEditPass->text() == ui->lineEditPass_2->text()) {
             Qlogin = ui->lineEditLogin->text();
             temp_ba = Qlogin.toLocal8Bit();
@@ -332,12 +333,12 @@ void Dialog1::on_pushSignUp_clicked()
         } else {
             QMessageBox::critical(this, "Error!", "Password mismatch!");
         }
-    //} else {
-    //    QMessageBox::critical(this, "Error!", "Couldn't open database!");
-    //}
+    } else {
+        QMessageBox::critical(this, "Error!", "Couldn't open database!");
+    }
 
     if (ui->label->text() == "Sign up") {
-//        db_close();
+        db_close();
     } else {
 
     }
