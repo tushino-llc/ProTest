@@ -3,6 +3,8 @@
 #include "mainwindow.h"
 #include "../headers/database.h"
 
+extern sqlite3 *db;
+
 MainWindow_teach::MainWindow_teach(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow_teach)
@@ -219,7 +221,7 @@ void MainWindow_teach::on_actionOpen_Database_triggered()
 
 
     /* Main part */
-    if (db_open(arr.data()) != -1) {
+    if (db_open(PATH_TO_DB) != -1) {
         init_users();
     } else {
         QMessageBox::critical(this, "Error!", "Couldn't open database!");

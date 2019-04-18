@@ -17,7 +17,8 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 */
-#include "../ headers / tests_main_header.h"
+
+#include "../headers/tests_main_header.h"
 
 
 void edit_questions_teacher()
@@ -152,10 +153,10 @@ void input_teacher()
 	
 	printf("| Enter the username ");
 	fgets(login, 256, stdin);
-	Dialog1::field_test(login);
+	//Dialog1::field_test(login);
 	printf("\n| Enter the password ");
 	fgets(password, 30, stdin);
-	Dialog1::field_test(password);
+	//Dialog1::field_test(password);
 	user = db_login(login, password);
 	if (user.admin != false) { teacher_menu_0(); }
 }

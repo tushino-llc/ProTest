@@ -154,28 +154,14 @@ int main_menu(void) {
                 continue;
             }
 
-            // switch (func) {
-            //     case 1:
-            //         n = matrix_menu();
-            //         break;
-            //     case 2:
-            //         n = fraction_menu();
-            //         break;
-            //     case 3:
-            //         n = Combinatorics_menu();
-            //         break;
-            //     case 4:
-            //         n = polynom_menu();
-            //         break;
-            //     case 5:
-            //         n = verdant_menu();
-            //         break;
-            //     case 6:
-            //         n = choose_function();
-            //         break;
-            //     default:
-            //         break;
-            // }
+            switch (func) {
+                case 1:
+                    input_teacher();
+                    break;
+                case 2:
+                    student_menu();
+                    break;
+            }
 
             if (!n) {
                 continue;

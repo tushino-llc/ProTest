@@ -20,6 +20,8 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 
 #include "headers/tests_main_header.h"
 
+sqlite3 *db = nullptr;
+
 int main(int argc, char *argv[]) {
 
     /* Locale problems */

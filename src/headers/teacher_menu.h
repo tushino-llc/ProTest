@@ -20,7 +20,7 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 #ifndef TEACHER_MENU_H
 #define TEACHER_MENU_H
 #include "../headers/tests_main_header.h"
-#include "../qt/dialog1.h"
+//#include "../qt/dialog1.h"
 
 void teacher_menu_0();
 void input_teacher();

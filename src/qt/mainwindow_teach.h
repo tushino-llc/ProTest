@@ -5,6 +5,7 @@
 #include <QMessageBox>
 #include <QFileDialog>
 #include "dialog1.h"
+#include "../headers/tests_main_header.h"
 
 namespace Ui {
 class MainWindow_teach;
