@@ -1,11 +1,9 @@
 #include "../../headers/tests_main_header.h"
 
-sqlite3 * db = nullptr;
-
 
 int db_open()
 {
-    if(sqlite3_open("test.sqlite", &db) != SQLITE_OK)
+    if(sqlite3_open("data.sqlite", &db) != SQLITE_OK)
         return -1;
     return 0;
 }

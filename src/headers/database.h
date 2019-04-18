@@ -23,6 +23,8 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 
 #include "sqlite3.h"
 
+sqlite3 * db = nullptr;
+
 struct User {
     int id;
     bool admin;
