@@ -122,7 +122,7 @@ void to_add_a_new_account_for_a_student()
 
 	printf("\n| Enter the password ");
 	fgets(password, 30, stdin);
-	//Dialog1::field_test(password);
+	field_check_teacher(password);
 
 	if (size < Size_St)
 	{
