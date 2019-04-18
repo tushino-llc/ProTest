@@ -1,7 +1,7 @@
 #include "tests_main_header.h"
 
 
-void student_menu() {
+int student_menu(void) {
 
 	/* Initializing variables */
 	int sign, junk, n;
