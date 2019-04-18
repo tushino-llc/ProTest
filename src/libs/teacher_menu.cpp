@@ -37,63 +37,73 @@ int edit_questions_teacher()
 			"|       1) Delete the question                               |\n"
 			"|       2) Add a question                                    |\n"
 			"|       3) Change the question                               |\n"
-			"|                                                            |\n"
+			"|                                                            |\n"			
+			"|       >> Type \"back\" to go to the previous menu <<         |\n"
 			"|       >> Type \"quit\" to terminate this program <<          |\n"
 			"|                                                            |\n");
+				printf("| Answer: ");
+				func = getchar();
+				prt_ln();
+				if (isdigit(func) && func >= '1' && func <= '3') {
+					func -= '0';
+					if ((junk = getchar()) != '\n') {
+						while ((junk = getchar()) != '\n');
+						no_cmd();
+						continue;
+					}
 
-		printf("| Answer: ");
-		func = getchar();
-		prt_ln();
-		if (isdigit(func) && func >= '1' && func <= '3') {
-			func -= '0';
-			if ((junk = getchar()) != '\n') {
-				while ((junk = getchar()) != '\n')
-					;
-				no_cmd();
-				continue;
-			}
+					switch (func) {
+					case 1:
+						delete_the_question();
+						break;
+					case 2:
+						add_a_question();
+						break;
+					case 3:
+						change_the_question();
+						break;
+					default:
+						break;
+					}
 
-			switch (func) {
-			case 1:
-				delete_the_question();
-				break;
-			case 2:
-				add_a_question();
-				break;
-			case 3:
-				change_the_question();
-				break;
-			}
+					if (!n) {
+						continue;
+					}
+					else if (n == -1) {
+						return -1;
+					}
+					else {
+						return 1;
+					}
 
-				if (!n) {
-					continue;
 				}
-				else if (n == -1) {
-					return -1;
+				else if (func == 'q') {
+					if (quit_m()) {
+						return -1;
+					}
+					else {
+						continue;
+					}
+				}
+				else if (func == 'b') {
+					if (back_m()) {
+						return 0;
+					}
+					else {
+						continue;
+					}
 				}
 				else {
-					return 0;
-				}
-
-			}
-			else if (func == 'q') {
-				if (quit_m()) {
-					return -1;
-				}
-				else {
+					no_cmd();
+					if (func != '\n') {
+						while ((junk = getchar()) != '\n')
+							;
+					}
 					continue;
 				}
-			}
-			else {
-				no_cmd();
-				if (func != '\n') {
-					while ((junk = getchar()) != '\n')
-						;
-				}
-				continue;
-			}
+		}
 	}
-}
+
 int working_with_the_list_of_students()
 {
 	/* Initializing variables */
@@ -112,17 +122,16 @@ int working_with_the_list_of_students()
 				"|       3) To see the change of a student's progress         |\n"
 				"|       4) View the list of students with grades             |\n"
 				"|                                                            |\n"
+				"|       >> Type \"back\" to go to the previous menu <<         |\n"
 				"|       >> Type \"quit\" to terminate this program <<          |\n"
 				"|                                                            |\n");
-
 			printf("| Answer: ");
 			func = getchar();
 			prt_ln();
-			if (isdigit(func) && func >= '1' && func <= '3') {
+			if (isdigit(func) && func >= '1' && func <= '4') {
 				func -= '0';
 				if ((junk = getchar()) != '\n') {
-					while ((junk = getchar()) != '\n')
-						;
+					while ((junk = getchar()) != '\n');
 					no_cmd();
 					continue;
 				}
@@ -140,6 +149,9 @@ int working_with_the_list_of_students()
 				case 4: 
 					view_the_list_of_students_with_grades();  
 					break;
+							
+				default:
+					break;
 				}
 
 				if (!n) {
@@ -149,13 +161,21 @@ int working_with_the_list_of_students()
 					return -1;
 				}
 				else {
-					return 0;
+					return 1;
 				}
 
 			}
 			else if (func == 'q') {
 				if (quit_m()) {
 					return -1;
+				}
+				else {
+					continue;
+				}
+			}
+			else if (func == 'b') {
+				if (back_m()) {
+					return 0;
 				}
 				else {
 					continue;
@@ -171,6 +191,7 @@ int working_with_the_list_of_students()
 			}
 	}
 }
+
 
 int view_the_list_of_students_with_grades()
 {
@@ -190,50 +211,58 @@ int view_the_list_of_students_with_grades()
 			"|       3) View scores for the final test                    |\n"
 			"|       4) View the average score                            |\n"
 			"|                                                            |\n"
+			"|       >> Type \"back\" to go to the previous menu <<         |\n"
 			"|       >> Type \"quit\" to terminate this program <<          |\n"
 			"|                                                            |\n");
+		printf("| Answer: ");
+		func = getchar();
+		prt_ln();
+		if (isdigit(func) && func >= '1' && func <= '4') {
+			func -= '0';
+			if ((junk = getchar()) != '\n') {
+				while ((junk = getchar()) != '\n');
+				no_cmd();
+				continue;
+			}
+			switch (func) {
+			case 1: 
+				view_scores_on_all_topics(); 
+				break;
+			case 2: 
+				view_estimates_on_a_specific_topic(); 
+				break;
+			case 3: 
+				view_scores_for_the_final_test(); 
+				break;
+			case 4:  
+				view_the_average_score(); 
+				break;
+			default:
+				break;
+			}
 
-			printf("| Answer: ");
-			func = getchar();
-			prt_ln();
-			if (isdigit(func) && func >= '1' && func <= '3') {
-				func -= '0';
-				if ((junk = getchar()) != '\n') {
-					while ((junk = getchar()) != '\n')
-						;
-					no_cmd();
-					continue;
-				}
-
-				switch (func) {
-				case 1: 
-					view_scores_on_all_topics(); 
-					break;
-				case 2: 
-					view_estimates_on_a_specific_topic(); 
-					break;
-				case 3: 
-					view_scores_for_the_final_test(); 
-					break;
-				case 4:  
-					view_the_average_score(); 
-					break;
-				}
-
-				if (!n) {
-					continue;
-				}
-				else if (n == -1) {
-					return -1;
-				}
-				else {
-					return 0;
-				}
+			if (!n) {
+				continue;
+			}
+			else if (n == -1) {
+				return -1;
+			}
+			else {
+				return 1;
+			}
 
 			}
 			else if (func == 'q') {
 				if (quit_m()) {
 					return -1;
+				}
+				else {
+					continue;
+				}
+			}
+			else if (func == 'b') {
+				if (back_m()) {
+					return 0;
 				}
 				else {
 					continue;
@@ -249,6 +278,7 @@ int view_the_list_of_students_with_grades()
 			}
 	}
 }
+
 int teacher_menu_0()
 {
 	/* Initializing variables */
@@ -265,27 +295,28 @@ int teacher_menu_0()
 				"|       1) Edit questions                                    |\n"
 				"|       2) Working with the list of students                 |\n"
 				"|                                                            |\n"
+				"|       >> Type \"back\" to go to the previous menu <<         |\n"
 				"|       >> Type \"quit\" to terminate this program <<          |\n"
 				"|                                                            |\n");
-
 			printf("| Answer: ");
 			func = getchar();
 			prt_ln();
-			if (isdigit(func) && func >= '1' && func <= '3') {
+			if (isdigit(func) && func >= '1' && func <= '2') {
 				func -= '0';
 				if ((junk = getchar()) != '\n') {
-					while ((junk = getchar()) != '\n')
-						;
+					while ((junk = getchar()) != '\n');
 					no_cmd();
 					continue;
 				}
-
-				switch (func) {
+			switch (func) {
 				case 1: 
 					edit_questions_teacher(); 
 					break;
 				case 2: 
 					working_with_the_list_of_students(); 
+					break;
+							
+				default:
 					break;
 				}
 
@@ -296,13 +327,21 @@ int teacher_menu_0()
 					return -1;
 				}
 				else {
-					return 0;
+					return 1;
 				}
 
 			}
 			else if (func == 'q') {
 				if (quit_m()) {
 					return -1;
+				}
+				else {
+					continue;
+				}
+			}
+			else if (func == 'b') {
+				if (back_m()) {
+					return 0;
 				}
 				else {
 					continue;
@@ -318,6 +357,7 @@ int teacher_menu_0()
 			}
 	}
 }
+
 
 int field_check_teacher(char *text) 
 {
