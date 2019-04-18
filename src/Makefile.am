@@ -10,11 +10,11 @@ bin_PROGRAMS = ProTest
 ProTest_SOURCES = main.cpp
 if HAVE_QT
 ProTest_CPPFLAGS = $(CXXFLAGS) $(QT_CXXFLAGS) -Wall -Wextra -std=c++11
-ProTest_LDADD = libmainmenu.la libqt_cpp.la # libdatabse.la libteacher.la
+ProTest_LDADD = libmainmenu.la libqt_cpp.la libdatabse.la libteacher.la libstudent.la
 ProTest_LDFLAGS = $(LDFLAGS) $(QT_LIBS)
 else
 ProTest_CPPFLAGS = $(CXXFLAGS) -Wall -Wextra -std=c++11
-ProTest_LDADD = libmainmenu.la # libdatabse.la libteacher.la
+ProTest_LDADD = libmainmenu.la libdatabse.la libteacher.la libstudent.la
 ProTest_LDFLAGS = $(LDFLAGS)
 endif
 
@@ -25,12 +25,12 @@ libs/libcrypt/include/tomcrypt_pk.h libs/libcrypt/include/tomcrypt_misc.h libs/l
 libs/libcrypt/include/tomcrypt_macros.h libs/libcrypt/include/tomcrypt_mac.h libs/libcrypt/include/tomcrypt_hash.h \
 libs/libcrypt/include/tomcrypt_custom.h libs/libcrypt/include/tomcrypt_cipher.h libs/libcrypt/include/tomcrypt_cfg.h \
 libs/libcrypt/include/tomcrypt_argchk.h libs/libcrypt/include/tomcrypt.h build-qt-Desktop-Debug/moc_predefs.h \
-headers/teacher_menu.h
+headers/teacher_menu.h headers/student_menu.h headers/config.h
 
 if HAVE_QT
-lib_LTLIBRARIES = libmainmenu.la libqt_cpp.la # libdatabse.la libteacher.la
+lib_LTLIBRARIES = libmainmenu.la libqt_cpp.la libdatabse.la libteacher.la libstudent.la
 else 
-lib_LTLIBRARIES = libmainmenu.la # libdatabse.la libteacher.la
+lib_LTLIBRARIES = libmainmenu.la libdatabse.la libteacher.la libstudent.la
 endif
 
 # libmainmenu.la
@@ -47,11 +47,16 @@ libqt_cpp_la_CPPFLAGS = $(ProTest_CPPFLAGS)
 endif
 
 # libdatabse.la
-#libdatabse_la_LDFLAGS = -version-info 0:0:0
-#libdatabse_la_SOURCES = libs/db/database.cpp libs/db/sqlite3.c
-#libdatabse_la_CPPFLAGS = $(ProTest_CPPFLAGS)
+libdatabse_la_LDFLAGS = -version-info 0:0:0
+libdatabse_la_SOURCES = libs/db/database.cpp libs/db/sqlite3.c
+libdatabse_la_CPPFLAGS = $(ProTest_CPPFLAGS)
 
 # libteacher.la
-#libteacher_la_LDFLAGS = -version-info 0:0:0
-#libteacher_la_SOURCES = libs/teacher.cpp libs/teacher_menu.cpp
-#libteacher_la_CPPFLAGS = $(ProTest_CPPFLAGS)
+libteacher_la_LDFLAGS = -version-info 0:0:0
+libteacher_la_SOURCES = libs/teacher.cpp libs/teacher_menu.cpp
+libteacher_la_CPPFLAGS = $(ProTest_CPPFLAGS)
+
+# libstudent.la
+libstudent_la_LDFLAGS = -version-info 0:0:0
+libstudent_la_SOURCES = libs/SM.cpp libs/func_student.cpp
+libstudent_la_CPPFLAGS = $(ProTest_CPPFLAGS)

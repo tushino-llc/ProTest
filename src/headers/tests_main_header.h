@@ -49,6 +49,9 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 #include "main_menu.h"
 #include "student_menu.h"
 
+/* main.cpp */
+extern sqlite3 *db;
+
 /* qt_main.cpp */
 int qt_main(int, char *[]);
 

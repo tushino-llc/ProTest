@@ -1,9 +1,10 @@
 #include "../../headers/tests_main_header.h"
 
-sqlite3 *db = nullptr;
+extern sqlite3 *db;
 
 int db_open()
 {
+    db_close();
     if(sqlite3_open("data.sqlite", &db) != SQLITE_OK)
         return -1;
     return 0;
@@ -11,6 +12,7 @@ int db_open()
 
 int db_open(const char * name)
 {
+    db_close();
     if(sqlite3_open(name, &db) != SQLITE_OK)
         return -1;
     return 0;
@@ -18,7 +20,12 @@ int db_open(const char * name)
 
 void db_close()
 {
-    sqlite3_close(db);
+    int rc = sqlite3_close_v2(db);
+    if (rc == SQLITE_BUSY) {
+        fprintf(stderr, "Database is busy. Call back later!\n");
+    }
+
+    db = nullptr;
 }
 
 int db_delete_question(int id)
@@ -332,6 +339,7 @@ int db_add_user(User user, char * password)
         return -1;
 
     rc = sqlite3_step(st);
+
     if (rc != SQLITE_DONE)
         return -1;
     
@@ -341,6 +349,7 @@ int db_add_user(User user, char * password)
         return -1;
 
     rc = sqlite3_step(st);
+
     if (rc != SQLITE_DONE)
         return -1;
 

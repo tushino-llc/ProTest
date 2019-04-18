@@ -22,6 +22,8 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 #include "../build-qt-Desktop-Debug/ui_mainwindow.h"
 #include "../headers/database.h"
 
+extern sqlite3 *db;
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -96,6 +98,8 @@ void MainWindow::on_pushButtonSignIn_clicked()
                 fclose(fp);
             }
 
+            db_close();
+
             if (usr.admin) {
                 mwt = new MainWindow_teach(this);
                 mwt->setGeometry(
@@ -117,8 +121,6 @@ void MainWindow::on_pushButtonSignIn_clicked()
                 ui->linePass->setText("");
             }
         }
-
-        db_close();
     }
 }
 

@@ -22,7 +22,8 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 #include "../build-qt-Desktop-Debug/ui_dialog1.h"
 #include "mainwindow.h"
 #include "mainwindow_teach.h"
-#include "../headers/database.h"
+
+extern sqlite3 *db;
 
 Dialog1::Dialog1(QWidget *parent) :
     QDialog(parent),
