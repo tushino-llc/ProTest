@@ -4,7 +4,6 @@ extern sqlite3 *db;
 
 int db_open()
 {
-    db_close();
     if(sqlite3_open("data.sqlite", &db) != SQLITE_OK)
         return -1;
     return 0;
@@ -12,7 +11,6 @@ int db_open()
 
 int db_open(const char * name)
 {
-    db_close();
     if(sqlite3_open(name, &db) != SQLITE_OK)
         return -1;
     return 0;
@@ -359,14 +357,11 @@ int db_add_user(User user, char * password)
 
 int db_add_admin(User user, char * password)
 {
-    int rc;
-    sqlite3_stmt * st = nullptr;
-
     int id = db_add_user(user, password);
     if (id == -1)
         return -1;
 
-    rc = db_grant_admin(id);
+    int rc = db_grant_admin(id);
     if (rc == SQLITE_OK)
         return id;
     else
@@ -455,10 +450,15 @@ int db_set_mark(int user_id, int theme, int mark)
 
     value = db_get_theme_by_id(theme);
 
-    rc = sqlite3_prepare_v2(db, "UPDATE `marks` SET ? = ? WHERE user_id = ?", -1, &st, nullptr);
-    sqlite3_bind_text( st, 1, value, -1, SQLITE_STATIC);
-    sqlite3_bind_int( st, 2, mark );
-    sqlite3_bind_int( st, 3, user_id );
+    char query[256];
+    strcpy(query, "UPDATE `marks` SET ");
+    strcat(query, value);
+    strcat(query, " = ? WHERE user_id = ?");
+
+
+    rc = sqlite3_prepare_v2(db, query, -1, &st, nullptr);
+    sqlite3_bind_int( st, 1, mark );
+    sqlite3_bind_int( st, 2, user_id );
 
     free(value);
 
@@ -474,7 +474,6 @@ int db_set_mark(int user_id, int theme, int mark)
         return -1;
 
     return SQLITE_OK;
-
 }
 
 char * db_get_theme_by_id(int index)
@@ -705,4 +704,23 @@ int db_update_user(User user, char * password)
         return -1;
 
     return SQLITE_OK;
+}
+
+int db_get_id_by_login(const char * login)
+{
+    int rc;
+    sqlite3_stmt * st = nullptr;
+
+    rc = sqlite3_prepare_v2(db, "SELECT `id` FROM `users` WHERE `login` = ? LIMIT 1;", -1, &st, nullptr);
+    sqlite3_bind_text( st, 1, login, -1, SQLITE_STATIC);
+    if (rc != SQLITE_OK)
+        return -1;
+
+    rc= sqlite3_step(st);
+    if (rc != SQLITE_DONE && rc != SQLITE_OK && rc != SQLITE_ROW)
+        return -1;
+
+    int id = sqlite3_column_int(st, 0);
+
+    return id;
 }

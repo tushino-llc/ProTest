@@ -22,7 +22,12 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 #define MAIN_HEADER_TEST
 
 /* Macros */
-#define PATH_TO_DB ("../db/data.sqlite")
+#define QT_CREATOR (1)
+#if (QT_CREATOR == 1)
+	#define PATH_TO_DB ("../db/data.sqlite")
+#else
+	#define PATH_TO_DB ("db/data.sqlite")
+#endif
 
 /* Include config.h */
 #include "config.h"
@@ -31,12 +36,15 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 #if (HAVE_CSTDIO == 1)
     #include <cstdio>
 #endif
+
 #if (HAVE_IOSTREAM == 1)
     #include <iostream>
 #endif
+
 #if (HAVE_CSTRING == 1)
     #include <cstring>
 #endif
+
 #if (HAVE_STDLIB_H == 1)
     #include <stdlib.h>
 #endif

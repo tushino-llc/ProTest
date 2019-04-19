@@ -51,6 +51,7 @@ public:
     QAction *actionExit;
     QAction *actionLog_out;
     QAction *actionAllow;
+    QAction *actionRefresh;
     QWidget *centralwidget;
     QGridLayout *gridLayout_3;
     QStackedWidget *stackedWidget;
@@ -151,6 +152,8 @@ public:
         actionAllow = new QAction(MainWindow_teach);
         actionAllow->setObjectName(QString::fromUtf8("actionAllow"));
         actionAllow->setCheckable(true);
+        actionRefresh = new QAction(MainWindow_teach);
+        actionRefresh->setObjectName(QString::fromUtf8("actionRefresh"));
         centralwidget = new QWidget(MainWindow_teach);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         gridLayout_3 = new QGridLayout(centralwidget);
@@ -562,6 +565,8 @@ public:
         menuFile->addSeparator();
         menuFile->addAction(actionClose_Database);
         menuFile->addSeparator();
+        menuFile->addAction(actionRefresh);
+        menuFile->addSeparator();
         menuFile->addAction(actionLog_out);
         menuFile->addSeparator();
         menuFile->addAction(actionExit);
@@ -640,6 +645,13 @@ public:
 #endif // QT_NO_TOOLTIP
 #ifndef QT_NO_SHORTCUT
         actionAllow->setShortcut(QApplication::translate("MainWindow_teach", "Ctrl+E", nullptr));
+#endif // QT_NO_SHORTCUT
+        actionRefresh->setText(QApplication::translate("MainWindow_teach", "Refresh students", nullptr));
+#ifndef QT_NO_TOOLTIP
+        actionRefresh->setToolTip(QApplication::translate("MainWindow_teach", "<html><head/><body><p>Ctrl + R</p></body></html>", nullptr));
+#endif // QT_NO_TOOLTIP
+#ifndef QT_NO_SHORTCUT
+        actionRefresh->setShortcut(QApplication::translate("MainWindow_teach", "Ctrl+R", nullptr));
 #endif // QT_NO_SHORTCUT
         groupBox->setTitle(QString());
         comboBox->setItemText(0, QApplication::translate("MainWindow_teach", "Choose a student...", nullptr));

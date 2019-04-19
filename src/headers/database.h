@@ -65,6 +65,7 @@ int db_grant_admin(int id);
 int db_update_user(User user, char * password);
 int db_delete_user(int id);
 User db_get_user(int id);
+int db_get_id_by_login(const char * login);
 User * db_get_users(int * size);
 User * db_get_users_sorted(int * size, int by, int desc);
 
