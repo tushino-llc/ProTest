@@ -1,6 +1,6 @@
 ﻿#include "../headers/tests_main_header.h"
 
-int field_check(char *text)
+int field_check_teacher(char *text)
 {
 
 	int i;
@@ -23,7 +23,7 @@ int signin()
 		printf("| Enter login");
 		do {
 			fgets(login, 256, stdin);
-			error = field_check(login);
+			error = field_check_teacher(login);
 			if (error == 0)
 				printf("| Invalid login.Try again? [1 - yes; 0 - no]\n");
 			do {
@@ -35,7 +35,7 @@ int signin()
 		printf("| Enter password");
 		do {
 			fgets(password, 256, stdin);
-			error = field_check(password);
+			error = field_check_teacher(password);
 			if (error == 0)
 				printf("| Invalid password.Try again? [1 - yes; 0 - no]\n");
 			do {
