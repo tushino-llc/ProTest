@@ -18,7 +18,7 @@ int signin()
 {
 	int error, sign,c;
 	char password[256], login[256];
-	User*user;
+	User user;
 	do {
 		printf("| Enter login");
 		do {
