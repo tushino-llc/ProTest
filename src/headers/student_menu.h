@@ -21,8 +21,8 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 #define STUDENT_MENU_H
 #include "tests_main_header.h"
 
-void signin();
-void student_menu();
+int signin();
+int student_menu();
 void Training();
 void Test(int id);
 void FinalTest(int id);
