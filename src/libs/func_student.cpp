@@ -1,18 +1,21 @@
-#include "../headers/tests_main_header.h"
+﻿#include "../headers/tests_main_header.h"
 
-void signin()
+int signin()
 {
 	int error, sign;
 	char password[20], name[20];
 	do {
-        //error = User db_login(login, password);
+        User db_login(login, password);
+		error = User.id;
 		if (error == NULL) { printf("| Error! Account not found. Try again? [1 - yes; 0 - no] \n"); }
 		do {
 			scanf("%d", &sign);
 		} while ((sign > 1) || (sign < 0));
+		if (sign == 0)
+			return 0;
 	} while (sign == 1);
 
-	if (error != NULL) { student_menu(); }
+	return 1;
 }
 
 void Training()
