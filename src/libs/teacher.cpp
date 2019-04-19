@@ -39,12 +39,12 @@ void delete_the_question()
 	} while (id < 0);
 	
 	do {
-		error = db_delete_question(id);
-	
-		if (error == -1) { printf("| Error! Unable to delete question. Try again? [1 - yes; 0 - no] \n"); }
-		do {
-			scanf("%d", &error);
-		} while ((error > 1) || (error < 0));
+			error = db_delete_question(id);
+
+			if (error == -1) { printf("| Error! Unable to delete question. Try again? [1 - yes; 0 - no] \n"); }
+			do {
+				scanf("%d", &error);
+			} while ((error > 1) || (error < 0));
 	} while (error == 1);	
 }
 void add_a_question()
@@ -62,7 +62,7 @@ void add_a_question()
 }
 void change_the_question()
 {
-	int error, id, size, i;
+	int error, id, size, i = -1;
 	
 	db_get_questions(&size);
 	Question question[Size_Q];
@@ -79,13 +79,22 @@ void change_the_question()
 	{
 		if (id == question[j].id) i = j;
 	}
-	do {	
-		error = db_update_question(question[i]);
-	
-		if (error == -1) { printf("| Error! Unable to edit question. Try again? [1 - yes; 0 - no] \n"); }
-		do {
-			scanf("%d", &error);
-		} while ((error > 1) || (error < 0));
+	do {
+		if (i != -1)
+		{
+			error = db_update_question(question[i]);
+			if (error == -1) { printf("| Error! Unable to edit question. Try again? [1 - yes; 0 - no] \n"); }
+			do {
+				scanf("%d", &error);
+			} while ((error > 1) || (error < 0));
+		}
+		else
+		{
+			 printf("| Error! Unable to edit question. Try again? [1 - yes; 0 - no] \n");
+			do {
+				scanf("%d", &error);
+			} while ((error > 1) || (error < 0));
+		}
 	} while (error == 1);	
 }
 
