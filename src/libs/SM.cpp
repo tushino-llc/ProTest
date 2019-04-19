@@ -4,7 +4,7 @@
 int student_menu(void) {
 
 	/* Initializing variables */
-	int sign, junk, n,check;
+	int sign, junk, n,check=0;
 	check=signin();
 	if (check == 0)
 		return 0;
