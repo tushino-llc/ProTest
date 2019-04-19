@@ -359,14 +359,11 @@ int db_add_user(User user, char * password)
 
 int db_add_admin(User user, char * password)
 {
-    int rc;
-    sqlite3_stmt * st = nullptr;
-
     int id = db_add_user(user, password);
     if (id == -1)
         return -1;
 
-    rc = db_grant_admin(id);
+    int rc = db_grant_admin(id);
     if (rc == SQLITE_OK)
         return id;
     else
