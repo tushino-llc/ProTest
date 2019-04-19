@@ -1,12 +1,50 @@
 ﻿#include "../headers/tests_main_header.h"
 
+int field_check(char *text)
+{
+
+	int i;
+	char ch;
+
+	for (i = 0; i < static_cast<int>(strlen(text)); ++i) {
+		ch = *(text + i);
+		if (ch == ' ' || ch == '\n' || ch == ' ') {
+			return 0;
+		}
+	}
+	return 1;
+}
 int signin()
 {
-	int error, sign;
-	char password[20], name[20];
+	int error, sign,c;
+	char password[256], login[256];
+	User*user;
 	do {
-		User*user;
-		db_login(login, password);
+		printf("| Enter login");
+		do {
+			fgets(login, 256, stdin);
+			error = field_check(login);
+			if (error == 0)
+				printf("| Invalid login.Try again? [1 - yes; 0 - no]\n");
+			do {
+				scanf("%d", &c);
+			} while ((c > 1) || (c < 0));
+			if (c == 0)
+				return 0;
+		} while (c == 1);
+		printf("| Enter password");
+		do {
+			fgets(password, 256, stdin);
+			error = field_check(password);
+			if (error == 0)
+				printf("| Invalid password.Try again? [1 - yes; 0 - no]\n");
+			do {
+				scanf("%d", &c);
+			} while ((c > 1) || (c < 0));
+			if (c == 0)
+				return 0;
+		} while (c == 1);
+		user=db_login(login, password);
 		error = user.id;
 		if (error == NULL) { printf("| Error! Account not found. Try again? [1 - yes; 0 - no] \n"); }
 		do {
@@ -16,7 +54,7 @@ int signin()
 			return 0;
 	} while (sign == 1);
 
-	return user.id;
+	return error;
 }
 
 void Training()
