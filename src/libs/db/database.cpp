@@ -450,10 +450,15 @@ int db_set_mark(int user_id, int theme, int mark)
 
     value = db_get_theme_by_id(theme);
 
-    rc = sqlite3_prepare_v2(db, "UPDATE `marks` SET ? = ? WHERE user_id = ?", -1, &st, nullptr);
-    sqlite3_bind_text( st, 1, value, -1, SQLITE_STATIC);
-    sqlite3_bind_int( st, 2, mark );
-    sqlite3_bind_int( st, 3, user_id );
+    char query[256];
+    strcpy(query, "UPDATE `marks` SET ");
+    strcat(query, value);
+    strcat(query, " = ? WHERE user_id = ?");
+
+
+    rc = sqlite3_prepare_v2(db, query, -1, &st, nullptr);
+    sqlite3_bind_int( st, 1, mark );
+    sqlite3_bind_int( st, 2, user_id );
 
     free(value);
 
@@ -469,7 +474,6 @@ int db_set_mark(int user_id, int theme, int mark)
         return -1;
 
     return SQLITE_OK;
-
 }
 
 char * db_get_theme_by_id(int index)
