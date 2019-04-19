@@ -154,12 +154,17 @@ int main_menu(void) {
                 continue;
             }
 
+            if (db_open(PATH_TO_DB) == -1) {
+                printf("| Error! Couldn't open database                              |\n");
+                continue;
+            }
+
             switch (func) {
                 case 1:
-                    input_teacher();
+                    //input_teacher();
                     break;
                 case 2:
-                    student_menu();
+                    //student_menu();
                     break;
             }
 

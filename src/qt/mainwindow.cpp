@@ -48,6 +48,11 @@ MainWindow::MainWindow(QWidget *parent) :
         }
         fclose(fp);
     }
+
+    /* Database */
+    if (db_open(PATH_TO_DB) == -1) {
+        QMessageBox::critical(this, "Error!", "Couldn't open database. Program won't work!");
+    }
 }
 
 MainWindow::~MainWindow()
@@ -66,7 +71,7 @@ void MainWindow::on_pushButtonSignIn_clicked()
     struct User usr;
     char *name = nullptr;
 
-    if (db_open(PATH_TO_DB) != -1) {
+//    if (db_open(PATH_TO_DB) != -1) {
         QByteArray lg = login.toLocal8Bit();
         QByteArray ps = pass.toLocal8Bit();
         usr = db_login(lg.data(), ps.data());
@@ -98,7 +103,7 @@ void MainWindow::on_pushButtonSignIn_clicked()
                 fclose(fp);
             }
 
-            db_close();
+//            db_close();
 
             if (usr.admin) {
                 mwt = new MainWindow_teach(this);
@@ -121,7 +126,7 @@ void MainWindow::on_pushButtonSignIn_clicked()
                 ui->linePass->setText("");
             }
         }
-    }
+//    }
 }
 
 void MainWindow::on_pushButtonSignUp_clicked()

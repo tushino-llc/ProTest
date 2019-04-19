@@ -4,7 +4,6 @@ extern sqlite3 *db;
 
 int db_open()
 {
-    db_close();
     if(sqlite3_open("data.sqlite", &db) != SQLITE_OK)
         return -1;
     return 0;
@@ -12,7 +11,6 @@ int db_open()
 
 int db_open(const char * name)
 {
-    db_close();
     if(sqlite3_open(name, &db) != SQLITE_OK)
         return -1;
     return 0;

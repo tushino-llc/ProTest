@@ -54,6 +54,8 @@ private slots:
 
     double get_mean(int);
 
+    void on_actionRefresh_triggered();
+
 private:
     Ui::MainWindow_teach *ui;
     Dialog1 *dialog1;

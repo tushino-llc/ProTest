@@ -14,13 +14,15 @@ TEMPLATE = app
 SOURCES += mainwindow.cpp \
     dialog1.cpp \
     ../libs/db/database.cpp \
-    #../libs/teacher.cpp \
-    #../libs/teacher_menu.cpp \
+    ../libs/teacher.cpp \
+    ../libs/teacher_menu.cpp \
     ../libs/db/sqlite3.c \
     ../libs/main_menu.cpp \
     ../main.cpp \
     qt_main.cpp \
-    mainwindow_teach.cpp
+    mainwindow_teach.cpp \
+    #../libs/SM.cpp \
+    #../libs/func_student.cpp
 
 HEADERS  += mainwindow.h \
     dialog1.h \
@@ -39,11 +41,12 @@ HEADERS  += mainwindow.h \
     ../libs/libcrypt/include/tomcrypt_prng.h \
     ../headers/database.h \
     ../headers/sqlite3.h \
-    #../headers/teacher_menu.h \
+    ../headers/teacher_menu.h \
     ../headers/tests_main_header.h \
     ../headers/main_menu.h \
     mainwindow_teach.h \
-    ../headers/config.h
+    ../headers/config.h \
+    ../headers/student_menu.h
 
 FORMS    += mainwindow.ui \
     dialog1.ui \

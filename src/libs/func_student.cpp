@@ -1,10 +1,11 @@
-#include "tests_main_header.h"
+#include "../headers/tests_main_header.h"
+
 void signin()
 {
 	int error, sign;
 	char password[20], name[20];
 	do {
-		error = User db_login(login, password);
+        //error = User db_login(login, password);
 		if (error == NULL) { printf("| Error! Account not found. Try again? [1 - yes; 0 - no] \n"); }
 		do {
 			scanf("%d", &sign);

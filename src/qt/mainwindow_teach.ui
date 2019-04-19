@@ -679,6 +679,8 @@
     <addaction name="separator"/>
     <addaction name="actionClose_Database"/>
     <addaction name="separator"/>
+    <addaction name="actionRefresh"/>
+    <addaction name="separator"/>
     <addaction name="actionLog_out"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
@@ -834,6 +836,17 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+E</string>
+   </property>
+  </action>
+  <action name="actionRefresh">
+   <property name="text">
+    <string>Refresh students</string>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ctrl + R&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
    </property>
   </action>
  </widget>
