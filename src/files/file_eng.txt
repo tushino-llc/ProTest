@@ -18,7 +18,7 @@ No. 4) What occurs when opening the file?
 2) Working off of the scenario
 3) Work with the file
 4) A sheaf of an input-output flow with it
-No. 5) That such FILE?
+No. 5) What is FILE?
 1) Object
 2) Identifier
 3) Data type
@@ -28,87 +28,87 @@ No. 6) For what needs the fopen function ();
 2) For closing of the file
 3) For opening of the file
 4) For return of the pointer on structure of FILE
-No. 7) As correctly looks fopen function prototype ()
+No. 7) How does the function fopen() prototype correctly look? 
 1) FILE *fopen(&name, type);
 2) FILE fopen(&name, type);
 3) FILE fopen(name, type);
 4) FILE *fopen(name, type);
 No. 8) Select what key it is used to open the file for reading?
-1) r 
+1) r+
 2) w
 3) a
 4) r
 No. 9) Select what key it is used to open the empty file for record?
 1) r
-2) r 
+2) r+ 
 3) a
 4) w
 No. 10) Select what key it is used to open the file for record in the end?
 1) r
 2) w
-3) r 
+3) r+ 
 4) and
 No. 11) Select what key it is used to open the file for a read and write?
 1) r
 2) w
 3) a
-4) r 
+4) r+ 
 No. 12) Select what key it is used to open the empty file for a read and write?
 1) r
 2) w
 3) a
-4) w 
+4) w+ 
 No. 13) Select what key it is used to open the file for reading and addition?
 1) r
 2) w
 3) a
-4) a 
-No. 14) That returns fopen ()
+4) a+ 
+No. 14) What returns fopen ()
 1) Code
 2) File
 3) Open flow
 4) The pointer on an open flow
-No. 15) That returns fopen () in case of an error
+No. 15) What returns fopen () in case of an error
 1) 1
 2) nullptr
 3) 0
 4) NULL
-No. 16) That is done by the fclose function (); 
+No. 16) What is done by the fclose function (); 
 1) Checks for closing of the file
 2) Deletes the pointer on FILE
 3) Closes the file
 4) Closes the flow or flows connected with opened by means of the fopen function () files
-No. 17) That returns fclose (); in case of the closed flow
+No. 17) What returns fclose (); in case of the closed flow
 1) NULL
 2) Code
 3) 1
 4) 0
-No. 18) That returns fclose (); in case of an error
+No. 18) What returns fclose (); in case of an error
 1) NULL
 2) Code
 3) 0
 4) EOF
-No. 19) That is the function parameter fgetc ();
+No. 19) What is the function parameter fgetc ();
 1) The pointer on any variable
 2) Any variable
 3) FILE flow
 4) The pointer on a FILE flow
-No. 20) That is done by the fgetc function ();
+No. 20) What is done by the fgetc function ();
 1) Serves for updating of a flow
 2) Serves for opening of the file
 3) Gives the character from the file
 4) Returns the code of the read character
-No. 21) Functions for work with files were No. 21) That it is necessary to add to the beginning of scanf printf gets puts that it
+No. 21) What it is necessary to add to the beginning of scanf printf gets puts that it were functions for work with files
 1) F
 2) f.
 3) file
 4) f
-No. 22) What library is necessary to No. 22) for file input in With?
+No. 22) What library is necessary for file input in C++?
 1) <oistream>
 2) <ofstream>
 3) <iostream>
 4) <ifstream>
-No. 23) What library is necessary to No. 22) for a file output in With?
+No. 23) What library is necessary for a file output in C++?
 1) <oistream>
 2) <ifstream>
 3) <iostream>
@@ -143,7 +143,7 @@ No. 29) What of the offered modes of opening is intended for opening of the file
 2) ios::b
 3) ios::bin
 4) ios::binary
-No. 30) In the catalog is 6 files: adobe.xls idol.xlsx london.xls adobe. Define xml odor.xlsx sdoba.xls on what of masks of them the specified group of files will be selected: adobe.xls idol.xlsx odor.xlsx sdoba.xls
+No. 30) In the catalog is 6 files: adobe.xls idol.xlsx london.xls adobe.xml odor.xlsx sdoba.xls Define  what of masks of them the specified group of files will be selected: adobe.xls idol.xlsx odor.xlsx sdoba.xls
 1) ?do*.xls
 2) *do*.x*
 3) ?do?.xls* 
