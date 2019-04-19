@@ -24,7 +24,7 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 void signin();
 void student_menu();
 void Training();
-void Test();
-void FinalTest();
+void Test(int id);
+void FinalTest(int id);
 
 #endif

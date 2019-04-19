@@ -38,9 +38,9 @@ int student_menu(void) {
 			switch (sign) {
 			case 1:Training();
 				break;
-			case 2:Test();
+			case 2:Test(check);
 				break;
-			case 3:FinalTest();
+			case 3:FinalTest(check);
 				break;
 			default:
 				break;
