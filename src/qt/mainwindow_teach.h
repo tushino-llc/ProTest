@@ -7,6 +7,7 @@
 #include "dialog1.h"
 #include "../headers/tests_main_header.h"
 #include <QDesktopServices>
+#include "dialog2.h"
 
 namespace Ui {
 class MainWindow_teach;
@@ -73,9 +74,20 @@ private slots:
 
     void refresh_q();
 
+    void on_pushButton_Rem_Q_clicked();
+
+    void on_pushButton_Add_Q_clicked();
+
+    void on_comboBox_2_currentIndexChanged(int index);
+
+    void on_comboBox_3_currentIndexChanged(int index);
+
+    int get_question_id(int);
+
 private:
     Ui::MainWindow_teach *ui;
     Dialog1 *dialog1;
+    Dialog2 *dialog2;
 };
 
 #endif // MAINWINDOW_TEACH_H

@@ -112,20 +112,20 @@ public:
     QGroupBox *groupBox_2;
     QVBoxLayout *verticalLayout_4;
     QFormLayout *formLayout_6;
-    QRadioButton *radioButton_2;
-    QRadioButton *radioButton;
-    QLineEdit *lineEdit_2;
-    QRadioButton *radioButton_3;
-    QLineEdit *lineEdit_5;
-    QRadioButton *radioButton_4;
-    QLineEdit *lineEdit_3;
-    QLineEdit *lineEdit_4;
+    QRadioButton *radioButton_A1;
+    QRadioButton *radioButton_A2;
+    QLineEdit *lineA2;
+    QRadioButton *radioButton_A3;
+    QLineEdit *lineA3;
+    QRadioButton *radioButton_A4;
+    QLineEdit *lineA4;
+    QLineEdit *lineA1;
     QVBoxLayout *verticalLayout_2;
     QHBoxLayout *horizontalLayout_4;
     QComboBox *comboBox_2;
     QComboBox *comboBox_3;
-    QPushButton *pushButton_3;
-    QPushButton *pushButton_4;
+    QPushButton *pushButton_Add_Q;
+    QPushButton *pushButton_Rem_Q;
     QTextEdit *textEdit;
     QPushButton *pushButton_5;
     QSpacerItem *horizontalSpacer_2;
@@ -547,45 +547,45 @@ public:
         verticalLayout_4->setObjectName(QString::fromUtf8("verticalLayout_4"));
         formLayout_6 = new QFormLayout();
         formLayout_6->setObjectName(QString::fromUtf8("formLayout_6"));
-        radioButton_2 = new QRadioButton(groupBox_2);
-        radioButton_2->setObjectName(QString::fromUtf8("radioButton_2"));
+        radioButton_A1 = new QRadioButton(groupBox_2);
+        radioButton_A1->setObjectName(QString::fromUtf8("radioButton_A1"));
 
-        formLayout_6->setWidget(0, QFormLayout::LabelRole, radioButton_2);
+        formLayout_6->setWidget(0, QFormLayout::LabelRole, radioButton_A1);
 
-        radioButton = new QRadioButton(groupBox_2);
-        radioButton->setObjectName(QString::fromUtf8("radioButton"));
+        radioButton_A2 = new QRadioButton(groupBox_2);
+        radioButton_A2->setObjectName(QString::fromUtf8("radioButton_A2"));
 
-        formLayout_6->setWidget(1, QFormLayout::LabelRole, radioButton);
+        formLayout_6->setWidget(1, QFormLayout::LabelRole, radioButton_A2);
 
-        lineEdit_2 = new QLineEdit(groupBox_2);
-        lineEdit_2->setObjectName(QString::fromUtf8("lineEdit_2"));
+        lineA2 = new QLineEdit(groupBox_2);
+        lineA2->setObjectName(QString::fromUtf8("lineA2"));
 
-        formLayout_6->setWidget(1, QFormLayout::FieldRole, lineEdit_2);
+        formLayout_6->setWidget(1, QFormLayout::FieldRole, lineA2);
 
-        radioButton_3 = new QRadioButton(groupBox_2);
-        radioButton_3->setObjectName(QString::fromUtf8("radioButton_3"));
+        radioButton_A3 = new QRadioButton(groupBox_2);
+        radioButton_A3->setObjectName(QString::fromUtf8("radioButton_A3"));
 
-        formLayout_6->setWidget(2, QFormLayout::LabelRole, radioButton_3);
+        formLayout_6->setWidget(2, QFormLayout::LabelRole, radioButton_A3);
 
-        lineEdit_5 = new QLineEdit(groupBox_2);
-        lineEdit_5->setObjectName(QString::fromUtf8("lineEdit_5"));
+        lineA3 = new QLineEdit(groupBox_2);
+        lineA3->setObjectName(QString::fromUtf8("lineA3"));
 
-        formLayout_6->setWidget(2, QFormLayout::FieldRole, lineEdit_5);
+        formLayout_6->setWidget(2, QFormLayout::FieldRole, lineA3);
 
-        radioButton_4 = new QRadioButton(groupBox_2);
-        radioButton_4->setObjectName(QString::fromUtf8("radioButton_4"));
+        radioButton_A4 = new QRadioButton(groupBox_2);
+        radioButton_A4->setObjectName(QString::fromUtf8("radioButton_A4"));
 
-        formLayout_6->setWidget(3, QFormLayout::LabelRole, radioButton_4);
+        formLayout_6->setWidget(3, QFormLayout::LabelRole, radioButton_A4);
 
-        lineEdit_3 = new QLineEdit(groupBox_2);
-        lineEdit_3->setObjectName(QString::fromUtf8("lineEdit_3"));
+        lineA4 = new QLineEdit(groupBox_2);
+        lineA4->setObjectName(QString::fromUtf8("lineA4"));
 
-        formLayout_6->setWidget(3, QFormLayout::FieldRole, lineEdit_3);
+        formLayout_6->setWidget(3, QFormLayout::FieldRole, lineA4);
 
-        lineEdit_4 = new QLineEdit(groupBox_2);
-        lineEdit_4->setObjectName(QString::fromUtf8("lineEdit_4"));
+        lineA1 = new QLineEdit(groupBox_2);
+        lineA1->setObjectName(QString::fromUtf8("lineA1"));
 
-        formLayout_6->setWidget(0, QFormLayout::FieldRole, lineEdit_4);
+        formLayout_6->setWidget(0, QFormLayout::FieldRole, lineA1);
 
 
         verticalLayout_4->addLayout(formLayout_6);
@@ -614,19 +614,19 @@ public:
 
         horizontalLayout_4->addWidget(comboBox_3);
 
-        pushButton_3 = new QPushButton(frame);
-        pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
-        sizePolicy5.setHeightForWidth(pushButton_3->sizePolicy().hasHeightForWidth());
-        pushButton_3->setSizePolicy(sizePolicy5);
+        pushButton_Add_Q = new QPushButton(frame);
+        pushButton_Add_Q->setObjectName(QString::fromUtf8("pushButton_Add_Q"));
+        sizePolicy5.setHeightForWidth(pushButton_Add_Q->sizePolicy().hasHeightForWidth());
+        pushButton_Add_Q->setSizePolicy(sizePolicy5);
 
-        horizontalLayout_4->addWidget(pushButton_3);
+        horizontalLayout_4->addWidget(pushButton_Add_Q);
 
-        pushButton_4 = new QPushButton(frame);
-        pushButton_4->setObjectName(QString::fromUtf8("pushButton_4"));
-        sizePolicy5.setHeightForWidth(pushButton_4->sizePolicy().hasHeightForWidth());
-        pushButton_4->setSizePolicy(sizePolicy5);
+        pushButton_Rem_Q = new QPushButton(frame);
+        pushButton_Rem_Q->setObjectName(QString::fromUtf8("pushButton_Rem_Q"));
+        sizePolicy5.setHeightForWidth(pushButton_Rem_Q->sizePolicy().hasHeightForWidth());
+        pushButton_Rem_Q->setSizePolicy(sizePolicy5);
 
-        horizontalLayout_4->addWidget(pushButton_4);
+        horizontalLayout_4->addWidget(pushButton_Rem_Q);
 
 
         verticalLayout_2->addLayout(horizontalLayout_4);
@@ -829,16 +829,16 @@ public:
         QTableWidgetItem *___qtablewidgetitem11 = tableWidget->horizontalHeaderItem(11);
         ___qtablewidgetitem11->setText(QApplication::translate("MainWindow_teach", "Mean", nullptr));
         groupBox_2->setTitle(QString());
-        radioButton_2->setText(QString());
-        radioButton->setText(QString());
-        radioButton_3->setText(QString());
-        radioButton_4->setText(QString());
+        radioButton_A1->setText(QString());
+        radioButton_A2->setText(QString());
+        radioButton_A3->setText(QString());
+        radioButton_A4->setText(QString());
         comboBox_2->setItemText(0, QApplication::translate("MainWindow_teach", "Topic...", nullptr));
 
         comboBox_3->setItemText(0, QApplication::translate("MainWindow_teach", "Question...", nullptr));
 
-        pushButton_3->setText(QApplication::translate("MainWindow_teach", "+", nullptr));
-        pushButton_4->setText(QApplication::translate("MainWindow_teach", "-", nullptr));
+        pushButton_Add_Q->setText(QApplication::translate("MainWindow_teach", "+", nullptr));
+        pushButton_Rem_Q->setText(QApplication::translate("MainWindow_teach", "-", nullptr));
         pushButton_5->setText(QApplication::translate("MainWindow_teach", "Apply changes", nullptr));
         menuFile->setTitle(QApplication::translate("MainWindow_teach", "File", nullptr));
         menuEdit->setTitle(QApplication::translate("MainWindow_teach", "Edit", nullptr));

@@ -650,44 +650,44 @@
               <item>
                <layout class="QFormLayout" name="formLayout_6">
                 <item row="0" column="0">
-                 <widget class="QRadioButton" name="radioButton_2">
+                 <widget class="QRadioButton" name="radioButton_A1">
                   <property name="text">
                    <string/>
                   </property>
                  </widget>
                 </item>
                 <item row="1" column="0">
-                 <widget class="QRadioButton" name="radioButton">
+                 <widget class="QRadioButton" name="radioButton_A2">
                   <property name="text">
                    <string/>
                   </property>
                  </widget>
                 </item>
                 <item row="1" column="1">
-                 <widget class="QLineEdit" name="lineEdit_2"/>
+                 <widget class="QLineEdit" name="lineA2"/>
                 </item>
                 <item row="2" column="0">
-                 <widget class="QRadioButton" name="radioButton_3">
+                 <widget class="QRadioButton" name="radioButton_A3">
                   <property name="text">
                    <string/>
                   </property>
                  </widget>
                 </item>
                 <item row="2" column="1">
-                 <widget class="QLineEdit" name="lineEdit_5"/>
+                 <widget class="QLineEdit" name="lineA3"/>
                 </item>
                 <item row="3" column="0">
-                 <widget class="QRadioButton" name="radioButton_4">
+                 <widget class="QRadioButton" name="radioButton_A4">
                   <property name="text">
                    <string/>
                   </property>
                  </widget>
                 </item>
                 <item row="3" column="1">
-                 <widget class="QLineEdit" name="lineEdit_3"/>
+                 <widget class="QLineEdit" name="lineA4"/>
                 </item>
                 <item row="0" column="1">
-                 <widget class="QLineEdit" name="lineEdit_4"/>
+                 <widget class="QLineEdit" name="lineA1"/>
                 </item>
                </layout>
               </item>
@@ -711,6 +711,46 @@
                    <string>Topic...</string>
                   </property>
                  </item>
+                 <item>
+                  <property name="text">
+                   <string>Loops</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Arrays</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Strings</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Recursion</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Structs</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Files</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Pointers</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Dynamic memory</string>
+                  </property>
+                 </item>
                 </widget>
                </item>
                <item>
@@ -723,7 +763,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="pushButton_3">
+                <widget class="QPushButton" name="pushButton_Add_Q">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
                    <horstretch>0</horstretch>
@@ -736,7 +776,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="pushButton_4">
+                <widget class="QPushButton" name="pushButton_Rem_Q">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
                    <horstretch>0</horstretch>

@@ -60,6 +60,7 @@ void Dialog1::SignUp() {
     ui->radioTeacher->setCheckable(true);
     ui->radioStudent->setChecked(false);
     ui->radioTeacher->setChecked(false);
+    Dialog1::setWindowTitle("Sign up");
 }
 
 void Dialog1::AddStudent() {
@@ -71,6 +72,7 @@ void Dialog1::AddStudent() {
 //    ui->radioTeacher->setVisible(false);
     ui->radioTeacher->setEnabled(false);
     ui->radioStudent->setChecked(true);
+    Dialog1::setWindowTitle("Add student");
 }
 
 int Dialog1::field_check(char *text) {

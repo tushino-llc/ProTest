@@ -68,6 +68,7 @@ void MainWindow_teach::on_actionExit_triggered()
     /* Main part */
     reply = QMessageBox::question(this, "Teacher's mode", "Are you sure you want to exit?", QMessageBox::Yes | QMessageBox::No);
     if (reply == QMessageBox::Yes) {
+        db_close();
         this->close();
     }
 }
@@ -647,7 +648,21 @@ void MainWindow_teach::init_q() {
 
 void MainWindow_teach::remove_q() {
 
-    /* Initializing variables */
+    /* Main part */
+    ui->comboBox_2->setCurrentIndex(0);
+    ui->comboBox_3->setCurrentIndex(0);
+    ui->comboBox_2->clear();
+    ui->comboBox_2->addItem("Topic...");
+
+    ui->radioButton_A1->setChecked(false);
+    ui->radioButton_A2->setChecked(false);
+    ui->radioButton_A3->setChecked(false);
+    ui->radioButton_A4->setChecked(false);
+
+    ui->lineA1->setText("");
+    ui->lineA2->setText("");
+    ui->lineA3->setText("");
+    ui->lineA4->setText("");
 }
 
 void MainWindow_teach::refresh_q() {
@@ -655,4 +670,63 @@ void MainWindow_teach::refresh_q() {
     /* Main part */
     remove_q();
     init_q();
+}
+
+void MainWindow_teach::on_pushButton_Rem_Q_clicked()
+{
+
+    /* Initializing variables */
+    int id;
+
+    /* Main part */
+    id = get_question_id(ui->comboBox_3->currentIndex());
+
+    if (db_delete_question(id) == -1) {
+        QMessageBox::critical(this, "Error!", "Couldn't delete question!");
+    }
+}
+
+void MainWindow_teach::on_pushButton_Add_Q_clicked()
+{
+
+    /* Main part */
+    dialog2 = new Dialog2(this);
+    dialog2->setModal(true);
+    dialog2->show();
+}
+
+void MainWindow_teach::on_comboBox_2_currentIndexChanged(int index)
+{
+
+    /* Initializing variables */
+
+    /* Main part */
+}
+
+void MainWindow_teach::on_comboBox_3_currentIndexChanged(int index)
+{
+
+    /* Initializing variables */
+
+    /* Main part */
+
+}
+
+int MainWindow_teach::get_question_id(int index) {
+
+    /* Initializing variables */
+    int id;
+    QString Qstr;
+    QByteArray arr;
+    char id_s[10] = {};
+
+    /* Main part */
+    Qstr = ui->comboBox_3->itemText(index);
+    arr = Qstr.toLocal8Bit();
+    sprintf(id_s, "%s", arr.data());
+    *(id_s + strlen(id_s) - 1) = '\0';
+    id = atoi(id_s);
+
+    /* Returning value */
+    return id;
 }

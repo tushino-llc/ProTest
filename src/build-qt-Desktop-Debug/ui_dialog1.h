@@ -42,9 +42,9 @@ public:
     {
         if (Dialog1->objectName().isEmpty())
             Dialog1->setObjectName(QString::fromUtf8("Dialog1"));
-        Dialog1->resize(391, 538);
-        Dialog1->setMinimumSize(QSize(391, 538));
-        Dialog1->setMaximumSize(QSize(391, 538));
+        Dialog1->resize(400, 540);
+        Dialog1->setMinimumSize(QSize(400, 540));
+        Dialog1->setMaximumSize(QSize(400, 540));
         Dialog1->setSizeGripEnabled(false);
         lineEditLN = new QLineEdit(Dialog1);
         lineEditLN->setObjectName(QString::fromUtf8("lineEditLN"));

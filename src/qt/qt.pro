@@ -23,7 +23,8 @@ SOURCES += mainwindow.cpp \
     mainwindow_teach.cpp \
     ../libs/SM.cpp \
     ../libs/func_student.cpp \
-    ../libs/db/sha256.cpp
+    ../libs/db/sha256.cpp \
+    dialog2.cpp
 
 HEADERS  += mainwindow.h \
     dialog1.h \
@@ -35,11 +36,13 @@ HEADERS  += mainwindow.h \
     mainwindow_teach.h \
     ../headers/config.h \
     ../headers/student_menu.h \
-    ../headers/sha256.h
+    ../headers/sha256.h \
+    dialog2.h
 
 FORMS    += mainwindow.ui \
     dialog1.ui \
-    mainwindow_teach.ui
+    mainwindow_teach.ui \
+    dialog2.ui
 
 LIBS += -ldl \
 
