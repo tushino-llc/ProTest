@@ -212,7 +212,6 @@ Question * db_get_test(int theme)
 
         auto text = (char *) sqlite3_column_text(st, 2);
         strcpy( questions[i].value, text );
-        delete(text);
 
         for (int j = 3; j < 7; j++) {
             text = (char *) sqlite3_column_text(st, j);
@@ -267,7 +266,6 @@ Question * db_get_questions(int * size)
 
         auto text = (char *) sqlite3_column_text(st, 2);
         strcpy( questions[i].value, text );
-        delete(text);
 
         for (int j = 3; j < 7; j++) {
             text = (char *) sqlite3_column_text(st, j);
@@ -309,7 +307,6 @@ Question db_get_question_by_id(int id)
 
     auto text = (char *) sqlite3_column_text(st, 2);
     strcpy( q.value, text );
-    delete(text);
 
     for (int j = 3; j < 7; j++) {
         text = (char *) sqlite3_column_text(st, j);
@@ -425,7 +422,6 @@ Question * db_get_final_test()
 
         auto text = (char *) sqlite3_column_text(st, 2);
         strcpy( questions[i].value, text );
-        delete(text);
 
         for (int j = 3; j < 7; j++) {
             text = (char *) sqlite3_column_text(st, j);

@@ -1,9 +1,5 @@
 AUTOMAKE_OPTIONS = subdir-objects
 ACLOCAL_AMFLAGS = $(ACLOCAL_FLAGS)
-#SUBDIRS = libs/libtomcrypt
-
-#$(SUBDIRS):
-#	$(MAKE) install -f makefile.shared PREFIX=../libcrypt && $(MAKE) clean
 
 bin_PROGRAMS = ProTest
 
@@ -21,11 +17,7 @@ endif
 include_HEADERS = headers/tests_main_header.h headers/database.h headers/main_menu.h headers/sqlite3.h qt/dialog1.h \
 qt/mainwindow.h qt/mainwindow_teach.h build-qt-Desktop-Debug/ui_dialog1.h build-qt-Desktop-Debug/ui_mainwindow.h \
 build-qt-Desktop-Debug/ui_mainwindow_teach.h libs/libcrypt/include/tomcrypt_prng.h libs/libcrypt/include/tomcrypt_pkcs.h \
-libs/libcrypt/include/tomcrypt_pk.h libs/libcrypt/include/tomcrypt_misc.h libs/libcrypt/include/tomcrypt_math.h \
-libs/libcrypt/include/tomcrypt_macros.h libs/libcrypt/include/tomcrypt_mac.h libs/libcrypt/include/tomcrypt_hash.h \
-libs/libcrypt/include/tomcrypt_custom.h libs/libcrypt/include/tomcrypt_cipher.h libs/libcrypt/include/tomcrypt_cfg.h \
-libs/libcrypt/include/tomcrypt_argchk.h libs/libcrypt/include/tomcrypt.h build-qt-Desktop-Debug/moc_predefs.h \
-headers/teacher_menu.h headers/student_menu.h headers/config.h
+build-qt-Desktop-Debug/moc_predefs.h headers/teacher_menu.h headers/student_menu.h headers/config.h
 
 if HAVE_QT
 lib_LTLIBRARIES = libmainmenu.la libqt_cpp.la libdatabse.la libteacher.la libstudent.la

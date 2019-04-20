@@ -6,6 +6,7 @@
 #include <QFileDialog>
 #include "dialog1.h"
 #include "../headers/tests_main_header.h"
+#include <QDesktopServices>
 
 namespace Ui {
 class MainWindow_teach;
@@ -55,6 +56,16 @@ private slots:
     double get_mean(int);
 
     void on_actionRefresh_triggered();
+
+    void init_table();
+
+    void remove_table();
+
+    void on_actionGet_Help_triggered();
+
+    void on_actionAbout_Qt_triggered();
+
+    void on_actionAbout_triggered();
 
 private:
     Ui::MainWindow_teach *ui;

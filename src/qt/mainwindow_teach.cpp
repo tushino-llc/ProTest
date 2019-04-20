@@ -256,10 +256,7 @@ void MainWindow_teach::init_users() {
     /* Initializing variables */
     int size;
     struct User *usr;
-    struct Marks mks;
-    double mean = 0.0;
-    char fnln[515], id[10], a[10];
-    QTableWidgetItem *itm = nullptr;
+    char fnln[515], id[10];
 
     /* Main part */
     usr = db_get_users(&size);
@@ -274,55 +271,7 @@ void MainWindow_teach::init_users() {
         ui->comboBox->addItem(fnln);
     }
 
-    ui->tableWidget->setRowCount(size);
-    for (int i = 0; i < size; ++i) {
-        mks = db_get_user_marks((usr + i)->id);
-        ui->tableWidget->setItem(i, 0, (itm = new QTableWidgetItem((usr + i)->first_name)));
-        itm->setTextAlignment(Qt::AlignCenter);
-        ui->tableWidget->setItem(i, 1, (itm = new QTableWidgetItem((usr + i)->last_name)));
-        itm->setTextAlignment(Qt::AlignCenter);
-
-        sprintf(a, "%d", mks.values[0]);
-        ui->tableWidget->setItem(i, 2, (itm = new QTableWidgetItem(a)));
-        itm->setTextAlignment(Qt::AlignCenter);
-
-        sprintf(a, "%d", mks.values[1]);
-        ui->tableWidget->setItem(i, 3, (itm = new QTableWidgetItem(a)));
-        itm->setTextAlignment(Qt::AlignCenter);
-
-        sprintf(a, "%d", mks.values[2]);
-        ui->tableWidget->setItem(i, 4, (itm = new QTableWidgetItem(a)));
-        itm->setTextAlignment(Qt::AlignCenter);
-
-        sprintf(a, "%d", mks.values[3]);
-        ui->tableWidget->setItem(i, 5, (itm = new QTableWidgetItem(a)));
-        itm->setTextAlignment(Qt::AlignCenter);
-
-        sprintf(a, "%d", mks.values[4]);
-        ui->tableWidget->setItem(i, 6, (itm = new QTableWidgetItem(a)));
-        itm->setTextAlignment(Qt::AlignCenter);
-
-        sprintf(a, "%d", mks.values[5]);
-        ui->tableWidget->setItem(i, 7, (itm = new QTableWidgetItem(a)));
-        itm->setTextAlignment(Qt::AlignCenter);
-
-        sprintf(a, "%d", mks.values[6]);
-        ui->tableWidget->setItem(i, 8, (itm = new QTableWidgetItem(a)));
-        itm->setTextAlignment(Qt::AlignCenter);
-
-        sprintf(a, "%d", mks.values[7]);
-        ui->tableWidget->setItem(i, 9, (itm = new QTableWidgetItem(a)));
-        itm->setTextAlignment(Qt::AlignCenter);
-
-        sprintf(a, "%d", mks.values[9]);
-        ui->tableWidget->setItem(i, 10, (itm = new QTableWidgetItem(a)));
-        itm->setTextAlignment(Qt::AlignCenter);
-
-        mean = get_mean(i + 1);
-        sprintf(a, "%6.3lf", mean);
-        ui->tableWidget->setItem(i, 11, (itm = new QTableWidgetItem(a)));
-        itm->setTextAlignment(Qt::AlignCenter);
-    }
+    init_table();
 
     delete usr;
     ui->pushButton_add->setEnabled(true);
@@ -336,8 +285,7 @@ void MainWindow_teach::remove_users() {
     ui->comboBox->addItem("Choose a student...");
     ui->pushButton_add->setEnabled(false);
 
-    ui->tableWidget->setRowCount(0);
-    ui->tableWidget->setRowCount(1);
+    remove_table();
 }
 
 void MainWindow_teach::refresh_users() {
@@ -461,8 +409,13 @@ void MainWindow_teach::on_pushButton_2_clicked()
     }
 
     mean = get_mean(id);
-    sprintf(a, "6.3%lf", mean);
+    strcpy(a, "");
+    sprintf(a, "%.3lf", mean);
+    ui->lineMean->setText("");
     ui->lineMean->setText(a);
+
+    remove_table();
+    init_table();
 }
 
 void MainWindow_teach::on_pushButton_clicked()
@@ -539,13 +492,19 @@ void MainWindow_teach::on_pushButton_clicked()
         ui->lineFinal->setText("0");
     }
 
+    strcpy(a, "");
     sprintf(a, "%6.3lf", mean);
+    ui->lineMean->setText("");
     ui->lineMean->setText(a);
+
+    remove_table();
+    init_table();
 }
 
 double MainWindow_teach::get_mean(int id) {
 
     /* Initializing variables */
+    int counter = 0;
     struct Marks mks;
     double mean = 0.0;
 
@@ -555,9 +514,16 @@ double MainWindow_teach::get_mean(int id) {
         if (i == 8) {
             continue;
         }
-        mean += mks.values[i];
+        if (mks.values[i] >= 2 && mks.values[i] <= 5) {
+            mean += mks.values[i];
+            ++counter;
+        }
     }
-    mean /= 9;
+    if (counter == 0) {
+        mean = 0.0;
+    } else {
+        mean /= counter;
+    }
 
     /* Returning value */
     return mean;
@@ -568,4 +534,100 @@ void MainWindow_teach::on_actionRefresh_triggered()
 
     /* Main part */
     refresh_users();
+}
+
+void MainWindow_teach::init_table() {
+
+    /* Initializing variables */
+    int size;
+    struct User *usr;
+    struct Marks mks;
+    double mean = 0.0;
+    char a[10];
+    QTableWidgetItem *itm = nullptr;
+
+    /* Main part */
+    usr = db_get_users(&size);
+
+    ui->tableWidget->setRowCount(size);
+    for (int i = 0; i < size; ++i) {
+        mks = db_get_user_marks((usr + i)->id);
+        ui->tableWidget->setItem(i, 0, (itm = new QTableWidgetItem((usr + i)->first_name)));
+        itm->setTextAlignment(Qt::AlignCenter);
+        ui->tableWidget->setItem(i, 1, (itm = new QTableWidgetItem((usr + i)->last_name)));
+        itm->setTextAlignment(Qt::AlignCenter);
+
+        sprintf(a, "%d", mks.values[0]);
+        ui->tableWidget->setItem(i, 2, (itm = new QTableWidgetItem(a)));
+        itm->setTextAlignment(Qt::AlignCenter);
+
+        sprintf(a, "%d", mks.values[1]);
+        ui->tableWidget->setItem(i, 3, (itm = new QTableWidgetItem(a)));
+        itm->setTextAlignment(Qt::AlignCenter);
+
+        sprintf(a, "%d", mks.values[2]);
+        ui->tableWidget->setItem(i, 4, (itm = new QTableWidgetItem(a)));
+        itm->setTextAlignment(Qt::AlignCenter);
+
+        sprintf(a, "%d", mks.values[3]);
+        ui->tableWidget->setItem(i, 5, (itm = new QTableWidgetItem(a)));
+        itm->setTextAlignment(Qt::AlignCenter);
+
+        sprintf(a, "%d", mks.values[4]);
+        ui->tableWidget->setItem(i, 6, (itm = new QTableWidgetItem(a)));
+        itm->setTextAlignment(Qt::AlignCenter);
+
+        sprintf(a, "%d", mks.values[5]);
+        ui->tableWidget->setItem(i, 7, (itm = new QTableWidgetItem(a)));
+        itm->setTextAlignment(Qt::AlignCenter);
+
+        sprintf(a, "%d", mks.values[6]);
+        ui->tableWidget->setItem(i, 8, (itm = new QTableWidgetItem(a)));
+        itm->setTextAlignment(Qt::AlignCenter);
+
+        sprintf(a, "%d", mks.values[7]);
+        ui->tableWidget->setItem(i, 9, (itm = new QTableWidgetItem(a)));
+        itm->setTextAlignment(Qt::AlignCenter);
+
+        sprintf(a, "%d", mks.values[9]);
+        ui->tableWidget->setItem(i, 10, (itm = new QTableWidgetItem(a)));
+        itm->setTextAlignment(Qt::AlignCenter);
+
+        mean = get_mean((usr + i)->id);
+        strcpy(a, "");
+        sprintf(a, "%.3lf", mean);
+        ui->tableWidget->setItem(i, 11, (itm = new QTableWidgetItem(a)));
+        itm->setTextAlignment(Qt::AlignCenter);
+    }
+
+    delete usr;
+}
+
+void MainWindow_teach::remove_table() {
+
+    /* Main part */
+    ui->tableWidget->setRowCount(0);
+    ui->tableWidget->setRowCount(1);
+}
+
+void MainWindow_teach::on_actionGet_Help_triggered()
+{
+    bool open = QDesktopServices::openUrl(QUrl("https://github.com/tushino-llc/ProTest/blob/master/README.md", QUrl::TolerantMode));
+    if (open) {
+
+    } else {
+        QMessageBox::critical(this, "Error!", "Couldn't open help webpage!");
+    }
+}
+
+void MainWindow_teach::on_actionAbout_Qt_triggered()
+{
+    QMessageBox::aboutQt(this, "Teacher's mode");
+}
+
+void MainWindow_teach::on_actionAbout_triggered()
+{
+    QMessageBox::about(this, "Teacher's mode", "ProTest — A free powerful program for educational tests."
+                                               "\n\nLicenced only under GNU GPL v2 copyleft."
+                                               "\n\nBugreport email: anton2920@gmail.com");
 }

@@ -26,19 +26,6 @@ SOURCES += mainwindow.cpp \
 
 HEADERS  += mainwindow.h \
     dialog1.h \
-    ../libs/libcrypt/include/tomcrypt.h \
-    ../libs/libcrypt/include/tomcrypt_argchk.h \
-    ../libs/libcrypt/include/tomcrypt_cfg.h \
-    ../libs/libcrypt/include/tomcrypt_cipher.h \
-    ../libs/libcrypt/include/tomcrypt_custom.h \
-    ../libs/libcrypt/include/tomcrypt_hash.h \
-    ../libs/libcrypt/include/tomcrypt_mac.h \
-    ../libs/libcrypt/include/tomcrypt_macros.h \
-    ../libs/libcrypt/include/tomcrypt_math.h \
-    ../libs/libcrypt/include/tomcrypt_misc.h \
-    ../libs/libcrypt/include/tomcrypt_pk.h \
-    ../libs/libcrypt/include/tomcrypt_pkcs.h \
-    ../libs/libcrypt/include/tomcrypt_prng.h \
     ../headers/database.h \
     ../headers/sqlite3.h \
     ../headers/teacher_menu.h \
@@ -52,9 +39,7 @@ FORMS    += mainwindow.ui \
     dialog1.ui \
     mainwindow_teach.ui
 
-LIBS += \
-    ../libs/libcrypt/lib/libtomcrypt.a \
-    -ldl \
+LIBS += -ldl \
 
 DISTFILES += \
     ../Makefile.am \
