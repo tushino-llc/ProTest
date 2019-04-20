@@ -22,6 +22,7 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 #define DB_MAIN_HEADER
 
 #include "sqlite3.h"
+#include "sha256.h"
 
 extern sqlite3 *db;
 

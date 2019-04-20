@@ -1,14 +1,16 @@
-#include "tests_main_header.h"
+ï»¿#include "../headers/tests_main_header.h"
 
 
-void student_menu() {
+int student_menu(void) {
 
 	/* Initializing variables */
-	int sign, junk, n;
-	signin();
+	int sign, junk, n,check=0;
+	check=signin();
+	if (check == 0)
+		return 0;
 	/* I/O flow */
 	while (1) {
-		printf(" ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––\n"
+		printf(" ------------------------------------------------------------\n"
 			"|                                                            |\n"
 			"|                      >> ProTest v1.0 <<                    |\n"
 			"|                                                            |\n"
@@ -36,17 +38,15 @@ void student_menu() {
 			switch (sign) {
 			case 1:Training();
 				break;
-			case 2:Test();
+			case 2:Test(check);
 				break;
-			case 3:FinalTest();
+			case 3:FinalTest(check);
 				break;
 			default:
 				break;
 			}
 
-			if (!n) {
-				sign = 'b';
-			}
+			
 
 		}
 		else if (sign == 'q') {
