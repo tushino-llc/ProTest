@@ -161,10 +161,10 @@ int main_menu(void) {
 
             switch (func) {
                 case 1:
-                    //input_teacher();
+                    input_teacher();
                     break;
                 case 2:
-                    //student_menu();
+                    student_menu();
                     break;
             }
 

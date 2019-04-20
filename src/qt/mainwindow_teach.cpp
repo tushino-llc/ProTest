@@ -27,6 +27,8 @@ void MainWindow_teach::Set_init_mode(int mode) {
         // ui->actionNew_Database->setVisible(false);
         ui->actionOpen_Database->setVisible(false);
         ui->actionClose_Database->setVisible(false);
+        ui->actionAllow->setVisible(true);
+        ui->actionRefresh->setText("Refresh students");
     } else {
         ui->actionStudents_2->setChecked(false);
         ui->actionQuestions->setChecked(true);
@@ -34,6 +36,8 @@ void MainWindow_teach::Set_init_mode(int mode) {
         // ui->actionNew_Database->setVisible(true);
         ui->actionOpen_Database->setVisible(false);
         ui->actionClose_Database->setVisible(false);
+        ui->actionAllow->setVisible(false);
+        ui->actionRefresh->setText("Refresh questions");
     }
 
 
@@ -533,7 +537,11 @@ void MainWindow_teach::on_actionRefresh_triggered()
 {
 
     /* Main part */
-    refresh_users();
+    if (ui->actionRefresh->text() == "Refresh students") {
+        refresh_users();
+    } else {
+        refresh_q();
+    }
 }
 
 void MainWindow_teach::init_table() {
@@ -630,4 +638,21 @@ void MainWindow_teach::on_actionAbout_triggered()
     QMessageBox::about(this, "Teacher's mode", "ProTest — A free powerful program for educational tests."
                                                "\n\nLicenced only under GNU GPL v2 copyleft."
                                                "\n\nBugreport email: anton2920@gmail.com");
+}
+
+void MainWindow_teach::init_q() {
+
+    /* Initializing variables */
+}
+
+void MainWindow_teach::remove_q() {
+
+    /* Initializing variables */
+}
+
+void MainWindow_teach::refresh_q() {
+
+    /* Main part */
+    remove_q();
+    init_q();
 }

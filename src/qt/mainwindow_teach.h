@@ -67,6 +67,12 @@ private slots:
 
     void on_actionAbout_triggered();
 
+    void init_q();
+
+    void remove_q();
+
+    void refresh_q();
+
 private:
     Ui::MainWindow_teach *ui;
     Dialog1 *dialog1;
