@@ -21,8 +21,9 @@ SOURCES += mainwindow.cpp \
     ../main.cpp \
     qt_main.cpp \
     mainwindow_teach.cpp \
-    #../libs/SM.cpp \
-    #../libs/func_student.cpp
+    ../libs/SM.cpp \
+    ../libs/func_student.cpp \
+    ../libs/db/sha256.cpp
 
 HEADERS  += mainwindow.h \
     dialog1.h \
@@ -33,7 +34,8 @@ HEADERS  += mainwindow.h \
     ../headers/main_menu.h \
     mainwindow_teach.h \
     ../headers/config.h \
-    ../headers/student_menu.h
+    ../headers/student_menu.h \
+    ../headers/sha256.h
 
 FORMS    += mainwindow.ui \
     dialog1.ui \

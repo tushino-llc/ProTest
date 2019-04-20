@@ -14,6 +14,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QFormLayout>
+#include <QtWidgets/QFrame>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
@@ -25,6 +26,7 @@
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QRadioButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSplitter>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QStatusBar>
@@ -40,9 +42,6 @@ class Ui_MainWindow_teach
 public:
     QAction *actionOpen_Database;
     QAction *actionClose_Database;
-    QAction *actionCut;
-    QAction *actionCopy;
-    QAction *actionPaste;
     QAction *actionGet_Help;
     QAction *actionAbout;
     QAction *actionAbout_Qt;
@@ -107,17 +106,32 @@ public:
     QPushButton *pushButton;
     QTableWidget *tableWidget;
     QWidget *page_2;
-    QRadioButton *radioButton;
+    QGridLayout *gridLayout_5;
+    QFrame *frame;
+    QGridLayout *gridLayout_4;
+    QGroupBox *groupBox_2;
+    QVBoxLayout *verticalLayout_4;
+    QFormLayout *formLayout_6;
     QRadioButton *radioButton_2;
-    QRadioButton *radioButton_3;
-    QRadioButton *radioButton_4;
-    QComboBox *comboBox_2;
-    QComboBox *comboBox_3;
+    QRadioButton *radioButton;
     QLineEdit *lineEdit_2;
+    QRadioButton *radioButton_3;
+    QLineEdit *lineEdit_5;
+    QRadioButton *radioButton_4;
     QLineEdit *lineEdit_3;
     QLineEdit *lineEdit_4;
-    QLineEdit *lineEdit_5;
+    QVBoxLayout *verticalLayout_2;
+    QHBoxLayout *horizontalLayout_4;
+    QComboBox *comboBox_2;
+    QComboBox *comboBox_3;
+    QPushButton *pushButton_3;
+    QPushButton *pushButton_4;
     QTextEdit *textEdit;
+    QPushButton *pushButton_5;
+    QSpacerItem *horizontalSpacer_2;
+    QSpacerItem *verticalSpacer;
+    QSpacerItem *horizontalSpacer;
+    QSpacerItem *verticalSpacer_2;
     QMenuBar *menubar;
     QMenu *menuFile;
     QMenu *menuEdit;
@@ -134,12 +148,6 @@ public:
         actionOpen_Database->setObjectName(QString::fromUtf8("actionOpen_Database"));
         actionClose_Database = new QAction(MainWindow_teach);
         actionClose_Database->setObjectName(QString::fromUtf8("actionClose_Database"));
-        actionCut = new QAction(MainWindow_teach);
-        actionCut->setObjectName(QString::fromUtf8("actionCut"));
-        actionCopy = new QAction(MainWindow_teach);
-        actionCopy->setObjectName(QString::fromUtf8("actionCopy"));
-        actionPaste = new QAction(MainWindow_teach);
-        actionPaste->setObjectName(QString::fromUtf8("actionPaste"));
         actionGet_Help = new QAction(MainWindow_teach);
         actionGet_Help->setObjectName(QString::fromUtf8("actionGet_Help"));
         actionAbout = new QAction(MainWindow_teach);
@@ -525,44 +533,139 @@ public:
         stackedWidget->addWidget(page);
         page_2 = new QWidget();
         page_2->setObjectName(QString::fromUtf8("page_2"));
-        radioButton = new QRadioButton(page_2);
-        radioButton->setObjectName(QString::fromUtf8("radioButton"));
-        radioButton->setGeometry(QRect(190, 230, 102, 24));
-        radioButton_2 = new QRadioButton(page_2);
+        gridLayout_5 = new QGridLayout(page_2);
+        gridLayout_5->setObjectName(QString::fromUtf8("gridLayout_5"));
+        frame = new QFrame(page_2);
+        frame->setObjectName(QString::fromUtf8("frame"));
+        frame->setFrameShape(QFrame::StyledPanel);
+        frame->setFrameShadow(QFrame::Raised);
+        gridLayout_4 = new QGridLayout(frame);
+        gridLayout_4->setObjectName(QString::fromUtf8("gridLayout_4"));
+        groupBox_2 = new QGroupBox(frame);
+        groupBox_2->setObjectName(QString::fromUtf8("groupBox_2"));
+        verticalLayout_4 = new QVBoxLayout(groupBox_2);
+        verticalLayout_4->setObjectName(QString::fromUtf8("verticalLayout_4"));
+        formLayout_6 = new QFormLayout();
+        formLayout_6->setObjectName(QString::fromUtf8("formLayout_6"));
+        radioButton_2 = new QRadioButton(groupBox_2);
         radioButton_2->setObjectName(QString::fromUtf8("radioButton_2"));
-        radioButton_2->setGeometry(QRect(190, 290, 102, 24));
-        radioButton_3 = new QRadioButton(page_2);
+
+        formLayout_6->setWidget(0, QFormLayout::LabelRole, radioButton_2);
+
+        radioButton = new QRadioButton(groupBox_2);
+        radioButton->setObjectName(QString::fromUtf8("radioButton"));
+
+        formLayout_6->setWidget(1, QFormLayout::LabelRole, radioButton);
+
+        lineEdit_2 = new QLineEdit(groupBox_2);
+        lineEdit_2->setObjectName(QString::fromUtf8("lineEdit_2"));
+
+        formLayout_6->setWidget(1, QFormLayout::FieldRole, lineEdit_2);
+
+        radioButton_3 = new QRadioButton(groupBox_2);
         radioButton_3->setObjectName(QString::fromUtf8("radioButton_3"));
-        radioButton_3->setGeometry(QRect(190, 410, 102, 24));
-        radioButton_4 = new QRadioButton(page_2);
+
+        formLayout_6->setWidget(2, QFormLayout::LabelRole, radioButton_3);
+
+        lineEdit_5 = new QLineEdit(groupBox_2);
+        lineEdit_5->setObjectName(QString::fromUtf8("lineEdit_5"));
+
+        formLayout_6->setWidget(2, QFormLayout::FieldRole, lineEdit_5);
+
+        radioButton_4 = new QRadioButton(groupBox_2);
         radioButton_4->setObjectName(QString::fromUtf8("radioButton_4"));
-        radioButton_4->setGeometry(QRect(190, 350, 102, 24));
-        comboBox_2 = new QComboBox(page_2);
+
+        formLayout_6->setWidget(3, QFormLayout::LabelRole, radioButton_4);
+
+        lineEdit_3 = new QLineEdit(groupBox_2);
+        lineEdit_3->setObjectName(QString::fromUtf8("lineEdit_3"));
+
+        formLayout_6->setWidget(3, QFormLayout::FieldRole, lineEdit_3);
+
+        lineEdit_4 = new QLineEdit(groupBox_2);
+        lineEdit_4->setObjectName(QString::fromUtf8("lineEdit_4"));
+
+        formLayout_6->setWidget(0, QFormLayout::FieldRole, lineEdit_4);
+
+
+        verticalLayout_4->addLayout(formLayout_6);
+
+
+        gridLayout_4->addWidget(groupBox_2, 1, 0, 1, 1);
+
+        verticalLayout_2 = new QVBoxLayout();
+        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
+        horizontalLayout_4 = new QHBoxLayout();
+        horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
+        comboBox_2 = new QComboBox(frame);
         comboBox_2->addItem(QString());
         comboBox_2->setObjectName(QString::fromUtf8("comboBox_2"));
-        comboBox_2->setGeometry(QRect(340, 20, 91, 26));
-        comboBox_3 = new QComboBox(page_2);
+        QSizePolicy sizePolicy5(QSizePolicy::Maximum, QSizePolicy::Fixed);
+        sizePolicy5.setHorizontalStretch(0);
+        sizePolicy5.setVerticalStretch(0);
+        sizePolicy5.setHeightForWidth(comboBox_2->sizePolicy().hasHeightForWidth());
+        comboBox_2->setSizePolicy(sizePolicy5);
+
+        horizontalLayout_4->addWidget(comboBox_2);
+
+        comboBox_3 = new QComboBox(frame);
         comboBox_3->addItem(QString());
         comboBox_3->setObjectName(QString::fromUtf8("comboBox_3"));
-        comboBox_3->setGeometry(QRect(500, 20, 151, 26));
-        lineEdit_2 = new QLineEdit(page_2);
-        lineEdit_2->setObjectName(QString::fromUtf8("lineEdit_2"));
-        lineEdit_2->setGeometry(QRect(210, 230, 113, 26));
-        lineEdit_3 = new QLineEdit(page_2);
-        lineEdit_3->setObjectName(QString::fromUtf8("lineEdit_3"));
-        lineEdit_3->setGeometry(QRect(210, 290, 113, 26));
-        lineEdit_4 = new QLineEdit(page_2);
-        lineEdit_4->setObjectName(QString::fromUtf8("lineEdit_4"));
-        lineEdit_4->setGeometry(QRect(210, 350, 113, 26));
-        lineEdit_5 = new QLineEdit(page_2);
-        lineEdit_5->setObjectName(QString::fromUtf8("lineEdit_5"));
-        lineEdit_5->setGeometry(QRect(210, 410, 113, 26));
-        textEdit = new QTextEdit(page_2);
+
+        horizontalLayout_4->addWidget(comboBox_3);
+
+        pushButton_3 = new QPushButton(frame);
+        pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
+        sizePolicy5.setHeightForWidth(pushButton_3->sizePolicy().hasHeightForWidth());
+        pushButton_3->setSizePolicy(sizePolicy5);
+
+        horizontalLayout_4->addWidget(pushButton_3);
+
+        pushButton_4 = new QPushButton(frame);
+        pushButton_4->setObjectName(QString::fromUtf8("pushButton_4"));
+        sizePolicy5.setHeightForWidth(pushButton_4->sizePolicy().hasHeightForWidth());
+        pushButton_4->setSizePolicy(sizePolicy5);
+
+        horizontalLayout_4->addWidget(pushButton_4);
+
+
+        verticalLayout_2->addLayout(horizontalLayout_4);
+
+        textEdit = new QTextEdit(frame);
         textEdit->setObjectName(QString::fromUtf8("textEdit"));
-        textEdit->setGeometry(QRect(220, 80, 651, 91));
+
+        verticalLayout_2->addWidget(textEdit);
+
+
+        gridLayout_4->addLayout(verticalLayout_2, 0, 0, 1, 1);
+
+        pushButton_5 = new QPushButton(frame);
+        pushButton_5->setObjectName(QString::fromUtf8("pushButton_5"));
+
+        gridLayout_4->addWidget(pushButton_5, 2, 0, 1, 1);
+
+
+        gridLayout_5->addWidget(frame, 1, 2, 1, 1);
+
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Minimum, QSizePolicy::Minimum);
+
+        gridLayout_5->addItem(horizontalSpacer_2, 1, 3, 1, 1);
+
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Maximum);
+
+        gridLayout_5->addItem(verticalSpacer, 0, 2, 1, 1);
+
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Maximum, QSizePolicy::Minimum);
+
+        gridLayout_5->addItem(horizontalSpacer, 1, 1, 1, 1);
+
+        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Maximum);
+
+        gridLayout_5->addItem(verticalSpacer_2, 2, 2, 1, 1);
+
         stackedWidget->addWidget(page_2);
 
-        gridLayout_3->addWidget(stackedWidget, 0, 1, 1, 1);
+        gridLayout_3->addWidget(stackedWidget, 0, 0, 1, 1);
 
         MainWindow_teach->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow_teach);
@@ -609,9 +712,6 @@ public:
         menuFile->addAction(actionLog_out);
         menuFile->addSeparator();
         menuFile->addAction(actionExit);
-        menuEdit->addAction(actionCut);
-        menuEdit->addAction(actionCopy);
-        menuEdit->addAction(actionPaste);
         menuEdit->addSeparator();
         menuEdit->addAction(actionAllow);
         menuHelp->addAction(actionGet_Help);
@@ -640,18 +740,6 @@ public:
         actionOpen_Database->setShortcut(QApplication::translate("MainWindow_teach", "Ctrl+O", nullptr));
 #endif // QT_NO_SHORTCUT
         actionClose_Database->setText(QApplication::translate("MainWindow_teach", "Close Database", nullptr));
-        actionCut->setText(QApplication::translate("MainWindow_teach", "Cut", nullptr));
-#ifndef QT_NO_TOOLTIP
-        actionCut->setToolTip(QApplication::translate("MainWindow_teach", "<html><head/><body><p>Ctrl + X</p></body></html>", nullptr));
-#endif // QT_NO_TOOLTIP
-        actionCopy->setText(QApplication::translate("MainWindow_teach", "Copy", nullptr));
-#ifndef QT_NO_TOOLTIP
-        actionCopy->setToolTip(QApplication::translate("MainWindow_teach", "<html><head/><body><p>Ctrl + C</p></body></html>", nullptr));
-#endif // QT_NO_TOOLTIP
-        actionPaste->setText(QApplication::translate("MainWindow_teach", "Paste", nullptr));
-#ifndef QT_NO_TOOLTIP
-        actionPaste->setToolTip(QApplication::translate("MainWindow_teach", "<html><head/><body><p>Ctrl + V</p></body></html>", nullptr));
-#endif // QT_NO_TOOLTIP
         actionGet_Help->setText(QApplication::translate("MainWindow_teach", "Get Help (Online)", nullptr));
         actionAbout->setText(QApplication::translate("MainWindow_teach", "About", nullptr));
         actionAbout_Qt->setText(QApplication::translate("MainWindow_teach", "About Qt", nullptr));
@@ -740,14 +828,18 @@ public:
         ___qtablewidgetitem10->setText(QApplication::translate("MainWindow_teach", "Final test", nullptr));
         QTableWidgetItem *___qtablewidgetitem11 = tableWidget->horizontalHeaderItem(11);
         ___qtablewidgetitem11->setText(QApplication::translate("MainWindow_teach", "Mean", nullptr));
-        radioButton->setText(QApplication::translate("MainWindow_teach", "RadioButton", nullptr));
-        radioButton_2->setText(QApplication::translate("MainWindow_teach", "RadioButton", nullptr));
-        radioButton_3->setText(QApplication::translate("MainWindow_teach", "RadioButton", nullptr));
-        radioButton_4->setText(QApplication::translate("MainWindow_teach", "RadioButton", nullptr));
+        groupBox_2->setTitle(QString());
+        radioButton_2->setText(QString());
+        radioButton->setText(QString());
+        radioButton_3->setText(QString());
+        radioButton_4->setText(QString());
         comboBox_2->setItemText(0, QApplication::translate("MainWindow_teach", "Topic...", nullptr));
 
         comboBox_3->setItemText(0, QApplication::translate("MainWindow_teach", "Question...", nullptr));
 
+        pushButton_3->setText(QApplication::translate("MainWindow_teach", "+", nullptr));
+        pushButton_4->setText(QApplication::translate("MainWindow_teach", "-", nullptr));
+        pushButton_5->setText(QApplication::translate("MainWindow_teach", "Apply changes", nullptr));
         menuFile->setTitle(QApplication::translate("MainWindow_teach", "File", nullptr));
         menuEdit->setTitle(QApplication::translate("MainWindow_teach", "Edit", nullptr));
         menuHelp->setTitle(QApplication::translate("MainWindow_teach", "Help", nullptr));
