@@ -1,4 +1,5 @@
 #include "../../headers/tests_main_header.h"
+using namespace std;
 
 extern sqlite3 *db;
 
