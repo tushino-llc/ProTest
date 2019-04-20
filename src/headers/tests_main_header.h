@@ -33,7 +33,6 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 #include "config.h"
 
 /* Include general headers */
-
 #if (HAVE_STRING == 1)
     #include <string>
 #endif
