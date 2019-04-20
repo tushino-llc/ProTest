@@ -84,6 +84,8 @@ private slots:
 
     int get_question_id(int);
 
+    void on_pushButton_apply_clicked();
+
 private:
     Ui::MainWindow_teach *ui;
     Dialog1 *dialog1;

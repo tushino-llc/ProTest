@@ -278,8 +278,8 @@ void Dialog1::on_pushSignUp_clicked()
 
             reply = QMessageBox::question(this, ui->label->text(), Q1, QMessageBox::Yes | QMessageBox::No);
             if (reply == QMessageBox::Yes) {
-                usr = db_login(login, pass);
-                if (usr.id != 0) {
+                id = db_get_id_by_login(login);
+                if (id != -1) {
                     QMessageBox::critical(this, "Error!", "User with that login already exists!");
                 } else {
                     if (Dialog1::field_check(login) && Dialog1::field_check(pass)) {

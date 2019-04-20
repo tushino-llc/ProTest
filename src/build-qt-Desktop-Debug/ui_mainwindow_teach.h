@@ -127,7 +127,7 @@ public:
     QPushButton *pushButton_Add_Q;
     QPushButton *pushButton_Rem_Q;
     QTextEdit *textEdit;
-    QPushButton *pushButton_5;
+    QPushButton *pushButton_apply;
     QSpacerItem *horizontalSpacer_2;
     QSpacerItem *verticalSpacer;
     QSpacerItem *horizontalSpacer;
@@ -599,6 +599,14 @@ public:
         horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
         comboBox_2 = new QComboBox(frame);
         comboBox_2->addItem(QString());
+        comboBox_2->addItem(QString());
+        comboBox_2->addItem(QString());
+        comboBox_2->addItem(QString());
+        comboBox_2->addItem(QString());
+        comboBox_2->addItem(QString());
+        comboBox_2->addItem(QString());
+        comboBox_2->addItem(QString());
+        comboBox_2->addItem(QString());
         comboBox_2->setObjectName(QString::fromUtf8("comboBox_2"));
         QSizePolicy sizePolicy5(QSizePolicy::Maximum, QSizePolicy::Fixed);
         sizePolicy5.setHorizontalStretch(0);
@@ -639,10 +647,11 @@ public:
 
         gridLayout_4->addLayout(verticalLayout_2, 0, 0, 1, 1);
 
-        pushButton_5 = new QPushButton(frame);
-        pushButton_5->setObjectName(QString::fromUtf8("pushButton_5"));
+        pushButton_apply = new QPushButton(frame);
+        pushButton_apply->setObjectName(QString::fromUtf8("pushButton_apply"));
+        pushButton_apply->setEnabled(false);
 
-        gridLayout_4->addWidget(pushButton_5, 2, 0, 1, 1);
+        gridLayout_4->addWidget(pushButton_apply, 2, 0, 1, 1);
 
 
         gridLayout_5->addWidget(frame, 1, 2, 1, 1);
@@ -834,12 +843,20 @@ public:
         radioButton_A3->setText(QString());
         radioButton_A4->setText(QString());
         comboBox_2->setItemText(0, QApplication::translate("MainWindow_teach", "Topic...", nullptr));
+        comboBox_2->setItemText(1, QApplication::translate("MainWindow_teach", "Loops", nullptr));
+        comboBox_2->setItemText(2, QApplication::translate("MainWindow_teach", "Arrays", nullptr));
+        comboBox_2->setItemText(3, QApplication::translate("MainWindow_teach", "Strings", nullptr));
+        comboBox_2->setItemText(4, QApplication::translate("MainWindow_teach", "Recursion", nullptr));
+        comboBox_2->setItemText(5, QApplication::translate("MainWindow_teach", "Structs", nullptr));
+        comboBox_2->setItemText(6, QApplication::translate("MainWindow_teach", "Files", nullptr));
+        comboBox_2->setItemText(7, QApplication::translate("MainWindow_teach", "Pointers", nullptr));
+        comboBox_2->setItemText(8, QApplication::translate("MainWindow_teach", "Dynamic memory", nullptr));
 
         comboBox_3->setItemText(0, QApplication::translate("MainWindow_teach", "Question...", nullptr));
 
         pushButton_Add_Q->setText(QApplication::translate("MainWindow_teach", "+", nullptr));
         pushButton_Rem_Q->setText(QApplication::translate("MainWindow_teach", "-", nullptr));
-        pushButton_5->setText(QApplication::translate("MainWindow_teach", "Apply changes", nullptr));
+        pushButton_apply->setText(QApplication::translate("MainWindow_teach", "Apply changes", nullptr));
         menuFile->setTitle(QApplication::translate("MainWindow_teach", "File", nullptr));
         menuEdit->setTitle(QApplication::translate("MainWindow_teach", "Edit", nullptr));
         menuHelp->setTitle(QApplication::translate("MainWindow_teach", "Help", nullptr));

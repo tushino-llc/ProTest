@@ -28,6 +28,7 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 #include "dialog1.h"
 #include "mainwindow_teach.h"
 #include "../headers/tests_main_header.h"
+#include "mainwindow_stud.h"
 
 namespace Ui {
 class MainWindow;
@@ -62,6 +63,7 @@ private:
     Ui::MainWindow *ui;
     Dialog1 *dialog1;
     MainWindow_teach *mwt;
+    MainWindow_stud *mws;
 };
 
 #endif // MAINWINDOW_H

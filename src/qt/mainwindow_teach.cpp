@@ -644,6 +644,20 @@ void MainWindow_teach::on_actionAbout_triggered()
 void MainWindow_teach::init_q() {
 
     /* Initializing variables */
+    int theme, i;
+    struct Question *quest;
+    char a[10];
+
+    /* Main part */
+    theme = ui->comboBox_2->currentIndex() - 1;
+
+    for (i = 0; i < 5/* num of q */; ++i) {
+        /* Get q */
+
+        ui->comboBox_3->addItem("");
+    }
+
+    delete quest;
 }
 
 void MainWindow_teach::remove_q() {
@@ -701,15 +715,51 @@ void MainWindow_teach::on_comboBox_2_currentIndexChanged(int index)
     /* Initializing variables */
 
     /* Main part */
+    if (index) {
+
+    } else {
+        ui->comboBox_3->setCurrentIndex(0);
+    }
 }
 
 void MainWindow_teach::on_comboBox_3_currentIndexChanged(int index)
 {
 
     /* Initializing variables */
+    int id;
+    struct Question quest;
 
     /* Main part */
+    if (index) {
+        id = get_question_id(ui->comboBox_3->currentIndex());
+        quest = db_get_question_by_id(id);
 
+        ui->textEdit->setPlainText(quest.value);
+
+        ui->lineA1->setText(quest.ans[0]);
+        ui->lineA2->setText(quest.ans[1]);
+        ui->lineA3->setText(quest.ans[2]);
+        ui->lineA4->setText(quest.ans[3]);
+
+        switch (quest.correct) {
+            case 0:
+                ui->radioButton_A1->setChecked(true);
+                break;
+            case 1:
+                ui->radioButton_A2->setChecked(true);
+                break;
+            case 2:
+                ui->radioButton_A3->setChecked(true);
+                break;
+            case 3:
+                ui->radioButton_A4->setChecked(true);
+                break;
+            default:
+                break;
+        }
+    } else {
+        ui->pushButton_apply->setEnabled(false);
+    }
 }
 
 int MainWindow_teach::get_question_id(int index) {
@@ -729,4 +779,37 @@ int MainWindow_teach::get_question_id(int index) {
 
     /* Returning value */
     return id;
+}
+
+void MainWindow_teach::on_pushButton_apply_clicked()
+{
+
+    /* Initializing variables */
+    struct Question quest;
+    QByteArray arr;
+
+    /* Main part */
+    quest.theme = ui->comboBox_2->currentIndex() - 1;
+
+    arr = ui->textEdit->toPlainText().toLocal8Bit();
+    strcpy(quest.value, arr.data());
+
+    arr = ui->lineA1->text().toLocal8Bit();
+    strcpy(quest.ans[0], arr.data());
+
+    arr = ui->lineA2->text().toLocal8Bit();
+    strcpy(quest.ans[1], arr.data());
+
+    arr = ui->lineA3->text().toLocal8Bit();
+    strcpy(quest.ans[2], arr.data());
+
+    arr = ui->lineA4->text().toLocal8Bit();
+    strcpy(quest.ans[3], arr.data());
+
+    quest.correct = (ui->radioButton_A1->isChecked()) ? 0 : (ui->radioButton_A2->isChecked()) ?
+                    1 : (ui->radioButton_A3->isChecked()) ? 2 : 3;
+
+    if (db_update_question(quest) == -1) {
+        QMessageBox::critical(this, "Error!", "Couldn't create question!");
+    }
 }

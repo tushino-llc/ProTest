@@ -118,6 +118,18 @@ void MainWindow::on_pushButtonSignIn_clicked()
                 mwt->Set_init_mode(0);
                 mwt->show();
                 this->hide();
+            } else {
+                mws = new MainWindow_stud(this);
+                mws->setGeometry(
+                            QStyle::alignedRect(
+                                Qt::LeftToRight,
+                                Qt::AlignCenter,
+                                mws->size(),
+                                qApp->desktop()->availableGeometry()
+                            )
+                        );
+                mws->show();
+                this->hide();
             }
         } else {
             QMessageBox::StandardButton reply;
