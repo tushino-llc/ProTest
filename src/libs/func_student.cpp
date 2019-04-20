@@ -4,13 +4,13 @@
 int signin()
 {
 	int error, sign, c = 2, str;
-	char password[256], login[256];
+	char password[30], login[30];
 	User user;
 	do {
 
 		printf("| Enter login\n");
 		do {
-			fgets(login, 256, stdin);
+			fgets(login, (sizeof login), stdin);
 			str = strlen(login);
 			login[str - 1] = '\0';
 			error = field_check_teacher(login);
@@ -26,7 +26,7 @@ int signin()
 		} while (c == 1);
 		printf("| Enter password\n");
 		do {
-			fgets(password, 256, stdin);
+			fgets(password, (sizeof password), stdin);
 			str = strlen(password);
 			password[str - 1] = '\0';
 			error = field_check_teacher(password);
@@ -48,6 +48,9 @@ int signin()
 		} while ((sign > 1) || (sign < 0));
 		if (sign == 0)
 			return 0;
+		while (!strchr(login, '\n'))
+			if (!fgets(login, (sizeof login), stdin))
+				break;
 	} while (sign == 1);
 
 	return error;
