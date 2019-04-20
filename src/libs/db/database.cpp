@@ -397,7 +397,7 @@ int db_add_question(Question question)
         return -1;
 
     rc= sqlite3_step(st);
-    if (rc != SQLITE_DONE && rc != SQLITE_OK)
+    if (rc != SQLITE_DONE && rc != SQLITE_OK && rc != SQLITE_ROW)
         return -1;
 
     int res = sqlite3_column_int(st, 0);
