@@ -1,4 +1,4 @@
-﻿#include "tests_main_header.h"
+﻿#include "../headers/tests_main_header.h"
 
 
 int student_menu(void) {
@@ -46,9 +46,7 @@ int student_menu(void) {
 				break;
 			}
 
-			if (!n) {
-				sign = 'b';
-			}
+			
 
 		}
 		else if (sign == 'q') {

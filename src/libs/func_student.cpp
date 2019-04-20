@@ -1,19 +1,6 @@
 ﻿#include "../headers/tests_main_header.h"
 
-int field_check_teacher(char *text)
-{
 
-	int i;
-	char ch;
-
-	for (i = 0; i < static_cast<int>(strlen(text)); ++i) {
-		ch = *(text + i);
-		if (ch == ' ' || ch == '\n' || ch == ' ') {
-			return 0;
-		}
-	}
-	return 1;
-}
 int signin()
 {
 	int error, sign,c;
@@ -92,8 +79,8 @@ void Training()
 void Test(int id)
 {
 	Question * questions;
-	User*user;
-	int sub, ans, sum = 0, a[10], inc = 0;
+	
+	int sub, ans, sum = 0,a[10],inc = 0;
 	double mark;
 	printf("| Choose a subject\n"
 		"[0] - loops    \n"
@@ -167,8 +154,8 @@ void Test(int id)
 void FinalTest(int id)
 {
 	Question * questions;
-	User*user;
-	int sub, ans, sum = 0, a[10], inc = 0;
+	
+	int  ans, sum = 0, inc = 0;
 	double mark;
 
 	questions = db_get_final_test();
