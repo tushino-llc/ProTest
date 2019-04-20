@@ -3,35 +3,44 @@
 
 int signin()
 {
-	int error, sign,c;
+	int error, sign, c = 2, str;
 	char password[256], login[256];
 	User user;
 	do {
-		printf("| Enter login");
+
+		printf("| Enter login\n");
 		do {
 			fgets(login, 256, stdin);
+			str = strlen(login);
+			login[str - 1] = '\0';
 			error = field_check_teacher(login);
 			if (error == 0)
+			{
 				printf("| Invalid login.Try again? [1 - yes; 0 - no]\n");
-			do {
-				scanf("%d", &c);
-			} while ((c > 1) || (c < 0));
-			if (c == 0)
-				return 0;
+				do {
+					scanf("%d", &c);
+				} while ((c > 1) || (c < 0));
+				if (c == 0)
+					return 0;
+			}
 		} while (c == 1);
-		printf("| Enter password");
+		printf("| Enter password\n");
 		do {
 			fgets(password, 256, stdin);
+			str = strlen(password);
+			password[str - 1] = '\0';
 			error = field_check_teacher(password);
 			if (error == 0)
+			{
 				printf("| Invalid password.Try again? [1 - yes; 0 - no]\n");
-			do {
-				scanf("%d", &c);
-			} while ((c > 1) || (c < 0));
-			if (c == 0)
-				return 0;
+				do {
+					scanf("%d", &c);
+				} while ((c > 1) || (c < 0));
+				if (c == 0)
+					return 0;
+			}
 		} while (c == 1);
-		user=db_login(login, password);
+		user = db_login(login, password);
 		error = user.id;
 		if (error == NULL) { printf("| Error! Account not found. Try again? [1 - yes; 0 - no] \n"); }
 		do {
