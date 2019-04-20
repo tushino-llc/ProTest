@@ -52,7 +52,7 @@
 2) There is no answer to this question.
 3) Garbage will remain
 4) The default value is 0.
-№12) Can the members of the structure be defaulted?
+№12)Is it possible to set default values for structure members?
 1) Only not directly
 2) Yes, it was possible to C ++ 11
 3) No
