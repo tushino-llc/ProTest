@@ -142,13 +142,15 @@ User db_login(char * login, char * password)
     int rc;
     User user = {};
 
+    string pass_hash = sha256(password);
+
     sqlite3_stmt * st = nullptr;
     rc = sqlite3_prepare_v2(db, "SELECT COUNT(*) FROM `users` WHERE login = ? AND pass = ?", -1, &st, nullptr);
     if (rc != SQLITE_OK)
         return user;
 
-    rc = sqlite3_bind_text(st, 1, login, -1, SQLITE_STATIC); // wow, it`s working! (idk why)
-    rc = sqlite3_bind_text(st, 2, password, -1, SQLITE_STATIC);
+    rc = sqlite3_bind_text(st, 1, login, -1, SQLITE_STATIC);
+    rc = sqlite3_bind_text(st, 2, pass_hash.c_str(), -1, SQLITE_STATIC);
 
     if (rc != SQLITE_OK)
         return user;
@@ -327,9 +329,11 @@ int db_add_user(User user, char * password)
     int rc;
     sqlite3_stmt * st = nullptr;
 
+    string pass_hash = sha256(password);
+
     rc = sqlite3_prepare_v2(db, "INSERT INTO `users` VALUES (NULL, ?, ?, ?, ?, 0)", -1, &st, nullptr);
     sqlite3_bind_text( st, 1, user.login, -1, SQLITE_STATIC);
-    sqlite3_bind_text( st, 2, password, -1, SQLITE_STATIC);
+    sqlite3_bind_text( st, 2, pass_hash.c_str(), -1, SQLITE_STATIC);
     sqlite3_bind_text( st, 3, user.first_name, -1, SQLITE_STATIC);
     sqlite3_bind_text( st, 4, user.last_name, -1, SQLITE_STATIC);
 
