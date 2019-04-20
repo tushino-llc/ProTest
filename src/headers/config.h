@@ -7,6 +7,9 @@
 /* Define to 1 if you have the <cstring> header file. */
 #define HAVE_CSTRING 1
 
+/* Define to 1 if you have the <string> header file. */
+#define HAVE_STRING 1
+
 /* Define to 1 if you have the <dlfcn.h> header file. */
 #define HAVE_DLFCN_H 1
 
