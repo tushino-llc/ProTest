@@ -480,39 +480,17 @@ char * db_get_theme_by_id(int index)
 {
     switch(index)
     {
-        // case 0:  return (char *)"loops";
-        case 0:
-            return strdup("loops");
-        // case 1:  return (char *)"arrays";
-        case 1:
-            return strdup("arrays");
-        // case 2:  return (char *)"strings";
-        case  2:
-            return strdup("strings");
-        // case 3:  return (char *)"recursion";
-        case 3:
-            return strdup("recursion");
-        // case 4:  return (char *)"structs";
-        case 4:
-            return strdup("structs");
-        // case 5:  return (char *)"files";
-        case 5:
-            return strdup("files");
-        // case 6:  return (char *)"pointers";
-        case 6:
-            return strdup("pointers");
-        // case 7:  return (char *)"dynamic";
-        case 7:
-            return strdup("dynamic");
-        // case 8:  return (char *)"average";
-        case 8:
-            return strdup("average");
-        // case 9:  return (char *)"final";
-        case 9:
-            return strdup("final");
-        // default: return (char *)"loops";
-        default:
-            return strdup("loops");
+        case 0:  return strdup("loops");
+        case 1:  return strdup("arrays");
+        case 2:  return strdup("strings");
+        case 3:  return strdup("recursion");
+        case 4:  return strdup("structs");
+        case 5:  return strdup("files");
+        case 6:  return strdup("pointers");
+        case 7:  return strdup("dynamic");
+        case 8:  return strdup("average");
+        case 9:  return strdup("final");
+        default:  return strdup("loops");
     }
 }
 
