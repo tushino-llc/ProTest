@@ -174,17 +174,12 @@ User db_login(char * login, char * password)
     sqlite3_step(st);
 
     // write user data to object
-    res = sqlite3_column_int(st, 0);
-    user.id = res;
-    auto name = sqlite3_column_text(st, 1);
-    strcpy(user.login, (char *)name);
+    user.id = sqlite3_column_int(st, 0);
+    strcpy(user.login, (char *) sqlite3_column_text(st, 1));
     // skip password column
-    name = sqlite3_column_text(st, 3);
-    strcpy(user.first_name, (char *)name);
-    name = sqlite3_column_text(st, 4);
-    strcpy(user.last_name, (char *)name);
-    res = sqlite3_column_int(st, 5);
-    user.admin = res != 0;
+    strcpy(user.first_name, (char *) sqlite3_column_text(st, 3));
+    strcpy(user.last_name, (char *) sqlite3_column_text(st, 4));
+    user.admin = sqlite3_column_int(st, 5) != 0;
 
     return user;
 }
@@ -208,21 +203,13 @@ Question * db_get_test(int theme)
 
     while (rc != SQLITE_DONE && rc != SQLITE_OK && i < 10)
     {
-        num = sqlite3_column_int(st, 0);
-        questions[i].id = num;
-        num = sqlite3_column_int(st, 1);
-        questions[i].theme = num;
+        questions[i].id = sqlite3_column_int(st, 0);
+        questions[i].theme = sqlite3_column_int(st, 1);
+        questions[i].correct = sqlite3_column_int(st, 7);
 
-        auto text = (char *) sqlite3_column_text(st, 2);
-        strcpy( questions[i].value, text );
-
-        for (int j = 3; j < 7; j++) {
-            text = (char *) sqlite3_column_text(st, j);
-            strcpy( questions[i].ans[j-3], text );
-        }
-
-        num = sqlite3_column_int(st, 7);
-        questions[i].correct = num;
+        strcpy( questions[i].value, (char *) sqlite3_column_text(st, 2) );
+        for (int j = 3; j < 7; j++)
+            strcpy( questions[i].ans[j-3], (char *) sqlite3_column_text(st, j) );
 
         rc = sqlite3_step(st);
         i++;
@@ -257,26 +244,19 @@ Question * db_get_questions(int * size)
     if (rc != SQLITE_OK)
         return nullptr;
 
-    int i = 0, num;
+    int i = 0;
     rc = sqlite3_step(st);
 
     while (rc != SQLITE_DONE && rc != SQLITE_OK)
     {
-        num = sqlite3_column_int(st, 0);
-        questions[i].id = num;
-        num = sqlite3_column_int(st, 1);
-        questions[i].theme = num;
+        questions[i].id = sqlite3_column_int(st, 0);
+        questions[i].theme = sqlite3_column_int(st, 1);
+        questions[i].correct = sqlite3_column_int(st, 7);
 
-        auto text = (char *) sqlite3_column_text(st, 2);
-        strcpy( questions[i].value, text );
+        strcpy( questions[i].value, (char *) sqlite3_column_text(st, 2) );
 
-        for (int j = 3; j < 7; j++) {
-            text = (char *) sqlite3_column_text(st, j);
-            strcpy( questions[i].ans[j-3], text );
-        }
-
-        num = sqlite3_column_int(st, 7);
-        questions[i].correct = num;
+        for (int j = 3; j < 7; j++) 
+            strcpy( questions[i].ans[j-3], (char *) sqlite3_column_text(st, j) );
 
         rc = sqlite3_step(st);
         i++;
@@ -303,21 +283,14 @@ Question db_get_question_by_id(int id)
     if (rc != SQLITE_DONE && rc != SQLITE_OK && rc != SQLITE_ROW)
         return q;
 
-    int num = sqlite3_column_int(st, 0);
-    q.id = num;
-    num = sqlite3_column_int(st, 1);
-    q.theme = num;
+    q.id = sqlite3_column_int(st, 0);
+    q.theme = sqlite3_column_int(st, 1);
+    q.correct = sqlite3_column_int(st, 7);
 
-    auto text = (char *) sqlite3_column_text(st, 2);
-    strcpy( q.value, text );
+    strcpy( q.value, (char *) sqlite3_column_text(st, 2) );
 
-    for (int j = 3; j < 7; j++) {
-        text = (char *) sqlite3_column_text(st, j);
-        strcpy( q.ans[j-3], text );
-    }
-
-    num = sqlite3_column_int(st, 7);
-    q.correct = num;
+    for (int j = 3; j < 7; j++)
+        strcpy( q.ans[j-3], (char *) sqlite3_column_text(st, j) );
 
     return q;
 }
@@ -420,21 +393,14 @@ Question * db_get_final_test()
 
     while (rc != SQLITE_DONE && rc != SQLITE_OK && i < 40)
     {
-        num = sqlite3_column_int(st, 0);
-        questions[i].id = num;
-        num = sqlite3_column_int(st, 1);
-        questions[i].theme = num;
+        questions[i].id = sqlite3_column_int(st, 0);
+        questions[i].theme = sqlite3_column_int(st, 1);
+        questions[i].correct = sqlite3_column_int(st, 7);
 
-        auto text = (char *) sqlite3_column_text(st, 2);
-        strcpy( questions[i].value, text );
+        strcpy( questions[i].value, (char *) sqlite3_column_text(st, 2) );
 
-        for (int j = 3; j < 7; j++) {
-            text = (char *) sqlite3_column_text(st, j);
-            strcpy( questions[i].ans[j-3], text );
-        }
-
-        num = sqlite3_column_int(st, 7);
-        questions[i].correct = num;
+        for (int j = 3; j < 7; j++) 
+            strcpy( questions[i].ans[j-3], (char *) sqlite3_column_text(st, j) );
 
         rc = sqlite3_step(st);
         i++;
@@ -456,12 +422,9 @@ int db_set_mark(int user_id, int theme, int mark)
     strcat(query, value);
     strcat(query, " = ? WHERE user_id = ?");
 
-
     rc = sqlite3_prepare_v2(db, query, -1, &st, nullptr);
     sqlite3_bind_int( st, 1, mark );
     sqlite3_bind_int( st, 2, user_id );
-
-    free(value);
 
     if (rc != SQLITE_OK)
         return -1;
@@ -556,21 +519,14 @@ User * db_get_users(int * size)
 
     while (rc != SQLITE_DONE && rc != SQLITE_OK)
     {
-        num = sqlite3_column_int(st, 0);
-        users[i].id = num;
+        users[i].id = sqlite3_column_int(st, 0);
+        users[i].admin = sqlite3_column_int(st, 5) != 0;
 
-        auto text = (char *) sqlite3_column_text(st, 1);
-        strcpy(users[i].login, text);
+        strcpy(users[i].login, (char *) sqlite3_column_text(st, 1));
         // skip password column
-        text = (char *) sqlite3_column_text(st, 3);
-        strcpy( users[i].first_name, text );
-        text = (char *) sqlite3_column_text(st, 4);
-        strcpy( users[i].last_name, text );
+        strcpy( users[i].first_name, (char *) sqlite3_column_text(st, 3) );
+        strcpy( users[i].last_name, (char *) sqlite3_column_text(st, 4) );
 
-        num = sqlite3_column_int(st, 5);
-        users[i].admin = num != 0;
-
-//        delete(text);
         rc = sqlite3_step(st);
         i++;
     }
