@@ -672,15 +672,29 @@ void MainWindow_teach::remove_q() {
     ui->comboBox_3->clear();
     ui->comboBox_3->addItem("Question...");
 
+    ui->radioButton_A1->setCheckable(false);
     ui->radioButton_A1->setChecked(false);
+
+    ui->radioButton_A2->setCheckable(false);
     ui->radioButton_A2->setChecked(false);
+
+    ui->radioButton_A3->setCheckable(false);
     ui->radioButton_A3->setChecked(false);
+
+    ui->radioButton_A4->setCheckable(false);
     ui->radioButton_A4->setChecked(false);
+
+    ui->radioButton_A1->setCheckable(true);
+    ui->radioButton_A2->setCheckable(true);
+    ui->radioButton_A3->setCheckable(true);
+    ui->radioButton_A4->setCheckable(true);
 
     ui->lineA1->setText("");
     ui->lineA2->setText("");
     ui->lineA3->setText("");
     ui->lineA4->setText("");
+
+    ui->textEdit->setPlainText("");
 
     ui->pushButton_apply->setEnabled(false);
 }
@@ -696,14 +710,21 @@ void MainWindow_teach::on_pushButton_Rem_Q_clicked()
 {
 
     /* Initializing variables */
+    QMessageBox::StandardButton reply;
     int id;
 
     /* Main part */
-    id = get_question_id(ui->comboBox_3->currentIndex());
-
-    if (db_delete_question(id) == -1) {
-        QMessageBox::critical(this, "Error!", "Couldn't delete question!");
+    reply = QMessageBox::question(this, "Teacher's mode", "Are you sure you want to delete this question?",
+                                  QMessageBox::Yes | QMessageBox::No);
+    if (reply == QMessageBox::Yes) {
+        id = get_question_id(ui->comboBox_3->currentIndex());
+        if (db_delete_question(id) == -1) {
+            QMessageBox::critical(this, "Error!", "Couldn't delete question!");
+        } else {
+            refresh_q();
+        }
     }
+
 }
 
 void MainWindow_teach::on_pushButton_Add_Q_clicked()
@@ -832,8 +853,12 @@ void MainWindow_teach::on_pushButton_apply_clicked()
     quest.correct = (ui->radioButton_A1->isChecked()) ? 0 : (ui->radioButton_A2->isChecked()) ?
                     1 : (ui->radioButton_A3->isChecked()) ? 2 : 3;
 
+    quest.id = get_question_id(ui->comboBox_3->currentIndex());
+
     if (db_update_question(quest) == -1) {
         QMessageBox::critical(this, "Error!", "Couldn't update question!");
+    } else {
+        ui->pushButton_apply->setEnabled(false);
     }
 }
 
