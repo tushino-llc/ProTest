@@ -324,7 +324,7 @@ Question db_get_question_by_id(int id)
 {
     sqlite3_stmt * st = nullptr;
 
-    Question q = {0};
+    Question q = {};
 
     int rc = sqlite3_prepare_v2(db, "SELECT * FROM `questions` WHERE id = ?;", -1, &st, nullptr);
     if (rc != SQLITE_OK)
