@@ -265,6 +265,61 @@ Question * db_get_questions(int * size)
     return questions;
 }
 
+Question * db_get_questions(int * size, int theme)
+{
+    sqlite3_stmt * st = nullptr;
+    *size = 0; // by default
+
+    // get number of questions
+    int rc = sqlite3_prepare_v2(db, "SELECT count(*) FROM `questions` WHERE `theme`=?;", -1, &st, nullptr);
+
+    if (rc != SQLITE_OK)
+        return nullptr;
+
+    rc = sqlite3_bind_int(st, 1, theme);
+    if (rc != SQLITE_OK)
+        return nullptr;
+
+    rc = sqlite3_step(st);
+    if (rc != SQLITE_DONE && rc != SQLITE_ROW)
+        return nullptr;
+
+    int n = sqlite3_column_int(st, 0);
+
+    if (n <= 0)
+        return nullptr;
+
+    *size = n;
+    auto questions = new Question[n];
+
+    rc = sqlite3_prepare_v2(db, "SELECT * FROM `questions` WHERE `theme` = ?;", -1, &st, nullptr);
+    if (rc != SQLITE_OK)
+        return nullptr;
+
+    rc = sqlite3_bind_int(st, 1, theme);
+    if (rc != SQLITE_OK)
+        return nullptr;
+
+    int i = 0, num;
+    rc = sqlite3_step(st);
+
+    while (rc != SQLITE_DONE && rc != SQLITE_OK)
+    {
+        questions[i].id = sqlite3_column_int(st, 0);
+        questions[i].theme = sqlite3_column_int(st, 1);
+        questions[i].correct = sqlite3_column_int(st, 7);
+        strcpy( questions[i].value, (char *) sqlite3_column_text(st, 2) );
+
+        for (int j = 3; j < 7; j++)
+            strcpy( questions[i].ans[j-3], (char *) sqlite3_column_text(st, j) );
+
+        rc = sqlite3_step(st);
+        i++;
+    }
+
+    return questions;
+}
+
 Question db_get_question_by_id(int id)
 {
     sqlite3_stmt * st = nullptr;
