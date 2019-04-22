@@ -621,6 +621,7 @@ void MainWindow_teach::remove_table() {
 
 void MainWindow_teach::on_actionGet_Help_triggered()
 {
+    /* Main part */
     bool open = QDesktopServices::openUrl(QUrl("https://github.com/tushino-llc/ProTest/blob/master/README.md", QUrl::TolerantMode));
     if (open) {
 
@@ -739,8 +740,6 @@ void MainWindow_teach::on_pushButton_Add_Q_clicked()
 void MainWindow_teach::on_comboBox_2_currentIndexChanged(int index)
 {
 
-    /* Initializing variables */
-
     /* Main part */
     if (index) {
         refresh_q();
@@ -762,8 +761,8 @@ void MainWindow_teach::on_comboBox_3_currentIndexChanged(int index)
         if (!id) {
             return;
         }
-        quest = db_get_question_by_id(id);
 
+        quest = db_get_question_by_id(id);
 
         ui->textEdit->setPlainText(quest.value);
 
@@ -812,13 +811,12 @@ int MainWindow_teach::get_question_id(int index) {
     int id;
     QString Qstr;
     QByteArray arr;
-    char id_s[10] = {};
+    char id_s[300] = {};
 
     /* Main part */
     Qstr = ui->comboBox_3->itemText(index);
     arr = Qstr.toLocal8Bit();
     sprintf(id_s, "%s", arr.data());
-    *(id_s + strlen(id_s) - 1) = '\0';
     id = atoi(id_s);
 
     /* Returning value */

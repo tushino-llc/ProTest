@@ -847,7 +847,7 @@ public:
         comboBox_2->setItemText(2, QApplication::translate("MainWindow_teach", "Arrays", nullptr));
         comboBox_2->setItemText(3, QApplication::translate("MainWindow_teach", "Strings", nullptr));
         comboBox_2->setItemText(4, QApplication::translate("MainWindow_teach", "Recursion", nullptr));
-        comboBox_2->setItemText(5, QApplication::translate("MainWindow_teach", "Structs", nullptr));
+        comboBox_2->setItemText(5, QApplication::translate("MainWindow_teach", "Structures", nullptr));
         comboBox_2->setItemText(6, QApplication::translate("MainWindow_teach", "Files", nullptr));
         comboBox_2->setItemText(7, QApplication::translate("MainWindow_teach", "Pointers", nullptr));
         comboBox_2->setItemText(8, QApplication::translate("MainWindow_teach", "Dynamic memory", nullptr));

@@ -29,6 +29,13 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 	#define PATH_TO_DB ("db/data.sqlite")
 #endif
 
+/* Types */
+typedef enum test_type {
+    training,
+    practice,
+    final
+} t_type;
+
 /* Include config.h */
 #include "config.h"
 

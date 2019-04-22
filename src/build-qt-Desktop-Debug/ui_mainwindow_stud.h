@@ -391,7 +391,7 @@ public:
         actionArrays->setText(QApplication::translate("MainWindow_stud", "Arrays", nullptr));
         actionStrings->setText(QApplication::translate("MainWindow_stud", "Strings", nullptr));
         actionRecursion->setText(QApplication::translate("MainWindow_stud", "Recursion", nullptr));
-        actionStructs->setText(QApplication::translate("MainWindow_stud", "Structs", nullptr));
+        actionStructs->setText(QApplication::translate("MainWindow_stud", "Structures", nullptr));
         actionFiles->setText(QApplication::translate("MainWindow_stud", "Files", nullptr));
         actionPointers->setText(QApplication::translate("MainWindow_stud", "Pointers", nullptr));
         actionDynamic_memory->setText(QApplication::translate("MainWindow_stud", "Dynamic memory", nullptr));
@@ -399,7 +399,7 @@ public:
         actionArrays_2->setText(QApplication::translate("MainWindow_stud", "Arrays", nullptr));
         actionStrings_2->setText(QApplication::translate("MainWindow_stud", "Strings", nullptr));
         actionRecursion_2->setText(QApplication::translate("MainWindow_stud", "Recursion", nullptr));
-        actionStructs_2->setText(QApplication::translate("MainWindow_stud", "Structs", nullptr));
+        actionStructs_2->setText(QApplication::translate("MainWindow_stud", "Structures", nullptr));
         actionFiles_2->setText(QApplication::translate("MainWindow_stud", "Files", nullptr));
         actionPointers_2->setText(QApplication::translate("MainWindow_stud", "Pointers", nullptr));
         actionDynamic_memory_2->setText(QApplication::translate("MainWindow_stud", "Dynamic memory", nullptr));

@@ -66,11 +66,13 @@ SOURCES       = ../qt/mainwindow.cpp \
 		../libs/func_student.cpp \
 		../libs/db/sha256.cpp \
 		../qt/dialog2.cpp \
-		../qt/mainwindow_stud.cpp moc_mainwindow.cpp \
+		../qt/mainwindow_stud.cpp \
+		../qt/dialog3.cpp moc_mainwindow.cpp \
 		moc_dialog1.cpp \
 		moc_mainwindow_teach.cpp \
 		moc_dialog2.cpp \
-		moc_mainwindow_stud.cpp
+		moc_mainwindow_stud.cpp \
+		moc_dialog3.cpp
 OBJECTS       = mainwindow.o \
 		dialog1.o \
 		database.o \
@@ -86,11 +88,13 @@ OBJECTS       = mainwindow.o \
 		sha256.o \
 		dialog2.o \
 		mainwindow_stud.o \
+		dialog3.o \
 		moc_mainwindow.o \
 		moc_dialog1.o \
 		moc_mainwindow_teach.o \
 		moc_dialog2.o \
-		moc_mainwindow_stud.o
+		moc_mainwindow_stud.o \
+		moc_dialog3.o
 DIST          = ../Makefile.am \
 		../db/data.sqlite \
 		/usr/local/Qt/5.12.2/gcc_64/mkspecs/features/spec_pre.prf \
@@ -297,7 +301,8 @@ DIST          = ../Makefile.am \
 		../headers/student_menu.h \
 		../headers/sha256.h \
 		../qt/dialog2.h \
-		../qt/mainwindow_stud.h ../qt/mainwindow.cpp \
+		../qt/mainwindow_stud.h \
+		../qt/dialog3.h ../qt/mainwindow.cpp \
 		../qt/dialog1.cpp \
 		../libs/db/database.cpp \
 		../libs/teacher.cpp \
@@ -311,7 +316,8 @@ DIST          = ../Makefile.am \
 		../libs/func_student.cpp \
 		../libs/db/sha256.cpp \
 		../qt/dialog2.cpp \
-		../qt/mainwindow_stud.cpp
+		../qt/mainwindow_stud.cpp \
+		../qt/dialog3.cpp
 QMAKE_TARGET  = qt
 DESTDIR       = 
 TARGET        = qt
@@ -320,7 +326,7 @@ TARGET        = qt
 first: all
 ####### Build rules
 
-qt: ui_mainwindow.h ui_dialog1.h ui_mainwindow_teach.h ui_dialog2.h ui_mainwindow_stud.h $(OBJECTS)  
+qt: ui_mainwindow.h ui_dialog1.h ui_mainwindow_teach.h ui_dialog2.h ui_mainwindow_stud.h ui_dialog3.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: ../qt/qt.pro /usr/local/Qt/5.12.2/gcc_64/mkspecs/linux-g++/qmake.conf /usr/local/Qt/5.12.2/gcc_64/mkspecs/features/spec_pre.prf \
@@ -731,9 +737,9 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/local/Qt/5.12.2/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../qt/mainwindow.h ../qt/dialog1.h ../headers/database.h ../headers/sqlite3.h ../headers/teacher_menu.h ../headers/tests_main_header.h ../headers/main_menu.h ../qt/mainwindow_teach.h ../headers/config.h ../headers/student_menu.h ../headers/sha256.h ../qt/dialog2.h ../qt/mainwindow_stud.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../qt/mainwindow.cpp ../qt/dialog1.cpp ../libs/db/database.cpp ../libs/teacher.cpp ../libs/teacher_menu.cpp ../libs/db/sqlite3.c ../libs/main_menu.cpp ../main.cpp ../qt/qt_main.cpp ../qt/mainwindow_teach.cpp ../libs/SM.cpp ../libs/func_student.cpp ../libs/db/sha256.cpp ../qt/dialog2.cpp ../qt/mainwindow_stud.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../qt/mainwindow.ui ../qt/dialog1.ui ../qt/mainwindow_teach.ui ../qt/dialog2.ui ../qt/mainwindow_stud.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../qt/mainwindow.h ../qt/dialog1.h ../headers/database.h ../headers/sqlite3.h ../headers/teacher_menu.h ../headers/tests_main_header.h ../headers/main_menu.h ../qt/mainwindow_teach.h ../headers/config.h ../headers/student_menu.h ../headers/sha256.h ../qt/dialog2.h ../qt/mainwindow_stud.h ../qt/dialog3.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../qt/mainwindow.cpp ../qt/dialog1.cpp ../libs/db/database.cpp ../libs/teacher.cpp ../libs/teacher_menu.cpp ../libs/db/sqlite3.c ../libs/main_menu.cpp ../main.cpp ../qt/qt_main.cpp ../qt/mainwindow_teach.cpp ../libs/SM.cpp ../libs/func_student.cpp ../libs/db/sha256.cpp ../qt/dialog2.cpp ../qt/mainwindow_stud.cpp ../qt/dialog3.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../qt/mainwindow.ui ../qt/dialog1.ui ../qt/mainwindow_teach.ui ../qt/dialog2.ui ../qt/mainwindow_stud.ui ../qt/dialog3.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -765,9 +771,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/local/Qt/5.12.2/gcc_64/mkspecs/features/data/dummy.cpp
 	g++ -pipe -g -std=gnu++11 -Wall -W -dM -E -o moc_predefs.h /usr/local/Qt/5.12.2/gcc_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_mainwindow.cpp moc_dialog1.cpp moc_mainwindow_teach.cpp moc_dialog2.cpp moc_mainwindow_stud.cpp
+compiler_moc_header_make_all: moc_mainwindow.cpp moc_dialog1.cpp moc_mainwindow_teach.cpp moc_dialog2.cpp moc_mainwindow_stud.cpp moc_dialog3.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp moc_dialog1.cpp moc_mainwindow_teach.cpp moc_dialog2.cpp moc_mainwindow_stud.cpp
+	-$(DEL_FILE) moc_mainwindow.cpp moc_dialog1.cpp moc_mainwindow_teach.cpp moc_dialog2.cpp moc_mainwindow_stud.cpp moc_dialog3.cpp
 moc_mainwindow.cpp: ../qt/mainwindow.h \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QMainWindow \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qmainwindow.h \
@@ -1379,13 +1385,130 @@ moc_mainwindow_stud.cpp: ../qt/mainwindow_stud.h \
 		/usr/local/Qt/5.12.2/gcc_64/bin/moc
 	/usr/local/Qt/5.12.2/gcc_64/bin/moc $(DEFINES) --include /home/anton/ProTest/src/build-qt-Desktop-Debug/moc_predefs.h -I/usr/local/Qt/5.12.2/gcc_64/mkspecs/linux-g++ -I/home/anton/ProTest/src/qt -I/usr/local/Qt/5.12.2/gcc_64/include -I/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets -I/usr/local/Qt/5.12.2/gcc_64/include/QtGui -I/usr/local/Qt/5.12.2/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../qt/mainwindow_stud.h -o moc_mainwindow_stud.cpp
 
+moc_dialog3.cpp: ../qt/dialog3.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QDialog \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qdialog.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qtguiglobal.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qglobal.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qconfig.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qtcore-config.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qsystemdetection.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qprocessordetection.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qcompilerdetection.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qtypeinfo.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qsysinfo.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qlogging.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qflags.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qatomic.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qbasicatomic.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qgenericatomic.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qatomic_msvc.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qglobalstatic.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qmutex.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qnumeric.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qversiontagging.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qtgui-config.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qwidget.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qwindowdefs.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qobjectdefs.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qnamespace.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qwindowdefs_win.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qobject.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qstring.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qchar.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qbytearray.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qrefcount.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qarraydata.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qstringliteral.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qstringalgorithms.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qstringview.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qstringbuilder.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qlist.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qalgorithms.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qiterator.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qhashfunctions.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qpair.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qbytearraylist.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qstringlist.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qregexp.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qstringmatcher.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qcoreevent.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qscopedpointer.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qmetatype.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qvarlengtharray.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qcontainerfwd.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qobject_impl.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qmargins.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qpaintdevice.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qrect.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qsize.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qpoint.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qpalette.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qcolor.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qrgb.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qrgba64.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qbrush.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qvector.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qmatrix.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qpolygon.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qregion.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qdatastream.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qiodevice.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qline.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qtransform.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qpainterpath.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qimage.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qpixelformat.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qpixmap.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qsharedpointer.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qshareddata.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qhash.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qfont.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qfontmetrics.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qfontinfo.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qsizepolicy.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qcursor.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qkeysequence.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qevent.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qvariant.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qmap.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qdebug.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qtextstream.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qlocale.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qset.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qcontiguouscache.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qurl.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qurlquery.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qfile.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qfiledevice.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qvector2d.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qtouchdevice.h \
+		../headers/tests_main_header.h \
+		../headers/config.h \
+		../headers/sqlite3.h \
+		../headers/database.h \
+		../headers/sha256.h \
+		../headers/teacher_menu.h \
+		../headers/main_menu.h \
+		../headers/student_menu.h \
+		moc_predefs.h \
+		/usr/local/Qt/5.12.2/gcc_64/bin/moc
+	/usr/local/Qt/5.12.2/gcc_64/bin/moc $(DEFINES) --include /home/anton/ProTest/src/build-qt-Desktop-Debug/moc_predefs.h -I/usr/local/Qt/5.12.2/gcc_64/mkspecs/linux-g++ -I/home/anton/ProTest/src/qt -I/usr/local/Qt/5.12.2/gcc_64/include -I/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets -I/usr/local/Qt/5.12.2/gcc_64/include/QtGui -I/usr/local/Qt/5.12.2/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../qt/dialog3.h -o moc_dialog3.cpp
+
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h ui_dialog1.h ui_mainwindow_teach.h ui_dialog2.h ui_mainwindow_stud.h
+compiler_uic_make_all: ui_mainwindow.h ui_dialog1.h ui_mainwindow_teach.h ui_dialog2.h ui_mainwindow_stud.h ui_dialog3.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h ui_dialog1.h ui_mainwindow_teach.h ui_dialog2.h ui_mainwindow_stud.h
+	-$(DEL_FILE) ui_mainwindow.h ui_dialog1.h ui_mainwindow_teach.h ui_dialog2.h ui_mainwindow_stud.h ui_dialog3.h
 ui_mainwindow.h: ../qt/mainwindow.ui \
 		/usr/local/Qt/5.12.2/gcc_64/bin/uic
 	/usr/local/Qt/5.12.2/gcc_64/bin/uic ../qt/mainwindow.ui -o ui_mainwindow.h
@@ -1405,6 +1528,10 @@ ui_dialog2.h: ../qt/dialog2.ui \
 ui_mainwindow_stud.h: ../qt/mainwindow_stud.ui \
 		/usr/local/Qt/5.12.2/gcc_64/bin/uic
 	/usr/local/Qt/5.12.2/gcc_64/bin/uic ../qt/mainwindow_stud.ui -o ui_mainwindow_stud.h
+
+ui_dialog3.h: ../qt/dialog3.ui \
+		/usr/local/Qt/5.12.2/gcc_64/bin/uic
+	/usr/local/Qt/5.12.2/gcc_64/bin/uic ../qt/dialog3.ui -o ui_dialog3.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -2444,8 +2571,186 @@ mainwindow_stud.o: ../qt/mainwindow_stud.cpp ../qt/mainwindow_stud.h \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qtouchdevice.h \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qtabwidget.h \
 		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qicon.h \
-		ui_mainwindow_stud.h
+		ui_mainwindow_stud.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/QVariant \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QAction \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qaction.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qactiongroup.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QApplication \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qapplication.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qcoreapplication.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qeventloop.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qguiapplication.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qinputmethod.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QFrame \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qframe.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QGridLayout \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qgridlayout.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qlayout.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qlayoutitem.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qboxlayout.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QGroupBox \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qgroupbox.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QLabel \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qlabel.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QMenu \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qmenu.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QMenuBar \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qmenubar.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QPushButton \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qpushbutton.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qabstractbutton.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QRadioButton \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qradiobutton.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QSpacerItem \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QStackedWidget \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qstackedwidget.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QStatusBar \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qstatusbar.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QTextEdit \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qtextedit.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qtextdocument.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qtextoption.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qtextcursor.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qtextformat.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qpen.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QVBoxLayout \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QWidget \
+		../qt/dialog3.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QDialog \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qdialog.h \
+		../headers/tests_main_header.h \
+		../headers/config.h \
+		../headers/sqlite3.h \
+		../headers/database.h \
+		../headers/sha256.h \
+		../headers/teacher_menu.h \
+		../headers/main_menu.h \
+		../headers/student_menu.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow_stud.o ../qt/mainwindow_stud.cpp
+
+dialog3.o: ../qt/dialog3.cpp ../qt/dialog3.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QDialog \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qdialog.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qtguiglobal.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qglobal.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qconfig.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qtcore-config.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qsystemdetection.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qprocessordetection.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qcompilerdetection.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qtypeinfo.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qsysinfo.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qlogging.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qflags.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qatomic.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qbasicatomic.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qgenericatomic.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qatomic_msvc.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qglobalstatic.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qmutex.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qnumeric.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qversiontagging.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qtgui-config.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qwidget.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qwindowdefs.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qobjectdefs.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qnamespace.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qwindowdefs_win.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qobject.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qstring.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qchar.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qbytearray.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qrefcount.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qarraydata.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qstringliteral.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qstringalgorithms.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qstringview.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qstringbuilder.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qlist.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qalgorithms.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qiterator.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qhashfunctions.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qpair.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qbytearraylist.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qstringlist.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qregexp.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qstringmatcher.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qcoreevent.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qscopedpointer.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qmetatype.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qvarlengtharray.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qcontainerfwd.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qobject_impl.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qmargins.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qpaintdevice.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qrect.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qsize.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qpoint.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qpalette.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qcolor.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qrgb.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qrgba64.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qbrush.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qvector.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qmatrix.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qpolygon.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qregion.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qdatastream.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qiodevice.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qline.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qtransform.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qpainterpath.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qimage.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qpixelformat.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qpixmap.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qsharedpointer.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qshareddata.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qhash.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qfont.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qfontmetrics.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qfontinfo.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qsizepolicy.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qcursor.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qkeysequence.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qevent.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qvariant.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qmap.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qdebug.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qtextstream.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qlocale.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qset.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qcontiguouscache.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qurl.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qurlquery.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qfile.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtCore/qfiledevice.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qvector2d.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qtouchdevice.h \
+		../headers/tests_main_header.h \
+		../headers/config.h \
+		../headers/sqlite3.h \
+		../headers/database.h \
+		../headers/sha256.h \
+		../headers/teacher_menu.h \
+		../headers/main_menu.h \
+		../headers/student_menu.h \
+		ui_dialog3.h \
+		../qt/mainwindow_stud.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/QMainWindow \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qmainwindow.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtWidgets/qtabwidget.h \
+		/usr/local/Qt/5.12.2/gcc_64/include/QtGui/qicon.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dialog3.o ../qt/dialog3.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
@@ -2461,6 +2766,9 @@ moc_dialog2.o: moc_dialog2.cpp
 
 moc_mainwindow_stud.o: moc_mainwindow_stud.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow_stud.o moc_mainwindow_stud.cpp
+
+moc_dialog3.o: moc_dialog3.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_dialog3.o moc_dialog3.cpp
 
 ####### Install
 
