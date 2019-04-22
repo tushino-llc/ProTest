@@ -215,7 +215,12 @@ Question * db_get_test(int theme)
         i++;
     }
 
-    return questions;
+    if (i != 10) {
+        delete(questions);
+        return nullptr;
+    } else {
+        return questions;        
+    }
 }
 
 Question * db_get_questions(int * size)
@@ -461,7 +466,13 @@ Question * db_get_final_test()
         i++;
     }
 
-    return questions;
+    if (i != 40) {
+        delete(questions);
+        return nullptr;
+    } else {
+        return questions;        
+    }
+
 }
 
 int db_set_mark(int user_id, int theme, int mark)
