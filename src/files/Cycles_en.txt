@@ -1,5 +1,5 @@
-1. Cycles
-1.1 What is called a cycle with a precondition?
+1. Loops
+1.1 What is called a loop with a precondition?
 a) for
 b) while
 c) do ... while
@@ -13,32 +13,32 @@ c) do ... while
 d) foreach
 c
 
-1.3 What is called a cycle with a counter?
+1.3 What is called a loop with a counter?
 a) for
 b) while
 c) do ... while
 d) foreach
 a
 
-1.4 What is called a cycle for each?
+1.4 What is called a loop for each?
 a) for
 b) while
 c) do ... while
 d) foreach
 d
 
-1.5 The body of any cycle is fulfilled as long as its condition
-a) The cycle has no condition
+1.5 The body of any loop is fulfilled as long as its condition
+a) The loop has no condition
 b) False
 c) True
 d) is changing
 c
 
-1.6 How long will the statements in the body of the while (x <100) loop be executed?
+1.6 How long will the statements in the body of the while (x < 100) loop be executed?
 a) While x is less than or equal to stam
-b) while x is over a hundred
+b) While x is over a hundred
 c) While x is strictly less than one hundred
-d) while x is equal to one hundred
+d) While x is equal to one hundred
 c
 
 1.7 What is the continue operator used for?
@@ -62,7 +62,7 @@ c) The for loop is not initialized
 d) The for loop is not in the C ++ programming language.
 b
 
-1.10 What is the break operator used for in cycles?
+1.10 What is the break operator used for in loops?
 a) This statement allows you to interrupt the loop execution and exit it.
 b) This operator allows interrupting the loop iteration and starting a new loop iteration before executing the entire code in the loop body.
 c) This statement allows you to interrupt the execution of a loop and exit the function in which this loop is located.
@@ -92,7 +92,7 @@ c) 9
 d) 10
 d
 
-1.14 Which of the following operators is not a cycle in C ++?
+1.14 Which of the following operators is not a loops in C++?
 a) for
 b) do while
 c) while
@@ -101,15 +101,14 @@ d
 
 1.15 What will be displayed after the execution of this code:
 int i = 0;
-while (i <5)
+while (i < 5)
 {
-if (i == 3)
-{
- i ++;
- continue;
- }
+    if (i == 3) {
+        i ++;
+        continue;
+    }
     cout << i;
-i ++;
+    i ++;
 }
 a) 0124
 b) 01234
@@ -121,13 +120,12 @@ a
 int i = 0;
 while (i <5)
 {
-if (i = 3)
-{
-i ++;
-continue;
-}
-cout << i;
-i ++;
+    if (i = 3) {
+        i ++;
+        continue;
+    }
+    cout << i;
+    i ++;
 }
 a) 0124
 b) 01234
@@ -135,11 +133,11 @@ c) 12345
 d) The program will not display the result.
 d
 
-1.17 The number of times the loop will be executed in the following program fragment:
+1.17 How many times the loop will be executed in the following program fragment:
 int x = 15;
 while (x <= 10)
 {
-x--;
+    x--;
 }
 a) 1 time
 b) 2 times
@@ -147,7 +145,7 @@ c) 3 times
 d) never
 d
 
-1.18 What will be displayed after the execution of this code
+1.18 What will be displayed after the execution of this code:
 int s = 0;
 int i = 5;
 while (i> 0)
@@ -171,7 +169,7 @@ b
 int x = 15;
 while (x> = 10)
 {
-x ++;
+    x ++;
 }
 a) 1 time
 b) 2 times
@@ -183,41 +181,41 @@ d
 a) ==
 b) =
 c) &&
-d)! =
+d) !=
 a
 
 1.22 Which of the operations is logical or?
 a) or
 b) ||
 c) &&
-d)! =
+d) !=
 b
 
 1.22 Which of the operations is logical and?
 a) ==
 b) and
 c) &&
-d)! =
+d) !=
 c
 
 1.23 What is the sign for an assignment operation?
 a) ==
 b) =
-c): =
-d)! =
+c) :=
+d) !=
 b
 
 1.24 Which of the operations is logical not equal?
 a) ==
 b) ||
 c) not
-d)! =
+d) !=
 d
 
 1.25 What will be displayed after the execution of this code:
 int i = 0;
 while (i ++ <5)
-cout << i;
+    cout << i;
 a) 12345
 b) 01234
 c) 1234
@@ -225,7 +223,7 @@ d) 02468
 a
 
 1.26 How many times the loop will be executed in the following program fragment:
-for (unsigned a = 10; a> = 0; a--)
+for (unsigned a = 10; a> = 0; a--);
 a) 10
 b) 11
 c) 9
@@ -246,7 +244,10 @@ c) real, float
 d) short, long
 b
 
-1.29 How many times the loop will be executed in the following program fragment int i = 1; while (i <5) i + = 0.5;
+1.29 How many times the loop will be executed in the following program fragment 
+int i = 1; 
+while (i <5) 
+    i + = 0.5;
 a) an infinite number of times
 b) 8 times
 c) 9 times
