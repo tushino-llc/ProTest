@@ -86,6 +86,26 @@ private slots:
 
     void on_pushButton_apply_clicked();
 
+    void on_lineA1_textChanged(const QString &arg1);
+
+    void on_lineA2_textChanged(const QString &arg1);
+
+    void on_lineA3_textChanged(const QString &arg1);
+
+    void on_lineA4_textChanged(const QString &arg1);
+
+    void on_textEdit_textChanged();
+
+    void on_radioButton_A1_clicked();
+
+    void on_radioButton_A2_clicked();
+
+    void on_radioButton_A3_clicked();
+
+    void on_radioButton_A4_clicked();
+
+    int check_all_fields();
+
 private:
     Ui::MainWindow_teach *ui;
     Dialog1 *dialog1;

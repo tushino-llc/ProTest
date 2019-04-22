@@ -644,17 +644,23 @@ void MainWindow_teach::on_actionAbout_triggered()
 void MainWindow_teach::init_q() {
 
     /* Initializing variables */
-    int theme, i;
-    struct Question *quest;
-    char a[10];
+    int theme, i, size, q_id;
+    struct Question *quest = nullptr;
+    char a[30];
 
     /* Main part */
     theme = ui->comboBox_2->currentIndex() - 1;
 
-    for (i = 0; i < 5/* num of q */; ++i) {
-        /* Get q */
-
-        ui->comboBox_3->addItem("");
+    if ((quest = db_get_questions(&size, theme)) != nullptr) {
+        for (i = 0; i < size; ++i) {
+            q_id = (quest + i)->id;
+            sprintf(a, "%d) %s", q_id, (quest + i)->value);
+            ui->comboBox_3->addItem(a);
+        }
+    } else {
+        QMessageBox::critical(this, "Error!", "Couldn't retrieve questions!");
+        ui->comboBox_3->setCurrentIndex(0);
+        return;
     }
 
     delete quest;
@@ -663,20 +669,34 @@ void MainWindow_teach::init_q() {
 void MainWindow_teach::remove_q() {
 
     /* Main part */
-    ui->comboBox_2->setCurrentIndex(0);
-    ui->comboBox_3->setCurrentIndex(0);
-    ui->comboBox_2->clear();
-    ui->comboBox_2->addItem("Topic...");
+    ui->comboBox_3->clear();
+    ui->comboBox_3->addItem("Question...");
 
+    ui->radioButton_A1->setCheckable(false);
     ui->radioButton_A1->setChecked(false);
+
+    ui->radioButton_A2->setCheckable(false);
     ui->radioButton_A2->setChecked(false);
+
+    ui->radioButton_A3->setCheckable(false);
     ui->radioButton_A3->setChecked(false);
+
+    ui->radioButton_A4->setCheckable(false);
     ui->radioButton_A4->setChecked(false);
+
+    ui->radioButton_A1->setCheckable(true);
+    ui->radioButton_A2->setCheckable(true);
+    ui->radioButton_A3->setCheckable(true);
+    ui->radioButton_A4->setCheckable(true);
 
     ui->lineA1->setText("");
     ui->lineA2->setText("");
     ui->lineA3->setText("");
     ui->lineA4->setText("");
+
+    ui->textEdit->setPlainText("");
+
+    ui->pushButton_apply->setEnabled(false);
 }
 
 void MainWindow_teach::refresh_q() {
@@ -690,14 +710,21 @@ void MainWindow_teach::on_pushButton_Rem_Q_clicked()
 {
 
     /* Initializing variables */
+    QMessageBox::StandardButton reply;
     int id;
 
     /* Main part */
-    id = get_question_id(ui->comboBox_3->currentIndex());
-
-    if (db_delete_question(id) == -1) {
-        QMessageBox::critical(this, "Error!", "Couldn't delete question!");
+    reply = QMessageBox::question(this, "Teacher's mode", "Are you sure you want to delete this question?",
+                                  QMessageBox::Yes | QMessageBox::No);
+    if (reply == QMessageBox::Yes) {
+        id = get_question_id(ui->comboBox_3->currentIndex());
+        if (db_delete_question(id) == -1) {
+            QMessageBox::critical(this, "Error!", "Couldn't delete question!");
+        } else {
+            refresh_q();
+        }
     }
+
 }
 
 void MainWindow_teach::on_pushButton_Add_Q_clicked()
@@ -716,7 +743,7 @@ void MainWindow_teach::on_comboBox_2_currentIndexChanged(int index)
 
     /* Main part */
     if (index) {
-
+        refresh_q();
     } else {
         ui->comboBox_3->setCurrentIndex(0);
     }
@@ -732,7 +759,11 @@ void MainWindow_teach::on_comboBox_3_currentIndexChanged(int index)
     /* Main part */
     if (index) {
         id = get_question_id(ui->comboBox_3->currentIndex());
+        if (!id) {
+            return;
+        }
         quest = db_get_question_by_id(id);
+
 
         ui->textEdit->setPlainText(quest.value);
 
@@ -757,8 +788,21 @@ void MainWindow_teach::on_comboBox_3_currentIndexChanged(int index)
             default:
                 break;
         }
+
+        ui->pushButton_apply->setEnabled(false);
     } else {
         ui->pushButton_apply->setEnabled(false);
+        ui->pushButton_rm->setEnabled(false);
+
+        ui->radioButton_A1->setChecked(false);
+        ui->radioButton_A2->setChecked(false);
+        ui->radioButton_A3->setChecked(false);
+        ui->radioButton_A4->setChecked(false);
+
+        ui->lineA1->setText("");
+        ui->lineA2->setText("");
+        ui->lineA3->setText("");
+        ui->lineA4->setText("");
     }
 }
 
@@ -809,7 +853,97 @@ void MainWindow_teach::on_pushButton_apply_clicked()
     quest.correct = (ui->radioButton_A1->isChecked()) ? 0 : (ui->radioButton_A2->isChecked()) ?
                     1 : (ui->radioButton_A3->isChecked()) ? 2 : 3;
 
+    quest.id = get_question_id(ui->comboBox_3->currentIndex());
+
     if (db_update_question(quest) == -1) {
-        QMessageBox::critical(this, "Error!", "Couldn't create question!");
+        QMessageBox::critical(this, "Error!", "Couldn't update question!");
+    } else {
+        ui->pushButton_apply->setEnabled(false);
     }
+}
+
+void MainWindow_teach::on_lineA1_textChanged(const QString &arg1)
+{
+    /* VarCheck */
+    if (check_all_fields()) {
+        ui->pushButton_apply->setEnabled(true);
+    }
+}
+
+void MainWindow_teach::on_lineA2_textChanged(const QString &arg1)
+{
+    /* VarCheck */
+    if (check_all_fields()) {
+        ui->pushButton_apply->setEnabled(true);
+    }
+}
+
+void MainWindow_teach::on_lineA3_textChanged(const QString &arg1)
+{
+    /* VarCheck */
+    if (check_all_fields()) {
+        ui->pushButton_apply->setEnabled(true);
+    }
+}
+
+void MainWindow_teach::on_lineA4_textChanged(const QString &arg1)
+{
+    /* VarCheck */
+    if (check_all_fields()) {
+        ui->pushButton_apply->setEnabled(true);
+    }
+}
+
+void MainWindow_teach::on_textEdit_textChanged()
+{
+    /* VarCheck */
+    if (check_all_fields()) {
+        ui->pushButton_apply->setEnabled(true);
+    }
+}
+
+void MainWindow_teach::on_radioButton_A1_clicked()
+{
+    /* VarCheck */
+    if (check_all_fields()) {
+        ui->pushButton_apply->setEnabled(true);
+    }
+}
+
+void MainWindow_teach::on_radioButton_A2_clicked()
+{
+    /* VarCheck */
+    if (check_all_fields()) {
+        ui->pushButton_apply->setEnabled(true);
+    }
+}
+
+void MainWindow_teach::on_radioButton_A3_clicked()
+{
+    /* VarCheck */
+    if (check_all_fields()) {
+        ui->pushButton_apply->setEnabled(true);
+    }
+}
+
+void MainWindow_teach::on_radioButton_A4_clicked()
+{
+    /* VarCheck */
+    if (check_all_fields()) {
+        ui->pushButton_apply->setEnabled(true);
+    }
+}
+
+int MainWindow_teach::check_all_fields() {
+
+   /* VarCheck */
+   if (ui->textEdit->toPlainText() != "" && ui->lineA1->text() != "" && ui->lineA2->text() != "" &&
+           ui->lineA3->text() != "" && ui->lineA4->text() != "" && (ui->radioButton_A1->isChecked() ||
+                                                                    ui->radioButton_A2->isChecked() ||
+                                                                    ui->radioButton_A3->isChecked() ||
+                                                                    ui->radioButton_A4->isChecked())) {
+       return 1;
+   } else {
+       return 0;
+   }
 }
