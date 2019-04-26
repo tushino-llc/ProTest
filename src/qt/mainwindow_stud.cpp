@@ -318,7 +318,7 @@ void MainWindow_stud::color_row(int row, int correct) {
 
     /* Main part */
     for (i = 0; i < ui->tableWidget->columnCount(); ++i) {
-        ui->tableWidget->item(row, i)->setBackground((correct) ? Qt::green : Qt::red);
+        ui->tableWidget->item(row, i)->setBackgroundColor((correct) ? QColor(150, 255, 0) : QColor(255, 142, 142));
     }
 }
 
