@@ -328,13 +328,12 @@ int MainWindow_teach::get_student_id(int index) {
     int id;
     QString Qstr;
     QByteArray arr;
-    char id_s[10] = {};
+    char id_s[530] = {};
 
     /* Main part */
     Qstr = ui->comboBox->itemText(index);
     arr = Qstr.toLocal8Bit();
     sprintf(id_s, "%s", arr.data());
-    *(id_s + strlen(id_s) - 1) = '\0';
     id = atoi(id_s);
 
     /* Returning value */
@@ -968,57 +967,95 @@ int MainWindow_teach::check_marks_fields() {
     /* Initializing variables */
     int i;
     char *curr = nullptr;
+    QString Qcurr;
+    QByteArray arr;
 
     /* Main part */
-    for (i = 0; i < static_cast<int>(strlen((curr = ui->lineLoops->text().toLocal8Bit().data()))); ++i) {
+    Qcurr = ui->lineLoops->text();
+    arr = Qcurr.toLocal8Bit();
+    curr = arr.data();
+    for (i = 0; i < static_cast<int>(strlen(curr)); ++i) {
+
         if (!isdigit(*(curr + i))) {
             return 0;
         }
     }
 
-    for (i = 0; i < static_cast<int>(strlen((curr = ui->lineArrays->text().toLocal8Bit().data()))); ++i) {
+    Qcurr = ui->lineLoops->text();
+    arr = Qcurr.toLocal8Bit();
+    curr = arr.data();
+    for (i = 0; i < static_cast<int>(strlen(curr)); ++i) {
+
         if (!isdigit(*(curr + i))) {
             return 0;
         }
     }
 
-    for (i = 0; i < static_cast<int>(strlen((curr = ui->lineStrings->text().toLocal8Bit().data()))); ++i) {
+    Qcurr = ui->lineLoops->text();
+    arr = Qcurr.toLocal8Bit();
+    curr = arr.data();
+    for (i = 0; i < static_cast<int>(strlen(curr)); ++i) {
+
         if (!isdigit(*(curr + i))) {
             return 0;
         }
     }
 
-    for (i = 0; i < static_cast<int>(strlen((curr = ui->lineRecursion->text().toLocal8Bit().data()))); ++i) {
+    Qcurr = ui->lineLoops->text();
+    arr = Qcurr.toLocal8Bit();
+    curr = arr.data();
+    for (i = 0; i < static_cast<int>(strlen(curr)); ++i) {
+
         if (!isdigit(*(curr + i))) {
             return 0;
         }
     }
 
-    for (i = 0; i < static_cast<int>(strlen((curr = ui->lineStructures->text().toLocal8Bit().data()))); ++i) {
+    Qcurr = ui->lineLoops->text();
+    arr = Qcurr.toLocal8Bit();
+    curr = arr.data();
+    for (i = 0; i < static_cast<int>(strlen(curr)); ++i) {
+
         if (!isdigit(*(curr + i))) {
             return 0;
         }
     }
 
-    for (i = 0; i < static_cast<int>(strlen((curr = ui->lineFiles->text().toLocal8Bit().data()))); ++i) {
+    Qcurr = ui->lineLoops->text();
+    arr = Qcurr.toLocal8Bit();
+    curr = arr.data();
+    for (i = 0; i < static_cast<int>(strlen(curr)); ++i) {
+
         if (!isdigit(*(curr + i))) {
             return 0;
         }
     }
 
-    for (i = 0; i < static_cast<int>(strlen((curr = ui->linePointers->text().toLocal8Bit().data()))); ++i) {
+    Qcurr = ui->lineLoops->text();
+    arr = Qcurr.toLocal8Bit();
+    curr = arr.data();
+    for (i = 0; i < static_cast<int>(strlen(curr)); ++i) {
+
         if (!isdigit(*(curr + i))) {
             return 0;
         }
     }
 
-    for (i = 0; i < static_cast<int>(strlen((curr = ui->lineDyn_Mem->text().toLocal8Bit().data()))); ++i) {
+    Qcurr = ui->lineLoops->text();
+    arr = Qcurr.toLocal8Bit();
+    curr = arr.data();
+    for (i = 0; i < static_cast<int>(strlen(curr)); ++i) {
+
         if (!isdigit(*(curr + i))) {
             return 0;
         }
     }
 
-    for (i = 0; i < static_cast<int>(strlen((curr = ui->lineFinal->text().toLocal8Bit().data()))); ++i) {
+    Qcurr = ui->lineLoops->text();
+    arr = Qcurr.toLocal8Bit();
+    curr = arr.data();
+    for (i = 0; i < static_cast<int>(strlen(curr)); ++i) {
+
         if (!isdigit(*(curr + i))) {
             return 0;
         }
