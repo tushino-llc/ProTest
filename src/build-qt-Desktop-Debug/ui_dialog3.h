@@ -108,7 +108,7 @@ public:
 
     void retranslateUi(QDialog *Dialog3)
     {
-        Dialog3->setWindowTitle(QApplication::translate("Dialog3", "Dialog", nullptr));
+        Dialog3->setWindowTitle(QApplication::translate("Dialog3", "Select topic", nullptr));
         label->setText(QApplication::translate("Dialog3", "Select topic", nullptr));
         pushButton_Loops->setText(QApplication::translate("Dialog3", "Loops", nullptr));
         pushButton_Arrays->setText(QApplication::translate("Dialog3", "Arrays", nullptr));

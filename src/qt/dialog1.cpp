@@ -279,7 +279,7 @@ void Dialog1::on_pushSignUp_clicked()
             reply = QMessageBox::question(this, ui->label->text(), Q1, QMessageBox::Yes | QMessageBox::No);
             if (reply == QMessageBox::Yes) {
                 id = db_get_id_by_login(login);
-                if (id != -1) {
+                if (id > 0) {
                     QMessageBox::critical(this, "Error!", "User with that login already exists!");
                 } else {
                     if (Dialog1::field_check(login) && Dialog1::field_check(pass)) {
@@ -339,4 +339,11 @@ void Dialog1::on_pushSignUp_clicked()
 //    } else {
 //        QMessageBox::critical(this, "Error!", "Couldn't open database!");
 //    }
+}
+
+void Dialog1::on_Dialog1_destroyed()
+{
+
+    /* Main window */
+    db_close();
 }

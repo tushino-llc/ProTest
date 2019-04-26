@@ -413,6 +413,7 @@ public:
         sizePolicy3.setVerticalStretch(0);
         sizePolicy3.setHeightForWidth(lineLoops->sizePolicy().hasHeightForWidth());
         lineLoops->setSizePolicy(sizePolicy3);
+        lineLoops->setInputMethodHints(Qt::ImhDigitsOnly);
         lineLoops->setReadOnly(true);
 
         formLayout_2->setWidget(0, QFormLayout::FieldRole, lineLoops);
@@ -732,7 +733,7 @@ public:
 
         retranslateUi(MainWindow_teach);
 
-        stackedWidget->setCurrentIndex(1);
+        stackedWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow_teach);

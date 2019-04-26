@@ -106,6 +106,10 @@ private slots:
 
     int check_all_fields();
 
+    void on_MainWindow_teach_destroyed();
+
+    int check_marks_fields();
+
 private:
     Ui::MainWindow_teach *ui;
     Dialog1 *dialog1;

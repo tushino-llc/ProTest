@@ -128,6 +128,7 @@ void MainWindow::on_pushButtonSignIn_clicked()
                                 qApp->desktop()->availableGeometry()
                             )
                         );
+                mws->set_uid(usr.id);
                 mws->show();
                 this->hide();
             }
@@ -144,16 +145,12 @@ void MainWindow::on_pushButtonSignIn_clicked()
 void MainWindow::on_pushButtonSignUp_clicked()
 {
     /* Main part */
-    hide();
     dialog1 = new Dialog1(this);
+    dialog1->setModal(true);
     dialog1->SetLogin(ui->lineLogin->text());
     dialog1->SetPass(ui->linePass->text());
     dialog1->SignUp();
     dialog1->show();
-
-    //ui->lineLogin->setText(dialog1->GetLogin());
-    //ui->linePass->setText(dialog1->GetPass());
-    //show();
 }
 
 void MainWindow::on_lineLogin_textChanged(const QString &arg1)
@@ -185,4 +182,11 @@ void MainWindow::SetPass(class QString str) {
 
     /* Main part */
     ui->linePass->setText(str);
+}
+
+void MainWindow::on_MainWindow_destroyed()
+{
+
+    /* Main part */
+    db_close();
 }

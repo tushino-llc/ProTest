@@ -15,6 +15,7 @@
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QGroupBox>
+#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
@@ -24,6 +25,7 @@
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QTableWidget>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -90,6 +92,20 @@ public:
     QRadioButton *radioButton_4;
     QSpacerItem *verticalSpacer;
     QSpacerItem *horizontalSpacer;
+    QWidget *page_3;
+    QGridLayout *gridLayout_5;
+    QSpacerItem *horizontalSpacer_7;
+    QFrame *frame_3;
+    QGridLayout *gridLayout_6;
+    QLabel *label_Mark;
+    QLabel *label_3;
+    QPushButton *pushButton_4;
+    QTableWidget *tableWidget;
+    QSpacerItem *horizontalSpacer_6;
+    QSpacerItem *horizontalSpacer_5;
+    QSpacerItem *verticalSpacer_6;
+    QSpacerItem *verticalSpacer_5;
+    QSpacerItem *horizontalSpacer_8;
     QMenuBar *menubar;
     QMenu *menuFile;
     QMenu *menuNew;
@@ -310,8 +326,96 @@ public:
         gridLayout->addItem(horizontalSpacer, 2, 0, 1, 1);
 
         stackedWidget->addWidget(page_2);
+        page_3 = new QWidget();
+        page_3->setObjectName(QString::fromUtf8("page_3"));
+        gridLayout_5 = new QGridLayout(page_3);
+        gridLayout_5->setObjectName(QString::fromUtf8("gridLayout_5"));
+        horizontalSpacer_7 = new QSpacerItem(40, 20, QSizePolicy::Minimum, QSizePolicy::Minimum);
 
-        gridLayout_2->addWidget(stackedWidget, 0, 1, 1, 1);
+        gridLayout_5->addItem(horizontalSpacer_7, 1, 0, 1, 1);
+
+        frame_3 = new QFrame(page_3);
+        frame_3->setObjectName(QString::fromUtf8("frame_3"));
+        frame_3->setFrameShape(QFrame::StyledPanel);
+        frame_3->setFrameShadow(QFrame::Raised);
+        gridLayout_6 = new QGridLayout(frame_3);
+        gridLayout_6->setObjectName(QString::fromUtf8("gridLayout_6"));
+        label_Mark = new QLabel(frame_3);
+        label_Mark->setObjectName(QString::fromUtf8("label_Mark"));
+        QFont font4;
+        font4.setPointSize(20);
+        label_Mark->setFont(font4);
+        label_Mark->setAlignment(Qt::AlignCenter);
+
+        gridLayout_6->addWidget(label_Mark, 2, 0, 1, 3);
+
+        label_3 = new QLabel(frame_3);
+        label_3->setObjectName(QString::fromUtf8("label_3"));
+        QFont font5;
+        font5.setPointSize(35);
+        label_3->setFont(font5);
+        label_3->setAlignment(Qt::AlignCenter);
+
+        gridLayout_6->addWidget(label_3, 1, 0, 1, 3);
+
+        pushButton_4 = new QPushButton(frame_3);
+        pushButton_4->setObjectName(QString::fromUtf8("pushButton_4"));
+        pushButton_4->setFont(font1);
+
+        gridLayout_6->addWidget(pushButton_4, 6, 1, 1, 1);
+
+        tableWidget = new QTableWidget(frame_3);
+        if (tableWidget->columnCount() < 3)
+            tableWidget->setColumnCount(3);
+        QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
+        __qtablewidgetitem->setTextAlignment(Qt::AlignCenter);
+        tableWidget->setHorizontalHeaderItem(0, __qtablewidgetitem);
+        QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
+        __qtablewidgetitem1->setTextAlignment(Qt::AlignCenter);
+        tableWidget->setHorizontalHeaderItem(1, __qtablewidgetitem1);
+        QTableWidgetItem *__qtablewidgetitem2 = new QTableWidgetItem();
+        __qtablewidgetitem2->setTextAlignment(Qt::AlignCenter);
+        tableWidget->setHorizontalHeaderItem(2, __qtablewidgetitem2);
+        if (tableWidget->rowCount() < 1)
+            tableWidget->setRowCount(1);
+        QTableWidgetItem *__qtablewidgetitem3 = new QTableWidgetItem();
+        tableWidget->setVerticalHeaderItem(0, __qtablewidgetitem3);
+        tableWidget->setObjectName(QString::fromUtf8("tableWidget"));
+        tableWidget->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
+        tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        tableWidget->setAlternatingRowColors(true);
+        tableWidget->setShowGrid(true);
+        tableWidget->setSortingEnabled(true);
+        tableWidget->horizontalHeader()->setDefaultSectionSize(319);
+
+        gridLayout_6->addWidget(tableWidget, 3, 0, 1, 3);
+
+        horizontalSpacer_6 = new QSpacerItem(40, 20, QSizePolicy::Minimum, QSizePolicy::Minimum);
+
+        gridLayout_6->addItem(horizontalSpacer_6, 6, 2, 1, 1);
+
+        horizontalSpacer_5 = new QSpacerItem(40, 20, QSizePolicy::Minimum, QSizePolicy::Minimum);
+
+        gridLayout_6->addItem(horizontalSpacer_5, 6, 0, 1, 1);
+
+
+        gridLayout_5->addWidget(frame_3, 1, 1, 1, 1);
+
+        verticalSpacer_6 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Minimum);
+
+        gridLayout_5->addItem(verticalSpacer_6, 2, 1, 1, 1);
+
+        verticalSpacer_5 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Minimum);
+
+        gridLayout_5->addItem(verticalSpacer_5, 0, 1, 1, 1);
+
+        horizontalSpacer_8 = new QSpacerItem(40, 20, QSizePolicy::Minimum, QSizePolicy::Minimum);
+
+        gridLayout_5->addItem(horizontalSpacer_8, 1, 2, 1, 1);
+
+        stackedWidget->addWidget(page_3);
+
+        gridLayout_2->addWidget(stackedWidget, 1, 1, 1, 1);
 
         MainWindow_stud->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow_stud);
@@ -374,7 +478,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow_stud)
     {
-        MainWindow_stud->setWindowTitle(QApplication::translate("MainWindow_stud", "MainWindow", nullptr));
+        MainWindow_stud->setWindowTitle(QApplication::translate("MainWindow_stud", "Student's mode", nullptr));
         actionFinal_test->setText(QApplication::translate("MainWindow_stud", "Final test", nullptr));
         actionLog_out->setText(QApplication::translate("MainWindow_stud", "Log out", nullptr));
         actionExit->setText(QApplication::translate("MainWindow_stud", "Exit", nullptr));
@@ -414,6 +518,17 @@ public:
         radioButton_2->setText(QString());
         radioButton_3->setText(QString());
         radioButton_4->setText(QString());
+        label_Mark->setText(QApplication::translate("MainWindow_stud", "Lb", nullptr));
+        label_3->setText(QApplication::translate("MainWindow_stud", "Results", nullptr));
+        pushButton_4->setText(QApplication::translate("MainWindow_stud", "OK", nullptr));
+        QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
+        ___qtablewidgetitem->setText(QApplication::translate("MainWindow_stud", "Question", nullptr));
+        QTableWidgetItem *___qtablewidgetitem1 = tableWidget->horizontalHeaderItem(1);
+        ___qtablewidgetitem1->setText(QApplication::translate("MainWindow_stud", "Your answer", nullptr));
+        QTableWidgetItem *___qtablewidgetitem2 = tableWidget->horizontalHeaderItem(2);
+        ___qtablewidgetitem2->setText(QApplication::translate("MainWindow_stud", "Correct answer", nullptr));
+        QTableWidgetItem *___qtablewidgetitem3 = tableWidget->verticalHeaderItem(0);
+        ___qtablewidgetitem3->setText(QApplication::translate("MainWindow_stud", "1", nullptr));
         menuFile->setTitle(QApplication::translate("MainWindow_stud", "File", nullptr));
         menuNew->setTitle(QApplication::translate("MainWindow_stud", "New...", nullptr));
         menuTraining_test->setTitle(QApplication::translate("MainWindow_stud", "Training test...", nullptr));

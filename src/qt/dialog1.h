@@ -63,6 +63,8 @@ private slots:
 
     void on_pushSignUp_clicked();
 
+    void on_Dialog1_destroyed();
+
 private:
     Ui::Dialog1 *ui;
 };

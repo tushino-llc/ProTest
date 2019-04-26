@@ -59,6 +59,8 @@ private slots:
 
     void on_linePass_textChanged(const QString &arg1);
 
+    void on_MainWindow_destroyed();
+
 private:
     Ui::MainWindow *ui;
     Dialog1 *dialog1;

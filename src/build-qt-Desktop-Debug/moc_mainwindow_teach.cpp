@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_teach_t {
-    QByteArrayData data[45];
-    char stringdata0[967];
+    QByteArrayData data[47];
+    char stringdata0[1016];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -75,7 +75,9 @@ QT_MOC_LITERAL(40, 846, 25), // "on_radioButton_A1_clicked"
 QT_MOC_LITERAL(41, 872, 25), // "on_radioButton_A2_clicked"
 QT_MOC_LITERAL(42, 898, 25), // "on_radioButton_A3_clicked"
 QT_MOC_LITERAL(43, 924, 25), // "on_radioButton_A4_clicked"
-QT_MOC_LITERAL(44, 950, 16) // "check_all_fields"
+QT_MOC_LITERAL(44, 950, 16), // "check_all_fields"
+QT_MOC_LITERAL(45, 967, 29), // "on_MainWindow_teach_destroyed"
+QT_MOC_LITERAL(46, 997, 18) // "check_marks_fields"
 
     },
     "MainWindow_teach\0on_actionStudents_2_triggered\0"
@@ -105,7 +107,9 @@ QT_MOC_LITERAL(44, 950, 16) // "check_all_fields"
     "on_radioButton_A1_clicked\0"
     "on_radioButton_A2_clicked\0"
     "on_radioButton_A3_clicked\0"
-    "on_radioButton_A4_clicked\0check_all_fields"
+    "on_radioButton_A4_clicked\0check_all_fields\0"
+    "on_MainWindow_teach_destroyed\0"
+    "check_marks_fields"
 };
 #undef QT_MOC_LITERAL
 
@@ -115,7 +119,7 @@ static const uint qt_meta_data_MainWindow_teach[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      41,   14, // methods
+      43,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -123,47 +127,49 @@ static const uint qt_meta_data_MainWindow_teach[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,  219,    2, 0x08 /* Private */,
-       3,    0,  220,    2, 0x08 /* Private */,
-       4,    0,  221,    2, 0x08 /* Private */,
-       5,    1,  222,    2, 0x08 /* Private */,
-       7,    0,  225,    2, 0x08 /* Private */,
-       8,    0,  226,    2, 0x08 /* Private */,
-       9,    0,  227,    2, 0x08 /* Private */,
-      10,    0,  228,    2, 0x08 /* Private */,
-      11,    0,  229,    2, 0x08 /* Private */,
-      12,    0,  230,    2, 0x08 /* Private */,
-      13,    0,  231,    2, 0x08 /* Private */,
-      14,    0,  232,    2, 0x08 /* Private */,
-      15,    1,  233,    2, 0x08 /* Private */,
-      16,    0,  236,    2, 0x08 /* Private */,
-      17,    0,  237,    2, 0x08 /* Private */,
-      18,    1,  238,    2, 0x08 /* Private */,
-      19,    0,  241,    2, 0x08 /* Private */,
-      20,    0,  242,    2, 0x08 /* Private */,
-      21,    0,  243,    2, 0x08 /* Private */,
-      22,    0,  244,    2, 0x08 /* Private */,
-      23,    0,  245,    2, 0x08 /* Private */,
-      24,    0,  246,    2, 0x08 /* Private */,
-      25,    0,  247,    2, 0x08 /* Private */,
-      26,    0,  248,    2, 0x08 /* Private */,
-      27,    0,  249,    2, 0x08 /* Private */,
-      28,    0,  250,    2, 0x08 /* Private */,
-      29,    0,  251,    2, 0x08 /* Private */,
-      30,    1,  252,    2, 0x08 /* Private */,
-      31,    1,  255,    2, 0x08 /* Private */,
-      32,    1,  258,    2, 0x08 /* Private */,
-      33,    0,  261,    2, 0x08 /* Private */,
-      34,    1,  262,    2, 0x08 /* Private */,
-      36,    1,  265,    2, 0x08 /* Private */,
-      37,    1,  268,    2, 0x08 /* Private */,
-      38,    1,  271,    2, 0x08 /* Private */,
-      39,    0,  274,    2, 0x08 /* Private */,
-      40,    0,  275,    2, 0x08 /* Private */,
-      41,    0,  276,    2, 0x08 /* Private */,
-      42,    0,  277,    2, 0x08 /* Private */,
-      43,    0,  278,    2, 0x08 /* Private */,
-      44,    0,  279,    2, 0x08 /* Private */,
+       1,    0,  229,    2, 0x08 /* Private */,
+       3,    0,  230,    2, 0x08 /* Private */,
+       4,    0,  231,    2, 0x08 /* Private */,
+       5,    1,  232,    2, 0x08 /* Private */,
+       7,    0,  235,    2, 0x08 /* Private */,
+       8,    0,  236,    2, 0x08 /* Private */,
+       9,    0,  237,    2, 0x08 /* Private */,
+      10,    0,  238,    2, 0x08 /* Private */,
+      11,    0,  239,    2, 0x08 /* Private */,
+      12,    0,  240,    2, 0x08 /* Private */,
+      13,    0,  241,    2, 0x08 /* Private */,
+      14,    0,  242,    2, 0x08 /* Private */,
+      15,    1,  243,    2, 0x08 /* Private */,
+      16,    0,  246,    2, 0x08 /* Private */,
+      17,    0,  247,    2, 0x08 /* Private */,
+      18,    1,  248,    2, 0x08 /* Private */,
+      19,    0,  251,    2, 0x08 /* Private */,
+      20,    0,  252,    2, 0x08 /* Private */,
+      21,    0,  253,    2, 0x08 /* Private */,
+      22,    0,  254,    2, 0x08 /* Private */,
+      23,    0,  255,    2, 0x08 /* Private */,
+      24,    0,  256,    2, 0x08 /* Private */,
+      25,    0,  257,    2, 0x08 /* Private */,
+      26,    0,  258,    2, 0x08 /* Private */,
+      27,    0,  259,    2, 0x08 /* Private */,
+      28,    0,  260,    2, 0x08 /* Private */,
+      29,    0,  261,    2, 0x08 /* Private */,
+      30,    1,  262,    2, 0x08 /* Private */,
+      31,    1,  265,    2, 0x08 /* Private */,
+      32,    1,  268,    2, 0x08 /* Private */,
+      33,    0,  271,    2, 0x08 /* Private */,
+      34,    1,  272,    2, 0x08 /* Private */,
+      36,    1,  275,    2, 0x08 /* Private */,
+      37,    1,  278,    2, 0x08 /* Private */,
+      38,    1,  281,    2, 0x08 /* Private */,
+      39,    0,  284,    2, 0x08 /* Private */,
+      40,    0,  285,    2, 0x08 /* Private */,
+      41,    0,  286,    2, 0x08 /* Private */,
+      42,    0,  287,    2, 0x08 /* Private */,
+      43,    0,  288,    2, 0x08 /* Private */,
+      44,    0,  289,    2, 0x08 /* Private */,
+      45,    0,  290,    2, 0x08 /* Private */,
+      46,    0,  291,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -205,6 +211,8 @@ static const uint qt_meta_data_MainWindow_teach[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Int,
     QMetaType::Void,
     QMetaType::Int,
 
@@ -262,6 +270,9 @@ void MainWindow_teach::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int
         case 39: _t->on_radioButton_A4_clicked(); break;
         case 40: { int _r = _t->check_all_fields();
             if (_a[0]) *reinterpret_cast< int*>(_a[0]) = std::move(_r); }  break;
+        case 41: _t->on_MainWindow_teach_destroyed(); break;
+        case 42: { int _r = _t->check_marks_fields();
+            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = std::move(_r); }  break;
         default: ;
         }
     }
@@ -296,13 +307,13 @@ int MainWindow_teach::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 41)
+        if (_id < 43)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 41;
+        _id -= 43;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 41)
+        if (_id < 43)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 41;
+        _id -= 43;
     }
     return _id;
 }

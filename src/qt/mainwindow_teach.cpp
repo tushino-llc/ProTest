@@ -184,6 +184,8 @@ void MainWindow_teach::on_actionAllow_triggered()
             ui->pushButton->setEnabled(false);
             ui->pushButton_2->setEnabled(false);
         }
+    } else {
+        ui->actionAllow->setChecked(false);
     }
 }
 
@@ -350,8 +352,16 @@ void MainWindow_teach::on_pushButton_2_clicked()
     /* Main part */
     id = get_student_id(ui->comboBox->currentIndex());
 
+    if (!check_marks_fields()) {
+        QMessageBox::critical(this, "Error!", "Wrong characters in mark fields!");
+        return;
+    }
     arr = ui->lineLoops->text().toLocal8Bit();
     score = atoi(arr.data());
+    if ((score < 2 || score > 5) && score) {
+        QMessageBox::critical(this, "Error!", "Wrong mark!");
+        return;
+    }
     if (db_set_mark(id, 0, score) == -1) {
         QMessageBox::critical(this, "Error!", "Couldn't update student's mark!");
         return;
@@ -647,7 +657,7 @@ void MainWindow_teach::init_q() {
     /* Initializing variables */
     int theme, i, size, q_id;
     struct Question *quest = nullptr;
-    char a[30];
+    char a[512];
 
     /* Main part */
     theme = ui->comboBox_2->currentIndex() - 1;
@@ -944,4 +954,76 @@ int MainWindow_teach::check_all_fields() {
    } else {
        return 0;
    }
+}
+
+void MainWindow_teach::on_MainWindow_teach_destroyed()
+{
+
+    /* Main part */
+    db_close();
+}
+
+int MainWindow_teach::check_marks_fields() {
+
+    /* Initializing variables */
+    int i;
+    char *curr = nullptr;
+
+    /* Main part */
+    for (i = 0; i < static_cast<int>(strlen((curr = ui->lineLoops->text().toLocal8Bit().data()))); ++i) {
+        if (!isdigit(*(curr + i))) {
+            return 0;
+        }
+    }
+
+    for (i = 0; i < static_cast<int>(strlen((curr = ui->lineArrays->text().toLocal8Bit().data()))); ++i) {
+        if (!isdigit(*(curr + i))) {
+            return 0;
+        }
+    }
+
+    for (i = 0; i < static_cast<int>(strlen((curr = ui->lineStrings->text().toLocal8Bit().data()))); ++i) {
+        if (!isdigit(*(curr + i))) {
+            return 0;
+        }
+    }
+
+    for (i = 0; i < static_cast<int>(strlen((curr = ui->lineRecursion->text().toLocal8Bit().data()))); ++i) {
+        if (!isdigit(*(curr + i))) {
+            return 0;
+        }
+    }
+
+    for (i = 0; i < static_cast<int>(strlen((curr = ui->lineStructures->text().toLocal8Bit().data()))); ++i) {
+        if (!isdigit(*(curr + i))) {
+            return 0;
+        }
+    }
+
+    for (i = 0; i < static_cast<int>(strlen((curr = ui->lineFiles->text().toLocal8Bit().data()))); ++i) {
+        if (!isdigit(*(curr + i))) {
+            return 0;
+        }
+    }
+
+    for (i = 0; i < static_cast<int>(strlen((curr = ui->linePointers->text().toLocal8Bit().data()))); ++i) {
+        if (!isdigit(*(curr + i))) {
+            return 0;
+        }
+    }
+
+    for (i = 0; i < static_cast<int>(strlen((curr = ui->lineDyn_Mem->text().toLocal8Bit().data()))); ++i) {
+        if (!isdigit(*(curr + i))) {
+            return 0;
+        }
+    }
+
+    for (i = 0; i < static_cast<int>(strlen((curr = ui->lineFinal->text().toLocal8Bit().data()))); ++i) {
+        if (!isdigit(*(curr + i))) {
+            return 0;
+        }
+    }
+
+    /* Returning value */
+    return 1;
 }
