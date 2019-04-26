@@ -35,71 +35,89 @@ int signin()
 
 void Training()
 {
-	Question * questions;
+	Question* questions;
 	int sub, ans;
-	prt_ln;
-	printf("| Choose a subject:                                        |\n"
-		   "| [0] - loops                                              |\n"
-		   "| [1] - arrays                                             |\n"
-		   "| [2] - strings                                            |\n"
-		   "| [3] - recursion                                          |\n"
-		   "| [4] - structs                                            |\n"
-		   "| [5] - files                                              |\n"
-		   "| [6] - pointers                                           |\n"
-		   "| [7] - dynamic                                            |\n");
-	
+	prt_ln();
+	printf("| Choose a subject:                                          |\n"
+		"| [0] - loops                                                |\n"
+		"| [1] - arrays                                               |\n"
+		"| [2] - strings                                              |\n"
+		"| [3] - recursion                                            |\n"
+		"| [4] - structs                                              |\n"
+		"| [5] - files                                                |\n"
+		"| [6] - pointers                                             |\n"
+		"| [7] - dynamic                                              |\n");
+
 	do {
+		printf("| Answer: ");
 		scanf("%d", &sub);
 		if (sub < 0 || sub>7)
 			printf("| Such subject does not exist.Try again.\n");
 	} while (sub < 0 || sub>7);
 	questions = db_get_test(sub);
-	prt_ln;
+	prt_ln();
 	for (int i = 0; i < 10; i++)
 	{
 		printf("| %s\n", questions[i].value);
-		printf("| %s\n", questions[i].ans);
+		printf("| \n");
+		printf("| [0] %s\n", questions[i].ans[0]);
+		printf("| [1] %s\n", questions[i].ans[1]);
+		printf("| [2] %s\n", questions[i].ans[2]);
+		printf("| [3] %s\n", questions[i].ans[3]);
 		do {
 			printf("| Answer: ");
-			scanf("%d", &ans);
+			do {
+				scanf("%d", &ans);
+				if (ans < 0 || ans>3)
+					printf("| No such answer.Try again: ");
+			} while (ans < 0 || ans>3);
 			if (ans != questions[i].correct)
 				printf("| Wrong answer.Try again.\n");
 		} while (ans != questions[i].correct);
-		
+		printf("| \n");
 	}
 }
 
 void Test(int id)
 {
-	Question * questions;
-	
-	int sub, ans, sum = 0,a[10],inc = 0;
+	Question* questions;
+
+	int sub, ans, sum = 0, a[10], inc = 0;
 	double mark;
-	prt_ln;
-	printf("| Choose a subject:                                        |\n"
-		"| [0] - loops                                              |\n"
-		"| [1] - arrays                                             |\n"
-		"| [2] - strings                                            |\n"
-		"| [3] - recursion                                          |\n"
-		"| [4] - structs                                            |\n"
-		"| [5] - files                                              |\n"
-		"| [6] - pointers                                           |\n"
-		"| [7] - dynamic                                            |\n");
+	prt_ln();
+	printf("| Choose a subject:                                          |\n"
+		"| [0] - loops                                                |\n"
+		"| [1] - arrays                                               |\n"
+		"| [2] - strings                                              |\n"
+		"| [3] - recursion                                            |\n"
+		"| [4] - structs                                              |\n"
+		"| [5] - files                                                |\n"
+		"| [6] - pointers                                             |\n"
+		"| [7] - dynamic                                              |\n");
 
 	do {
+		printf("| Answer: ");
 		scanf("%d", &sub);
 		if (sub < 0 || sub>7)
 			printf("| Such subject does not exist.Try again.\n");
 	} while (sub < 0 || sub>7);
 	questions = db_get_test(sub);
-	prt_ln;
+	prt_ln();
 	for (int i = 0; i < 10; i++)
 	{
 		printf("| %s\n", questions[i].value);
-		printf("| %s\n", questions[i].ans);
+		printf("| \n");
+		printf("| [0] %s\n", questions[i].ans[0]);
+		printf("| [1] %s\n", questions[i].ans[1]);
+		printf("| [2] %s\n", questions[i].ans[2]);
+		printf("| [3] %s\n", questions[i].ans[3]);
 		printf("| Answer: ");
-		scanf("%d", &ans);
-		prt_ln;
+		do {
+			scanf("%d", &ans);
+			if (ans < 0 || ans>3)
+				printf("| No such answer.Try again: ");
+		} while (ans < 0 || ans>3);
+
 		if (ans == questions[i].correct)
 			sum += 1;
 		else
@@ -108,19 +126,21 @@ void Test(int id)
 			inc += 1;
 		}
 
-
+		printf("| \n");
 	}
-	
+
 	if (inc > 0)
 	{
+
 		printf("| Questions with the wrong answer:\n");
 		for (int i = 0; i < 10; i++)
 		{
 			if (a[i] == 0)
 			{
 				printf("| %s\n", questions[i].value);
+				printf("|\n");
 				printf("| Right answer is %d\n", questions[i].correct);
-				printf("\n");
+				printf("| \n");
 			}
 		}
 	}
@@ -131,12 +151,12 @@ void Test(int id)
 		db_set_mark(id, sub, 2);
 		printf("| Your mark is 2\n");
 	}
-	if (mark < 0.7)
+	else if (mark < 0.7)
 	{
 		db_set_mark(id, sub, 3);
 		printf("| Your mark is 3\n");
 	}
-	if (mark < 0.9)
+	else if (mark < 0.9)
 	{
 		db_set_mark(id, sub, 4);
 		printf("| Your mark is 4\n");
@@ -151,24 +171,33 @@ void Test(int id)
 
 void FinalTest(int id)
 {
-	Question * questions;
-	
+	Question* questions;
+
 	int  ans, sum = 0, inc = 0;
 	double mark;
 
 	questions = db_get_final_test();
-	prt_ln;
+	prt_ln();
 	for (int i = 0; i < 40; i++)
 	{
 		printf("| %s\n", questions[i].value);
-		printf("| %s\n", questions[i].ans);
+		printf("| \n");
+		printf("| [0] %s\n", questions[i].ans[0]);
+		printf("| [1] %s\n", questions[i].ans[1]);
+		printf("| [2] %s\n", questions[i].ans[2]);
+		printf("| [3] %s\n", questions[i].ans[3]);
 		printf("| Answer: ");
-		scanf("%d", &ans);
-		printf("\n");
+		do {
+			scanf("%d", &ans);
+			if (ans < 0 || ans>3)
+				printf("| No such answer.Try again: ");
+		} while (ans < 0 || ans>3);
+
 		if (ans == questions[i].correct)
 			sum += 1;
+		printf("| \n");
 	}
-	printf("| Your result %d/40 points", sum);
+	printf("| Your result %d/40 points.\n", sum);
 	mark = sum * 1.0 / 40;
 
 	if (mark < 0.5)
@@ -176,20 +205,20 @@ void FinalTest(int id)
 		db_set_mark(id, 9, 2);
 		printf("| Your mark is 2\n");
 	}
-	if (mark < 0.7)
+	if ((mark >= 0.5) && (mark < 0.7))
 	{
 		db_set_mark(id, 9, 3);
 		printf("| Your mark is 3\n");
 	}
-	if (mark < 0.9)
+	if ((mark >= 0.7) && (mark < 0.9))
 	{
 		db_set_mark(id, 9, 4);
 		printf("| Your mark is 4\n");
 	}
-	else
+	if (mark >= 0.9)
 	{
 		db_set_mark(id, 9, 5);
 		printf("| Your mark is 5\n");
 	}
-	prt_ln;
+
 }
