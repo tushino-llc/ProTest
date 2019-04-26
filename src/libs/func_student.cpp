@@ -3,28 +3,32 @@
 
 int signin()
 {
+
+    /* Initializing variables */
     User user = {};
     char password[256], login[256];
 
+    /* I/O flow */
     printf("| Type the username: ");
     fgets(login, 256, stdin);
-    field_check_teacher(login);
     printf("| Type the password: ");
-    fgets(password, 30, stdin);
+    fgets(password, 256, stdin);
 
+    /* Main part */
     login[strlen(login) - 1] = '\0';
     password[strlen(password) - 1] = '\0';
 
-    field_check_teacher(login);
-    field_check_teacher(password);
+    if (field_check_teacher(login) && field_check_teacher(password)) {
+        user = db_login(login, password);
 
-    user = db_login(login, password);
-
-    if (!user.admin && user.id) {
-        return 1;
+        if (!user.admin && user.id) {
+            return 1;
+        } else {
+            prt_ln();
+            printf("| Error! Wrong login or password!                            |\n");
+            return 0;
+        }
     } else {
-        prt_ln();
-        printf("| Error! Wrong login or password!                            |\n");
         return 0;
     }
 }
