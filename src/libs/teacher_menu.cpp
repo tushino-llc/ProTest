@@ -24,12 +24,12 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 int edit_questions_teacher()
 {
 	/* Initializing variables */
-	int sign, junk, n, check = 0;
-
+	int func, junk, n = 0;
+	/* I/O flow */
 	while (1) {
 		printf(" ------------------------------------------------------------\n"
 			"|                                                            |\n"
-			"|                      >> ProTest v1.0 <<                    |\n"
+			"|                     >> Teacher's mode <                    |\n"
 			"|                                                            |\n"
 			"|  >> Choose action:                                         |\n"
 			"|                                                            |\n"
@@ -41,32 +41,39 @@ int edit_questions_teacher()
 			"|       >> Type \"quit\" to terminate this program <<          |\n"
 			"|                                                            |\n");
 		printf("| Answer: ");
-		sign = getchar();
+		func = getchar();
 		prt_ln();
-		if (isdigit(sign) && sign >= '1' && sign <= '3') {
-			sign -= '0';
+		if (isdigit(func) && func >= '1' && func <= '3') {
+			func -= '0';
 			if ((junk = getchar()) != '\n') {
-				while ((junk = getchar()) != '\n')
-					;
+				while ((junk = getchar()) != '\n');
 				no_cmd();
 				continue;
 			}
-			switch (sign) {
-					case 1:
-						delete_the_question();
-						break;
-					case 2:
-						add_a_question();
-						break;
-					case 3:
-						change_the_question();
-						break;
-					default:
-						break;
-					}
-
+			switch (func) {
+			case 1:
+				delete_the_question();
+				break;
+			case 2:
+				add_a_question();
+				break;
+			case 3:
+				change_the_question();
+				break;
+			default:
+				break;
+			}
+			if (!n) {
+				continue;
+			}
+			else if (n == -1) {
+				return -1;
+			}
+			else {
+				return 1;
+			}
 		}
-		else if (sign == 'q') {
+		else if (func == 'q') {
 			if (quit_m()) {
 				return -1;
 			}
@@ -74,7 +81,7 @@ int edit_questions_teacher()
 				continue;
 			}
 		}
-		else if (sign == 'b') {
+		else if (func == 'b') {
 			if (back_m()) {
 				return 0;
 			}
@@ -84,13 +91,14 @@ int edit_questions_teacher()
 		}
 		else {
 			no_cmd();
-			while ((junk = getchar()) != '\n')
-				;
+			if (func != '\n') {
+				while ((junk = getchar()) != '\n')
+					;
+			}
 			continue;
 		}
 	}
 }
-
 int working_with_the_list_of_students()
 {
 	/* Initializing variables */
@@ -99,7 +107,7 @@ int working_with_the_list_of_students()
 	while (1) {
 		printf(" ------------------------------------------------------------\n"
 			"|                                                            |\n"
-			"|                      >> ProTest v1.0 <<                    |\n"
+			"|                     >> Teacher's mode <<                   |\n"
 			"|                                                            |\n"
 			"|  >> Choose action:                                         |\n"
 			"|                                                            |\n"
@@ -175,7 +183,7 @@ int view_the_list_of_students_with_grades()
 	while (1) {
 		printf(" ------------------------------------------------------------\n"
 			"|                                                            |\n"
-			"|                      >> ProTest v1.0 <<                    |\n"
+			"|                     >> Teacher's mode <<                   |\n"
 			"|                                                            |\n"
 			"|  >> Choose action:                                         |\n"
 			"|                                                            |\n"
@@ -252,7 +260,7 @@ int teacher_menu_0()
 	while (1) {
 		printf(" ------------------------------------------------------------\n"
 			"|                                                            |\n"
-			"|                      >> ProTest v1.0 <<                    |\n"
+			"|                     >> Teacher's mode <<                   |\n"
 			"|                                                            |\n"
 			"|  >> Choose action:                                         |\n"
 			"|                                                            |\n"

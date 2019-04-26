@@ -84,13 +84,18 @@ void change_the_question() {
         /* Other shit goes here ↓*/
 		do {
 			do {
-				printf("| What do you want to change? \n");
-				printf("  1) Id\n"
-					"  2) Topic\n"
-					"  3) Question text\n"
-					"  4) Answer choice\n"
-					"  5) Correct answer\n");
-
+				printf(" ------------------------------------------------------------\n"
+					"|                                                            |\n"
+					"|                     >> Teacher's mode <<                   |\n"
+					"|                                                            |\n"
+					"|  >> What do you want to change?                            |\n"
+					"|                                                            |\n"
+					"|       1) Id                                                |\n"
+					"|       2) Topic                                             |\n"
+					"|       3) Question text                                     |\n"
+					"|       4) Answer choice                                     |\n"
+					"|       5) Correct answer                                    |\n"
+					"|                                                            |\n");
 				printf("| Answer: ");
 				scanf("%d", &sign);
 
@@ -111,19 +116,19 @@ void change_the_question() {
 			case 3:
 			{
 				printf("| Enter question text: \n");
-				fgets(quest.value, 500, stdin);
+				fgets(quest.value, 256, stdin);
 			} break;
 			case 4:
 			{
 				printf("| Enter answer choice:\n");
 				printf("| 1) ");
-				fgets(quest.ans[0], 100, stdin);
+				fgets(quest.ans[0], 256, stdin);
 				printf("| 2) ");
-				fgets(quest.ans[1], 100, stdin);
+				fgets(quest.ans[1], 256, stdin);
 				printf("| 3) ");
-				fgets(quest.ans[2], 100, stdin);
+				fgets(quest.ans[2], 256, stdin);
 				printf("| 4) ");
-				fgets(quest.ans[3], 100, stdin);
+				fgets(quest.ans[3], 256, stdin);
 			} break;
 			case 5:
 			{
