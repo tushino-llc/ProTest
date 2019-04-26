@@ -111,7 +111,7 @@ void change_the_question() {
 			case 2:
 			{
 				printf("| Enter topic: \n");
-				scanf("%c", &quest.theme);
+				scanf("%d", &quest.theme);
 			} break;
 			case 3:
 			{

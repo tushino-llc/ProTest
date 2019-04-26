@@ -28,18 +28,18 @@ int edit_questions_teacher()
 	/* I/O flow */
 	while (1) {
 		printf(" ------------------------------------------------------------\n"
-			"|                                                            |\n"
-			"|                     >> Teacher's mode <                    |\n"
-			"|                                                            |\n"
-			"|  >> Choose action:                                         |\n"
-			"|                                                            |\n"
-			"|       1) Delete the question                               |\n"
-			"|       2) Add a question                                    |\n"
-			"|       3) Change the question                               |\n"
-			"|                                                            |\n"
-			"|       >> Type \"back\" to go to the previous menu <<         |\n"
-			"|       >> Type \"quit\" to terminate this program <<          |\n"
-			"|                                                            |\n");
+"|                                                            |\n"
+"|                    >> Teacher's mode <<                    |\n"
+"|                                                            |\n"
+"|  >> Choose action:                                         |\n"
+"|                                                            |\n"
+"|       1) Delete the question                               |\n"
+"|       2) Add a question                                    |\n"
+"|       3) Change the question                               |\n"
+"|                                                            |\n"
+"|       >> Type \"back\" to go to the previous menu <<         |\n"
+"|       >> Type \"quit\" to terminate this program <<          |\n"
+"|                                                            |\n");
 		printf("| Answer: ");
 		func = getchar();
 		prt_ln();
@@ -105,20 +105,20 @@ int working_with_the_list_of_students()
 	int sign, junk, n, check = 0;
 
 	while (1) {
-		printf(" ------------------------------------------------------------\n"
-			"|                                                            |\n"
-			"|                     >> Teacher's mode <<                   |\n"
-			"|                                                            |\n"
-			"|  >> Choose action:                                         |\n"
-			"|                                                            |\n"
-			"|       1) Delete student account                            |\n"
-			"|       2) To add a new account for a student                |\n"
-			"|       3) To see the change of a student's progress         |\n"
-			"|       4) View the list of students with grades             |\n"
-			"|                                                            |\n"
-			"|       >> Type \"back\" to go to the previous menu <<         |\n"
-			"|       >> Type \"quit\" to terminate this program <<          |\n"
-			"|                                                            |\n");
+        printf(" ------------------------------------------------------------\n"
+"|                                                            |\n"
+"|                    >> Teacher's mode <<                    |\n"
+"|                                                            |\n"
+"|  >> Choose action:                                         |\n"
+"|                                                            |\n"
+"|       1) Delete student account                            |\n"
+"|       2) To add a new account for a student                |\n"
+"|       3) To see the change of a student's progress         |\n"
+"|       4) View the list of students with grades             |\n"
+"|                                                            |\n"
+"|       >> Type \"back\" to go to the previous menu <<         |\n"
+"|       >> Type \"quit\" to terminate this program <<          |\n"
+"|                                                            |\n");
 		printf("| Answer: ");
 		sign = getchar();
 		prt_ln();
@@ -182,19 +182,19 @@ int view_the_list_of_students_with_grades()
 	
 	while (1) {
 		printf(" ------------------------------------------------------------\n"
-			"|                                                            |\n"
-			"|                     >> Teacher's mode <<                   |\n"
-			"|                                                            |\n"
-			"|  >> Choose action:                                         |\n"
-			"|                                                            |\n"
-			"|       1) View scores on all topics                         |\n"
-			"|       2) View estimates on a specific topic                |\n"
-			"|       3) View scores for the final test                    |\n"
-			"|       4) View the average score                            |\n"
-			"|                                                            |\n"
-			"|       >> Type \"back\" to go to the previous menu <<         |\n"
-			"|       >> Type \"quit\" to terminate this program <<          |\n"
-			"|                                                            |\n");
+"|                                                            |\n"
+"|                    >> Teacher's mode <<                    |\n"
+"|                                                            |\n"
+"|  >> Choose action:                                         |\n"
+"|                                                            |\n"
+"|       1) View scores on all topics                         |\n"
+"|       2) View estimates on a specific topic                |\n"
+"|       3) View scores for the final test                    |\n"
+"|       4) View the average score                            |\n"
+"|                                                            |\n"
+"|       >> Type \"back\" to go to the previous menu <<         |\n"
+"|       >> Type \"quit\" to terminate this program <<          |\n"
+"|                                                            |\n");
 		printf("| Answer: ");
 		sign = getchar();
 		prt_ln();
@@ -259,17 +259,17 @@ int teacher_menu_0()
 	}
 	while (1) {
 		printf(" ------------------------------------------------------------\n"
-			"|                                                            |\n"
-			"|                     >> Teacher's mode <<                   |\n"
-			"|                                                            |\n"
-			"|  >> Choose action:                                         |\n"
-			"|                                                            |\n"
-			"|       1) Edit questions                                    |\n"
-			"|       2) Working with the list of students                 |\n"
-			"|                                                            |\n"
-			"|       >> Type \"back\" to go to the previous menu <<         |\n"
-			"|       >> Type \"quit\" to terminate this program <<          |\n"
-			"|                                                            |\n");
+"|                                                            |\n"
+"|                     >> Teacher's mode <<                   |\n"
+"|                                                            |\n"
+"|  >> Choose action:                                         |\n"
+"|                                                            |\n"
+"|       1) Edit questions                                    |\n"
+"|       2) Working with the list of students                 |\n"
+"|                                                            |\n"
+"|       >> Type \"back\" to go to the previous menu <<         |\n"
+"|       >> Type \"quit\" to terminate this program <<          |\n"
+"|                                                            |\n");
 		  printf("| Answer: ");
 		  sign = getchar();
 		  prt_ln();
@@ -335,28 +335,32 @@ int field_check_teacher(char *text)
 
 int input_teacher()
 {
+
+    /* Initializing variables */
     User user = {};
-	char password[256], login[256];
-	
-	printf("| Type the username: ");
-	fgets(login, 256, stdin);
-	field_check_teacher(login);
-	printf("| Type the password: ");
-	fgets(password, 30, stdin);
+    char password[256], login[256];
 
-	login[strlen(login) - 1] = '\0';
-	password[strlen(password) - 1] = '\0';
+    /* I/O flow */
+    printf("| Type the username: ");
+    fgets(login, 256, stdin);
+    printf("| Type the password: ");
+    fgets(password, 256, stdin);
 
-	field_check_teacher(login);
-	field_check_teacher(password);
+    /* Main part */
+    login[strlen(login) - 1] = '\0';
+    password[strlen(password) - 1] = '\0';
 
-	user = db_login(login, password);
+    if (field_check_teacher(login) && field_check_teacher(password)) {
+        user = db_login(login, password);
 
-	if (user.admin) {
-	    return 1;
-	} else {
-	    prt_ln();
-	    printf("| Error! Wrong login or password!                            |\n");
+        if (user.admin && user.id) {
+            return 1;
+        } else {
+            prt_ln();
+            printf("| Error! Wrong login or password!                            |\n");
+            return 0;
+        }
+    } else {
         return 0;
-	}
+    }
 }
