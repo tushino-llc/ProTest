@@ -22,11 +22,11 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 #define MAIN_HEADER_TEST
 
 /* Macros */
-#define QT_CREATOR (1)
+#define QT_CREATOR (0)
 #if (QT_CREATOR == 1)
 	#define PATH_TO_DB ("../db/data.sqlite")
 #else
-	#define PATH_TO_DB ("db/data.sqlite")
+	#define PATH_TO_DB ("/.local/share/ProTest/data.sqlite")
 #endif
 
 /* Types */

@@ -1,5 +1,5 @@
 ﻿#include "mainwindow_stud.h"
-#include "ui_mainwindow_stud.h"
+#include "../build-qt-Desktop-Debug/ui_mainwindow_stud.h"
 #include "../headers/tests_main_header.h"
 #include "mainwindow.h"
 
@@ -598,4 +598,11 @@ void MainWindow_stud::on_MainWindow_stud_destroyed()
 
     /* Main part */
     db_close();
+}
+
+void MainWindow_stud::on_actionFinal_test_triggered()
+{
+
+    /* Main part */
+    final_test();
 }

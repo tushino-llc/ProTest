@@ -128,6 +128,7 @@ int main_menu(void) {
 
     /* Initializing variables */
     int func, junk, n = 0;
+    char *path;
 
     /* I/O flow */
     while (1) {
@@ -154,7 +155,9 @@ int main_menu(void) {
                 continue;
             }
 
-            if (db_open(PATH_TO_DB) == -1) {
+            path = secure_getenv("HOME");
+            strcat(path, PATH_TO_DB);
+            if (db_open(path) == -1) {
                 printf("| Error! Couldn't open database                              |\n");
                 continue;
             }

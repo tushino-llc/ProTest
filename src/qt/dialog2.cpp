@@ -1,5 +1,5 @@
 #include "dialog2.h"
-#include "ui_dialog2.h"
+#include "../build-qt-Desktop-Debug/ui_dialog2.h"
 #include "../headers/tests_main_header.h"
 
 Dialog2::Dialog2(QWidget *parent) :

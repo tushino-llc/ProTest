@@ -1,5 +1,5 @@
 #include "dialog3.h"
-#include "ui_dialog3.h"
+#include "../build-qt-Desktop-Debug/ui_dialog3.h"
 #include "mainwindow_stud.h"
 
 int tt = 0;

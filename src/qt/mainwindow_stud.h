@@ -98,6 +98,8 @@ private slots:
 
     void on_MainWindow_stud_destroyed();
 
+    void on_actionFinal_test_triggered();
+
 private:
     Ui::MainWindow_stud *ui;
     Dialog3 *dialog3;
