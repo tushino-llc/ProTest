@@ -17,12 +17,13 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 */
+
 #ifndef TEACHER_MENU_H
 #define TEACHER_MENU_H
 #include "../headers/tests_main_header.h"
 
 int teacher_menu_0();
-void input_teacher();
+int input_teacher();
 
 // Questions
 void delete_the_question();

@@ -128,7 +128,6 @@ int main_menu(void) {
 
     /* Initializing variables */
     int func, junk, n = 0;
-    char *path;
 
     /* I/O flow */
     while (1) {
@@ -155,19 +154,14 @@ int main_menu(void) {
                 continue;
             }
 
-            path = secure_getenv("HOME");
-            strcat(path, PATH_TO_DB);
-            if (db_open(path) == -1) {
-                printf("| Error! Couldn't open database                              |\n");
-                continue;
-            }
-
             switch (func) {
                 case 1:
-                    input_teacher();
+                    n = teacher_menu_0();
                     break;
                 case 2:
-                    student_menu();
+                    n = student_menu();
+                    break;
+                default:
                     break;
             }
 

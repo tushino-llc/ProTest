@@ -60,42 +60,29 @@ void add_a_question()
 		} while ((error > 1) || (error < 0));
 	} while (error == 1);
 }
-void change_the_question()
-{
-	int error, id, size, i = -1;
-	
-	db_get_questions(&size);
-	Question question[Size_Q];
-	for (int j = 0; j < size; ++j)
-	{
-		std::cout << "id = " << question[j].id << " Question: " << question[j].value << std::endl;
-	}
 
-	printf("| Enter the id of the question you want to change. \n");
-	do {
-		scanf("%d", &id);
-	} while (id < 0);
-	for (int j = 0; j < size; ++j)
-	{
-		if (id == question[j].id) i = j;
-	}
-	do {
-		if (i != -1)
-		{
-			error = db_update_question(question[i]);
-			if (error == -1) { printf("| Error! Unable to edit question. Try again? [1 - yes; 0 - no] \n"); }
-			do {
-				scanf("%d", &error);
-			} while ((error > 1) || (error < 0));
-		}
-		else
-		{
-			 printf("| Error! Unable to edit question. Try again? [1 - yes; 0 - no] \n");
-			do {
-				scanf("%d", &error);
-			} while ((error > 1) || (error < 0));
-		}
-	} while (error == 1);	
+void change_the_question() {
+
+    /* Initializing variables */
+	int error, id, size, j;
+	struct Question *question = nullptr;
+	struct Question quest = {};
+
+	/* Main part */
+	if ((question = db_get_questions(&size))) {
+        for (j = 0; j < size; ++j) {
+            std::cout << "id = " << question[j].id << "; Question: " << question[j].value << std::endl;
+        }
+
+        printf("| Type the id of the question you want to change: ");
+        do {
+            scanf("%d", &id);
+        } while (!(quest = db_get_question_by_id(id)).id);
+
+        /* Other shit goes here ↓*/
+        
+
+    }
 }
 
 // Students
