@@ -66,21 +66,45 @@ void add_a_question()
 void change_the_question() {
 
     /* Initializing variables */
-	int id, size, j, sign;
+	int id, size, j, sign, by;
 	struct Question *question = nullptr;
 	struct Question quest = {};
 
+	do {
+		printf(" ------------------------------------------------------------\n"
+			"|                                                            |\n"
+			"|                     >> Teacher's mode <<                   |\n"
+			"|                                                            |\n"
+			"|  >> Chosen theme:                                          |\n"
+			"|                                                            |\n"
+			"|       1) Loops                                             |\n"
+			"|       2) Arrays                                            |\n"
+			"|       3) Strings                                           |\n"
+			"|       4) Recursion                                         |\n"
+			"|       5) Structs                                           |\n"
+			"|       6) Files                                             |\n"
+			"|       7) Pointers                                          |\n"
+			"|       8) Dynamic                                           |\n"
+			"|                                                            |\n");
+		printf("| Answer: ");
+		scanf("%d", &by);
+
+	} while ((by > 8) || (by < 1));
+	by--;
 	/* Main part */
 	if ((question = db_get_questions(&size))) {
         for (j = 0; j < size; ++j) {
-            std::cout << "id = " << question[j].id << "; Question: " << question[j].value << std::endl;
+			if (by == question->theme)
+			{
+				std::cout << "id = " << question[j].id << "; Question: " << question[j].value << std::endl;
+			}
         }
 
         printf("| Type the id of the question you want to change: ");
         do {
             scanf("%d", &id);
         } while (!(quest = db_get_question_by_id(id)).id);
-
+		
         /* Other shit goes here ↓*/
 		do {
 			do {
