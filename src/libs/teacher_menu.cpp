@@ -24,35 +24,34 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 int edit_questions_teacher()
 {
 	/* Initializing variables */
-	int func, junk, n = 0;
+	int sign, junk, n, check = 0;
 
-	/* I/O flow */
 	while (1) {
-		  printf(" ------------------------------------------------------------\n"
-"|                                                            |\n"
-"|                     >> Teacher's mode <                    |\n"
-"|                                                            |\n"
-"|  >> Choose action:                                         |\n"
-"|                                                            |\n"
-"|       1) Delete the question                               |\n"
-"|       2) Add a question                                    |\n"
-"|       3) Change the question                               |\n"
-"|                                                            |\n"
-"|       >> Type \"back\" to go to the previous menu <<         |\n"
-"|       >> Type \"quit\" to terminate this program <<          |\n"
-"|                                                            |\n");
-				printf("| Answer: ");
-				func = getchar();
-				prt_ln();
-				if (isdigit(func) && func >= '1' && func <= '3') {
-					func -= '0';
-					if ((junk = getchar()) != '\n') {
-						while ((junk = getchar()) != '\n');
-						no_cmd();
-						continue;
-					}
-
-					switch (func) {
+		printf(" ------------------------------------------------------------\n"
+			"|                                                            |\n"
+			"|                      >> ProTest v1.0 <<                    |\n"
+			"|                                                            |\n"
+			"|  >> Choose action:                                         |\n"
+			"|                                                            |\n"
+			"|       1) Delete the question                               |\n"
+			"|       2) Add a question                                    |\n"
+			"|       3) Change the question                               |\n"
+			"|                                                            |\n"
+			"|       >> Type \"back\" to go to the previous menu <<         |\n"
+			"|       >> Type \"quit\" to terminate this program <<          |\n"
+			"|                                                            |\n");
+		printf("| Answer: ");
+		sign = getchar();
+		prt_ln();
+		if (isdigit(sign) && sign >= '1' && sign <= '3') {
+			sign -= '0';
+			if ((junk = getchar()) != '\n') {
+				while ((junk = getchar()) != '\n')
+					;
+				no_cmd();
+				continue;
+			}
+			switch (sign) {
 					case 1:
 						delete_the_question();
 						break;
@@ -66,78 +65,65 @@ int edit_questions_teacher()
 						break;
 					}
 
-					if (!n) {
-						continue;
-					}
-					else if (n == -1) {
-						return -1;
-					}
-					else {
-						return 1;
-					}
-
-				}
-				else if (func == 'q') {
-					if (quit_m()) {
-						return -1;
-					}
-					else {
-						continue;
-					}
-				}
-				else if (func == 'b') {
-					if (back_m()) {
-						return 0;
-					}
-					else {
-						continue;
-					}
-				}
-				else {
-					no_cmd();
-					if (func != '\n') {
-						while ((junk = getchar()) != '\n')
-							;
-					}
-					continue;
-				}
+		}
+		else if (sign == 'q') {
+			if (quit_m()) {
+				return -1;
+			}
+			else {
+				continue;
+			}
+		}
+		else if (sign == 'b') {
+			if (back_m()) {
+				return 0;
+			}
+			else {
+				continue;
+			}
+		}
+		else {
+			no_cmd();
+			while ((junk = getchar()) != '\n')
+				;
+			continue;
 		}
 	}
+}
 
 int working_with_the_list_of_students()
 {
 	/* Initializing variables */
-	int func, junk, n = 0;
+	int sign, junk, n, check = 0;
 
-	/* I/O flow */
 	while (1) {
-			  printf(" ------------------------------------------------------------\n"
-"|                                                            |\n"
-"|                     >> Teacher's mode <                    |\n"
-"|                                                            |\n"
-"|  >> Choose action:                                         |\n"
-"|                                                            |\n"
-"|       1) Delete student account                            |\n"
-"|       2) To add a new account for a student                |\n"
-"|       3) To see the change of a student's progress         |\n"
-"|       4) View the list of students with grades             |\n"
-"|                                                            |\n"
-"|       >> Type \"back\" to go to the previous menu <<         |\n"
-"|       >> Type \"quit\" to terminate this program <<          |\n"
-"|                                                            |\n");
-			printf("| Answer: ");
-			func = getchar();
-			prt_ln();
-			if (isdigit(func) && func >= '1' && func <= '4') {
-				func -= '0';
-				if ((junk = getchar()) != '\n') {
-					while ((junk = getchar()) != '\n');
-					no_cmd();
-					continue;
-				}
-
-				switch (func) {
-				case 1: 
+		printf(" ------------------------------------------------------------\n"
+			"|                                                            |\n"
+			"|                      >> ProTest v1.0 <<                    |\n"
+			"|                                                            |\n"
+			"|  >> Choose action:                                         |\n"
+			"|                                                            |\n"
+			"|       1) Delete student account                            |\n"
+			"|       2) To add a new account for a student                |\n"
+			"|       3) To see the change of a student's progress         |\n"
+			"|       4) View the list of students with grades             |\n"
+			"|                                                            |\n"
+			"|       >> Type \"back\" to go to the previous menu <<         |\n"
+			"|       >> Type \"quit\" to terminate this program <<          |\n"
+			"|                                                            |\n");
+		printf("| Answer: ");
+		sign = getchar();
+		prt_ln();
+		if (isdigit(sign) && sign >= '1' && sign <= '4') {
+			sign -= '0';
+			if ((junk = getchar()) != '\n') {
+				while ((junk = getchar()) != '\n')
+					;
+				no_cmd();
+				continue;
+			}
+			switch (sign) {
+			case 1:
 					delete_student_account(); 
 					break;
 				case 2: 
@@ -154,41 +140,29 @@ int working_with_the_list_of_students()
 					break;
 				}
 
-				if (!n) {
-					continue;
-				}
-				else if (n == -1) {
-					return -1;
-				}
-				else {
-					return 1;
-				}
-
-			}
-			else if (func == 'q') {
-				if (quit_m()) {
-					return -1;
-				}
-				else {
-					continue;
-				}
-			}
-			else if (func == 'b') {
-				if (back_m()) {
-					return 0;
-				}
-				else {
-					continue;
-				}
+		}
+		else if (sign == 'q') {
+			if (quit_m()) {
+				return -1;
 			}
 			else {
-				no_cmd();
-				if (func != '\n') {
-					while ((junk = getchar()) != '\n')
-						;
-				}
 				continue;
 			}
+		}
+		else if (sign == 'b') {
+			if (back_m()) {
+				return 0;
+			}
+			else {
+				continue;
+			}
+		}
+		else {
+			no_cmd();
+			while ((junk = getchar()) != '\n')
+				;
+			continue;
+		}
 	}
 }
 
@@ -196,37 +170,36 @@ int working_with_the_list_of_students()
 int view_the_list_of_students_with_grades()
 {
 	/* Initializing variables */
-	int func, junk, n = 0;
-
-	/* I/O flow */
-    while (1) {
-        printf(" ------------------------------------------------------------\n"
-"|                                                            |\n"
-"|                     >> Teacher's mode <                    |\n"
-"|                                                            |\n"
-"|  >> Choose action:                                         |\n"
-"|                                                            |\n"
-"|       1) View scores on all topics                         |\n"
-"|       2) View estimates on a specific topic                |\n"
-"|       3) View scores for the final test                    |\n"
-"|       4) View the average score                            |\n"
-"|                                                            |\n"
-"|       >> Type \"back\" to go to the previous menu <<         |\n"
-"|       >> Type \"quit\" to terminate this program <<          |\n"
-"|                                                            |\n");
-        printf("| Answer: ");
-        func = getchar();
-        prt_ln();
-        if (isdigit(func) && func >= '1' && func <= '4') {
-            func -= '0';
-            if ((junk = getchar()) != '\n') {
-                while ((junk = getchar()) != '\n')
-                    ;
-                no_cmd();
-                continue;
-        }
-            switch (func) {
-            case 1:
+	int sign, junk, n, check = 0;
+	
+	while (1) {
+		printf(" ------------------------------------------------------------\n"
+			"|                                                            |\n"
+			"|                      >> ProTest v1.0 <<                    |\n"
+			"|                                                            |\n"
+			"|  >> Choose action:                                         |\n"
+			"|                                                            |\n"
+			"|       1) View scores on all topics                         |\n"
+			"|       2) View estimates on a specific topic                |\n"
+			"|       3) View scores for the final test                    |\n"
+			"|       4) View the average score                            |\n"
+			"|                                                            |\n"
+			"|       >> Type \"back\" to go to the previous menu <<         |\n"
+			"|       >> Type \"quit\" to terminate this program <<          |\n"
+			"|                                                            |\n");
+		printf("| Answer: ");
+		sign = getchar();
+		prt_ln();
+		if (isdigit(sign) && sign >= '1' && sign <= '4') {
+			sign -= '0';
+			if ((junk = getchar()) != '\n') {
+				while ((junk = getchar()) != '\n')
+					;
+				no_cmd();
+				continue;
+			}
+			switch (sign) {
+			case 1:
                 view_scores_on_all_topics();
                 break;
             case 2:
@@ -242,72 +215,66 @@ int view_the_list_of_students_with_grades()
                 break;
             }
 
-            while ((junk = getchar()) != '\n')
-                ;
-
-            return 1;
-
-        } else if (func == 'q') {
-            if (quit_m()) {
-                return -1;
-            }
-            else {
-                continue;
-            }
-        } else if (func == 'b') {
-            if (back_m()) {
-                return 0;
-            }
-            else {
-                continue;
-            }
-        } else {
-            no_cmd();
-            if (func != '\n') {
-                while ((junk = getchar()) != '\n')
-                    ;
-            }
-            continue;
-        }
+		}
+		else if (sign == 'q') {
+			if (quit_m()) {
+				return -1;
+			}
+			else {
+				continue;
+			}
+		}
+		else if (sign == 'b') {
+			if (back_m()) {
+				return 0;
+			}
+			else {
+				continue;
+			}
+		}
+		else {
+			no_cmd();
+			while ((junk = getchar()) != '\n')
+				;
+			continue;
+		}
 	}
 }
-
 int teacher_menu_0()
 {
 	/* Initializing variables */
-	int func, junk, n = 0;
-
+	int sign, junk, n, check = 0;
+	
 	/* I/O flow */
 	if (!input_teacher()) {
         return 0;
 	}
 	while (1) {
-          printf(" ------------------------------------------------------------\n"
-"|                                                            |\n"
-"|                     >> Teacher's mode <                    |\n"
-"|                                                            |\n"
-"|  >> Choose action:                                         |\n"
-"|                                                            |\n"
-"|       1) Edit questions                                    |\n"
-"|       2) Working with the list of students                 |\n"
-"|                                                            |\n"
-"|       >> Type \"back\" to go to the previous menu <<         |\n"
-"|       >> Type \"quit\" to terminate this program <<          |\n"
-"|                                                            |\n");
-        printf("| Answer: ");
-        func = getchar();
-        prt_ln();
-        if (isdigit(func) && func >= '1' && func <= '2') {
-            func -= '0';
-            if ((junk = getchar()) != '\n') {
-                while ((junk = getchar()) != '\n')
-                    ;
-                no_cmd();
-                continue;
-            }
-
-            switch (func) {
-                case 1:
+		printf(" ------------------------------------------------------------\n"
+			"|                                                            |\n"
+			"|                      >> ProTest v1.0 <<                    |\n"
+			"|                                                            |\n"
+			"|  >> Choose action:                                         |\n"
+			"|                                                            |\n"
+			"|       1) Edit questions                                    |\n"
+			"|       2) Working with the list of students                 |\n"
+			"|                                                            |\n"
+			"|       >> Type \"back\" to go to the previous menu <<         |\n"
+			"|       >> Type \"quit\" to terminate this program <<          |\n"
+			"|                                                            |\n");
+		  printf("| Answer: ");
+		  sign = getchar();
+		  prt_ln();
+		  if (isdigit(sign) && sign >= '1' && sign <= '2') {
+			  sign -= '0';
+			  if ((junk = getchar()) != '\n') {
+				  while ((junk = getchar()) != '\n')
+					  ;
+				  no_cmd();
+				  continue;
+			  }
+			  switch (sign) {
+			  case 1:
                     n = edit_questions_teacher();
                     break;
                 case 2:
@@ -316,42 +283,31 @@ int teacher_menu_0()
                 default:
                     break;
             }
-
-            if (!n) {
-                continue;
-            } else if (n == -1) {
-                return -1;
-            } else {
-                return 0;
-            }
-
-        } else if (func == 'q') {
-            if (quit_m()) {
-                return -1;
-            }
-            else {
-                continue;
-            }
-        }
-        else if (func == 'b') {
-            if (back_m()) {
-                return 0;
-            }
-            else {
-                continue;
-            }
-        }
-        else {
-            no_cmd();
-            if (func != '\n') {
-                while ((junk = getchar()) != '\n')
-                    ;
-            }
-            continue;
-        }
+		  }
+		  else if (sign == 'q') {
+			  if (quit_m()) {
+				  return -1;
+			  }
+			  else {
+				  continue;
+			  }
+		  }
+		  else if (sign == 'b') {
+			  if (back_m()) {
+				  return 0;
+			  }
+			  else {
+				  continue;
+			  }
+		  }
+		  else {
+			  no_cmd();
+			  while ((junk = getchar()) != '\n')
+				  ;
+			  continue;
+		  }
 	}
 }
-
 
 int field_check_teacher(char *text) 
 {

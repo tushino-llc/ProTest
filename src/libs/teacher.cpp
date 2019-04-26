@@ -19,52 +19,54 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 */
 #include "../headers/tests_main_header.h"
 
-const int Size_St = 100;
-const int Size_Q = 240;
+//const int Size_St = 100;
+//const int Size_Q = 240;
 
 // Questions
 void delete_the_question()
 {
-	int error, id, size, i;
-	db_get_questions(&size);
-	Question question[Size_Q];
-	for (int j = 0; j < size; ++j)
-	{
-		std::cout <<"id = "<< question[j].id << " Question: "<< question[j].value << std::endl;
-	}
-
-	printf("| Enter the id of the question you want to delete. \n");
-	do {
-		scanf("%d", &id);
-	} while (id < 0);
+	int error, id, size, j;
 	
-	do {
+	struct Question *question = nullptr;
+	struct Question quest = {};
+	if ((question = db_get_questions(&size))) {
+		for (j = 0; j < size; ++j) {
+			std::cout << "id = " << question[j].id << "; Question: " << question[j].value << std::endl;
+		}
+
+		printf("| Enter the id of the question you want to delete. \n");
+		do {
+			scanf("%d", &id);
+		} while (id < 0);
+
+		do {
 			error = db_delete_question(id);
 
 			if (error == -1) { printf("| Error! Unable to delete question. Try again? [1 - yes; 0 - no] \n"); }
 			do {
 				scanf("%d", &error);
 			} while ((error > 1) || (error < 0));
-	} while (error == 1);	
+		} while (error == 1);
+	}
 }
 void add_a_question()
 {
 	int error, size;
-	db_get_questions(&size);
-	Question question[Size_Q];
-	do {
-		error = db_add_question(question[size]);
-		if (error == -1) { printf("| Error! The question could not be added. Try again? [1 - yes; 0 - no] \n"); }
+	struct Question *question = nullptr;
+	if ((question = db_get_questions(&size))) {
 		do {
-			scanf("%d", &error);
-		} while ((error > 1) || (error < 0));
-	} while (error == 1);
+			error = db_add_question(question[size]);
+			if (error == -1) { printf("| Error! The question could not be added. Try again? [1 - yes; 0 - no] \n"); }
+			do {
+				scanf("%d", &error);
+			} while ((error > 1) || (error < 0));
+		} while (error == 1);
+	}
 }
-
 void change_the_question() {
 
     /* Initializing variables */
-	int error, id, size, j;
+	int id, size, j, sign;
 	struct Question *question = nullptr;
 	struct Question quest = {};
 
@@ -80,99 +82,178 @@ void change_the_question() {
         } while (!(quest = db_get_question_by_id(id)).id);
 
         /* Other shit goes here ↓*/
+		do {
+			do {
+				printf("| What do you want to change? \n");
+				printf("  1) Id\n"
+					"  2) Topic\n"
+					"  3) Question text\n"
+					"  4) Answer choice\n"
+					"  5) Correct answer\n");
 
+				printf("| Answer: ");
+				scanf("%d", &sign);
 
+			} while ((sign > 5) || (sign < 1));
+
+			switch (sign)
+			{
+			case 1:
+			{
+				printf("| Enter id: \n");
+				scanf("%d", &quest.id);
+			}break;
+			case 2:
+			{
+				printf("| Enter topic: \n");
+				scanf("%c", &quest.theme);
+			} break;
+			case 3:
+			{
+				printf("| Enter question text: \n");
+				fgets(quest.value, 500, stdin);
+			} break;
+			case 4:
+			{
+				printf("| Enter answer choice:\n");
+				printf("| 1) ");
+				fgets(quest.ans[0], 100, stdin);
+				printf("| 2) ");
+				fgets(quest.ans[1], 100, stdin);
+				printf("| 3) ");
+				fgets(quest.ans[2], 100, stdin);
+				printf("| 4) ");
+				fgets(quest.ans[3], 100, stdin);
+			} break;
+			case 5:
+			{
+				printf("| Enter correct answer:\n");
+				scanf("%d", &quest.correct);
+			} break;
+			}
+			do {
+				printf("| Continue?\n| 0) No\n| 1) Yes\n");
+				scanf("%d", &sign);
+			} while ((sign > 1) || (sign < 0));
+		} while (sign != 0);
     }
 }
 
 // Students
 void delete_student_account()
 {
-	int error, id, size = 0;
-	User user[Size_St];
-	db_get_users(&size);
+	int error, id, size = 0; 
+	struct User *user = nullptr;
+	struct User us = {};
 
-	for (int i = 0; i < size; ++i)
-	{
-		std::cout << "id = " << user[i].id << " Student: " << user[i].first_name << user[i].last_name << std::endl;
-	}
+	/* Main part */
+	if ((user = db_get_users(&size))) {
 
-	printf("| Enter the id of the student you want to delete. \n");
-	do {
-		scanf("%d", &id);
-	} while (id < 0);
-	do {
-		error = db_delete_user(id);
-		if (error == -1) { printf("| Error! Unable to delete student. Try again? [1 - yes; 0 - no] \n"); }
+		for (int i = 0; i < size; ++i)
+		{
+			std::cout << "id = " << user[i].id << "; Student: " << user[i].first_name << user[i].last_name << std::endl;
+		}
+
+		printf("| Enter the id of the student you want to delete. \n");
 		do {
-			scanf("%d", &error);
-		} while ((error > 1) || (error < 0));
-	} while (error == 1);
+			scanf("%d", &id);
+		} while (!(us = db_get_user(id)).id);
+		do {
+			error = db_delete_user(id);
+			if (error == -1) { printf("| Error! Unable to delete student. Try again? [1 - yes; 0 - no] \n"); }
+			do {
+				scanf("%d", &error);
+			} while ((error > 1) || (error < 0));
+		} while (error == 1);
+	}
 }
 void to_add_a_new_account_for_a_student()
 {
 	int error, size;
-	User user[Size_St];
-	db_get_users(&size);
+	struct User *user = nullptr;
+	struct User us = {};
 	char password[30];
 
-	printf("\n| Enter the password ");
-	fgets(password, 30, stdin);
-	field_check_teacher(password);
+	/* Main part */
+	if ((user = db_get_users(&size))) {
 
-	if (size < Size_St)
-	{
+		printf("\n| Enter the password ");
+		fgets(password, 30, stdin);
+		field_check_teacher(password);
+	
 		do {
-			error = db_add_user(user[size], password);
+			error = db_add_user(us, password);
 			if (error == -1) { printf("| Error! Failed to add new account. Try again? [1 - yes; 0 - no] \n"); }
 			do {
 				scanf("%d", &error);
 			} while ((error > 1) || (error < 0));
 		} while (error == 1);
 	}
-	else printf("| Error! Failed to add new account.\n");
 }
 void to_see_the_change_of_a_students_progress()
 {
 	int  size = 0, id;
-	User user[Size_St];
-	db_get_users(&size);
+	struct User *user = nullptr;
+	struct User us = {};
+	struct Marks mark = {};
+	/* Main part */
+	if ((user = db_get_users(&size))) {
 
-	for (int i = 0; i < size; ++i)
-	{
-		std::cout << "id = " << user[i].id << " Student: " << user[i].first_name << user[i].last_name << std::endl;
+		for (int i = 0; i < size; ++i)
+		{
+			std::cout << "id = " << user[i].id << "; Student: " << user[i].first_name << user[i].last_name << std::endl;
+		}
+		printf("| Enter the id of the student whose progress you want to see. \n");
+		do {
+			scanf("%d", &id);
+		} while (!(us = db_get_user(id)).id);
+		std::cout << "id = " << us.id << "; Student: " << us.first_name << us.last_name << std::endl;
+		mark = db_get_user_marks(id);
+		std::cout << " loops " << mark.values[0] << std::endl;
+		std::cout << " arrays " << mark.values[1] << std::endl;
+		std::cout << " strings " << mark.values[2] << std::endl;
+		std::cout << " recursion " << mark.values[3] << std::endl;
+		std::cout << " structs " << mark.values[4] << std::endl;
+		std::cout << " files " << mark.values[5] << std::endl;
+		std::cout << " pointers " << mark.values[6] << std::endl;
+		std::cout << " dynamic " << mark.values[7] << std::endl;
+		std::cout << " average " << mark.values[8] << std::endl;
+		std::cout << " final " << mark.values[9] << std::endl;
 	}
-	printf("| Enter the id of the student whose progress you want to see. \n");
-	do {
-		scanf("%d", &id);
-	} while (id < 0);
-	db_get_user_marks(id);
 }
 
 // Results
 void view_scores_on_all_topics()
 {
-	User user[Size_St];
-	Marks marks[Size_St];
 	int id, size = 0;
-	db_get_users(&size);
+	struct User *user = nullptr;
+	struct Marks mark = {};
+	/* Main part */
+	if ((user = db_get_users(&size))) {
 
-	for (int i = 0; i < size; ++i)
-	{
-		db_get_user_marks(i);
-		std::cout << " " << user[i].first_name << " " << user[i].last_name;
-		for (int j = 0; j < 10; j++)
+		for (int i = 0; i < size; ++i)
 		{
-			std::cout << " " << marks[j].values[j] << " ";
+			std::cout << "id = " << user[i].id << "; Student: " << user[i].first_name << user[i].last_name << std::endl;
+			mark = db_get_user_marks(user[i].id);
+			std::cout << " loops " << mark.values[0] << std::endl;
+			std::cout << " arrays " << mark.values[1] << std::endl;
+			std::cout << " strings " << mark.values[2] << std::endl;
+			std::cout << " recursion " << mark.values[3] << std::endl;
+			std::cout << " structs " << mark.values[4] << std::endl;
+			std::cout << " files " << mark.values[5] << std::endl;
+			std::cout << " pointers " << mark.values[6] << std::endl;
+			std::cout << " dynamic " << mark.values[7] << std::endl;
+			std::cout << " average " << mark.values[8] << std::endl;
+			std::cout << " final " << mark.values[9] << std::endl;
+			printf("\n");
 		}
-		printf("\n");
 	}
 }
 void view_estimates_on_a_specific_topic()
 {
-	User user[Size_St];
-	Marks marks[Size_St];
 	int size = 0, desc, by, sort;
+	struct User *user = nullptr;
+	struct Marks mark = {};	
 
 	printf("| Chosen theme |"
 		"| 1) loops      |\n"
@@ -194,122 +275,120 @@ void view_estimates_on_a_specific_topic()
 		"| 3) show students with a score of 5 |\n"
 		"| 4) show students with a score of 4 |\n"
 		"| 5) show students with a score of 3 |\n"
-		"| 6) show students with a score of 2 |\n"
-		"| 7) show students with a score of 1 |\n");
+		"| 6) show students with a score of 2 |\n");
 	do {
 		scanf("%d", &sort);
-	} while ((sort < 1) || (sort > 7));
-	
+	} while ((sort < 1) || (sort > 6));
 	
 	switch (sort)
 	{
-	case 1: 
+	case 1:
 	{
-		desc = 0; 
-		
-		db_get_users_sorted(&size, by, desc);
-		for (int i = 0; i < size; ++i)
-		{
-			db_get_user_marks(i);
-			std::cout << " " << user[i].first_name << " " << user[i].last_name << " " << marks[i].values[by]<< " " << std::endl;
+		desc = 0;
+
+		if ((user = db_get_users_sorted(&size, by, desc))) {
+			for (int i = 0; i < size; i++)
+			{
+				mark = db_get_user_marks(user[i].id);
+				std::cout << " " << user[i].first_name << " " << user[i].last_name << " " << mark.values[by] << std::endl;
+			}
 		}
 	} break;
-	case 2: 
+	case 2:
 	{
 		desc = 1;
-		db_get_users_sorted(&size, by, desc);
-		for (int i = 0; i < size; ++i)
-		{
-			db_get_user_marks(i);
-			std::cout << " " << user[i].first_name << " " << user[i].last_name << " " << marks[i].values[by] << " " << std::endl;
-		}
-	} break;
-	case 3: 
-	{
-		db_get_users(&size);
-		for (int i = 0; i < size; ++i)
-		{
-			if (marks[i].values[by] == 5)
+		if ((user = db_get_users_sorted(&size, by, desc))) {
+			for (int i = 0; i < size; i++)
 			{
-				db_get_user_marks(i);
-				std::cout << " " << user[i].first_name << " " << user[i].last_name << " " << marks[i].values[by] << " " << std::endl;
+				mark = db_get_user_marks(user[i].id);
+				std::cout << " " << user[i].first_name << " " << user[i].last_name << " " << mark.values[by] << std::endl;
 			}
 		}
 	} break;
-	case 4: 
+	case 3:
 	{
-		db_get_users(&size);
-		for (int i = 0; i < size; ++i)
-		{
-			if (marks[i].values[by] == 4)
+		if ((user = db_get_users(&size))) {
+			for (int i = 0; i < size; i++)
 			{
-				db_get_user_marks(i);
-				std::cout << " " << user[i].first_name << " " << user[i].last_name << " " << marks[i].values[by] << " " << std::endl;
+				mark = db_get_user_marks(user[i].id);
+				if (mark.values[by] == 5)
+				{
+					std::cout << " " << user[i].first_name << " " << user[i].last_name << " " << mark.values[by] << std::endl;
+				}
 			}
+		
+		}
+	} break;
+	case 4:
+	{
+		if ((user = db_get_users(&size))) {
+			for (int i = 0; i < size; i++)
+			{
+				mark = db_get_user_marks(user[i].id);
+				if (mark.values[by] == 4)
+				{
+					std::cout << " " << user[i].first_name << " " << user[i].last_name << " " << mark.values[by] << std::endl;
+				}
+			}
+
 		}
 	} break;
 	case 5:
 	{
-		db_get_users(&size);
-		for (int i = 0; i < size; ++i)
-		{
-			if (marks[i].values[by] == 3)
+		if ((user = db_get_users(&size))) {
+			for (int i = 0; i < size; i++)
 			{
-				db_get_user_marks(i);
-				std::cout << " " << user[i].first_name << " " << user[i].last_name << " " << marks[i].values[by] << " " << std::endl;
+				mark = db_get_user_marks(user[i].id);
+				if (mark.values[by] == 3)
+				{
+					std::cout << " " << user[i].first_name << " " << user[i].last_name << " " << mark.values[by] << std::endl;
+				}
 			}
+
 		}
 	} break;
 	case 6:
 	{
-		db_get_users(&size);
-		for (int i = 0; i < size; ++i)
-		{
-			if (marks[i].values[by] == 2)
+		if ((user = db_get_users(&size))) {
+			for (int i = 0; i < size; i++)
 			{
-				db_get_user_marks(i);
-				std::cout << " " << user[i].first_name << " " << user[i].last_name << " " << marks[i].values[by] << " " << std::endl;
+				mark = db_get_user_marks(user[i].id);
+				if (mark.values[by] == 2)
+				{
+					std::cout << " " << user[i].first_name << " " << user[i].last_name << " " << mark.values[by] << std::endl;
+				}
 			}
-		}
-	} break;
-	case 7:
-	{
-		db_get_users(&size);
-		for (int i = 0; i < size; ++i)
-		{
-			if (marks[i].values[by] == 1)
-			{
-				db_get_user_marks(i);
-				std::cout << " " << user[i].first_name << " " << user[i].last_name << " " << marks[i].values[by] << " " << std::endl;
-			}
+
 		}
 	} break;
 	}
 }
 void view_scores_for_the_final_test()
 {
-	User user[Size_St];
-	Marks marks[Size_St];
-	int size = 0, by = 9, desc = 1;
-	db_get_users_sorted(&size, by, desc);
+	int size, by = 9, desc = 1;
+	struct User *user = nullptr;
+	struct Marks mark = {};
 
-	for (int i = 0; i < size; ++i)
-	{
-		db_get_user_marks(i);
-		std::cout << " " << user[i].first_name << " " << user[i].last_name << " " << marks[i].values[by] << " " << std::endl;
+	if ((user = db_get_users_sorted(&size, by, desc))) {
+		for (int i = 0; i < size; i++)
+		{
+			mark = db_get_user_marks(user[i].id);
+			std::cout << " " << user[i].first_name << " " << user[i].last_name << " " << mark.values[by] << std::endl;
+		}
 	}
 }
 void view_the_average_score()
 {
-	User user[Size_St];
-	Marks marks[Size_St];
 	int size = 0, by = 8, desc = 1;
-	db_get_users_sorted(&size, by, desc);
+	struct User *user = nullptr;
+	struct Marks mark = {};
 
-	for (int i = 0; i < size; ++i)
-	{
-		db_get_user_marks(i);
-		std::cout << " " << user[i].first_name << " " << user[i].last_name << " " << marks[i].values[by] << " " << std::endl;
+	if ((user = db_get_users_sorted(&size, by, desc))) {
+		for (int i = 0; i < size; i++)
+		{
+			mark = db_get_user_marks(user[i].id);
+			std::cout << " " << user[i].first_name << " " << user[i].last_name << " " << mark.values[by] << std::endl;
+		}
 	}
 }
 
