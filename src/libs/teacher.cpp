@@ -80,7 +80,7 @@ void change_the_question() {
         } while (!(quest = db_get_question_by_id(id)).id);
 
         /* Other shit goes here ↓*/
-        
+
 
     }
 }

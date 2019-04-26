@@ -3,64 +3,37 @@
 
 int signin()
 {
-	int error, sign, c = 2, str;
-	char password[30], login[30];
-	User user;
-	do {
+    User user = {};
+    char password[256], login[256];
 
-		printf("| Enter login\n");
-		do {
-			fgets(login, (sizeof login), stdin);
-			str = strlen(login);
-			login[str - 1] = '\0';
-			error = field_check_teacher(login);
-			if (error == 0)
-			{
-				printf("| Invalid login.Try again? [1 - yes; 0 - no]\n");
-				do {
-					scanf("%d", &c);
-				} while ((c > 1) || (c < 0));
-				if (c == 0)
-					return 0;
-			}
-		} while (c == 1);
-		printf("| Enter password\n");
-		do {
-			fgets(password, (sizeof password), stdin);
-			str = strlen(password);
-			password[str - 1] = '\0';
-			error = field_check_teacher(password);
-			if (error == 0)
-			{
-				printf("| Invalid password.Try again? [1 - yes; 0 - no]\n");
-				do {
-					scanf("%d", &c);
-				} while ((c > 1) || (c < 0));
-				if (c == 0)
-					return 0;
-			}
-		} while (c == 1);
-		user = db_login(login, password);
-		error = user.id;
-		if (error == NULL) { printf("| Error! Account not found. Try again? [1 - yes; 0 - no] \n"); }
-		do {
-			scanf("%d", &sign);
-		} while ((sign > 1) || (sign < 0));
-		if (sign == 0)
-			return 0;
-		while (!strchr(login, '\n'))
-			if (!fgets(login, (sizeof login), stdin))
-				break;
-	} while (sign == 1);
+    printf("| Type the username: ");
+    fgets(login, 256, stdin);
+    field_check_teacher(login);
+    printf("| Type the password: ");
+    fgets(password, 30, stdin);
 
-	return error;
+    login[strlen(login) - 1] = '\0';
+    password[strlen(password) - 1] = '\0';
+
+    field_check_teacher(login);
+    field_check_teacher(password);
+
+    user = db_login(login, password);
+
+    if (!user.admin && user.id) {
+        return 1;
+    } else {
+        prt_ln();
+        printf("| Error! Wrong login or password!                            |\n");
+        return 0;
+    }
 }
 
 void Training()
 {
 	Question * questions;
 	int sub, ans;
-	printf("| Choose a subject\n"
+	printf("| Choose a subject: "
 		"[0] - loops    \n"
 		"[1] - arrays   \n"
 		"[2] - strings  \n"
