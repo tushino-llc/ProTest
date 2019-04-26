@@ -33,31 +33,35 @@ void Training()
 {
 	Question * questions;
 	int sub, ans;
-	printf("| Choose a subject: "
-		"[0] - loops    \n"
-		"[1] - arrays   \n"
-		"[2] - strings  \n"
-		"[3] - recursion\n"
-		"[4] - structs  \n"
-		"[5] - files    \n"
-		"[6] - pointers \n"
-		"[7] - dynamic  \n");
+	prt_ln;
+	printf("| Choose a subject:                                        |\n"
+		   "| [0] - loops                                              |\n"
+		   "| [1] - arrays                                             |\n"
+		   "| [2] - strings                                            |\n"
+		   "| [3] - recursion                                          |\n"
+		   "| [4] - structs                                            |\n"
+		   "| [5] - files                                              |\n"
+		   "| [6] - pointers                                           |\n"
+		   "| [7] - dynamic                                            |\n");
+	
 	do {
 		scanf("%d", &sub);
 		if (sub < 0 || sub>7)
 			printf("| Such subject does not exist.Try again.\n");
 	} while (sub < 0 || sub>7);
 	questions = db_get_test(sub);
+	prt_ln;
 	for (int i = 0; i < 10; i++)
 	{
-		printf("%s\n", questions[i].value);
-		printf("%s\n", questions[i].ans);
+		printf("| %s\n", questions[i].value);
+		printf("| %s\n", questions[i].ans);
 		do {
 			printf("| Answer: ");
 			scanf("%d", &ans);
 			if (ans != questions[i].correct)
 				printf("| Wrong answer.Try again.\n");
 		} while (ans != questions[i].correct);
+		
 	}
 }
 
@@ -67,27 +71,31 @@ void Test(int id)
 	
 	int sub, ans, sum = 0,a[10],inc = 0;
 	double mark;
-	printf("| Choose a subject\n"
-		"[0] - loops    \n"
-		"[1] - arrays   \n"
-		"[2] - strings  \n"
-		"[3] - recursion\n"
-		"[4] - structs  \n"
-		"[5] - files    \n"
-		"[6] - pointers \n"
-		"[7] - dynamic  \n");
+	prt_ln;
+	printf("| Choose a subject:                                        |\n"
+		"| [0] - loops                                              |\n"
+		"| [1] - arrays                                             |\n"
+		"| [2] - strings                                            |\n"
+		"| [3] - recursion                                          |\n"
+		"| [4] - structs                                            |\n"
+		"| [5] - files                                              |\n"
+		"| [6] - pointers                                           |\n"
+		"| [7] - dynamic                                            |\n");
+
 	do {
 		scanf("%d", &sub);
 		if (sub < 0 || sub>7)
 			printf("| Such subject does not exist.Try again.\n");
 	} while (sub < 0 || sub>7);
 	questions = db_get_test(sub);
+	prt_ln;
 	for (int i = 0; i < 10; i++)
 	{
-		printf("%s\n", questions[i].value);
-		printf("%s\n", questions[i].ans);
+		printf("| %s\n", questions[i].value);
+		printf("| %s\n", questions[i].ans);
 		printf("| Answer: ");
 		scanf("%d", &ans);
+		prt_ln;
 		if (ans == questions[i].correct)
 			sum += 1;
 		else
@@ -98,6 +106,7 @@ void Test(int id)
 
 
 	}
+	
 	if (inc > 0)
 	{
 		printf("| Questions with the wrong answer:\n");
@@ -105,7 +114,7 @@ void Test(int id)
 		{
 			if (a[i] == 0)
 			{
-				printf("%s\n", questions[i].value);
+				printf("| %s\n", questions[i].value);
 				printf("| Right answer is %d\n", questions[i].correct);
 				printf("\n");
 			}
@@ -144,10 +153,11 @@ void FinalTest(int id)
 	double mark;
 
 	questions = db_get_final_test();
+	prt_ln;
 	for (int i = 0; i < 40; i++)
 	{
-		printf("%s\n", questions[i].value);
-		printf("%s\n", questions[i].ans);
+		printf("| %s\n", questions[i].value);
+		printf("| %s\n", questions[i].ans);
 		printf("| Answer: ");
 		scanf("%d", &ans);
 		printf("\n");
@@ -177,4 +187,5 @@ void FinalTest(int id)
 		db_set_mark(id, 9, 5);
 		printf("| Your mark is 5\n");
 	}
+	prt_ln;
 }
