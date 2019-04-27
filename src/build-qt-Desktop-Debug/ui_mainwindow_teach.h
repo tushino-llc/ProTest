@@ -254,6 +254,7 @@ public:
 
         lineFN = new QLineEdit(groupBox_3);
         lineFN->setObjectName(QString::fromUtf8("lineFN"));
+        lineFN->setFont(font);
         lineFN->setReadOnly(true);
 
         formLayout->setWidget(0, QFormLayout::FieldRole, lineFN);
@@ -266,6 +267,7 @@ public:
 
         lineLN = new QLineEdit(groupBox_3);
         lineLN->setObjectName(QString::fromUtf8("lineLN"));
+        lineLN->setFont(font);
         lineLN->setReadOnly(true);
 
         formLayout->setWidget(1, QFormLayout::FieldRole, lineLN);
@@ -278,6 +280,7 @@ public:
 
         lineLogin = new QLineEdit(groupBox_3);
         lineLogin->setObjectName(QString::fromUtf8("lineLogin"));
+        lineLogin->setFont(font);
         lineLogin->setReadOnly(true);
 
         formLayout->setWidget(2, QFormLayout::FieldRole, lineLogin);
@@ -290,6 +293,7 @@ public:
 
         lineID = new QLineEdit(groupBox_3);
         lineID->setObjectName(QString::fromUtf8("lineID"));
+        lineID->setFont(font);
         lineID->setReadOnly(true);
 
         formLayout->setWidget(3, QFormLayout::FieldRole, lineID);
@@ -314,6 +318,7 @@ public:
 
         lineRecursion = new QLineEdit(groupBox_4);
         lineRecursion->setObjectName(QString::fromUtf8("lineRecursion"));
+        lineRecursion->setFont(font);
         lineRecursion->setReadOnly(true);
 
         formLayout_3->setWidget(0, QFormLayout::FieldRole, lineRecursion);
@@ -332,12 +337,14 @@ public:
 
         lineStructures = new QLineEdit(groupBox_4);
         lineStructures->setObjectName(QString::fromUtf8("lineStructures"));
+        lineStructures->setFont(font);
         lineStructures->setReadOnly(true);
 
         formLayout_3->setWidget(1, QFormLayout::FieldRole, lineStructures);
 
         lineFiles = new QLineEdit(groupBox_4);
         lineFiles->setObjectName(QString::fromUtf8("lineFiles"));
+        lineFiles->setFont(font);
         lineFiles->setReadOnly(true);
 
         formLayout_3->setWidget(2, QFormLayout::FieldRole, lineFiles);
@@ -367,18 +374,21 @@ public:
 
         linePointers = new QLineEdit(groupBox_4);
         linePointers->setObjectName(QString::fromUtf8("linePointers"));
+        linePointers->setFont(font);
         linePointers->setReadOnly(true);
 
         formLayout_4->setWidget(0, QFormLayout::FieldRole, linePointers);
 
         lineDyn_Mem = new QLineEdit(groupBox_4);
         lineDyn_Mem->setObjectName(QString::fromUtf8("lineDyn_Mem"));
+        lineDyn_Mem->setFont(font);
         lineDyn_Mem->setReadOnly(true);
 
         formLayout_4->setWidget(1, QFormLayout::FieldRole, lineDyn_Mem);
 
         lineFinal = new QLineEdit(groupBox_4);
         lineFinal->setObjectName(QString::fromUtf8("lineFinal"));
+        lineFinal->setFont(font);
         lineFinal->setReadOnly(true);
 
         formLayout_4->setWidget(2, QFormLayout::FieldRole, lineFinal);
@@ -388,6 +398,7 @@ public:
 
         lineMean = new QLineEdit(groupBox_4);
         lineMean->setObjectName(QString::fromUtf8("lineMean"));
+        lineMean->setFont(font);
         lineMean->setReadOnly(true);
 
         gridLayout->addWidget(lineMean, 2, 1, 1, 1);
@@ -413,6 +424,7 @@ public:
         sizePolicy3.setVerticalStretch(0);
         sizePolicy3.setHeightForWidth(lineLoops->sizePolicy().hasHeightForWidth());
         lineLoops->setSizePolicy(sizePolicy3);
+        lineLoops->setFont(font);
         lineLoops->setInputMethodHints(Qt::ImhDigitsOnly);
         lineLoops->setReadOnly(true);
 
@@ -420,12 +432,14 @@ public:
 
         lineArrays = new QLineEdit(groupBox_4);
         lineArrays->setObjectName(QString::fromUtf8("lineArrays"));
+        lineArrays->setFont(font);
         lineArrays->setReadOnly(true);
 
         formLayout_2->setWidget(1, QFormLayout::FieldRole, lineArrays);
 
         lineStrings = new QLineEdit(groupBox_4);
         lineStrings->setObjectName(QString::fromUtf8("lineStrings"));
+        lineStrings->setFont(font);
         lineStrings->setReadOnly(true);
 
         formLayout_2->setWidget(2, QFormLayout::FieldRole, lineStrings);
@@ -560,6 +574,7 @@ public:
 
         lineA2 = new QLineEdit(groupBox_2);
         lineA2->setObjectName(QString::fromUtf8("lineA2"));
+        lineA2->setFont(font);
 
         formLayout_6->setWidget(1, QFormLayout::FieldRole, lineA2);
 
@@ -570,6 +585,7 @@ public:
 
         lineA3 = new QLineEdit(groupBox_2);
         lineA3->setObjectName(QString::fromUtf8("lineA3"));
+        lineA3->setFont(font);
 
         formLayout_6->setWidget(2, QFormLayout::FieldRole, lineA3);
 
@@ -580,11 +596,13 @@ public:
 
         lineA4 = new QLineEdit(groupBox_2);
         lineA4->setObjectName(QString::fromUtf8("lineA4"));
+        lineA4->setFont(font);
 
         formLayout_6->setWidget(3, QFormLayout::FieldRole, lineA4);
 
         lineA1 = new QLineEdit(groupBox_2);
         lineA1->setObjectName(QString::fromUtf8("lineA1"));
+        lineA1->setFont(font);
 
         formLayout_6->setWidget(0, QFormLayout::FieldRole, lineA1);
 
@@ -614,12 +632,16 @@ public:
         sizePolicy5.setVerticalStretch(0);
         sizePolicy5.setHeightForWidth(comboBox_2->sizePolicy().hasHeightForWidth());
         comboBox_2->setSizePolicy(sizePolicy5);
+        QFont font2;
+        font2.setPointSize(10);
+        comboBox_2->setFont(font2);
 
         horizontalLayout_4->addWidget(comboBox_2);
 
         comboBox_3 = new QComboBox(frame);
         comboBox_3->addItem(QString());
         comboBox_3->setObjectName(QString::fromUtf8("comboBox_3"));
+        comboBox_3->setFont(font2);
 
         horizontalLayout_4->addWidget(comboBox_3);
 
@@ -642,6 +664,7 @@ public:
 
         textEdit = new QTextEdit(frame);
         textEdit->setObjectName(QString::fromUtf8("textEdit"));
+        textEdit->setFont(font1);
 
         verticalLayout_2->addWidget(textEdit);
 
@@ -733,7 +756,7 @@ public:
 
         retranslateUi(MainWindow_teach);
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow_teach);

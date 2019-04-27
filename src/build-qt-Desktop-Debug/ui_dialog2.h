@@ -41,7 +41,7 @@ public:
     QLineEdit *lineEdit_3;
     QRadioButton *radioButton_4;
     QLineEdit *lineEdit_4;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QFormLayout *formLayout;
     QLabel *label_2;
     QTextEdit *textEdit;
@@ -80,7 +80,7 @@ public:
         pushButton->setEnabled(false);
         pushButton->setGeometry(QRect(30, 450, 341, 61));
         QFont font2;
-        font2.setPointSize(16);
+        font2.setPointSize(18);
         pushButton->setFont(font2);
         groupBox = new QGroupBox(Dialog2);
         groupBox->setObjectName(QString::fromUtf8("groupBox"));
@@ -95,6 +95,9 @@ public:
 
         lineEdit = new QLineEdit(groupBox);
         lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
+        QFont font3;
+        font3.setPointSize(11);
+        lineEdit->setFont(font3);
 
         gridLayout->addWidget(lineEdit, 0, 1, 1, 1);
 
@@ -105,6 +108,7 @@ public:
 
         lineEdit_2 = new QLineEdit(groupBox);
         lineEdit_2->setObjectName(QString::fromUtf8("lineEdit_2"));
+        lineEdit_2->setFont(font3);
 
         gridLayout->addWidget(lineEdit_2, 1, 1, 1, 1);
 
@@ -115,6 +119,7 @@ public:
 
         lineEdit_3 = new QLineEdit(groupBox);
         lineEdit_3->setObjectName(QString::fromUtf8("lineEdit_3"));
+        lineEdit_3->setFont(font3);
 
         gridLayout->addWidget(lineEdit_3, 2, 1, 1, 1);
 
@@ -125,23 +130,25 @@ public:
 
         lineEdit_4 = new QLineEdit(groupBox);
         lineEdit_4->setObjectName(QString::fromUtf8("lineEdit_4"));
+        lineEdit_4->setFont(font3);
 
         gridLayout->addWidget(lineEdit_4, 3, 1, 1, 1);
 
-        widget = new QWidget(Dialog2);
-        widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setGeometry(QRect(30, 140, 341, 131));
-        formLayout = new QFormLayout(widget);
+        layoutWidget = new QWidget(Dialog2);
+        layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
+        layoutWidget->setGeometry(QRect(30, 140, 341, 131));
+        formLayout = new QFormLayout(layoutWidget);
         formLayout->setObjectName(QString::fromUtf8("formLayout"));
         formLayout->setContentsMargins(0, 0, 0, 0);
-        label_2 = new QLabel(widget);
+        label_2 = new QLabel(layoutWidget);
         label_2->setObjectName(QString::fromUtf8("label_2"));
         label_2->setFont(font1);
 
         formLayout->setWidget(0, QFormLayout::LabelRole, label_2);
 
-        textEdit = new QTextEdit(widget);
+        textEdit = new QTextEdit(layoutWidget);
         textEdit->setObjectName(QString::fromUtf8("textEdit"));
+        textEdit->setFont(font1);
 
         formLayout->setWidget(1, QFormLayout::SpanningRole, textEdit);
 

@@ -25,12 +25,11 @@ int edit_questions_teacher()
 {
 	/* Initializing variables */
 	int func, junk, n = 0;
-
 	/* I/O flow */
 	while (1) {
-		  printf(" ------------------------------------------------------------\n"
+		printf(" ------------------------------------------------------------\n"
 "|                                                            |\n"
-"|                     >> Teacher's mode <                    |\n"
+"|                    >> Teacher's mode <<                    |\n"
 "|                                                            |\n"
 "|  >> Choose action:                                         |\n"
 "|                                                            |\n"
@@ -41,79 +40,74 @@ int edit_questions_teacher()
 "|       >> Type \"back\" to go to the previous menu <<         |\n"
 "|       >> Type \"quit\" to terminate this program <<          |\n"
 "|                                                            |\n");
-				printf("| Answer: ");
-				func = getchar();
-				prt_ln();
-				if (isdigit(func) && func >= '1' && func <= '3') {
-					func -= '0';
-					if ((junk = getchar()) != '\n') {
-						while ((junk = getchar()) != '\n');
-						no_cmd();
-						continue;
-					}
-
-					switch (func) {
-					case 1:
-						delete_the_question();
-						break;
-					case 2:
-						add_a_question();
-						break;
-					case 3:
-						change_the_question();
-						break;
-					default:
-						break;
-					}
-
-					if (!n) {
-						continue;
-					}
-					else if (n == -1) {
-						return -1;
-					}
-					else {
-						return 1;
-					}
-
-				}
-				else if (func == 'q') {
-					if (quit_m()) {
-						return -1;
-					}
-					else {
-						continue;
-					}
-				}
-				else if (func == 'b') {
-					if (back_m()) {
-						return 0;
-					}
-					else {
-						continue;
-					}
-				}
-				else {
-					no_cmd();
-					if (func != '\n') {
-						while ((junk = getchar()) != '\n')
-							;
-					}
-					continue;
-				}
+		printf("| Answer: ");
+		func = getchar();
+		prt_ln();
+		if (isdigit(func) && func >= '1' && func <= '3') {
+			func -= '0';
+			if ((junk = getchar()) != '\n') {
+				while ((junk = getchar()) != '\n');
+				no_cmd();
+				continue;
+			}
+			switch (func) {
+			case 1:
+				delete_the_question();
+				break;
+			case 2:
+				add_a_question();
+				break;
+			case 3:
+				change_the_question();
+				break;
+			default:
+				break;
+			}
+			if (!n) {
+				continue;
+			}
+			else if (n == -1) {
+				return -1;
+			}
+			else {
+				return 1;
+			}
+		}
+		else if (func == 'q') {
+			if (quit_m()) {
+				return -1;
+			}
+			else {
+				continue;
+			}
+		}
+		else if (func == 'b') {
+			if (back_m()) {
+				return 0;
+			}
+			else {
+				continue;
+			}
+		}
+		else {
+			no_cmd();
+			if (func != '\n') {
+				while ((junk = getchar()) != '\n')
+					;
+			}
+			continue;
 		}
 	}
-
+}
 int working_with_the_list_of_students()
 {
 	/* Initializing variables */
-	int func, junk, n = 0;
+	int sign, junk, n, check = 0;
 
-	/* I/O flow */
 	while (1) {
-			  printf(" ------------------------------------------------------------\n"
+        printf(" ------------------------------------------------------------\n"
 "|                                                            |\n"
-"|                     >> Teacher's mode <                    |\n"
+"|                    >> Teacher's mode <<                    |\n"
 "|                                                            |\n"
 "|  >> Choose action:                                         |\n"
 "|                                                            |\n"
@@ -125,19 +119,19 @@ int working_with_the_list_of_students()
 "|       >> Type \"back\" to go to the previous menu <<         |\n"
 "|       >> Type \"quit\" to terminate this program <<          |\n"
 "|                                                            |\n");
-			printf("| Answer: ");
-			func = getchar();
-			prt_ln();
-			if (isdigit(func) && func >= '1' && func <= '4') {
-				func -= '0';
-				if ((junk = getchar()) != '\n') {
-					while ((junk = getchar()) != '\n');
-					no_cmd();
-					continue;
-				}
-
-				switch (func) {
-				case 1: 
+		printf("| Answer: ");
+		sign = getchar();
+		prt_ln();
+		if (isdigit(sign) && sign >= '1' && sign <= '4') {
+			sign -= '0';
+			if ((junk = getchar()) != '\n') {
+				while ((junk = getchar()) != '\n')
+					;
+				no_cmd();
+				continue;
+			}
+			switch (sign) {
+			case 1:
 					delete_student_account(); 
 					break;
 				case 2: 
@@ -154,41 +148,29 @@ int working_with_the_list_of_students()
 					break;
 				}
 
-				if (!n) {
-					continue;
-				}
-				else if (n == -1) {
-					return -1;
-				}
-				else {
-					return 1;
-				}
-
-			}
-			else if (func == 'q') {
-				if (quit_m()) {
-					return -1;
-				}
-				else {
-					continue;
-				}
-			}
-			else if (func == 'b') {
-				if (back_m()) {
-					return 0;
-				}
-				else {
-					continue;
-				}
+		}
+		else if (sign == 'q') {
+			if (quit_m()) {
+				return -1;
 			}
 			else {
-				no_cmd();
-				if (func != '\n') {
-					while ((junk = getchar()) != '\n')
-						;
-				}
 				continue;
 			}
+		}
+		else if (sign == 'b') {
+			if (back_m()) {
+				return 0;
+			}
+			else {
+				continue;
+			}
+		}
+		else {
+			no_cmd();
+			while ((junk = getchar()) != '\n')
+				;
+			continue;
+		}
 	}
 }
 
@@ -196,13 +178,12 @@ int working_with_the_list_of_students()
 int view_the_list_of_students_with_grades()
 {
 	/* Initializing variables */
-	int func, junk, n = 0;
-
-	/* I/O flow */
-    while (1) {
-        printf(" ------------------------------------------------------------\n"
+	int sign, junk, n, check = 0;
+	
+	while (1) {
+		printf(" ------------------------------------------------------------\n"
 "|                                                            |\n"
-"|                     >> Teacher's mode <                    |\n"
+"|                    >> Teacher's mode <<                    |\n"
 "|                                                            |\n"
 "|  >> Choose action:                                         |\n"
 "|                                                            |\n"
@@ -214,19 +195,19 @@ int view_the_list_of_students_with_grades()
 "|       >> Type \"back\" to go to the previous menu <<         |\n"
 "|       >> Type \"quit\" to terminate this program <<          |\n"
 "|                                                            |\n");
-        printf("| Answer: ");
-        func = getchar();
-        prt_ln();
-        if (isdigit(func) && func >= '1' && func <= '4') {
-            func -= '0';
-            if ((junk = getchar()) != '\n') {
-                while ((junk = getchar()) != '\n')
-                    ;
-                no_cmd();
-                continue;
-        }
-            switch (func) {
-            case 1:
+		printf("| Answer: ");
+		sign = getchar();
+		prt_ln();
+		if (isdigit(sign) && sign >= '1' && sign <= '4') {
+			sign -= '0';
+			if ((junk = getchar()) != '\n') {
+				while ((junk = getchar()) != '\n')
+					;
+				no_cmd();
+				continue;
+			}
+			switch (sign) {
+			case 1:
                 view_scores_on_all_topics();
                 break;
             case 2:
@@ -242,49 +223,44 @@ int view_the_list_of_students_with_grades()
                 break;
             }
 
-            while ((junk = getchar()) != '\n')
-                ;
-
-            return 1;
-
-        } else if (func == 'q') {
-            if (quit_m()) {
-                return -1;
-            }
-            else {
-                continue;
-            }
-        } else if (func == 'b') {
-            if (back_m()) {
-                return 0;
-            }
-            else {
-                continue;
-            }
-        } else {
-            no_cmd();
-            if (func != '\n') {
-                while ((junk = getchar()) != '\n')
-                    ;
-            }
-            continue;
-        }
+		}
+		else if (sign == 'q') {
+			if (quit_m()) {
+				return -1;
+			}
+			else {
+				continue;
+			}
+		}
+		else if (sign == 'b') {
+			if (back_m()) {
+				return 0;
+			}
+			else {
+				continue;
+			}
+		}
+		else {
+			no_cmd();
+			while ((junk = getchar()) != '\n')
+				;
+			continue;
+		}
 	}
 }
-
 int teacher_menu_0()
 {
 	/* Initializing variables */
-	int func, junk, n = 0;
-
+	int sign, junk, n, check = 0;
+	
 	/* I/O flow */
 	if (!input_teacher()) {
         return 0;
 	}
 	while (1) {
-          printf(" ------------------------------------------------------------\n"
+		printf(" ------------------------------------------------------------\n"
 "|                                                            |\n"
-"|                     >> Teacher's mode <                    |\n"
+"|                     >> Teacher's mode <<                   |\n"
 "|                                                            |\n"
 "|  >> Choose action:                                         |\n"
 "|                                                            |\n"
@@ -294,20 +270,19 @@ int teacher_menu_0()
 "|       >> Type \"back\" to go to the previous menu <<         |\n"
 "|       >> Type \"quit\" to terminate this program <<          |\n"
 "|                                                            |\n");
-        printf("| Answer: ");
-        func = getchar();
-        prt_ln();
-        if (isdigit(func) && func >= '1' && func <= '2') {
-            func -= '0';
-            if ((junk = getchar()) != '\n') {
-                while ((junk = getchar()) != '\n')
-                    ;
-                no_cmd();
-                continue;
-            }
-
-            switch (func) {
-                case 1:
+		  printf("| Answer: ");
+		  sign = getchar();
+		  prt_ln();
+		  if (isdigit(sign) && sign >= '1' && sign <= '2') {
+			  sign -= '0';
+			  if ((junk = getchar()) != '\n') {
+				  while ((junk = getchar()) != '\n')
+					  ;
+				  no_cmd();
+				  continue;
+			  }
+			  switch (sign) {
+			  case 1:
                     n = edit_questions_teacher();
                     break;
                 case 2:
@@ -316,42 +291,31 @@ int teacher_menu_0()
                 default:
                     break;
             }
-
-            if (!n) {
-                continue;
-            } else if (n == -1) {
-                return -1;
-            } else {
-                return 0;
-            }
-
-        } else if (func == 'q') {
-            if (quit_m()) {
-                return -1;
-            }
-            else {
-                continue;
-            }
-        }
-        else if (func == 'b') {
-            if (back_m()) {
-                return 0;
-            }
-            else {
-                continue;
-            }
-        }
-        else {
-            no_cmd();
-            if (func != '\n') {
-                while ((junk = getchar()) != '\n')
-                    ;
-            }
-            continue;
-        }
+		  }
+		  else if (sign == 'q') {
+			  if (quit_m()) {
+				  return -1;
+			  }
+			  else {
+				  continue;
+			  }
+		  }
+		  else if (sign == 'b') {
+			  if (back_m()) {
+				  return 0;
+			  }
+			  else {
+				  continue;
+			  }
+		  }
+		  else {
+			  no_cmd();
+			  while ((junk = getchar()) != '\n')
+				  ;
+			  continue;
+		  }
 	}
 }
-
 
 int field_check_teacher(char *text) 
 {
@@ -371,28 +335,32 @@ int field_check_teacher(char *text)
 
 int input_teacher()
 {
+
+    /* Initializing variables */
     User user = {};
-	char password[256], login[256];
-	
-	printf("| Type the username: ");
-	fgets(login, 256, stdin);
-	field_check_teacher(login);
-	printf("| Type the password: ");
-	fgets(password, 30, stdin);
+    char password[256], login[256];
 
-	login[strlen(login) - 1] = '\0';
-	password[strlen(password) - 1] = '\0';
+    /* I/O flow */
+    printf("| Type the username: ");
+    fgets(login, 256, stdin);
+    printf("| Type the password: ");
+    fgets(password, 256, stdin);
 
-	field_check_teacher(login);
-	field_check_teacher(password);
+    /* Main part */
+    login[strlen(login) - 1] = '\0';
+    password[strlen(password) - 1] = '\0';
 
-	user = db_login(login, password);
+    if (field_check_teacher(login) && field_check_teacher(password)) {
+        user = db_login(login, password);
 
-	if (user.admin) {
-	    return 1;
-	} else {
-	    prt_ln();
-	    printf("| Error! Wrong login or password!                            |\n");
+        if (user.admin && user.id) {
+            return 1;
+        } else {
+            prt_ln();
+            printf("| Error! Wrong login or password!                            |\n");
+            return 0;
+        }
+    } else {
         return 0;
-	}
+    }
 }
