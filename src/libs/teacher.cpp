@@ -64,19 +64,21 @@ void add_a_question()
 		} while (error == 1);
 	}
 }
-void change_the_question() {
+
+int change_the_question() {
 
     /* Initializing variables */
 	int id, size, j, sign, by;
 	struct Question *question = nullptr;
 	struct Question quest = {};
 
+	/* I/O flow */
 	do {
 		printf(" ------------------------------------------------------------\n"
 			"|                                                            |\n"
 			"|                     >> Teacher's mode <<                   |\n"
 			"|                                                            |\n"
-			"|  >> Chosen theme:                                          |\n"
+			"|  >> Choose theme:                                          |\n"
 			"|                                                            |\n"
 			"|       1) Loops                                             |\n"
 			"|       2) Arrays                                            |\n"
@@ -89,24 +91,25 @@ void change_the_question() {
 			"|                                                            |\n");
 		printf("| Answer: ");
 		scanf("%d", &by);
-
 	} while ((by > 8) || (by < 1));
-	by--;
-	/* Main part */
-	if ((question = db_get_questions(&size))) {
-        for (j = 0; j < size; ++j) {
-			if (by == question->theme)
-			{
-				std::cout << "id = " << question[j].id << "; Question: " << question[j].value << std::endl;
-			}
-        }
+	--by;
+	prt_ln();
+
+	if ((question = db_get_questions(&size, by))) {
+		for (int i = 0; i < size; ++i) {
+		    printf("| Question #%d\n", (question + i)->id);
+		    printf("| Text: ");
+		    puts((question + i)->value);
+		    prt_ln();
+		}
 
         printf("| Type the id of the question you want to change: ");
         do {
             scanf("%d", &id);
         } while (!(quest = db_get_question_by_id(id)).id);
-		
-        /* Other shit goes here ↓*/
+
+        prt_ln();
+
 		do {
 			do {
 				printf(" ------------------------------------------------------------\n"
@@ -115,58 +118,60 @@ void change_the_question() {
 					"|                                                            |\n"
 					"|  >> What do you want to change?                            |\n"
 					"|                                                            |\n"
-					"|       1) Id                                                |\n"
-					"|       2) Topic                                             |\n"
-					"|       3) Question text                                     |\n"
-					"|       4) Answer choice                                     |\n"
-					"|       5) Correct answer                                    |\n"
+					"|       1) Topic                                             |\n"
+					"|       2) Question text                                     |\n"
+					"|       3) Answer choice                                     |\n"
+					"|       4) Correct answer                                    |\n"
 					"|                                                            |\n");
 				printf("| Answer: ");
 				scanf("%d", &sign);
+			} while ((sign > 4) || (sign < 1));
 
-			} while ((sign > 5) || (sign < 1));
+			prt_ln();
 
-			switch (sign)
-			{
-			case 1:
-			{
-				printf("| Enter id: \n");
-				scanf("%d", &quest.id);
-			}break;
-			case 2:
-			{
-				printf("| Enter topic: \n");
-				scanf("%d", &quest.theme);
-			} break;
-			case 3:
-			{
-				printf("| Enter question text: \n");
-				fgets(quest.value, 256, stdin);
-			} break;
-			case 4:
-			{
-				printf("| Enter answer choice:\n");
-				printf("| 1) ");
-				fgets(quest.ans[0], 256, stdin);
-				printf("| 2) ");
-				fgets(quest.ans[1], 256, stdin);
-				printf("| 3) ");
-				fgets(quest.ans[2], 256, stdin);
-				printf("| 4) ");
-				fgets(quest.ans[3], 256, stdin);
-			} break;
-			case 5:
-			{
-				printf("| Enter correct answer:\n");
-				scanf("%d", &quest.correct);
-			} break;
-			}
-			do {
-				printf("| Continue?\n| 0) No\n| 1) Yes\n");
-				scanf("%d", &sign);
-			} while ((sign > 1) || (sign < 0));
+			switch (sign) {
+                case 1:
+                    printf("| Type id: ");
+                    scanf("%d", &quest.id);
+                    break;
+                case 2:
+                    printf("| Type topic: ");
+                    scanf("%d", &quest.theme);
+                    break;
+                case 3:
+                    printf("| Type question text: ");
+                    fgets(quest.value, MAX_LEN, stdin);
+                    break;
+                case 4:
+                    printf("| Type answers: \n");
+                    printf("| 1) ");
+                    fgets(quest.ans[0], MAX_LEN, stdin);
+                    printf("| 2) ");
+                    fgets(quest.ans[1], MAX_LEN, stdin);
+                    printf("| 3) ");
+                    fgets(quest.ans[2], MAX_LEN, stdin);
+                    printf("| 4) ");
+                    fgets(quest.ans[3], MAX_LEN, stdin);
+                    break;
+                case 5:
+                    printf("| Type the number of the correct answer: ");
+                    scanf("%d", &quest.correct);
+                    break;
+                default:
+                    break;
+            }
+
+            db_update_question(quest);
+
+            prt_ln();
+
+            sign = menu_continue();
+
 		} while (sign != 0);
-    }
+    } else {
+	    printf("| Error! Couldn't get questions!                             |\n");
+        return 1;
+	}
 }
 
 // Students

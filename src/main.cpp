@@ -24,6 +24,9 @@ sqlite3 *db = nullptr;
 
 int main(int argc, char *argv[]) {
 
+    /* Random number stuff */
+    srand(time(nullptr));
+
     /* Locale problems */
 #ifdef _WIN32
     system("chcp 65001 > nul");

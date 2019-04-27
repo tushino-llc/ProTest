@@ -28,7 +28,7 @@ int input_teacher();
 // Questions
 void delete_the_question();
 void add_a_question();
-void change_the_question();
+int change_the_question();
 
 // Students
 void delete_student_account();
