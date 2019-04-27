@@ -24,7 +24,7 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 #include "sqlite3.h"
 #include "sha256.h"
 
-#define MAX_LEN 256
+#define MAX_LEN 512
 
 extern sqlite3 *db;
 
