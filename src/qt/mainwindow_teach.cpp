@@ -328,18 +328,18 @@ int MainWindow_teach::get_student_id(int index) {
     int id;
     QString Qstr;
     QByteArray arr;
-    char id_s[10] = {};
+    char id_s[530] = {};
 
     /* Main part */
     Qstr = ui->comboBox->itemText(index);
     arr = Qstr.toLocal8Bit();
     sprintf(id_s, "%s", arr.data());
-    *(id_s + strlen(id_s) - 1) = '\0';
     id = atoi(id_s);
 
     /* Returning value */
     return id;
 }
+
 void MainWindow_teach::on_pushButton_2_clicked()
 {
 
