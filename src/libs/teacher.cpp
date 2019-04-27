@@ -29,7 +29,6 @@ void delete_the_question()
 	int error, id, size, j;
 	
 	struct Question *question = nullptr;
-	struct Question quest = {};
 	if ((question = db_get_questions(&size))) {
 		for (j = 0; j < size; ++j) {
 			std::cout << "id = " << question[j].id << "; Question: " << question[j].value << std::endl;
@@ -54,9 +53,48 @@ void add_a_question()
 {
 	int error, size;
 	struct Question *question = nullptr;
+	struct Question quest = {};
 	if ((question = db_get_questions(&size))) {
+		/* I/O flow */
 		do {
-			error = db_add_question(question[size]);
+			printf(" ------------------------------------------------------------\n"
+				"|                                                            |\n"
+				"|                     >> Teacher's mode <<                   |\n"
+				"|                                                            |\n"
+				"|  >> Choose theme:                                          |\n"
+				"|                                                            |\n"
+				"|       1) Loops                                             |\n"
+				"|       2) Arrays                                            |\n"
+				"|       3) Strings                                           |\n"
+				"|       4) Recursion                                         |\n"
+				"|       5) Structs                                           |\n"
+				"|       6) Files                                             |\n"
+				"|       7) Pointers                                          |\n"
+				"|       8) Dynamic                                           |\n"
+				"|                                                            |\n");
+			printf("| Answer: ");
+			scanf("%d", &quest.theme);
+		} while ((quest.theme > 8) || (quest.theme < 1));
+		--quest.theme;
+		prt_ln();
+		printf("| Type id: ");
+		scanf("%d", &quest.id);
+		printf("| Type question text: ");
+		fgets(quest.value, MAX_LEN, stdin);
+		printf("| Type answers: \n");
+		printf("| 1) ");
+		fgets(quest.ans[0], MAX_LEN, stdin);
+		printf("| 2) ");
+		fgets(quest.ans[1], MAX_LEN, stdin);
+		printf("| 3) ");
+		fgets(quest.ans[2], MAX_LEN, stdin);
+		printf("| 4) ");
+		fgets(quest.ans[3], MAX_LEN, stdin);			
+		printf("| Type the number of the correct answer: ");
+		scanf("%d", &quest.correct);
+
+		do {
+			error = db_add_question(quest);
 			if (error == -1) { printf("| Error! The question could not be added. Try again? [1 - yes; 0 - no] \n"); }
 			do {
 				scanf("%d", &error);
@@ -64,7 +102,6 @@ void add_a_question()
 		} while (error == 1);
 	}
 }
-
 int change_the_question() {
 
     /* Initializing variables */
@@ -179,7 +216,6 @@ void delete_student_account()
 {
 	int error, id, size = 0; 
 	struct User *user = nullptr;
-	struct User us = {};
 
 	/* Main part */
 	if ((user = db_get_users(&size))) {
@@ -212,7 +248,15 @@ void to_add_a_new_account_for_a_student()
 	/* Main part */
 	if ((user = db_get_users(&size))) {
 
-		printf("\n| Enter the password ");
+		printf("| Enter id: ");
+		scanf("%d", &us.id);
+		printf("| Enter first name: ");
+		fgets(us.first_name, MAX_LEN, stdin);
+		printf("| Enter last name: ");
+		fgets(us.last_name, MAX_LEN, stdin);
+		printf("| Enter login: ");
+		fgets(us.login, MAX_LEN, stdin);
+		printf("| Enter the password ");
 		fgets(password, 30, stdin);
 		field_check_teacher(password);
 	
