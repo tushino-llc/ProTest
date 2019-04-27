@@ -1,6 +1,6 @@
 /*
-ProTest — free powerful program for educational tests
-Copyright © 2019 Tushino Software LLC
+ProTest â€” free powerful program for educational tests
+Copyright Â© 2019 Tushino Software LLC
 
 This file is part of ProTest.
 
@@ -17,8 +17,10 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 */
+
 #ifndef STUDENT_MENU_H
 #define STUDENT_MENU_H
+
 #include "../headers/tests_main_header.h"
 
 int signin();
