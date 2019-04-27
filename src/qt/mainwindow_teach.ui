@@ -214,6 +214,9 @@
                      <property name="text">
                       <string>ID</string>
                      </property>
+                     <property name="buddy">
+                      <cstring>lineID</cstring>
+                     </property>
                     </widget>
                    </item>
                    <item row="3" column="1">
@@ -1152,6 +1155,42 @@
    </property>
   </action>
  </widget>
+ <tabstops>
+  <tabstop>comboBox</tabstop>
+  <tabstop>pushButton_add</tabstop>
+  <tabstop>pushButton_rm</tabstop>
+  <tabstop>lineFN</tabstop>
+  <tabstop>lineLN</tabstop>
+  <tabstop>lineLogin</tabstop>
+  <tabstop>lineID</tabstop>
+  <tabstop>lineLoops</tabstop>
+  <tabstop>lineArrays</tabstop>
+  <tabstop>lineStrings</tabstop>
+  <tabstop>lineRecursion</tabstop>
+  <tabstop>lineStructures</tabstop>
+  <tabstop>lineFiles</tabstop>
+  <tabstop>linePointers</tabstop>
+  <tabstop>lineDyn_Mem</tabstop>
+  <tabstop>lineFinal</tabstop>
+  <tabstop>lineMean</tabstop>
+  <tabstop>pushButton_2</tabstop>
+  <tabstop>pushButton</tabstop>
+  <tabstop>tableWidget</tabstop>
+  <tabstop>comboBox_2</tabstop>
+  <tabstop>comboBox_3</tabstop>
+  <tabstop>pushButton_Add_Q</tabstop>
+  <tabstop>pushButton_Rem_Q</tabstop>
+  <tabstop>textEdit</tabstop>
+  <tabstop>radioButton_A1</tabstop>
+  <tabstop>lineA1</tabstop>
+  <tabstop>radioButton_A2</tabstop>
+  <tabstop>lineA2</tabstop>
+  <tabstop>radioButton_A3</tabstop>
+  <tabstop>lineA3</tabstop>
+  <tabstop>radioButton_A4</tabstop>
+  <tabstop>lineA4</tabstop>
+  <tabstop>pushButton_apply</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

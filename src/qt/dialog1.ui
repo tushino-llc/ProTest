@@ -37,6 +37,11 @@
      <height>32</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
   </widget>
   <widget class="QRadioButton" name="radioTeacher">
    <property name="geometry">
@@ -119,6 +124,11 @@
      <height>32</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
    <property name="echoMode">
     <enum>QLineEdit::Password</enum>
    </property>
@@ -131,6 +141,11 @@
      <width>331</width>
      <height>32</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
    </property>
   </widget>
   <widget class="QRadioButton" name="radioStudent">
@@ -180,6 +195,11 @@
      <width>331</width>
      <height>32</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
    </property>
   </widget>
   <widget class="QLabel" name="label_5">
@@ -232,7 +252,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>16</pointsize>
+     <pointsize>17</pointsize>
     </font>
    </property>
    <property name="text">
@@ -265,6 +285,11 @@
      <width>331</width>
      <height>32</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
    </property>
    <property name="echoMode">
     <enum>QLineEdit::Password</enum>

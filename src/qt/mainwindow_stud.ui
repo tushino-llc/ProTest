@@ -18,7 +18,7 @@
     <item row="1" column="1">
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QGridLayout" name="gridLayout_3">
@@ -180,7 +180,7 @@
          <widget class="QLabel" name="label">
           <property name="font">
            <font>
-            <pointsize>24</pointsize>
+            <pointsize>32</pointsize>
            </font>
           </property>
           <property name="text">
@@ -738,6 +738,19 @@
    </property>
   </action>
  </widget>
+ <tabstops>
+  <tabstop>pushButton</tabstop>
+  <tabstop>pushButton_2</tabstop>
+  <tabstop>pushButton_3</tabstop>
+  <tabstop>textEdit</tabstop>
+  <tabstop>radioButton</tabstop>
+  <tabstop>radioButton_2</tabstop>
+  <tabstop>radioButton_3</tabstop>
+  <tabstop>radioButton_4</tabstop>
+  <tabstop>pushButton_apply</tabstop>
+  <tabstop>tableWidget</tabstop>
+  <tabstop>pushButton_4</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
