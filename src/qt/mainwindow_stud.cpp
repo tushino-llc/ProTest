@@ -215,7 +215,7 @@ void MainWindow_stud::training(int theme) {
         i = 0;
         QMessageBox::information(this, "Student's mode", "You've passed the training!");
         ui->statusbar->showMessage("");
-        ui->stackedWidget->setCurrentIndex(0);
+        on_pushButton_4_clicked();
         delete quest;
     }
 }
