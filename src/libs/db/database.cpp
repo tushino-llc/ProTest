@@ -483,7 +483,7 @@ int db_set_mark(int user_id, int theme, int mark)
 
     value = db_get_theme_by_id(theme);
 
-    char query[256];
+    char query[MAX_LEN];
     strcpy(query, "UPDATE `marks` SET ");
     strcat(query, value);
     strcat(query, " = ? WHERE user_id = ?");

@@ -24,21 +24,23 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 #include "sqlite3.h"
 #include "sha256.h"
 
+#define MAX_LEN 256
+
 extern sqlite3 *db;
 
 struct User {
     int id;
     bool admin;
-    char login[256];
-    char first_name[256];
-    char last_name[256];
+    char login[MAX_LEN];
+    char first_name[MAX_LEN];
+    char last_name[MAX_LEN];
 };
 
 struct Question {
     int id;
     int theme;
-    char value[256];
-    char ans[4][256];
+    char value[MAX_LEN];
+    char ans[4][MAX_LEN];
     int correct;
 };
 
