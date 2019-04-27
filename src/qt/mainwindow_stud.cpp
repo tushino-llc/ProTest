@@ -242,7 +242,7 @@ void MainWindow_stud::show_results(int theme, struct Question *q, int *q_a) {
     /* Initializing variables */
     extern int uid;
     int i, correct = 0, mark, max;
-    char a[10];
+    char a[20];
     QTableWidgetItem *itm = nullptr;
 
     /* Main part */
