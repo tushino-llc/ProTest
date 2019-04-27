@@ -22,12 +22,7 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 #define MAIN_HEADER_TEST
 
 /* Macros */
-#define QT_CREATOR (0)
-#if (QT_CREATOR == 1)
-	#define PATH_TO_DB ("../db/data.sqlite")
-#else
-	#define PATH_TO_DB ("/.local/share/ProTest/data.sqlite")
-#endif
+#define PATH_TO_DB ("/.local/share/ProTest/data.sqlite")
 
 /* Types */
 typedef enum test_type {
@@ -58,6 +53,10 @@ typedef enum test_type {
 
 #if (HAVE_STDLIB_H == 1)
     #include <stdlib.h>
+#endif
+
+#if (HAVE_TIME_H == 1)
+    #include <time.h>
 #endif
 
 /* Include local headers */

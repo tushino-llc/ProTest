@@ -61,7 +61,7 @@ AC_SEARCH_LIBS([printf], [c], [], [
 	AC_MSG_ERROR([unable to find c lib])
 	])
 
-AC_CHECK_HEADERS([string cstdio iostream cstring stdlib.h], [], [
+AC_CHECK_HEADERS([string cstdio iostream cstring stdlib.h time.h], [], [
 	AC_MSG_ERROR([unable to find necessary headers])
 	])
 
