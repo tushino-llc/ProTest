@@ -33,7 +33,7 @@ MainWindow::MainWindow(QWidget *parent) :
     /* Initializing variables */
     FILE *fp;
     QString login, pass;
-    char *path;
+    //char *path;
 
     /* I/O flow */
     if ((fp = fopen("remember.lp", "rb")) != nullptr) {
@@ -52,9 +52,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     /* Database */
 #if (QT_CREATOR == 0)
-    path = secure_getenv("HOME");
-    strcat(path, PATH_TO_DB);
-    if (db_open(path) == -1) {
+    /*path = secure_getenv("HOME");
+    strcat(path, PATH_TO_DB);*/
+    if (db_open("data.sqlite") == -1) {
         QMessageBox::critical(this, "Error!", "Couldn't open database. Program won't work!");
     }
 #elif (QT_CREATOR == 1)

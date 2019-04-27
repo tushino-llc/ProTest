@@ -339,6 +339,7 @@ int MainWindow_teach::get_student_id(int index) {
     /* Returning value */
     return id;
 }
+
 void MainWindow_teach::on_pushButton_2_clicked()
 {
 
