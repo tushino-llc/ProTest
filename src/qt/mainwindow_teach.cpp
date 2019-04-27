@@ -657,7 +657,7 @@ void MainWindow_teach::init_q() {
     /* Initializing variables */
     int theme, i, size, q_id;
     struct Question *quest = nullptr;
-    char a[512];
+    char a[MAX_LEN + 10];
 
     /* Main part */
     theme = ui->comboBox_2->currentIndex() - 1;
@@ -821,7 +821,7 @@ int MainWindow_teach::get_question_id(int index) {
     int id;
     QString Qstr;
     QByteArray arr;
-    char id_s[300] = {};
+    char id_s[MAX_LEN + 10] = {};
 
     /* Main part */
     Qstr = ui->comboBox_3->itemText(index);
