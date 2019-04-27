@@ -18,7 +18,7 @@
     <item row="0" column="0">
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -140,6 +140,11 @@
                    </item>
                    <item row="0" column="1">
                     <widget class="QLineEdit" name="lineFN">
+                     <property name="font">
+                      <font>
+                       <pointsize>11</pointsize>
+                      </font>
+                     </property>
                      <property name="readOnly">
                       <bool>true</bool>
                      </property>
@@ -162,6 +167,11 @@
                    </item>
                    <item row="1" column="1">
                     <widget class="QLineEdit" name="lineLN">
+                     <property name="font">
+                      <font>
+                       <pointsize>11</pointsize>
+                      </font>
+                     </property>
                      <property name="readOnly">
                       <bool>true</bool>
                      </property>
@@ -184,6 +194,11 @@
                    </item>
                    <item row="2" column="1">
                     <widget class="QLineEdit" name="lineLogin">
+                     <property name="font">
+                      <font>
+                       <pointsize>11</pointsize>
+                      </font>
+                     </property>
                      <property name="readOnly">
                       <bool>true</bool>
                      </property>
@@ -203,6 +218,11 @@
                    </item>
                    <item row="3" column="1">
                     <widget class="QLineEdit" name="lineID">
+                     <property name="font">
+                      <font>
+                       <pointsize>11</pointsize>
+                      </font>
+                     </property>
                      <property name="readOnly">
                       <bool>true</bool>
                      </property>
@@ -238,6 +258,11 @@
                    </item>
                    <item row="0" column="1">
                     <widget class="QLineEdit" name="lineRecursion">
+                     <property name="font">
+                      <font>
+                       <pointsize>11</pointsize>
+                      </font>
+                     </property>
                      <property name="readOnly">
                       <bool>true</bool>
                      </property>
@@ -275,6 +300,11 @@
                    </item>
                    <item row="1" column="1">
                     <widget class="QLineEdit" name="lineStructures">
+                     <property name="font">
+                      <font>
+                       <pointsize>11</pointsize>
+                      </font>
+                     </property>
                      <property name="readOnly">
                       <bool>true</bool>
                      </property>
@@ -282,6 +312,11 @@
                    </item>
                    <item row="2" column="1">
                     <widget class="QLineEdit" name="lineFiles">
+                     <property name="font">
+                      <font>
+                       <pointsize>11</pointsize>
+                      </font>
+                     </property>
                      <property name="readOnly">
                       <bool>true</bool>
                      </property>
@@ -338,6 +373,11 @@
                    </item>
                    <item row="0" column="1">
                     <widget class="QLineEdit" name="linePointers">
+                     <property name="font">
+                      <font>
+                       <pointsize>11</pointsize>
+                      </font>
+                     </property>
                      <property name="readOnly">
                       <bool>true</bool>
                      </property>
@@ -345,6 +385,11 @@
                    </item>
                    <item row="1" column="1">
                     <widget class="QLineEdit" name="lineDyn_Mem">
+                     <property name="font">
+                      <font>
+                       <pointsize>11</pointsize>
+                      </font>
+                     </property>
                      <property name="readOnly">
                       <bool>true</bool>
                      </property>
@@ -352,6 +397,11 @@
                    </item>
                    <item row="2" column="1">
                     <widget class="QLineEdit" name="lineFinal">
+                     <property name="font">
+                      <font>
+                       <pointsize>11</pointsize>
+                      </font>
+                     </property>
                      <property name="readOnly">
                       <bool>true</bool>
                      </property>
@@ -361,6 +411,11 @@
                  </item>
                  <item row="2" column="1">
                   <widget class="QLineEdit" name="lineMean">
+                   <property name="font">
+                    <font>
+                     <pointsize>11</pointsize>
+                    </font>
+                   </property>
                    <property name="readOnly">
                     <bool>true</bool>
                    </property>
@@ -406,6 +461,11 @@
                        <verstretch>0</verstretch>
                       </sizepolicy>
                      </property>
+                     <property name="font">
+                      <font>
+                       <pointsize>11</pointsize>
+                      </font>
+                     </property>
                      <property name="inputMethodHints">
                       <set>Qt::ImhDigitsOnly</set>
                      </property>
@@ -416,6 +476,11 @@
                    </item>
                    <item row="1" column="1">
                     <widget class="QLineEdit" name="lineArrays">
+                     <property name="font">
+                      <font>
+                       <pointsize>11</pointsize>
+                      </font>
+                     </property>
                      <property name="readOnly">
                       <bool>true</bool>
                      </property>
@@ -423,6 +488,11 @@
                    </item>
                    <item row="2" column="1">
                     <widget class="QLineEdit" name="lineStrings">
+                     <property name="font">
+                      <font>
+                       <pointsize>11</pointsize>
+                      </font>
+                     </property>
                      <property name="readOnly">
                       <bool>true</bool>
                      </property>
@@ -667,7 +737,13 @@
                  </widget>
                 </item>
                 <item row="1" column="1">
-                 <widget class="QLineEdit" name="lineA2"/>
+                 <widget class="QLineEdit" name="lineA2">
+                  <property name="font">
+                   <font>
+                    <pointsize>11</pointsize>
+                   </font>
+                  </property>
+                 </widget>
                 </item>
                 <item row="2" column="0">
                  <widget class="QRadioButton" name="radioButton_A3">
@@ -677,7 +753,13 @@
                  </widget>
                 </item>
                 <item row="2" column="1">
-                 <widget class="QLineEdit" name="lineA3"/>
+                 <widget class="QLineEdit" name="lineA3">
+                  <property name="font">
+                   <font>
+                    <pointsize>11</pointsize>
+                   </font>
+                  </property>
+                 </widget>
                 </item>
                 <item row="3" column="0">
                  <widget class="QRadioButton" name="radioButton_A4">
@@ -687,10 +769,22 @@
                  </widget>
                 </item>
                 <item row="3" column="1">
-                 <widget class="QLineEdit" name="lineA4"/>
+                 <widget class="QLineEdit" name="lineA4">
+                  <property name="font">
+                   <font>
+                    <pointsize>11</pointsize>
+                   </font>
+                  </property>
+                 </widget>
                 </item>
                 <item row="0" column="1">
-                 <widget class="QLineEdit" name="lineA1"/>
+                 <widget class="QLineEdit" name="lineA1">
+                  <property name="font">
+                   <font>
+                    <pointsize>11</pointsize>
+                   </font>
+                  </property>
+                 </widget>
                 </item>
                </layout>
               </item>
@@ -708,6 +802,11 @@
                    <horstretch>0</horstretch>
                    <verstretch>0</verstretch>
                   </sizepolicy>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <pointsize>10</pointsize>
+                  </font>
                  </property>
                  <item>
                   <property name="text">
@@ -758,6 +857,11 @@
                </item>
                <item>
                 <widget class="QComboBox" name="comboBox_3">
+                 <property name="font">
+                  <font>
+                   <pointsize>10</pointsize>
+                  </font>
+                 </property>
                  <item>
                   <property name="text">
                    <string>Question...</string>
@@ -794,7 +898,13 @@
               </layout>
              </item>
              <item>
-              <widget class="QTextEdit" name="textEdit"/>
+              <widget class="QTextEdit" name="textEdit">
+               <property name="font">
+                <font>
+                 <pointsize>12</pointsize>
+                </font>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>
