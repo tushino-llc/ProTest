@@ -275,6 +275,9 @@ public:
         verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         textEdit = new QTextEdit(frame);
         textEdit->setObjectName(QString::fromUtf8("textEdit"));
+        QFont font4;
+        font4.setPointSize(12);
+        textEdit->setFont(font4);
         textEdit->setReadOnly(true);
 
         verticalLayout_2->addWidget(textEdit);
@@ -287,21 +290,27 @@ public:
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         radioButton = new QRadioButton(groupBox_2);
         radioButton->setObjectName(QString::fromUtf8("radioButton"));
+        QFont font5;
+        font5.setPointSize(11);
+        radioButton->setFont(font5);
 
         verticalLayout->addWidget(radioButton);
 
         radioButton_2 = new QRadioButton(groupBox_2);
         radioButton_2->setObjectName(QString::fromUtf8("radioButton_2"));
+        radioButton_2->setFont(font5);
 
         verticalLayout->addWidget(radioButton_2);
 
         radioButton_3 = new QRadioButton(groupBox_2);
         radioButton_3->setObjectName(QString::fromUtf8("radioButton_3"));
+        radioButton_3->setFont(font5);
 
         verticalLayout->addWidget(radioButton_3);
 
         radioButton_4 = new QRadioButton(groupBox_2);
         radioButton_4->setObjectName(QString::fromUtf8("radioButton_4"));
+        radioButton_4->setFont(font5);
 
         verticalLayout->addWidget(radioButton_4);
 
@@ -342,18 +351,18 @@ public:
         gridLayout_6->setObjectName(QString::fromUtf8("gridLayout_6"));
         label_Mark = new QLabel(frame_3);
         label_Mark->setObjectName(QString::fromUtf8("label_Mark"));
-        QFont font4;
-        font4.setPointSize(20);
-        label_Mark->setFont(font4);
+        QFont font6;
+        font6.setPointSize(20);
+        label_Mark->setFont(font6);
         label_Mark->setAlignment(Qt::AlignCenter);
 
         gridLayout_6->addWidget(label_Mark, 2, 0, 1, 3);
 
         label_3 = new QLabel(frame_3);
         label_3->setObjectName(QString::fromUtf8("label_3"));
-        QFont font5;
-        font5.setPointSize(35);
-        label_3->setFont(font5);
+        QFont font7;
+        font7.setPointSize(35);
+        label_3->setFont(font7);
         label_3->setAlignment(Qt::AlignCenter);
 
         gridLayout_6->addWidget(label_3, 1, 0, 1, 3);
@@ -470,7 +479,7 @@ public:
 
         retranslateUi(MainWindow_stud);
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow_stud);

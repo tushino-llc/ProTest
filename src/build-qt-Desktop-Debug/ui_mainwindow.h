@@ -71,7 +71,7 @@ public:
         checkBox->setObjectName(QString::fromUtf8("checkBox"));
         checkBox->setGeometry(QRect(70, 250, 151, 22));
         QFont font1;
-        font1.setPointSize(11);
+        font1.setPointSize(12);
         checkBox->setFont(font1);
         label = new QLabel(centralWidget);
         label->setObjectName(QString::fromUtf8("label"));
@@ -89,7 +89,7 @@ public:
         label_4->setAlignment(Qt::AlignCenter);
         layoutWidget = new QWidget(centralWidget);
         layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
-        layoutWidget->setGeometry(QRect(70, 120, 331, 56));
+        layoutWidget->setGeometry(QRect(70, 120, 331, 60));
         formLayout = new QFormLayout(layoutWidget);
         formLayout->setSpacing(6);
         formLayout->setContentsMargins(11, 11, 11, 11);
@@ -97,21 +97,22 @@ public:
         formLayout->setContentsMargins(0, 0, 0, 0);
         label_2 = new QLabel(layoutWidget);
         label_2->setObjectName(QString::fromUtf8("label_2"));
-        QFont font4;
-        font4.setPointSize(12);
-        label_2->setFont(font4);
+        label_2->setFont(font1);
         label_2->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
 
         formLayout->setWidget(0, QFormLayout::LabelRole, label_2);
 
         lineLogin = new QLineEdit(layoutWidget);
         lineLogin->setObjectName(QString::fromUtf8("lineLogin"));
+        QFont font4;
+        font4.setPointSize(11);
+        lineLogin->setFont(font4);
 
         formLayout->setWidget(1, QFormLayout::SpanningRole, lineLogin);
 
         layoutWidget1 = new QWidget(centralWidget);
         layoutWidget1->setObjectName(QString::fromUtf8("layoutWidget1"));
-        layoutWidget1->setGeometry(QRect(70, 180, 331, 56));
+        layoutWidget1->setGeometry(QRect(70, 180, 331, 61));
         formLayout_2 = new QFormLayout(layoutWidget1);
         formLayout_2->setSpacing(6);
         formLayout_2->setContentsMargins(11, 11, 11, 11);
@@ -119,13 +120,14 @@ public:
         formLayout_2->setContentsMargins(0, 0, 0, 0);
         label_3 = new QLabel(layoutWidget1);
         label_3->setObjectName(QString::fromUtf8("label_3"));
-        label_3->setFont(font4);
+        label_3->setFont(font1);
         label_3->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
 
         formLayout_2->setWidget(0, QFormLayout::LabelRole, label_3);
 
         linePass = new QLineEdit(layoutWidget1);
         linePass->setObjectName(QString::fromUtf8("linePass"));
+        linePass->setFont(font4);
         linePass->setEchoMode(QLineEdit::Password);
 
         formLayout_2->setWidget(1, QFormLayout::SpanningRole, linePass);
@@ -150,6 +152,7 @@ public:
         label->setText(QApplication::translate("MainWindow", "Authorize", nullptr));
         label_4->setText(QApplication::translate("MainWindow", "ProTest", nullptr));
         label_2->setText(QApplication::translate("MainWindow", "Login", nullptr));
+        lineLogin->setText(QString());
         label_3->setText(QApplication::translate("MainWindow", "Password", nullptr));
     } // retranslateUi
 
