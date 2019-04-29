@@ -21,23 +21,27 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 #include "../headers/tests_main_header.h"
 
 
-int student_menu(void) {
+int student_menu() {
 
 	/* Initializing variables */
-	int sign, junk, n,check=0;
-	check=signin();
-	if (check == 0)
-		return 0;
+	int sign, junk, n,check = 0;
+	check = signin();
+
+	/* VarCheck */
+	if (!check) {
+        return 0;
+    }
+
 	/* I/O flow */
 	while (1) {
 		printf(" ------------------------------------------------------------\n"
 			"|                                                            |\n"
-			"|                      >> ProTest v1.0 <<                    |\n"
+			"|                     >> Student's mode <<                   |\n"
 			"|                                                            |\n"
-			"|  >> Choose action:                                         |\n"
+			"|  >> Choose a test type:                                    |\n"
 			"|                                                            |\n"
-			"|       1) Training on a subject                             |\n"
-			"|       2) Testing on a subject                              |\n"
+			"|       1) Training on a topic                               |\n"
+			"|       2) Testing on a topic                                |\n"
 			"|       3) Final test                                        |\n"
 			"|                                                            |\n"
 			"|       >> Type \"back\" to go to the previous menu <<         |\n"
@@ -45,7 +49,7 @@ int student_menu(void) {
 			"|                                                            |\n");
 		printf("| Answer: ");
 		sign = getchar();
-		prt_ln();
+
 		if (isdigit(sign) && sign >= '1' && sign <= '3') {
 			sign -= '0';
 			if ((junk = getchar()) != '\n') {
@@ -56,17 +60,20 @@ int student_menu(void) {
 			}
 
 			switch (sign) {
-			case 1:Training();
+			case 1:
+			    Training();
 				break;
-			case 2:Test(check);
+			case 2:
+			    Test(check);
 				break;
-			case 3:FinalTest(check);
+			case 3:
+			    FinalTest(check);
 				break;
 			default:
 				break;
 			}
 
-			
+            return 1;
 
 		}
 		else if (sign == 'q') {

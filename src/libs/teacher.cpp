@@ -228,7 +228,7 @@ void delete_student_account()
 		printf("| Enter the id of the student you want to delete. \n");
 		do {
 			scanf("%d", &id);
-		} while (!(us = db_get_user(id)).id);
+		} while (!(id = (db_get_user(id)).id));
 		do {
 			error = db_delete_user(id);
 			if (error == -1) { printf("| Error! Unable to delete student. Try again? [1 - yes; 0 - no] \n"); }

@@ -42,12 +42,13 @@ int main(int argc, char *argv[]) {
     char *path = nullptr;
 
     /* Main part */
+    path = secure_getenv("HOME");
+    strcat(path, PATH_TO_DB);
+    if (db_open(path) == -1) {
+        printf("| Error! Couldn't open database                              |\n");
+    }
+
     do {
-        path = secure_getenv("HOME");
-        strcat(path, PATH_TO_DB);
-        if (db_open(path) == -1) {
-            printf("| Error! Couldn't open database                              |\n");
-        }
         func = main_menu();
         if (func == -1) {
             break;

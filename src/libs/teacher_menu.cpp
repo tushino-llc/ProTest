@@ -338,13 +338,13 @@ int input_teacher()
 
     /* Initializing variables */
     User user = {};
-    char password[256], login[256];
+    char password[MAX_LEN], login[MAX_LEN];
 
     /* I/O flow */
     printf("| Type the username: ");
-    fgets(login, 256, stdin);
+    fgets(login, MAX_LEN, stdin);
     printf("| Type the password: ");
-    fgets(password, 256, stdin);
+    fgets(password, MAX_LEN, stdin);
 
     /* Main part */
     login[strlen(login) - 1] = '\0';
