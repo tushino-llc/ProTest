@@ -207,6 +207,8 @@ void Training() {
         }
 	}
 
+    delete questions;
+
     /* Final output */
     printf("| test: you've passed the training!                          |\n");
     prt_ln();
@@ -261,8 +263,10 @@ void Test(int id)
 
     db_set_mark(id, sub, mark);
 
+    delete questions;
+
     /* Final output */
-    printf("| Your mark is %d [%2d/%2d]                                    |\n", mark, 10 - inc, 10);
+    printf("| Your mark is %d [%2d/%2d]                                     |\n", mark, 10 - inc, 10);
 	prt_ln();
 }
 
@@ -270,52 +274,50 @@ void FinalTest(int id)
 {
 	Question* questions;
 
-	int  ans, sum = 0, inc = 0;
-	double mark;
+	int ans, sum = 0, inc = 0, mark = 0, a[40] = {};
 
-	questions = db_get_final_test();
-	prt_ln();
-	for (int i = 0; i < 40; i++)
-	{
-		printf("| %s\n", questions[i].value);
-		printf("| \n");
-		printf("| [0] %s\n", questions[i].ans[0]);
-		printf("| [1] %s\n", questions[i].ans[1]);
-		printf("| [2] %s\n", questions[i].ans[2]);
-		printf("| [3] %s\n", questions[i].ans[3]);
-		printf("| Answer: ");
-		do {
-			scanf("%d", &ans);
-			if (ans < 0 || ans>3)
-				printf("| No such answer.Try again: ");
-		} while (ans < 0 || ans>3);
-
-		if (ans == questions[i].correct)
-			sum += 1;
-		printf("| \n");
-	}
-	printf("| Your result %d/40 points.\n", sum);
-	mark = sum * 1.0 / 40;
-
-	if (mark < 0.5)
-	{
-		db_set_mark(id, 9, 2);
-		printf("| Your mark is 2\n");
-	}
-	if ((mark >= 0.5) && (mark < 0.7))
-	{
-		db_set_mark(id, 9, 3);
-		printf("| Your mark is 3\n");
-	}
-	if ((mark >= 0.7) && (mark < 0.9))
-	{
-		db_set_mark(id, 9, 4);
-		printf("| Your mark is 4\n");
-	}
-	if (mark >= 0.9)
-	{
-		db_set_mark(id, 9, 5);
-		printf("| Your mark is 5\n");
+	if (!(questions = db_get_final_test())) {
+        return;
 	}
 
+    for (int i = 0; i < 40; ++i) {
+        ans = get_q_ans(questions + i, i + 1, 40, t_type::final);
+
+        if (ans != questions[i].correct) {
+            ++inc;
+            a[i] = ans;
+        } else {
+            a[i] = ans;
+            sum += 1;
+        }
+    }
+
+    if (inc) {
+        printf("| Questions with the wrong answer:                           |\n");
+        prt_ln();
+        for (int i = 0; i < 40; i++) {
+            if (a[i] != questions[i].correct) {
+                printf("|                                                            |\n");
+                printf("|  >> Question [%2d/%2d]:                                      |\n", i + 1, 40);
+                printf("|                                                            |\n");
+                fflush(stdout);
+                print_q_correct(questions[i].value);
+                printf("\n|                                                            |\n");
+                printf("| Your answer is %d                                           |\n", a[i] + 1);
+                printf("| Correct answer is %d                                        |\n", questions[i].correct + 1);
+                prt_ln();
+            }
+        }
+    }
+
+    mark = sum / 8;
+    mark = (mark <= 1) ? 2 : mark;
+
+    db_set_mark(id, 9, mark);
+
+    delete questions;
+
+    /* Final output */
+    printf("| Your mark is %d [%2d/%2d]                                     |\n", mark, 40 - inc, 40);
+    prt_ln();
 }
