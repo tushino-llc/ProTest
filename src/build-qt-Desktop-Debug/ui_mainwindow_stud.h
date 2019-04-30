@@ -246,7 +246,7 @@ public:
         label = new QLabel(page_2);
         label->setObjectName(QString::fromUtf8("label"));
         QFont font2;
-        font2.setPointSize(24);
+        font2.setPointSize(32);
         label->setFont(font2);
         label->setAlignment(Qt::AlignCenter);
 
@@ -444,6 +444,16 @@ public:
         statusbar = new QStatusBar(MainWindow_stud);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
         MainWindow_stud->setStatusBar(statusbar);
+        QWidget::setTabOrder(pushButton, pushButton_2);
+        QWidget::setTabOrder(pushButton_2, pushButton_3);
+        QWidget::setTabOrder(pushButton_3, textEdit);
+        QWidget::setTabOrder(textEdit, radioButton);
+        QWidget::setTabOrder(radioButton, radioButton_2);
+        QWidget::setTabOrder(radioButton_2, radioButton_3);
+        QWidget::setTabOrder(radioButton_3, radioButton_4);
+        QWidget::setTabOrder(radioButton_4, pushButton_apply);
+        QWidget::setTabOrder(pushButton_apply, tableWidget);
+        QWidget::setTabOrder(tableWidget, pushButton_4);
 
         menubar->addAction(menuFile->menuAction());
         menubar->addAction(menuHelp->menuAction());
@@ -479,7 +489,7 @@ public:
 
         retranslateUi(MainWindow_stud);
 
-        stackedWidget->setCurrentIndex(1);
+        stackedWidget->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(MainWindow_stud);

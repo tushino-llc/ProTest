@@ -53,9 +53,9 @@ AC_SEARCH_LIBS([dlclose], [dl], [], [
 	AC_MSG_ERROR([unable to find dl lib])
 	])
 
-AC_SEARCH_LIBS([pthreadMutexAlloc], [pthread], [], [
-	AC_MSG_ERROR([unable to find pthread lib])
-	])
+# AC_SEARCH_LIBS([pthreadMutexAlloc], [pthread], [], [
+# 	AC_MSG_ERROR([unable to find pthread lib])
+#	])
 
 AC_SEARCH_LIBS([printf], [c], [], [
 	AC_MSG_ERROR([unable to find c lib])

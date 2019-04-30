@@ -34,8 +34,8 @@ namespace Ui {
 class MainWindow;
 
 struct Log_pass {
-    char login[15];
-    char pass[30];
+    char login[MAX_LEN];
+    char pass[MAX_LEN];
 };
 
 }

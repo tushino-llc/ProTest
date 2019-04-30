@@ -152,6 +152,16 @@ public:
 
         formLayout->setWidget(1, QFormLayout::SpanningRole, textEdit);
 
+        QWidget::setTabOrder(comboBox, textEdit);
+        QWidget::setTabOrder(textEdit, radioButton);
+        QWidget::setTabOrder(radioButton, lineEdit);
+        QWidget::setTabOrder(lineEdit, radioButton_2);
+        QWidget::setTabOrder(radioButton_2, lineEdit_2);
+        QWidget::setTabOrder(lineEdit_2, radioButton_3);
+        QWidget::setTabOrder(radioButton_3, lineEdit_3);
+        QWidget::setTabOrder(lineEdit_3, radioButton_4);
+        QWidget::setTabOrder(radioButton_4, lineEdit_4);
+        QWidget::setTabOrder(lineEdit_4, pushButton);
 
         retranslateUi(Dialog2);
 

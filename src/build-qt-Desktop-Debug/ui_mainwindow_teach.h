@@ -720,6 +720,7 @@ public:
         label_2->setBuddy(lineFN);
         label_3->setBuddy(lineLN);
         label->setBuddy(lineLogin);
+        label_14->setBuddy(lineID);
         label_10->setBuddy(lineRecursion);
         label_9->setBuddy(lineStructures);
         label_11->setBuddy(lineFiles);
@@ -731,6 +732,39 @@ public:
         label_8->setBuddy(lineArrays);
         label_7->setBuddy(lineStrings);
 #endif // QT_NO_SHORTCUT
+        QWidget::setTabOrder(comboBox, pushButton_add);
+        QWidget::setTabOrder(pushButton_add, pushButton_rm);
+        QWidget::setTabOrder(pushButton_rm, lineFN);
+        QWidget::setTabOrder(lineFN, lineLN);
+        QWidget::setTabOrder(lineLN, lineLogin);
+        QWidget::setTabOrder(lineLogin, lineID);
+        QWidget::setTabOrder(lineID, lineLoops);
+        QWidget::setTabOrder(lineLoops, lineArrays);
+        QWidget::setTabOrder(lineArrays, lineStrings);
+        QWidget::setTabOrder(lineStrings, lineRecursion);
+        QWidget::setTabOrder(lineRecursion, lineStructures);
+        QWidget::setTabOrder(lineStructures, lineFiles);
+        QWidget::setTabOrder(lineFiles, linePointers);
+        QWidget::setTabOrder(linePointers, lineDyn_Mem);
+        QWidget::setTabOrder(lineDyn_Mem, lineFinal);
+        QWidget::setTabOrder(lineFinal, lineMean);
+        QWidget::setTabOrder(lineMean, pushButton_2);
+        QWidget::setTabOrder(pushButton_2, pushButton);
+        QWidget::setTabOrder(pushButton, tableWidget);
+        QWidget::setTabOrder(tableWidget, comboBox_2);
+        QWidget::setTabOrder(comboBox_2, comboBox_3);
+        QWidget::setTabOrder(comboBox_3, pushButton_Add_Q);
+        QWidget::setTabOrder(pushButton_Add_Q, pushButton_Rem_Q);
+        QWidget::setTabOrder(pushButton_Rem_Q, textEdit);
+        QWidget::setTabOrder(textEdit, radioButton_A1);
+        QWidget::setTabOrder(radioButton_A1, lineA1);
+        QWidget::setTabOrder(lineA1, radioButton_A2);
+        QWidget::setTabOrder(radioButton_A2, lineA2);
+        QWidget::setTabOrder(lineA2, radioButton_A3);
+        QWidget::setTabOrder(radioButton_A3, lineA3);
+        QWidget::setTabOrder(lineA3, radioButton_A4);
+        QWidget::setTabOrder(radioButton_A4, lineA4);
+        QWidget::setTabOrder(lineA4, pushButton_apply);
 
         menubar->addAction(menuFile->menuAction());
         menubar->addAction(menuEdit->menuAction());

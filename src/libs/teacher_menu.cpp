@@ -63,15 +63,8 @@ int edit_questions_teacher()
 			default:
 				break;
 			}
-			if (!n) {
-				continue;
-			}
-			else if (n == -1) {
-				return -1;
-			}
-			else {
-				return 1;
-			}
+
+			return 1;
 		}
 		else if (func == 'q') {
 			if (quit_m()) {
@@ -148,24 +141,20 @@ int working_with_the_list_of_students()
 					break;
 				}
 
-		}
-		else if (sign == 'q') {
+		} else if (sign == 'q') {
 			if (quit_m()) {
 				return -1;
-			}
-			else {
+			} else {
 				continue;
 			}
-		}
-		else if (sign == 'b') {
+		} else if (sign == 'b') {
 			if (back_m()) {
 				return 0;
 			}
 			else {
 				continue;
 			}
-		}
-		else {
+		} else {
 			no_cmd();
 			while ((junk = getchar()) != '\n')
 				;
@@ -223,6 +212,8 @@ int view_the_list_of_students_with_grades()
                 break;
             }
 
+			return 1;
+
 		}
 		else if (sign == 'q') {
 			if (quit_m()) {
@@ -250,15 +241,16 @@ int view_the_list_of_students_with_grades()
 }
 int teacher_menu_0()
 {
-	/* Initializing variables */
-	int sign, junk, n, check = 0;
-	
-	/* I/O flow */
-	if (!input_teacher()) {
+
+    /* Initializing variables */
+    int sign, junk, n, check = 0;
+
+    /* I/O flow */
+    if (!input_teacher()) {
         return 0;
-	}
-	while (1) {
-		printf(" ------------------------------------------------------------\n"
+    }
+    while (1) {
+        printf(" ------------------------------------------------------------\n"
 "|                                                            |\n"
 "|                     >> Teacher's mode <<                   |\n"
 "|                                                            |\n"
@@ -270,19 +262,19 @@ int teacher_menu_0()
 "|       >> Type \"back\" to go to the previous menu <<         |\n"
 "|       >> Type \"quit\" to terminate this program <<          |\n"
 "|                                                            |\n");
-		  printf("| Answer: ");
-		  sign = getchar();
-		  prt_ln();
-		  if (isdigit(sign) && sign >= '1' && sign <= '2') {
-			  sign -= '0';
-			  if ((junk = getchar()) != '\n') {
-				  while ((junk = getchar()) != '\n')
-					  ;
-				  no_cmd();
-				  continue;
-			  }
-			  switch (sign) {
-			  case 1:
+        printf("| Answer: ");
+        sign = getchar();
+        prt_ln();
+        if (isdigit(sign) && sign >= '1' && sign <= '2') {
+            sign -= '0';
+            if ((junk = getchar()) != '\n') {
+                while ((junk = getchar()) != '\n')
+                    ;
+                no_cmd();
+                continue;
+            }
+            switch (sign) {
+                case 1:
                     n = edit_questions_teacher();
                     break;
                 case 2:
@@ -291,30 +283,28 @@ int teacher_menu_0()
                 default:
                     break;
             }
-		  }
-		  else if (sign == 'q') {
-			  if (quit_m()) {
-				  return -1;
-			  }
-			  else {
-				  continue;
-			  }
-		  }
-		  else if (sign == 'b') {
-			  if (back_m()) {
-				  return 0;
-			  }
-			  else {
-				  continue;
-			  }
-		  }
-		  else {
-			  no_cmd();
-			  while ((junk = getchar()) != '\n')
-				  ;
-			  continue;
-		  }
-	}
+
+            return 1;
+
+        } else if (sign == 'q') {
+            if (quit_m()) {
+                return -1;
+            } else {
+                continue;
+            }
+        } else if (sign == 'b') {
+            if (back_m()) {
+                return 0;
+            } else {
+                continue;
+            }
+        } else {
+            no_cmd();
+            while ((junk = getchar()) != '\n')
+                ;
+            continue;
+        }
+    }
 }
 
 int field_check_teacher(char *text) 

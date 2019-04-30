@@ -996,88 +996,79 @@ int MainWindow_teach::check_marks_fields() {
     arr = Qcurr.toLocal8Bit();
     curr = arr.data();
     for (i = 0; i < static_cast<int>(strlen(curr)); ++i) {
-
-        if (!isdigit(*(curr + i))) {
+        if ((*(curr + i) < '2' || *(curr + i) > '5') && *(curr + i) != '0') {
             return 0;
         }
     }
 
-    Qcurr = ui->lineLoops->text();
+    Qcurr = ui->lineArrays->text();
     arr = Qcurr.toLocal8Bit();
     curr = arr.data();
     for (i = 0; i < static_cast<int>(strlen(curr)); ++i) {
-
-        if (!isdigit(*(curr + i))) {
+        if ((*(curr + i) < '2' || *(curr + i) > '5') && *(curr + i) != '0') {
             return 0;
         }
     }
 
-    Qcurr = ui->lineLoops->text();
+    Qcurr = ui->lineStrings->text();
     arr = Qcurr.toLocal8Bit();
     curr = arr.data();
     for (i = 0; i < static_cast<int>(strlen(curr)); ++i) {
-
-        if (!isdigit(*(curr + i))) {
+        if ((*(curr + i) < '2' || *(curr + i) > '5') && *(curr + i) != '0') {
             return 0;
         }
     }
 
-    Qcurr = ui->lineLoops->text();
+    Qcurr = ui->lineRecursion->text();
     arr = Qcurr.toLocal8Bit();
     curr = arr.data();
     for (i = 0; i < static_cast<int>(strlen(curr)); ++i) {
-
-        if (!isdigit(*(curr + i))) {
+        if ((*(curr + i) < '2' || *(curr + i) > '5') && *(curr + i) != '0') {
             return 0;
         }
     }
 
-    Qcurr = ui->lineLoops->text();
+    Qcurr = ui->lineStructures->text();
     arr = Qcurr.toLocal8Bit();
     curr = arr.data();
     for (i = 0; i < static_cast<int>(strlen(curr)); ++i) {
-
-        if (!isdigit(*(curr + i))) {
+        if ((*(curr + i) < '2' || *(curr + i) > '5') && *(curr + i) != '0') {
             return 0;
         }
     }
 
-    Qcurr = ui->lineLoops->text();
+    Qcurr = ui->lineFiles->text();
     arr = Qcurr.toLocal8Bit();
     curr = arr.data();
     for (i = 0; i < static_cast<int>(strlen(curr)); ++i) {
-
-        if (!isdigit(*(curr + i))) {
+        if ((*(curr + i) < '2' || *(curr + i) > '5') && *(curr + i) != '0') {
             return 0;
         }
     }
 
-    Qcurr = ui->lineLoops->text();
+    Qcurr = ui->linePointers->text();
     arr = Qcurr.toLocal8Bit();
     curr = arr.data();
     for (i = 0; i < static_cast<int>(strlen(curr)); ++i) {
-
-        if (!isdigit(*(curr + i))) {
+        if ((*(curr + i) < '2' || *(curr + i) > '5') && *(curr + i) != '0') {
             return 0;
         }
     }
 
-    Qcurr = ui->lineLoops->text();
+    Qcurr = ui->lineDyn_Mem->text();
     arr = Qcurr.toLocal8Bit();
     curr = arr.data();
     for (i = 0; i < static_cast<int>(strlen(curr)); ++i) {
-
-        if (!isdigit(*(curr + i))) {
+        if ((*(curr + i) < '2' || *(curr + i) > '5') && *(curr + i) != '0') {
             return 0;
         }
     }
 
-    Qcurr = ui->lineLoops->text();
+    Qcurr = ui->lineFinal->text();
     arr = Qcurr.toLocal8Bit();
     curr = arr.data();
     for (i = 0; i < static_cast<int>(strlen(curr)); ++i) {
-
-        if (!isdigit(*(curr + i))) {
+        if ((*(curr + i) < '2' || *(curr + i) > '5') && *(curr + i) != '0') {
             return 0;
         }
     }
