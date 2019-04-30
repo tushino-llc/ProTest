@@ -134,12 +134,20 @@ int working_with_the_list_of_students()
 					to_see_the_change_of_a_students_progress(); 
 					break;
 				case 4: 
-					view_the_list_of_students_with_grades();  
+					n = view_the_list_of_students_with_grades();
 					break;
 							
 				default:
 					break;
 				}
+
+            if (!n) {
+                continue;
+            } else if (n == -1) {
+                return -1;
+            } else {
+                return 0;
+            }
 
 		} else if (sign == 'q') {
 			if (quit_m()) {
@@ -284,7 +292,13 @@ int teacher_menu_0()
                     break;
             }
 
-            return 1;
+            if (!n) {
+                continue;
+            } else if (n == -1) {
+                return -1;
+            } else {
+                return 0;
+            }
 
         } else if (sign == 'q') {
             if (quit_m()) {

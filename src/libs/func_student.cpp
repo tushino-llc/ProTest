@@ -100,7 +100,7 @@ int menu_topic() {
             }
         } else if (func == 'b') {
             if (back_m()) {
-                return 0;
+                return -2;
             } else {
                 continue;
             }
@@ -183,7 +183,7 @@ int get_q_ans(struct Question *quest, int curr_q, int max_q, t_type t) {
     }
 }
 
-void Training() {
+int Training() {
 
     /* Initializing variables */
 	Question* questions;
@@ -214,8 +214,7 @@ void Training() {
     prt_ln();
 }
 
-void Test(int id)
-{
+int Test(int id) {
 
     /* Initializing variables */
 	Question* questions;
@@ -270,8 +269,9 @@ void Test(int id)
 	prt_ln();
 }
 
-void FinalTest(int id)
-{
+void FinalTest(int id) {
+
+    /* Initializing variables */
 	Question* questions;
 
 	int ans, sum = 0, inc = 0, mark = 0, a[40] = {};
