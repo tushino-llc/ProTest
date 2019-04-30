@@ -61,10 +61,10 @@ int student_menu() {
 
 			switch (sign) {
 			case 1:
-			    Training();
+			    n = Training();
 				break;
 			case 2:
-			    Test(check);
+			    n = Test(check);
 				break;
 			case 3:
 			    FinalTest(check);
@@ -73,7 +73,13 @@ int student_menu() {
 				break;
 			}
 
-            return 1;
+            if (!n) {
+                continue;
+            } else if (n == -1) {
+                return -1;
+            } else {
+                return 0;
+            }
 
 		}
 		else if (sign == 'q') {

@@ -52,19 +52,25 @@ int edit_questions_teacher()
 			}
 			switch (func) {
 			case 1:
-				delete_the_question();
+				n = delete_the_question();
 				break;
 			case 2:
-				add_a_question();
+				n = add_a_question();
 				break;
 			case 3:
-				change_the_question();
+				n = change_the_question();
 				break;
 			default:
 				break;
 			}
 
-			return 1;
+            if (!n) {
+                continue;
+            } else if (n == -1) {
+                return -1;
+            } else {
+                return 0;
+            }
 		}
 		else if (func == 'q') {
 			if (quit_m()) {

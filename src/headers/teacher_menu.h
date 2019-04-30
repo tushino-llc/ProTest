@@ -26,7 +26,7 @@ int teacher_menu_0();
 int input_teacher();
 
 // Questions
-void delete_the_question();
+int delete_the_question();
 int add_a_question();
 int change_the_question();
 

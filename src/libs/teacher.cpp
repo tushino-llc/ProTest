@@ -20,34 +20,54 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 
 #include "../headers/tests_main_header.h"
 
-//const int Size_St = 100;
-//const int Size_Q = 240;
-
 // Questions
-void delete_the_question()
-{
-	int error, id, size, j;
-	
+int delete_the_question() {
+
+    /* Initializing variables */
+	int id, size, j, topic;
 	struct Question *question = nullptr;
-	if ((question = db_get_questions(&size))) {
-		for (j = 0; j < size; ++j) {
-			std::cout << "id = " << question[j].id << "; Question: " << question[j].value << std::endl;
-		}
 
-		printf("| Enter the id of the question you want to delete. \n");
-		do {
-			scanf("%d", &id);
-		} while (id < 0);
+	/* I/O flow */
+    while (1) {
+        if ((topic = menu_topic()) == -2) {
+            return 0;
+        } else if (topic == -1) {
+            return -1;
+        }
 
-		do {
-			error = db_delete_question(id);
+        if ((question = db_get_questions(&size, topic))) {
+            for (j = 0; j < size; ++j) {
+                printf("|                                                            |\n");
+                printf("|  >> Question [%3d]:                                        |\n", question[j].id);
+                printf("|                                                            |\n");
+                fflush(stdout);
+                print_q_correct(question[j].value);
+                printf("\n|                                                            |\n");
+                prt_ln();
+            }
 
-			if (error == -1) { printf("| Error! Unable to delete question. Try again? [1 - yes; 0 - no] \n"); }
-			do {
-				scanf("%d", &error);
-			} while ((error > 1) || (error < 0));
-		} while (error == 1);
-	}
+            do {
+                printf("| Type the id of question you want to delete: ");
+                scanf("%d", &id);
+            } while (id < 0);
+
+            if ((db_delete_question(id)) == -1) {
+                printf("| Error! Couldn't delete question! Try again?                |\n");
+                if (menu_continue()) {
+                    continue;
+                } else {
+                    break;
+                }
+            }
+
+        } else {
+            printf("Error! Couldn't get questions!\n");
+            return 0;
+        }
+    }
+
+    /* Returning value */
+    return 1;
 }
 int add_a_question()
 {
@@ -81,7 +101,7 @@ int add_a_question()
         --quest.correct;
 
         if ((db_add_question(quest)) == -1) {
-            printf("Error! Couldn't add question! Try again?\n");
+            printf("| Error! Couldn't add question! Try again?                   |\n");
             error = menu_continue();
             if (error) {
                 continue;
@@ -100,20 +120,30 @@ int add_a_question()
 int change_the_question() {
 
     /* Initializing variables */
-	int id, size, j, sign, by;
+	int id, size, j, sign, topic;
 	struct Question *question = nullptr;
 	struct Question quest = {};
 
 	/* I/O flow */
-	by = menu_topic();
+	topic = menu_topic();
 
-	if ((question = db_get_questions(&size, by))) {
-		for (int i = 0; i < size; ++i) {
-		    printf("| Question #%d\n", (question + i)->id);
-		    printf("| Text: ");
-		    puts((question + i)->value);
-		    prt_ln();
-		}
+    while (1) {
+        if ((topic = menu_topic()) == -2) {
+            return 0;
+        } else if (topic == -1) {
+            return -1;
+        }
+
+        if ((question = db_get_questions(&size, topic))) {
+            for (j = 0; j < size; ++j) {
+                printf("|                                                            |\n");
+                printf("|  >> Question [%3d]:                                        |\n", question[j].id);
+                printf("|                                                            |\n");
+                fflush(stdout);
+                print_q_correct(question[j].value);
+                printf("\n|                                                            |\n");
+                prt_ln();
+            }
 
         printf("| Type the id of the question you want to change: ");
         do {
@@ -445,5 +475,3 @@ void view_the_average_score()
 		}
 	}
 }
-
-

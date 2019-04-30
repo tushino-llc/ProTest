@@ -189,11 +189,16 @@ int Training() {
 	Question* questions;
 	int sub, ans;
 	prt_ln();
-	sub = menu_topic();
 
-	/* VarCheck */
-	if (!(questions = db_get_test(sub))) {
-        return;
+    /* VarCheck */
+    if ((sub = menu_topic()) == -2) {
+        return 0;
+    } else if (sub == -1) {
+        return -1;
+    }
+    if (!(questions = db_get_test(sub))) {
+	    printf("Error! Couldn't get your test!\n");
+        return 0;
 	}
 
 	/* Main part */
@@ -220,10 +225,15 @@ int Test(int id) {
 	Question* questions;
 	int sub, ans, sum = 0, a[10] = {}, inc = 0, mark = 0;
 
-	/* VarCheck */
-    sub = menu_topic();
+    /* VarCheck */
+    if ((sub = menu_topic()) == -2) {
+        return 0;
+    } else if (sub == -1) {
+        return -1;
+    }
     if (!(questions = db_get_test(sub))) {
-        return;
+        printf("Error! Couldn't get your test!\n");
+        return 0;
     }
 
     /* Main part */
