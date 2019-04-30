@@ -262,7 +262,7 @@ void Test(int id)
     db_set_mark(id, sub, mark);
 
     /* Final output */
-    printf("| Your mark is %d [%2d/%2d]                                    |\n", mark, 10 - inc, 10);
+    printf("| Your mark is %d [%2d/%2d]                                     |\n", mark, 10 - inc, 10);
 	prt_ln();
 }
 
