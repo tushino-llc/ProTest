@@ -33,6 +33,7 @@ int delete_the_question() {
             ungetc('\n', stdin);
             return 0;
         } else if (topic == -1) {
+            ungetc('\n', stdin);
             return -1;
         }
 
@@ -46,6 +47,8 @@ int delete_the_question() {
                 printf("\n|                                                            |\n");
                 prt_ln();
             }
+
+            delete question;
 
             do {
                 printf("| Type the id of question you want to delete: ");
@@ -72,17 +75,17 @@ int delete_the_question() {
     /* Returning value */
     return 1;
 }
-int add_a_question()
-{
+int add_a_question() {
+
+    /* Initializing variables */
 	int error, size;
-	struct Question *question = nullptr;
 	struct Question quest = {};
 
-	while (1) {
-        /* I/O flow */
+    /* I/O flow */
+    while (1) {
         quest.theme = menu_topic();
+        ungetc('\n', stdin);
         if (quest.theme == -2) {
-            ungetc('\n', stdin);
             return 0;
         } else if (quest.theme == -1) {
             return -1;
@@ -171,7 +174,7 @@ int menu_change() {
             }
         } else if (func == 'b') {
             if (back_m()) {
-                return 0;
+                return -2;
             } else {
                 continue;
             }
@@ -200,6 +203,7 @@ int change_the_question() {
             ungetc('\n', stdin);
             return 0;
         } else if (topic == -1) {
+            ungetc('\n', stdin);
             return -1;
         }
 
@@ -214,6 +218,8 @@ int change_the_question() {
                 prt_ln();
             }
 
+            delete question;
+
             printf("| Type the id of the question you want to change: ");
             do {
                 scanf("%d", &id);
@@ -223,7 +229,13 @@ int change_the_question() {
 
             while (getchar() != '\n')
                 ;
-            sign = menu_change();
+
+            if ((sign = menu_change()) == -2) {
+                continue;
+            } else if (sign == -1) {
+                ungetc('\n', stdin);
+                return -1;
+            }
 
             switch (sign) {
                 case 1:

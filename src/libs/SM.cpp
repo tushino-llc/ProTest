@@ -67,7 +67,7 @@ int student_menu() {
 			    n = Test(check);
 				break;
 			case 3:
-			    FinalTest(check);
+			    n = FinalTest(check);
 				break;
 			default:
 				break;
