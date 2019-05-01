@@ -217,6 +217,9 @@ int Training() {
     /* Final output */
     printf("| test: you've passed the training!                          |\n");
     prt_ln();
+
+    /* Returning value */
+    return 0;
 }
 
 int Test(int id) {
@@ -232,7 +235,7 @@ int Test(int id) {
         return -1;
     }
     if (!(questions = db_get_test(sub))) {
-        printf("Error! Couldn't get your test!\n");
+        printf("| Error! Couldn't get your test!                             |\n");
         return 0;
     }
 
@@ -277,9 +280,12 @@ int Test(int id) {
     /* Final output */
     printf("| Your mark is %d [%2d/%2d]                                     |\n", mark, 10 - inc, 10);
 	prt_ln();
+
+    /* Returning value */
+    return 0;
 }
 
-void FinalTest(int id) {
+int FinalTest(int id) {
 
     /* Initializing variables */
 	Question* questions;
@@ -287,8 +293,9 @@ void FinalTest(int id) {
 	int ans, sum = 0, inc = 0, mark = 0, a[40] = {};
 
 	if (!(questions = db_get_final_test())) {
-        return;
-	}
+        printf("| Error! Couldn't get your test!                             |\n");
+        return 0;
+    }
 
     for (int i = 0; i < 40; ++i) {
         ans = get_q_ans(questions + i, i + 1, 40, t_type::final);
@@ -330,4 +337,7 @@ void FinalTest(int id) {
     /* Final output */
     printf("| Your mark is %d [%2d/%2d]                                     |\n", mark, 40 - inc, 40);
     prt_ln();
+
+    /* Returning value */
+    return 0;
 }

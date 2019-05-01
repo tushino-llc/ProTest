@@ -64,6 +64,9 @@ int edit_questions_teacher()
 				break;
 			}
 
+            while ((junk = getchar()) != '\n')
+                ;
+
             if (!n) {
                 continue;
             } else if (n == -1) {

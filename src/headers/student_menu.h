@@ -28,8 +28,9 @@ int student_menu();
 int menu_topic();
 void print_q_correct(const char *);
 int get_q_ans(struct Question *, int, int, t_type);
+
 int Training();
 int Test(int id);
-void FinalTest(int id);
+int FinalTest(int id);
 
 #endif

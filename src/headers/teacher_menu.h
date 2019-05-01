@@ -20,6 +20,7 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 
 #ifndef TEACHER_MENU_H
 #define TEACHER_MENU_H
+
 #include "../headers/tests_main_header.h"
 
 int teacher_menu_0();
@@ -28,6 +29,7 @@ int input_teacher();
 // Questions
 int delete_the_question();
 int add_a_question();
+int menu_change();
 int change_the_question();
 
 // Students
