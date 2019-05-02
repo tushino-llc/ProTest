@@ -23,7 +23,7 @@
 #define HAVE_MEMORY_H 1
 
 /* Define if AX_HAVE_QT macro found Qt */
-#define HAVE_QT 0
+#define HAVE_QT 1
 
 /* Define to 1 if stdbool.h conforms to C99. */
 #define HAVE_STDBOOL_H 1

@@ -823,15 +823,24 @@ void MainWindow_teach::on_comboBox_3_currentIndexChanged(int index)
         ui->pushButton_apply->setEnabled(false);
         ui->pushButton_rm->setEnabled(false);
 
-        ui->radioButton_A1->setChecked(false);
-        ui->radioButton_A2->setChecked(false);
-        ui->radioButton_A3->setChecked(false);
-        ui->radioButton_A4->setChecked(false);
+        ui->radioButton_A1->setCheckable(false);
+        ui->radioButton_A2->setCheckable(false);
+        ui->radioButton_A3->setCheckable(false);
+        ui->radioButton_A4->setCheckable(false);
+
+        ui->radioButton_A1->setCheckable(true);
+        ui->radioButton_A2->setCheckable(true);
+        ui->radioButton_A3->setCheckable(true);
+        ui->radioButton_A4->setCheckable(true);
 
         ui->lineA1->setText("");
         ui->lineA2->setText("");
         ui->lineA3->setText("");
         ui->lineA4->setText("");
+
+        ui->textEdit->setPlainText("");
+
+        MainWindow_teach::update();
     }
 }
 
