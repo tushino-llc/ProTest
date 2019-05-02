@@ -103,7 +103,9 @@ void MainWindow::on_pushButtonSignIn_clicked()
                 }
             } else {
                 FILE *fp = fopen("remember.lp", "wb");
-                fclose(fp);
+                if (fp != nullptr) {
+                    fclose(fp);
+                }
             }
 
 //            db_close();
