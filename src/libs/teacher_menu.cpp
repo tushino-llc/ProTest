@@ -25,6 +25,7 @@ int edit_questions_teacher()
 {
 	/* Initializing variables */
 	int func, junk, n = 0;
+
 	/* I/O flow */
 	while (1) {
 		printf(" ------------------------------------------------------------\n"
@@ -101,11 +102,13 @@ int edit_questions_teacher()
 		}
 	}
 }
-int working_with_the_list_of_students()
-{
-	/* Initializing variables */
-	int sign, junk, n, check = 0;
 
+int working_with_the_list_of_students() {
+
+	/* Initializing variables */
+	int sign, junk, n;
+
+	/* I/O flow */
 	while (1) {
         printf(" ------------------------------------------------------------\n"
 "|                                                            |\n"
@@ -114,9 +117,9 @@ int working_with_the_list_of_students()
 "|  >> Choose action:                                         |\n"
 "|                                                            |\n"
 "|       1) Delete student account                            |\n"
-"|       2) To add a new account for a student                |\n"
-"|       3) To see the change of a student's progress         |\n"
-"|       4) View the list of students with grades             |\n"
+"|       2) Add a new account for a student                   |\n"
+"|       3) See the change of a student's progress            |\n"
+"|       4) Show the list of students with grades             |\n"
 "|                                                            |\n"
 "|       >> Type \"back\" to go to the previous menu <<         |\n"
 "|       >> Type \"quit\" to terminate this program <<          |\n"
@@ -132,20 +135,20 @@ int working_with_the_list_of_students()
 				no_cmd();
 				continue;
 			}
+
 			switch (sign) {
-			case 1:
-					delete_student_account(); 
+			    case 1:
+					n = delete_student_account();
 					break;
 				case 2: 
-					to_add_a_new_account_for_a_student(); 
+					n = to_add_a_new_account_for_a_student();
 					break;
 				case 3: 
-					to_see_the_change_of_a_students_progress(); 
+					n = to_see_the_change_of_a_students_progress();
 					break;
 				case 4: 
 					n = view_the_list_of_students_with_grades();
 					break;
-							
 				default:
 					break;
 				}
@@ -181,11 +184,12 @@ int working_with_the_list_of_students()
 }
 
 
-int view_the_list_of_students_with_grades()
-{
+int view_the_list_of_students_with_grades() {
+
 	/* Initializing variables */
-	int sign, junk, n, check = 0;
-	
+	int sign, junk, n;
+
+	/* I/O flow */
 	while (1) {
 		printf(" ------------------------------------------------------------\n"
 "|                                                            |\n"
@@ -193,10 +197,10 @@ int view_the_list_of_students_with_grades()
 "|                                                            |\n"
 "|  >> Choose action:                                         |\n"
 "|                                                            |\n"
-"|       1) View scores on all topics                         |\n"
-"|       2) View estimates on a specific topic                |\n"
-"|       3) View scores for the final test                    |\n"
-"|       4) View the average score                            |\n"
+"|       1) Show scores on all topics                         |\n"
+"|       2) Show scores on a specific topic                   |\n"
+"|       3) Show scores for the final test                    |\n"
+"|       4) Show the average score                            |\n"
 "|                                                            |\n"
 "|       >> Type \"back\" to go to the previous menu <<         |\n"
 "|       >> Type \"quit\" to terminate this program <<          |\n"
@@ -212,24 +216,31 @@ int view_the_list_of_students_with_grades()
 				no_cmd();
 				continue;
 			}
+
 			switch (sign) {
-			case 1:
-                view_scores_on_all_topics();
-                break;
-            case 2:
-                view_estimates_on_a_specific_topic();
-                break;
-            case 3:
-                view_scores_for_the_final_test();
-                break;
-            case 4:
-                view_the_average_score();
-                break;
-            default:
-                break;
+                case 1:
+                    n = view_scores_on_all_topics();
+                    break;
+                case 2:
+                    n = view_estimates_on_a_specific_topic();
+                    break;
+                case 3:
+                    n = view_scores_for_the_final_test();
+                    break;
+                case 4:
+                    n = view_the_average_score();
+                    break;
+                default:
+                    break;
             }
 
-			return 1;
+            if (!n) {
+                continue;
+            } else if (n == -1) {
+                return -1;
+            } else {
+                return 0;
+            }
 
 		}
 		else if (sign == 'q') {
@@ -256,11 +267,10 @@ int view_the_list_of_students_with_grades()
 		}
 	}
 }
-int teacher_menu_0()
-{
+int teacher_menu_0() {
 
     /* Initializing variables */
-    int sign, junk, n, check = 0;
+    int sign, junk, n;
 
     /* I/O flow */
     if (!input_teacher()) {
@@ -330,11 +340,12 @@ int teacher_menu_0()
     }
 }
 
-int field_check_teacher(char *text) 
-{
+int field_check_teacher(char *text) {
+
 	/* Initializing variables */
 	int i;
 	char ch;
+
 	/* Main part */
 	for (i = 0; i < static_cast<int>(strlen(text)); ++i) {
 		ch = *(text + i);
@@ -342,6 +353,7 @@ int field_check_teacher(char *text)
 			return 0;
 		}
 	}
+
 	/* Returning value */
 	return 1;
 }

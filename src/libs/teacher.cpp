@@ -37,7 +37,7 @@ int delete_the_question() {
             return -1;
         }
 
-        if ((question = db_get_questions(&size, topic))) {
+        if ((question = db_get_questions(&size, topic)) != nullptr) {
             for (j = 0; j < size; ++j) {
                 printf("|                                                            |\n");
                 printf("|  >> Question [%3d]:                                        |\n", question[j].id);
@@ -56,18 +56,16 @@ int delete_the_question() {
             } while (id < 0);
 
             if ((db_delete_question(id)) == -1) {
-                printf("| Error! Couldn't delete question! Try again?                |\n");
-                if (menu_continue()) {
-                    continue;
-                } else {
-                    break;
-                }
+                printf("| Error! Couldn't delete question!                           |\n");
+                ungetc('\n', stdin);
+                return 0;
             } else {
                 break;
             }
 
         } else {
             printf("Error! Couldn't get questions!\n");
+            ungetc('\n', stdin);
             return 0;
         }
     }
@@ -78,8 +76,7 @@ int delete_the_question() {
 int add_a_question() {
 
     /* Initializing variables */
-	int error, size;
-	struct Question quest = {};
+    struct Question quest = {};
 
     /* I/O flow */
     while (1) {
@@ -116,12 +113,9 @@ int add_a_question() {
         --quest.correct;
 
         if ((db_add_question(quest)) == -1) {
-            printf("| Error! Couldn't add question! Try again?                   |\n");
-            error = menu_continue();
-            if (error) {
-                continue;
-            }
-            break;
+            printf("| Error! Couldn't add question!                              |\n");
+            ungetc('\n', stdin);
+            return 0;
         } else {
             break;
         }
@@ -192,7 +186,7 @@ int menu_change() {
 int change_the_question() {
 
     /* Initializing variables */
-    int id, size, j, sign, topic, error;
+    int id, size, j, sign, topic;
     struct Question *question = nullptr;
     struct Question quest = {};
 
@@ -207,7 +201,7 @@ int change_the_question() {
             return -1;
         }
 
-        if ((question = db_get_questions(&size, topic))) {
+        if ((question = db_get_questions(&size, topic)) != nullptr) {
             for (j = 0; j < size; ++j) {
                 printf("|                                                            |\n");
                 printf("|  >> Question [%3d]:                                        |\n", question[j].id);
@@ -275,17 +269,15 @@ int change_the_question() {
             }
 
             if (db_update_question(quest) == -1) {
-                printf("| Error! Couldn't update question! Try again?                |\n");
-                error = menu_continue();
-                if (error) {
-                    continue;
-                }
-                break;
+                printf("| Error! Couldn't update question!                           |\n");
+                ungetc('\n', stdin);
+                return 0;
             } else {
                 break;
             }
         } else {
             printf("| Error! Couldn't get questions!                             |\n");
+            ungetc('\n', stdin);
             return 1;
         }
     }
@@ -302,260 +294,559 @@ int change_the_question() {
 }
 
 // Students
-void delete_student_account() {
-	int error, id, size = 0; 
+int delete_student_account() {
+
+    /* Initializing variables */
+	int id, size = 0;
+	struct User us;
 	struct User *user = nullptr;
 
 	/* Main part */
-	if ((user = db_get_users(&size))) {
+	while (1) {
+        if ((user = db_get_users(&size)) != nullptr) {
+            prt_ln();
+            for (int i = 0; i < size; ++i) {
+                //std::cout << "id = " << user[i].id << "; Student: " << user[i].first_name << user[i].last_name << std::endl;
+                printf("|                                                            |\n");
+                printf("|  >> Student [%3d]:                                         |\n", user[i].id);
+                printf("|                                                            |\n");
+                printf("|    %s %s\n", user[i].first_name, user[i].last_name);
+                printf("|                                                            |\n");
+                prt_ln();
+            }
+            delete user;
 
-		for (int i = 0; i < size; ++i)
-		{
-			std::cout << "id = " << user[i].id << "; Student: " << user[i].first_name << user[i].last_name << std::endl;
-		}
+            do {
+                printf("| Type the id of the student you want to delete: ");
+                scanf("%d", &id);
+            } while (!(us = db_get_user(id)).id && us.admin);
 
-		printf("| Enter the id of the student you want to delete. \n");
-		do {
-			scanf("%d", &id);
-		} while (!(id = (db_get_user(id)).id));
-		do {
-			error = db_delete_user(id);
-			if (error == -1) { printf("| Error! Unable to delete student. Try again? [1 - yes; 0 - no] \n"); }
-			do {
-				scanf("%d", &error);
-			} while ((error > 1) || (error < 0));
-		} while (error == 1);
-	}
+            if (db_delete_user(id) == -1) {
+                printf("| Error! Couldn't delete student!                            |\n");
+                continue;
+            } else {
+                while (getchar() != '\n')
+                    ;
+                break;
+            }
+
+        } else {
+            printf("| Error! Couldn't get students list!                         |\n");
+            return 0;
+        }
+    }
 }
 
-void to_add_a_new_account_for_a_student() {
-	int error, size;
-	struct User *user = nullptr;
+int to_add_a_new_account_for_a_student() {
+
+    /* Initializing variables */
 	struct User us = {};
-	char password[30];
+	char password[MAX_LEN], pass_2[MAX_LEN];
 
 	/* Main part */
-	if ((user = db_get_users(&size))) {
+    while (1) {
+        printf("| Type first name: ");
+        fgets(us.first_name, MAX_LEN, stdin);
+        *(us.first_name + (strlen(us.first_name) - 1)) = '\0';
+        printf("| Type last name: ");
+        fgets(us.last_name, MAX_LEN, stdin);
+        *(us.last_name + (strlen(us.last_name) - 1)) = '\0';
+        printf("| Type login: ");
+        fgets(us.login, MAX_LEN, stdin);
+        *(us.login + (strlen(us.login) - 1)) = '\0';
 
-		printf("| Enter id: ");
-		scanf("%d", &us.id);
-		printf("| Enter first name: ");
-		fgets(us.first_name, MAX_LEN, stdin);
-		printf("| Enter last name: ");
-		fgets(us.last_name, MAX_LEN, stdin);
-		printf("| Enter login: ");
-		fgets(us.login, MAX_LEN, stdin);
-		printf("| Enter the password ");
-		fgets(password, 30, stdin);
-		field_check_teacher(password);
-	
-		do {
-			error = db_add_user(us, password);
-			if (error == -1) { printf("| Error! Failed to add new account. Try again? [1 - yes; 0 - no] \n"); }
-			do {
-				scanf("%d", &error);
-			} while ((error > 1) || (error < 0));
-		} while (error == 1);
-	}
+pass_type:
+        printf("| Type password: ");
+        fgets(password, MAX_LEN, stdin);
+        *(password + (strlen(password) - 1)) = '\0';
+        printf("| Type password again: ");
+        fgets(pass_2, MAX_LEN, stdin);
+        *(pass_2 + (strlen(pass_2) - 1)) = '\0';
+
+        prt_ln();
+
+        if (!strcmp(password, pass_2)) {
+            if (field_check_teacher(password) && field_check_teacher(us.first_name) &&
+            field_check_teacher(us.last_name) && field_check_teacher(us.login)) {
+                if (db_get_id_by_login(us.login) > 0) {
+                    printf("| Error! User with that login already exists!                |\n");
+                    return 0;
+                } else {
+                    if (db_add_user(us, password) == -1) {
+                        printf("| Error! Couldn't add user!                                  |\n");
+                        return 0;
+                    } else {
+                        break;
+                    }
+                }
+            } else {
+                printf("| Error! Bad characters in fields!                           |\n");
+                prt_ln();
+                continue;
+            }
+        } else {
+            printf("| Error! Passwords mismatch!                                 |\n");
+            prt_ln();
+            goto pass_type;
+        }
+
+    }
+
+    /* Returning value */
+    return 1;
 }
 
-void to_see_the_change_of_a_students_progress() {
-	int  size = 0, id;
-	struct User *user = nullptr;
-	struct User us = {};
-	struct Marks mark = {};
-	/* Main part */
-	if ((user = db_get_users(&size))) {
+double get_mean(int id) {
 
-		for (int i = 0; i < size; ++i)
-		{
-			std::cout << "id = " << user[i].id << "; Student: " << user[i].first_name << user[i].last_name << std::endl;
-		}
-		printf("| Enter the id of the student whose progress you want to see. \n");
-		do {
-			scanf("%d", &id);
-		} while (!(us = db_get_user(id)).id);
-		std::cout << "id = " << us.id << "; Student: " << us.first_name << us.last_name << std::endl;
-		mark = db_get_user_marks(id);
-		std::cout << " loops " << mark.values[0] << std::endl;
-		std::cout << " arrays " << mark.values[1] << std::endl;
-		std::cout << " strings " << mark.values[2] << std::endl;
-		std::cout << " recursion " << mark.values[3] << std::endl;
-		std::cout << " structs " << mark.values[4] << std::endl;
-		std::cout << " files " << mark.values[5] << std::endl;
-		std::cout << " pointers " << mark.values[6] << std::endl;
-		std::cout << " dynamic " << mark.values[7] << std::endl;
-		std::cout << " average " << mark.values[8] << std::endl;
-		std::cout << " final " << mark.values[9] << std::endl;
-	}
+    /* Initializing variables */
+    int counter = 0;
+    struct Marks mks;
+    double mean = 0.0;
+
+    /* Main part */
+    mks = db_get_user_marks(id);
+    for (int i = 0; i < 10; ++i) {
+        if (i == 8) {
+            continue;
+        }
+        if (mks.values[i] >= 2 && mks.values[i] <= 5) {
+            mean += mks.values[i];
+            ++counter;
+        }
+    }
+    if (counter == 0) {
+        mean = 0.0;
+    } else {
+        mean /= counter;
+    }
+
+    /* Returning value */
+    return mean;
+}
+
+int to_see_the_change_of_a_students_progress() {
+
+    /* Initializing variables */
+    int size = 0, id;
+    struct User *user = nullptr;
+    struct User us = {};
+    struct Marks mark = {};
+
+    /* Main part */
+    if ((user = db_get_users(&size)) != nullptr) {
+        prt_ln();
+        for (int i = 0; i < size; ++i) {
+            //std::cout << "id = " << user[i].id << "; Student: " << user[i].first_name << user[i].last_name << std::endl;
+            printf("|                                                            |\n");
+            printf("|  >> Student [%3d]:                                         |\n", user[i].id);
+            printf("|                                                            |\n");
+            printf("|    %s %s\n", user[i].first_name, user[i].last_name);
+            printf("|                                                            |\n");
+            prt_ln();
+        }
+        delete user;
+
+        do {
+            printf("| Type the id of the student whose progress you want to see: ");
+            scanf("%d", &id);
+        } while (!(us = db_get_user(id)).id && us.admin);
+
+        prt_ln();
+        if ((mark = db_get_user_marks(id)).user_id) {
+
+
+            printf("|                                                            |\n");
+            printf("|  >> Student [%3d]:                                         |\n", us.id);
+            printf("|                                                            |\n");
+            printf("|    %s %s\n", us.first_name, us.last_name);
+            printf("|                                                            |\n");
+            printf("|       1) Loops: %d                                          |\n", mark.values[0]);
+            printf("|       2) Arrays: %d                                         |\n", mark.values[1]);
+            printf("|       3) Strings: %d                                        |\n", mark.values[2]);
+            printf("|       4) Recursion: %d                                      |\n", mark.values[3]);
+            printf("|       5) Structures: %d                                     |\n", mark.values[4]);
+            printf("|       6) Files: %d                                          |\n", mark.values[5]);
+            printf("|       7) Pointers and addresses: %d                         |\n", mark.values[6]);
+            printf("|       8) Dynamic memory: %d                                 |\n", mark.values[7]);
+            printf("|                                                            |\n");
+            printf("|       >> Final test: %d                                     |\n", mark.values[9]);
+            printf("|       >> Mean: %6.3lf\n", get_mean(id));
+            printf("|                                                            |\n");
+            prt_ln();
+        } else {
+            printf("| Error! Couldn't get student's marks!                       |\n");
+            return 0;
+        }
+    } else {
+        printf("| Error! Couldn't get students list!                         |\n");
+        return 0;
+    }
+
+    while (getchar() != '\n')
+        ;
+
+    /* Returning value */
+    return 1;
 }
 
 // Results
-void view_scores_on_all_topics()
-{
-	int id, size = 0;
+int view_scores_on_all_topics() {
+
+    /* Initializing variables */
+	int id, size = 0, i;
 	struct User *user = nullptr;
 	struct Marks mark = {};
-	/* Main part */
-	if ((user = db_get_users(&size))) {
 
-		for (int i = 0; i < size; ++i)
-		{
-			std::cout << "id = " << user[i].id << "; Student: " << user[i].first_name << user[i].last_name << std::endl;
-			mark = db_get_user_marks(user[i].id);
-			std::cout << " loops " << mark.values[0] << std::endl;
-			std::cout << " arrays " << mark.values[1] << std::endl;
-			std::cout << " strings " << mark.values[2] << std::endl;
-			std::cout << " recursion " << mark.values[3] << std::endl;
-			std::cout << " structs " << mark.values[4] << std::endl;
-			std::cout << " files " << mark.values[5] << std::endl;
-			std::cout << " pointers " << mark.values[6] << std::endl;
-			std::cout << " dynamic " << mark.values[7] << std::endl;
-			std::cout << " average " << mark.values[8] << std::endl;
-			std::cout << " final " << mark.values[9] << std::endl;
-			printf("\n");
+	/* Main part */
+	prt_ln();
+	if ((user = db_get_users(&size)) != nullptr) {
+		for (i = 0; i < size; ++i) {
+            if ((mark = db_get_user_marks(user[i].id)).user_id) {
+                printf("|                                                            |\n");
+                printf("|  >> Student [%3d]:                                         |\n", user[i].id);
+                printf("|                                                            |\n");
+                printf("|    %s %s\n", user[i].first_name, user[i].last_name);
+                printf("|                                                            |\n");
+                printf("|       1) Loops: %d                                          |\n", mark.values[0]);
+                printf("|       2) Arrays: %d                                         |\n", mark.values[1]);
+                printf("|       3) Strings: %d                                        |\n", mark.values[2]);
+                printf("|       4) Recursion: %d                                      |\n", mark.values[3]);
+                printf("|       5) Structures: %d                                     |\n", mark.values[4]);
+                printf("|       6) Files: %d                                          |\n", mark.values[5]);
+                printf("|       7) Pointers and addresses: %d                         |\n", mark.values[6]);
+                printf("|       8) Dynamic memory: %d                                 |\n", mark.values[7]);
+                printf("|                                                            |\n");
+                prt_ln();
+            } else {
+                prt_ln();
+                printf("| Error! Couldn't get student's marks!                       |\n");
+                return 0;
+            }
 		}
+	} else {
+
 	}
+
+	/* Returning value */
+    return 1;
 }
-void view_estimates_on_a_specific_topic()
+
+int menu_how_to_sort() {
+
+    /* Initializing variables */
+    int sign, junk, n;
+
+    /* I/O flow */
+    while (1) {
+        printf(" ------------------------------------------------------------\n"
+"|                                                            |\n"
+"|                     >> Teacher's mode <<                   |\n"
+"|                                                            |\n"
+"|  >> Choose sorting type:                                   |\n"
+"|                                                            |\n"
+"|       1) In ascending order                                |\n"
+"|       2) In descending order                               |\n"
+"|       3) Show students with a score of \"5\"                 |\n"
+"|       4) Show students with a score of \"4\"                 |\n"
+"|       5) Show students with a score of \"3\"                 |\n"
+"|       6) Show students with a score of \"2\"                 |\n"
+"|                                                            |\n"
+"|       >> Type \"back\" to go to the previous menu <<         |\n"
+"|       >> Type \"quit\" to terminate this program <<          |\n"
+"|                                                            |\n");
+        printf("| Answer: ");
+        sign = getchar();
+        prt_ln();
+        if (isdigit(sign) && sign >= '1' && sign <= '6') {
+            sign -= '0';
+            if ((junk = getchar()) != '\n') {
+                while ((junk = getchar()) != '\n')
+                    ;
+                no_cmd();
+                continue;
+            }
+
+            return sign;
+
+        } else if (sign == 'q') {
+            if (quit_m()) {
+                return -1;
+            } else {
+                continue;
+            }
+        } else if (sign == 'b') {
+            if (back_m()) {
+                return 0;
+            } else {
+                continue;
+            }
+        } else {
+            no_cmd();
+            while ((junk = getchar()) != '\n')
+                ;
+            continue;
+        }
+    }
+}
+
+int view_estimates_on_a_specific_topic()
 {
 	int size = 0, desc, by, sort;
 	struct User *user = nullptr;
-	struct Marks mark = {};	
+	struct Marks mark = {};
+	char *theme = nullptr;
 
-	printf("| Chosen theme |"
-		"| 1) loops      |\n"
-		"| 2) arrays     |\n"
-		"| 3) strings    |\n"
-		"| 4) recursion  |\n"
-		"| 5) structs    |\n"
-		"| 6) files      |\n"
-		"| 7) pointers   |\n"
-		"| 8) dynamic    |\n");
-	do {
-		scanf("%d", &by);
-	} while ((by < 1) || (by > 8));
-	by--;
+	while (1) {
+        if ((by = menu_topic()) == -2) {
+            return 0;
+        } else if (by == -1) {
+            return -1;
+        }
 
-	printf("| How to sort?                        |"
-		"| 1) in ascending order              |\n"
-		"| 2) in descending order             |\n"
-		"| 3) show students with a score of 5 |\n"
-		"| 4) show students with a score of 4 |\n"
-		"| 5) show students with a score of 3 |\n"
-		"| 6) show students with a score of 2 |\n");
-	do {
-		scanf("%d", &sort);
-	} while ((sort < 1) || (sort > 6));
-	
-	switch (sort)
-	{
-	case 1:
-	{
-		desc = 0;
+        if (!(sort = menu_how_to_sort())) {
+            continue;
+        } else if (sort == -1) {
+            return -1;
+        }
 
-		if ((user = db_get_users_sorted(&size, by, desc))) {
-			for (int i = 0; i < size; i++)
-			{
-				mark = db_get_user_marks(user[i].id);
-				std::cout << " " << user[i].first_name << " " << user[i].last_name << " " << mark.values[by] << std::endl;
-			}
-		}
-	} break;
-	case 2:
-	{
-		desc = 1;
-		if ((user = db_get_users_sorted(&size, by, desc))) {
-			for (int i = 0; i < size; i++)
-			{
-				mark = db_get_user_marks(user[i].id);
-				std::cout << " " << user[i].first_name << " " << user[i].last_name << " " << mark.values[by] << std::endl;
-			}
-		}
-	} break;
-	case 3:
-	{
-		if ((user = db_get_users(&size))) {
-			for (int i = 0; i < size; i++)
-			{
-				mark = db_get_user_marks(user[i].id);
-				if (mark.values[by] == 5)
-				{
-					std::cout << " " << user[i].first_name << " " << user[i].last_name << " " << mark.values[by] << std::endl;
-				}
-			}
-		
-		}
-	} break;
-	case 4:
-	{
-		if ((user = db_get_users(&size))) {
-			for (int i = 0; i < size; i++)
-			{
-				mark = db_get_user_marks(user[i].id);
-				if (mark.values[by] == 4)
-				{
-					std::cout << " " << user[i].first_name << " " << user[i].last_name << " " << mark.values[by] << std::endl;
-				}
-			}
+        switch (sort) {
+            case 1:
+                desc = 0;
+                if ((user = db_get_users_sorted(&size, by, desc)) != nullptr) {
+                    for (int i = 0; i < size; i++) {
+                        if ((mark = db_get_user_marks(user[i].id)).user_id) {
+                            printf("|                                                            |\n");
+                            printf("|  >> Student [%3d]:                                         |\n", user[i].id);
+                            printf("|                                                            |\n");
+                            printf("|    %s %s\n", user[i].first_name, user[i].last_name);
+                            printf("|                                                            |\n");
+                            printf("|       >> %s: %d\n", theme = db_get_theme_by_id(by), mark.values[by]);
+                            printf("|                                                            |\n");
+                            prt_ln();
+                            free(theme);
+                        } else {
+                            printf("| Error! Couldn't get users marks!                           |\n");
+                            return 0;
+                        }
+                    }
 
-		}
-	} break;
-	case 5:
-	{
-		if ((user = db_get_users(&size))) {
-			for (int i = 0; i < size; i++)
-			{
-				mark = db_get_user_marks(user[i].id);
-				if (mark.values[by] == 3)
-				{
-					std::cout << " " << user[i].first_name << " " << user[i].last_name << " " << mark.values[by] << std::endl;
-				}
-			}
+                    delete user;
+                } else {
+                    printf("| Error! Couldn't get users!                                 |\n");
+                    return 0;
+                }
 
-		}
-	} break;
-	case 6:
-	{
-		if ((user = db_get_users(&size))) {
-			for (int i = 0; i < size; i++)
-			{
-				mark = db_get_user_marks(user[i].id);
-				if (mark.values[by] == 2)
-				{
-					std::cout << " " << user[i].first_name << " " << user[i].last_name << " " << mark.values[by] << std::endl;
-				}
-			}
+                break;
+            case 2:
+                desc = 1;
+                if ((user = db_get_users_sorted(&size, by, desc)) != nullptr) {
+                    for (int i = 0; i < size; i++) {
+                        if ((mark = db_get_user_marks(user[i].id)).user_id) {
+                            printf("|                                                            |\n");
+                            printf("|  >> Student [%3d]:                                         |\n", user[i].id);
+                            printf("|                                                            |\n");
+                            printf("|    %s %s\n", user[i].first_name, user[i].last_name);
+                            printf("|                                                            |\n");
+                            printf("|       >> %s: %d\n", theme = db_get_theme_by_id(by), mark.values[by]);
+                            printf("|                                                            |\n");
+                            free(theme);
+                            prt_ln();
+                        } else {
+                            printf("| Error! Couldn't get users marks!                           |\n");
+                            return 0;
+                        }
+                    }
 
-		}
-	} break;
-	}
+                    delete user;
+                } else {
+                    printf("| Error! Couldn't get users!                                 |\n");
+                    return 0;
+                }
+                break;
+            case 3:
+                if ((user = db_get_users_sorted(&size, by, 1)) != nullptr) {
+                    for (int i = 0; i < size; i++) {
+                        if ((mark = db_get_user_marks(user[i].id)).user_id) {
+                            if (mark.values[by] == 5) {
+                                printf("|                                                            |\n");
+                                printf("|  >> Student [%3d]:                                         |\n", user[i].id);
+                                printf("|                                                            |\n");
+                                printf("|    %s %s\n", user[i].first_name, user[i].last_name);
+                                printf("|                                                            |\n");
+                                printf("|       >> %s: %d\n", theme = db_get_theme_by_id(by), mark.values[by]);
+                                printf("|                                                            |\n");
+                                free(theme);
+                                prt_ln();
+                            }
+                        } else {
+                            printf("| Error! Couldn't get users marks!                           |\n");
+                            return 0;
+                        }
+                    }
+
+                    delete user;
+                } else {
+                    printf("| Error! Couldn't get users!                                 |\n");
+                    return 0;
+                }
+                break;
+            case 4:
+                if ((user = db_get_users_sorted(&size, by, 1)) != nullptr) {
+                    for (int i = 0; i < size; i++) {
+                        if ((mark = db_get_user_marks(user[i].id)).user_id) {
+                            if (mark.values[by] == 4) {
+                                printf("|                                                            |\n");
+                                printf("|  >> Student [%3d]:                                         |\n", user[i].id);
+                                printf("|                                                            |\n");
+                                printf("|    %s %s\n", user[i].first_name, user[i].last_name);
+                                printf("|                                                            |\n");
+                                printf("|       >> %s: %d\n", theme = db_get_theme_by_id(by), mark.values[by]);
+                                printf("|                                                            |\n");
+                                free(theme);
+                                prt_ln();
+                            }
+                        } else {
+                            printf("| Error! Couldn't get users marks!                           |\n");
+                            return 0;
+                        }
+                    }
+
+                    delete user;
+                } else {
+                    printf("| Error! Couldn't get users!                                 |\n");
+                    return 0;
+                }
+                break;
+            case 5:
+                if ((user = db_get_users_sorted(&size, by, 1)) != nullptr) {
+                    for (int i = 0; i < size; i++) {
+                        if ((mark = db_get_user_marks(user[i].id)).user_id) {
+                            if (mark.values[by] == 3) {
+                                printf("|                                                            |\n");
+                                printf("|  >> Student [%3d]:                                         |\n", user[i].id);
+                                printf("|                                                            |\n");
+                                printf("|    %s %s\n", user[i].first_name, user[i].last_name);
+                                printf("|                                                            |\n");
+                                printf("|       >> %s: %d\n", theme = db_get_theme_by_id(by), mark.values[by]);
+                                printf("|                                                            |\n");
+                                free(theme);
+                                prt_ln();
+                            }
+                        } else {
+                            printf("| Error! Couldn't get users marks!                           |\n");
+                            return 0;
+                        }
+                    }
+
+                    delete user;
+                } else {
+                    printf("| Error! Couldn't get users!                                 |\n");
+                    return 0;
+                }
+                break;
+            case 6:
+                if ((user = db_get_users_sorted(&size, by, 1)) != nullptr) {
+                    for (int i = 0; i < size; i++) {
+                        if ((mark = db_get_user_marks(user[i].id)).user_id) {
+                            if (mark.values[by] == 2) {
+                                printf("|                                                            |\n");
+                                printf("|  >> Student [%3d]:                                         |\n", user[i].id);
+                                printf("|                                                            |\n");
+                                printf("|    %s %s\n", user[i].first_name, user[i].last_name);
+                                printf("|                                                            |\n");
+                                printf("|       >> %s: %d\n", theme = db_get_theme_by_id(by), mark.values[by]);
+                                printf("|                                                            |\n");
+                                free(theme);
+                                prt_ln();
+                            }
+                        } else {
+                            printf("| Error! Couldn't get users marks!                           |\n");
+                            return 0;
+                        }
+                    }
+
+                    delete user;
+                } else {
+                    printf("| Error! Couldn't get users!                                 |\n");
+                    return 0;
+                }
+                break;
+            default:
+                break;
+        }
+
+        break;
+    }
+
+	/* Returning value */
+    return 1;
 }
-void view_scores_for_the_final_test()
-{
-	int size, by = 9, desc = 1;
+int view_scores_for_the_final_test() {
+
+    /* Initializing variables */
+	int size, i;
 	struct User *user = nullptr;
 	struct Marks mark = {};
 
-	if ((user = db_get_users_sorted(&size, by, desc))) {
-		for (int i = 0; i < size; i++)
-		{
-			mark = db_get_user_marks(user[i].id);
-			std::cout << " " << user[i].first_name << " " << user[i].last_name << " " << mark.values[by] << std::endl;
-		}
-	}
+	/* Main part */
+    if ((user = db_get_users_sorted(&size, 9, 1)) != nullptr) {
+        for (i = 0; i < size; ++i) {
+            if ((mark = db_get_user_marks(user[i].id)).user_id) {
+                    printf("|                                                            |\n");
+                    printf("|  >> Student [%3d]:                                         |\n", user[i].id);
+                    printf("|                                                            |\n");
+                    printf("|    %s %s\n", user[i].first_name, user[i].last_name);
+                    printf("|                                                            |\n");
+                    printf("|       >> Final test: %d                                     |\n", mark.values[9]);
+                    printf("|                                                            |\n");
+                    prt_ln();
+            } else {
+                printf("| Error! Couldn't get users marks!                           |\n");
+                return 0;
+            }
+        }
+
+        delete user;
+    } else {
+        printf("| Error! Couldn't get users!                                 |\n");
+        return 0;
+    }
+
+	/* Returning value */
+	return 1;
 }
-void view_the_average_score()
-{
-	int size = 0, by = 8, desc = 1;
+
+int view_the_average_score() {
+
+    /* Initializing variables */
+	int size = 0, i;
 	struct User *user = nullptr;
 	struct Marks mark = {};
 
-	if ((user = db_get_users_sorted(&size, by, desc))) {
-		for (int i = 0; i < size; i++)
-		{
-			mark = db_get_user_marks(user[i].id);
-			std::cout << " " << user[i].first_name << " " << user[i].last_name << " " << mark.values[by] << std::endl;
-		}
-	}
+	/* Main part */
+	if ((user = db_get_users(&size))) {
+        for (i = 0; i < size; ++i) {
+            if ((mark = db_get_user_marks(user[i].id)).user_id) {
+                printf("|                                                            |\n");
+                printf("|  >> Student [%3d]:                                         |\n", user[i].id);
+                printf("|                                                            |\n");
+                printf("|    %s %s\n", user[i].first_name, user[i].last_name);
+                printf("|                                                            |\n");
+                printf("|       >> Mean: %6.3lf\n", get_mean(mark.user_id));
+                printf("|                                                            |\n");
+                prt_ln();
+            } else {
+                printf("| Error! Couldn't get users marks!                           |\n");
+                return 0;
+            }
+        }
+
+        delete user;
+    } else {
+        printf("| Error! Couldn't get users!                                 |\n");
+        return 0;
+    }
+
+	/* Returning value */
+    return 1;
 }

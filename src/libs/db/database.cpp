@@ -642,18 +642,14 @@ User * db_get_users_sorted(int * size, int by, int desc)
         num = sqlite3_column_int(st, 0);
         users[i].id = num;
 
-        auto text = (char *) sqlite3_column_text(st, 1);
-        strcpy(users[i].login, text);
+        strcpy(users[i].login, (char *) sqlite3_column_text(st, 1));
         // skip password column
-        text = (char *) sqlite3_column_text(st, 3);
-        strcpy( users[i].first_name, text );
-        text = (char *) sqlite3_column_text(st, 4);
-        strcpy( users[i].last_name, text );
+        strcpy(users[i].first_name, (char *) sqlite3_column_text(st, 3));
+        strcpy(users[i].last_name, (char *) sqlite3_column_text(st, 4));
 
         num = sqlite3_column_int(st, 5);
         users[i].admin = num != 0;
 
-        delete(text);
         rc = sqlite3_step(st);
         i++;
     }

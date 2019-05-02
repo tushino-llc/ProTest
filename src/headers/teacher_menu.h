@@ -33,16 +33,19 @@ int menu_change();
 int change_the_question();
 
 // Students
-void delete_student_account();
-void to_add_a_new_account_for_a_student();
-void to_see_the_change_of_a_students_progress();
+int delete_student_account();
+int to_add_a_new_account_for_a_student();
+double get_mean(int id);
+int to_see_the_change_of_a_students_progress();
 int view_the_list_of_students_with_grades();
 
 // Results
-void view_scores_on_all_topics();  
-void view_estimates_on_a_specific_topic(); 
-void view_scores_for_the_final_test(); 
-void view_the_average_score();
-int field_check_teacher(char *text);
+int view_scores_on_all_topics();
+int menu_how_to_sort();
+int view_estimates_on_a_specific_topic();
+int view_scores_for_the_final_test();
+int view_the_average_score();
+int field_check_teacher(char *);
+
 #endif
 
