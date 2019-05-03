@@ -81,10 +81,11 @@ int add_a_question() {
     /* I/O flow */
     while (1) {
         quest.theme = menu_topic();
-        ungetc('\n', stdin);
         if (quest.theme == -2) {
+            ungetc('\n', stdin);
             return 0;
         } else if (quest.theme == -1) {
+            ungetc('\n', stdin);
             return -1;
         }
 
