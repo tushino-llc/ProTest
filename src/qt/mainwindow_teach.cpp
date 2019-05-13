@@ -1085,3 +1085,10 @@ int MainWindow_teach::check_marks_fields() {
     /* Returning value */
     return 1;
 }
+
+void MainWindow_teach::refresh_table() {
+
+    /* Main part */
+    remove_table();
+    init_table();
+}

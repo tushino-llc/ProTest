@@ -42,6 +42,8 @@ public:
     ~MainWindow_teach();
     void Set_init_mode(int);
     void refresh_users();
+    void refresh_table();
+    void refresh_q();
 
 private slots:
     void on_actionStudents_2_triggered();
@@ -91,8 +93,6 @@ private slots:
     void init_q();
 
     void remove_q();
-
-    void refresh_q();
 
     void on_pushButton_Rem_Q_clicked();
 

@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_teach_t {
-    QByteArrayData data[47];
-    char stringdata0[1016];
+    QByteArrayData data[46];
+    char stringdata0[1006];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -58,26 +58,25 @@ QT_MOC_LITERAL(23, 482, 27), // "on_actionAbout_Qt_triggered"
 QT_MOC_LITERAL(24, 510, 24), // "on_actionAbout_triggered"
 QT_MOC_LITERAL(25, 535, 6), // "init_q"
 QT_MOC_LITERAL(26, 542, 8), // "remove_q"
-QT_MOC_LITERAL(27, 551, 9), // "refresh_q"
-QT_MOC_LITERAL(28, 561, 27), // "on_pushButton_Rem_Q_clicked"
-QT_MOC_LITERAL(29, 589, 27), // "on_pushButton_Add_Q_clicked"
-QT_MOC_LITERAL(30, 617, 33), // "on_comboBox_2_currentIndexCha..."
-QT_MOC_LITERAL(31, 651, 33), // "on_comboBox_3_currentIndexCha..."
-QT_MOC_LITERAL(32, 685, 15), // "get_question_id"
-QT_MOC_LITERAL(33, 701, 27), // "on_pushButton_apply_clicked"
-QT_MOC_LITERAL(34, 729, 21), // "on_lineA1_textChanged"
-QT_MOC_LITERAL(35, 751, 4), // "arg1"
-QT_MOC_LITERAL(36, 756, 21), // "on_lineA2_textChanged"
-QT_MOC_LITERAL(37, 778, 21), // "on_lineA3_textChanged"
-QT_MOC_LITERAL(38, 800, 21), // "on_lineA4_textChanged"
-QT_MOC_LITERAL(39, 822, 23), // "on_textEdit_textChanged"
-QT_MOC_LITERAL(40, 846, 25), // "on_radioButton_A1_clicked"
-QT_MOC_LITERAL(41, 872, 25), // "on_radioButton_A2_clicked"
-QT_MOC_LITERAL(42, 898, 25), // "on_radioButton_A3_clicked"
-QT_MOC_LITERAL(43, 924, 25), // "on_radioButton_A4_clicked"
-QT_MOC_LITERAL(44, 950, 16), // "check_all_fields"
-QT_MOC_LITERAL(45, 967, 29), // "on_MainWindow_teach_destroyed"
-QT_MOC_LITERAL(46, 997, 18) // "check_marks_fields"
+QT_MOC_LITERAL(27, 551, 27), // "on_pushButton_Rem_Q_clicked"
+QT_MOC_LITERAL(28, 579, 27), // "on_pushButton_Add_Q_clicked"
+QT_MOC_LITERAL(29, 607, 33), // "on_comboBox_2_currentIndexCha..."
+QT_MOC_LITERAL(30, 641, 33), // "on_comboBox_3_currentIndexCha..."
+QT_MOC_LITERAL(31, 675, 15), // "get_question_id"
+QT_MOC_LITERAL(32, 691, 27), // "on_pushButton_apply_clicked"
+QT_MOC_LITERAL(33, 719, 21), // "on_lineA1_textChanged"
+QT_MOC_LITERAL(34, 741, 4), // "arg1"
+QT_MOC_LITERAL(35, 746, 21), // "on_lineA2_textChanged"
+QT_MOC_LITERAL(36, 768, 21), // "on_lineA3_textChanged"
+QT_MOC_LITERAL(37, 790, 21), // "on_lineA4_textChanged"
+QT_MOC_LITERAL(38, 812, 23), // "on_textEdit_textChanged"
+QT_MOC_LITERAL(39, 836, 25), // "on_radioButton_A1_clicked"
+QT_MOC_LITERAL(40, 862, 25), // "on_radioButton_A2_clicked"
+QT_MOC_LITERAL(41, 888, 25), // "on_radioButton_A3_clicked"
+QT_MOC_LITERAL(42, 914, 25), // "on_radioButton_A4_clicked"
+QT_MOC_LITERAL(43, 940, 16), // "check_all_fields"
+QT_MOC_LITERAL(44, 957, 29), // "on_MainWindow_teach_destroyed"
+QT_MOC_LITERAL(45, 987, 18) // "check_marks_fields"
 
     },
     "MainWindow_teach\0on_actionStudents_2_triggered\0"
@@ -96,7 +95,7 @@ QT_MOC_LITERAL(46, 997, 18) // "check_marks_fields"
     "remove_table\0on_actionGet_Help_triggered\0"
     "on_actionAbout_Qt_triggered\0"
     "on_actionAbout_triggered\0init_q\0"
-    "remove_q\0refresh_q\0on_pushButton_Rem_Q_clicked\0"
+    "remove_q\0on_pushButton_Rem_Q_clicked\0"
     "on_pushButton_Add_Q_clicked\0"
     "on_comboBox_2_currentIndexChanged\0"
     "on_comboBox_3_currentIndexChanged\0"
@@ -119,7 +118,7 @@ static const uint qt_meta_data_MainWindow_teach[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      43,   14, // methods
+      42,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -127,49 +126,48 @@ static const uint qt_meta_data_MainWindow_teach[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,  229,    2, 0x08 /* Private */,
-       3,    0,  230,    2, 0x08 /* Private */,
-       4,    0,  231,    2, 0x08 /* Private */,
-       5,    1,  232,    2, 0x08 /* Private */,
-       7,    0,  235,    2, 0x08 /* Private */,
-       8,    0,  236,    2, 0x08 /* Private */,
-       9,    0,  237,    2, 0x08 /* Private */,
-      10,    0,  238,    2, 0x08 /* Private */,
-      11,    0,  239,    2, 0x08 /* Private */,
-      12,    0,  240,    2, 0x08 /* Private */,
-      13,    0,  241,    2, 0x08 /* Private */,
-      14,    0,  242,    2, 0x08 /* Private */,
-      15,    1,  243,    2, 0x08 /* Private */,
-      16,    0,  246,    2, 0x08 /* Private */,
-      17,    0,  247,    2, 0x08 /* Private */,
-      18,    1,  248,    2, 0x08 /* Private */,
-      19,    0,  251,    2, 0x08 /* Private */,
-      20,    0,  252,    2, 0x08 /* Private */,
-      21,    0,  253,    2, 0x08 /* Private */,
-      22,    0,  254,    2, 0x08 /* Private */,
-      23,    0,  255,    2, 0x08 /* Private */,
-      24,    0,  256,    2, 0x08 /* Private */,
-      25,    0,  257,    2, 0x08 /* Private */,
-      26,    0,  258,    2, 0x08 /* Private */,
-      27,    0,  259,    2, 0x08 /* Private */,
-      28,    0,  260,    2, 0x08 /* Private */,
-      29,    0,  261,    2, 0x08 /* Private */,
-      30,    1,  262,    2, 0x08 /* Private */,
-      31,    1,  265,    2, 0x08 /* Private */,
-      32,    1,  268,    2, 0x08 /* Private */,
-      33,    0,  271,    2, 0x08 /* Private */,
-      34,    1,  272,    2, 0x08 /* Private */,
-      36,    1,  275,    2, 0x08 /* Private */,
-      37,    1,  278,    2, 0x08 /* Private */,
-      38,    1,  281,    2, 0x08 /* Private */,
-      39,    0,  284,    2, 0x08 /* Private */,
-      40,    0,  285,    2, 0x08 /* Private */,
-      41,    0,  286,    2, 0x08 /* Private */,
-      42,    0,  287,    2, 0x08 /* Private */,
-      43,    0,  288,    2, 0x08 /* Private */,
-      44,    0,  289,    2, 0x08 /* Private */,
-      45,    0,  290,    2, 0x08 /* Private */,
-      46,    0,  291,    2, 0x08 /* Private */,
+       1,    0,  224,    2, 0x08 /* Private */,
+       3,    0,  225,    2, 0x08 /* Private */,
+       4,    0,  226,    2, 0x08 /* Private */,
+       5,    1,  227,    2, 0x08 /* Private */,
+       7,    0,  230,    2, 0x08 /* Private */,
+       8,    0,  231,    2, 0x08 /* Private */,
+       9,    0,  232,    2, 0x08 /* Private */,
+      10,    0,  233,    2, 0x08 /* Private */,
+      11,    0,  234,    2, 0x08 /* Private */,
+      12,    0,  235,    2, 0x08 /* Private */,
+      13,    0,  236,    2, 0x08 /* Private */,
+      14,    0,  237,    2, 0x08 /* Private */,
+      15,    1,  238,    2, 0x08 /* Private */,
+      16,    0,  241,    2, 0x08 /* Private */,
+      17,    0,  242,    2, 0x08 /* Private */,
+      18,    1,  243,    2, 0x08 /* Private */,
+      19,    0,  246,    2, 0x08 /* Private */,
+      20,    0,  247,    2, 0x08 /* Private */,
+      21,    0,  248,    2, 0x08 /* Private */,
+      22,    0,  249,    2, 0x08 /* Private */,
+      23,    0,  250,    2, 0x08 /* Private */,
+      24,    0,  251,    2, 0x08 /* Private */,
+      25,    0,  252,    2, 0x08 /* Private */,
+      26,    0,  253,    2, 0x08 /* Private */,
+      27,    0,  254,    2, 0x08 /* Private */,
+      28,    0,  255,    2, 0x08 /* Private */,
+      29,    1,  256,    2, 0x08 /* Private */,
+      30,    1,  259,    2, 0x08 /* Private */,
+      31,    1,  262,    2, 0x08 /* Private */,
+      32,    0,  265,    2, 0x08 /* Private */,
+      33,    1,  266,    2, 0x08 /* Private */,
+      35,    1,  269,    2, 0x08 /* Private */,
+      36,    1,  272,    2, 0x08 /* Private */,
+      37,    1,  275,    2, 0x08 /* Private */,
+      38,    0,  278,    2, 0x08 /* Private */,
+      39,    0,  279,    2, 0x08 /* Private */,
+      40,    0,  280,    2, 0x08 /* Private */,
+      41,    0,  281,    2, 0x08 /* Private */,
+      42,    0,  282,    2, 0x08 /* Private */,
+      43,    0,  283,    2, 0x08 /* Private */,
+      44,    0,  284,    2, 0x08 /* Private */,
+      45,    0,  285,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -198,15 +196,14 @@ static const uint qt_meta_data_MainWindow_teach[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void,
     QMetaType::Void, QMetaType::Int,    6,
     QMetaType::Void, QMetaType::Int,    6,
     QMetaType::Int, QMetaType::Int,    2,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,   35,
-    QMetaType::Void, QMetaType::QString,   35,
-    QMetaType::Void, QMetaType::QString,   35,
-    QMetaType::Void, QMetaType::QString,   35,
+    QMetaType::Void, QMetaType::QString,   34,
+    QMetaType::Void, QMetaType::QString,   34,
+    QMetaType::Void, QMetaType::QString,   34,
+    QMetaType::Void, QMetaType::QString,   34,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -251,27 +248,26 @@ void MainWindow_teach::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int
         case 21: _t->on_actionAbout_triggered(); break;
         case 22: _t->init_q(); break;
         case 23: _t->remove_q(); break;
-        case 24: _t->refresh_q(); break;
-        case 25: _t->on_pushButton_Rem_Q_clicked(); break;
-        case 26: _t->on_pushButton_Add_Q_clicked(); break;
-        case 27: _t->on_comboBox_2_currentIndexChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 28: _t->on_comboBox_3_currentIndexChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 29: { int _r = _t->get_question_id((*reinterpret_cast< int(*)>(_a[1])));
+        case 24: _t->on_pushButton_Rem_Q_clicked(); break;
+        case 25: _t->on_pushButton_Add_Q_clicked(); break;
+        case 26: _t->on_comboBox_2_currentIndexChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 27: _t->on_comboBox_3_currentIndexChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 28: { int _r = _t->get_question_id((*reinterpret_cast< int(*)>(_a[1])));
             if (_a[0]) *reinterpret_cast< int*>(_a[0]) = std::move(_r); }  break;
-        case 30: _t->on_pushButton_apply_clicked(); break;
-        case 31: _t->on_lineA1_textChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 32: _t->on_lineA2_textChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 33: _t->on_lineA3_textChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 34: _t->on_lineA4_textChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 35: _t->on_textEdit_textChanged(); break;
-        case 36: _t->on_radioButton_A1_clicked(); break;
-        case 37: _t->on_radioButton_A2_clicked(); break;
-        case 38: _t->on_radioButton_A3_clicked(); break;
-        case 39: _t->on_radioButton_A4_clicked(); break;
-        case 40: { int _r = _t->check_all_fields();
+        case 29: _t->on_pushButton_apply_clicked(); break;
+        case 30: _t->on_lineA1_textChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 31: _t->on_lineA2_textChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 32: _t->on_lineA3_textChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 33: _t->on_lineA4_textChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 34: _t->on_textEdit_textChanged(); break;
+        case 35: _t->on_radioButton_A1_clicked(); break;
+        case 36: _t->on_radioButton_A2_clicked(); break;
+        case 37: _t->on_radioButton_A3_clicked(); break;
+        case 38: _t->on_radioButton_A4_clicked(); break;
+        case 39: { int _r = _t->check_all_fields();
             if (_a[0]) *reinterpret_cast< int*>(_a[0]) = std::move(_r); }  break;
-        case 41: _t->on_MainWindow_teach_destroyed(); break;
-        case 42: { int _r = _t->check_marks_fields();
+        case 40: _t->on_MainWindow_teach_destroyed(); break;
+        case 41: { int _r = _t->check_marks_fields();
             if (_a[0]) *reinterpret_cast< int*>(_a[0]) = std::move(_r); }  break;
         default: ;
         }
@@ -307,13 +303,13 @@ int MainWindow_teach::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 43)
+        if (_id < 42)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 43;
+        _id -= 42;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 43)
+        if (_id < 42)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 43;
+        _id -= 42;
     }
     return _id;
 }

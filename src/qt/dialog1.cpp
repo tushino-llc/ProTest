@@ -317,6 +317,18 @@ void Dialog1::on_pushSignUp_clicked()
                                 }
                             } else if (ui->label->text() == "Add student") {
                                 QMessageBox::information(this, "Done!", "Student was added successfully!");
+                                QObject *p = this;
+
+                                p = p->parent();
+
+                                MainWindow_teach *mwt = qobject_cast<MainWindow_teach *>(p);
+
+                                if (!mwt) {
+                                    // couldnt find main window
+                                } else {
+                                    mwt->refresh_users();
+                                    mwt->refresh_table();
+                                }
                                 this->hide();
                             }
                         } else {

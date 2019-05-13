@@ -19,6 +19,7 @@ along with ProTest. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "dialog2.h"
+#include "mainwindow_teach.h"
 #include "../build-qt-Desktop-Debug/ui_dialog2.h"
 #include "../headers/tests_main_header.h"
 
@@ -123,6 +124,19 @@ void Dialog2::on_pushButton_clicked()
 
     if (db_add_question(quest) != -1) {
         this->close();
+
+        QObject *p = this;
+
+        p = p->parent();
+
+        MainWindow_teach *mwt = qobject_cast<MainWindow_teach *>(p);
+
+        if (!mwt) {
+            // couldnt find main window
+        } else {
+            mwt->refresh_q();
+        }
+
     } else {
         QMessageBox::critical(this, "Error!", "Couldn't create question!");
     }
