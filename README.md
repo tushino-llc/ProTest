@@ -41,11 +41,11 @@ After that, run `ldconfig(8)`.  Do `sudo ldconfig`, there's no harm in it.
 * `AX_HAVE_QT` `m4` macro will find your Qt5 path using `qmake` (especially `qmake --version` command). If you have your Qt5 installed in a path, that this macro aren't able to find out, remove `qmake` and add `/path/to/your/custom/qmake/and/Qt/bin` to your `$PATH` variable.
 > **Note.** You can check Qt path manually by executing `qmake --version` and see its path
 * Our program can be built only under systems, that have Qt5 support (if you are building with Qt5 support _[see notes above]_).
-> **Warning!** It's better to have the newest version of Qt5 downloaded from [official webpage](https://www.qt.io/download "Qt5 download page"). _For example **Ubuntu 14.04** are no longer supported. Thus, **ProTest** can't be built under this system_
-* If you don't want to built it from source files by yourself, you can use binaries for **RHEL-_based_**, **Debian-_based_** systems.
+> **Warning!** It's better to have the newest version of Qt5 downloaded from [official webpage](https://www.qt.io/download "Qt5 download page"). _For example **Ubuntu 14.04** is no longer supported. Thus, **ProTest** can't be built under this system_
+* If you use Windows® 8.1 or higher, you can install **ProTest** using `.msi` file you can find in `release` tab.
 
 ## Licence
-It distributes only under GPLv2 licence. Go to https://www.gnu.org/licenses/ for more information
+It distributes only under GPLv2 licence. Go to [https://www.gnu.org/licenses/] for more information
 
 ## Copyright 
 © 2019 Tushino Software LLC
