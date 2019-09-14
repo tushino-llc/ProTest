@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow_teach.ui'
 **
-** Created by: Qt User Interface Compiler version 5.12.2
+** Created by: Qt User Interface Compiler version 5.13.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -537,8 +537,8 @@ public:
         tableWidget->setRowCount(1);
         splitter->addWidget(tableWidget);
         tableWidget->horizontalHeader()->setCascadingSectionResizes(false);
-        tableWidget->horizontalHeader()->setDefaultSectionSize(90);
         tableWidget->horizontalHeader()->setMinimumSectionSize(35);
+        tableWidget->horizontalHeader()->setDefaultSectionSize(90);
         tableWidget->horizontalHeader()->setStretchLastSection(false);
         tableWidget->verticalHeader()->setProperty("showSortIndicator", QVariant(false));
         tableWidget->verticalHeader()->setStretchLastSection(false);
@@ -716,7 +716,7 @@ public:
         statusBar = new QStatusBar(MainWindow_teach);
         statusBar->setObjectName(QString::fromUtf8("statusBar"));
         MainWindow_teach->setStatusBar(statusBar);
-#ifndef QT_NO_SHORTCUT
+#if QT_CONFIG(shortcut)
         label_2->setBuddy(lineFN);
         label_3->setBuddy(lineLN);
         label->setBuddy(lineLogin);
@@ -731,7 +731,7 @@ public:
         label_6->setBuddy(lineLoops);
         label_8->setBuddy(lineArrays);
         label_7->setBuddy(lineStrings);
-#endif // QT_NO_SHORTCUT
+#endif // QT_CONFIG(shortcut)
         QWidget::setTabOrder(comboBox, pushButton_add);
         QWidget::setTabOrder(pushButton_add, pushButton_rm);
         QWidget::setTabOrder(pushButton_rm, lineFN);
@@ -798,127 +798,127 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow_teach)
     {
-        MainWindow_teach->setWindowTitle(QApplication::translate("MainWindow_teach", "Teacher's mode", nullptr));
-        actionOpen_Database->setText(QApplication::translate("MainWindow_teach", "Open Database", nullptr));
-#ifndef QT_NO_TOOLTIP
-        actionOpen_Database->setToolTip(QApplication::translate("MainWindow_teach", "<html><head/><body><p>Ctrl + O</p></body></html>", nullptr));
-#endif // QT_NO_TOOLTIP
-#ifndef QT_NO_SHORTCUT
-        actionOpen_Database->setShortcut(QApplication::translate("MainWindow_teach", "Ctrl+O", nullptr));
-#endif // QT_NO_SHORTCUT
-        actionClose_Database->setText(QApplication::translate("MainWindow_teach", "Close Database", nullptr));
-        actionGet_Help->setText(QApplication::translate("MainWindow_teach", "Get Help (Online)", nullptr));
-        actionAbout->setText(QApplication::translate("MainWindow_teach", "About", nullptr));
-        actionAbout_Qt->setText(QApplication::translate("MainWindow_teach", "About Qt", nullptr));
-        actionStudents->setText(QApplication::translate("MainWindow_teach", "Students", nullptr));
-        actionQuestions->setText(QApplication::translate("MainWindow_teach", "Questions", nullptr));
-#ifndef QT_NO_TOOLTIP
-        actionQuestions->setToolTip(QApplication::translate("MainWindow_teach", "<html><head/><body><p>Ctrl + 2</p></body></html>", nullptr));
-#endif // QT_NO_TOOLTIP
-#ifndef QT_NO_SHORTCUT
-        actionQuestions->setShortcut(QApplication::translate("MainWindow_teach", "Ctrl+2", nullptr));
-#endif // QT_NO_SHORTCUT
-        actionStudents_2->setText(QApplication::translate("MainWindow_teach", "Students", nullptr));
-#ifndef QT_NO_TOOLTIP
-        actionStudents_2->setToolTip(QApplication::translate("MainWindow_teach", "<html><head/><body><p>Ctrl + 1</p></body></html>", nullptr));
-#endif // QT_NO_TOOLTIP
-#ifndef QT_NO_SHORTCUT
-        actionStudents_2->setShortcut(QApplication::translate("MainWindow_teach", "Ctrl+1", nullptr));
-#endif // QT_NO_SHORTCUT
-        actionExit->setText(QApplication::translate("MainWindow_teach", "Exit", nullptr));
-#ifndef QT_NO_TOOLTIP
-        actionExit->setToolTip(QApplication::translate("MainWindow_teach", "<html><head/><body><p>Ctrl + Q</p></body></html>", nullptr));
-#endif // QT_NO_TOOLTIP
-#ifndef QT_NO_SHORTCUT
-        actionExit->setShortcut(QApplication::translate("MainWindow_teach", "Ctrl+Q", nullptr));
-#endif // QT_NO_SHORTCUT
-        actionLog_out->setText(QApplication::translate("MainWindow_teach", "Log out", nullptr));
-        actionAllow->setText(QApplication::translate("MainWindow_teach", "Allow editing scores", nullptr));
-#ifndef QT_NO_TOOLTIP
-        actionAllow->setToolTip(QApplication::translate("MainWindow_teach", "<html><head/><body><p>Ctrl+E</p></body></html>", nullptr));
-#endif // QT_NO_TOOLTIP
-#ifndef QT_NO_SHORTCUT
-        actionAllow->setShortcut(QApplication::translate("MainWindow_teach", "Ctrl+E", nullptr));
-#endif // QT_NO_SHORTCUT
-        actionRefresh->setText(QApplication::translate("MainWindow_teach", "Refresh students", nullptr));
-#ifndef QT_NO_TOOLTIP
-        actionRefresh->setToolTip(QApplication::translate("MainWindow_teach", "<html><head/><body><p>Ctrl + R</p></body></html>", nullptr));
-#endif // QT_NO_TOOLTIP
-#ifndef QT_NO_SHORTCUT
-        actionRefresh->setShortcut(QApplication::translate("MainWindow_teach", "Ctrl+R", nullptr));
-#endif // QT_NO_SHORTCUT
+        MainWindow_teach->setWindowTitle(QCoreApplication::translate("MainWindow_teach", "Teacher's mode", nullptr));
+        actionOpen_Database->setText(QCoreApplication::translate("MainWindow_teach", "Open Database", nullptr));
+#if QT_CONFIG(tooltip)
+        actionOpen_Database->setToolTip(QCoreApplication::translate("MainWindow_teach", "<html><head/><body><p>Ctrl + O</p></body></html>", nullptr));
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(shortcut)
+        actionOpen_Database->setShortcut(QCoreApplication::translate("MainWindow_teach", "Ctrl+O", nullptr));
+#endif // QT_CONFIG(shortcut)
+        actionClose_Database->setText(QCoreApplication::translate("MainWindow_teach", "Close Database", nullptr));
+        actionGet_Help->setText(QCoreApplication::translate("MainWindow_teach", "Get Help (Online)", nullptr));
+        actionAbout->setText(QCoreApplication::translate("MainWindow_teach", "About", nullptr));
+        actionAbout_Qt->setText(QCoreApplication::translate("MainWindow_teach", "About Qt", nullptr));
+        actionStudents->setText(QCoreApplication::translate("MainWindow_teach", "Students", nullptr));
+        actionQuestions->setText(QCoreApplication::translate("MainWindow_teach", "Questions", nullptr));
+#if QT_CONFIG(tooltip)
+        actionQuestions->setToolTip(QCoreApplication::translate("MainWindow_teach", "<html><head/><body><p>Ctrl + 2</p></body></html>", nullptr));
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(shortcut)
+        actionQuestions->setShortcut(QCoreApplication::translate("MainWindow_teach", "Ctrl+2", nullptr));
+#endif // QT_CONFIG(shortcut)
+        actionStudents_2->setText(QCoreApplication::translate("MainWindow_teach", "Students", nullptr));
+#if QT_CONFIG(tooltip)
+        actionStudents_2->setToolTip(QCoreApplication::translate("MainWindow_teach", "<html><head/><body><p>Ctrl + 1</p></body></html>", nullptr));
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(shortcut)
+        actionStudents_2->setShortcut(QCoreApplication::translate("MainWindow_teach", "Ctrl+1", nullptr));
+#endif // QT_CONFIG(shortcut)
+        actionExit->setText(QCoreApplication::translate("MainWindow_teach", "Exit", nullptr));
+#if QT_CONFIG(tooltip)
+        actionExit->setToolTip(QCoreApplication::translate("MainWindow_teach", "<html><head/><body><p>Ctrl + Q</p></body></html>", nullptr));
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(shortcut)
+        actionExit->setShortcut(QCoreApplication::translate("MainWindow_teach", "Ctrl+Q", nullptr));
+#endif // QT_CONFIG(shortcut)
+        actionLog_out->setText(QCoreApplication::translate("MainWindow_teach", "Log out", nullptr));
+        actionAllow->setText(QCoreApplication::translate("MainWindow_teach", "Allow editing scores", nullptr));
+#if QT_CONFIG(tooltip)
+        actionAllow->setToolTip(QCoreApplication::translate("MainWindow_teach", "<html><head/><body><p>Ctrl+E</p></body></html>", nullptr));
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(shortcut)
+        actionAllow->setShortcut(QCoreApplication::translate("MainWindow_teach", "Ctrl+E", nullptr));
+#endif // QT_CONFIG(shortcut)
+        actionRefresh->setText(QCoreApplication::translate("MainWindow_teach", "Refresh students", nullptr));
+#if QT_CONFIG(tooltip)
+        actionRefresh->setToolTip(QCoreApplication::translate("MainWindow_teach", "<html><head/><body><p>Ctrl + R</p></body></html>", nullptr));
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(shortcut)
+        actionRefresh->setShortcut(QCoreApplication::translate("MainWindow_teach", "Ctrl+R", nullptr));
+#endif // QT_CONFIG(shortcut)
         groupBox->setTitle(QString());
-        comboBox->setItemText(0, QApplication::translate("MainWindow_teach", "Choose a student...", nullptr));
+        comboBox->setItemText(0, QCoreApplication::translate("MainWindow_teach", "Choose a student...", nullptr));
 
-        comboBox->setCurrentText(QApplication::translate("MainWindow_teach", "Choose a student...", nullptr));
-        pushButton_add->setText(QApplication::translate("MainWindow_teach", "+", nullptr));
-        pushButton_rm->setText(QApplication::translate("MainWindow_teach", "-", nullptr));
-        groupBox_3->setTitle(QApplication::translate("MainWindow_teach", "Credentials", nullptr));
-        label_2->setText(QApplication::translate("MainWindow_teach", "First name", nullptr));
-        label_3->setText(QApplication::translate("MainWindow_teach", "Last name", nullptr));
-        label->setText(QApplication::translate("MainWindow_teach", "Login", nullptr));
-        label_14->setText(QApplication::translate("MainWindow_teach", "ID", nullptr));
-        groupBox_4->setTitle(QApplication::translate("MainWindow_teach", "Scores", nullptr));
-        label_10->setText(QApplication::translate("MainWindow_teach", "Recursion", nullptr));
-        label_9->setText(QApplication::translate("MainWindow_teach", "Structures", nullptr));
-        label_11->setText(QApplication::translate("MainWindow_teach", "Files", nullptr));
-        label_4->setText(QApplication::translate("MainWindow_teach", "Pointers and adresses", nullptr));
-        label_12->setText(QApplication::translate("MainWindow_teach", "Dynamic memory", nullptr));
-        label_13->setText(QApplication::translate("MainWindow_teach", "Final test result", nullptr));
-        label_5->setText(QApplication::translate("MainWindow_teach", "Arithmetic mean of all results", nullptr));
-        label_6->setText(QApplication::translate("MainWindow_teach", "Loops", nullptr));
-        label_8->setText(QApplication::translate("MainWindow_teach", "Arrays", nullptr));
-        label_7->setText(QApplication::translate("MainWindow_teach", "Strings", nullptr));
-        pushButton_2->setText(QApplication::translate("MainWindow_teach", "Apply changes", nullptr));
-        pushButton->setText(QApplication::translate("MainWindow_teach", "Reset all scores", nullptr));
+        comboBox->setCurrentText(QCoreApplication::translate("MainWindow_teach", "Choose a student...", nullptr));
+        pushButton_add->setText(QCoreApplication::translate("MainWindow_teach", "+", nullptr));
+        pushButton_rm->setText(QCoreApplication::translate("MainWindow_teach", "-", nullptr));
+        groupBox_3->setTitle(QCoreApplication::translate("MainWindow_teach", "Credentials", nullptr));
+        label_2->setText(QCoreApplication::translate("MainWindow_teach", "First name", nullptr));
+        label_3->setText(QCoreApplication::translate("MainWindow_teach", "Last name", nullptr));
+        label->setText(QCoreApplication::translate("MainWindow_teach", "Login", nullptr));
+        label_14->setText(QCoreApplication::translate("MainWindow_teach", "ID", nullptr));
+        groupBox_4->setTitle(QCoreApplication::translate("MainWindow_teach", "Scores", nullptr));
+        label_10->setText(QCoreApplication::translate("MainWindow_teach", "Recursion", nullptr));
+        label_9->setText(QCoreApplication::translate("MainWindow_teach", "Structures", nullptr));
+        label_11->setText(QCoreApplication::translate("MainWindow_teach", "Files", nullptr));
+        label_4->setText(QCoreApplication::translate("MainWindow_teach", "Pointers and adresses", nullptr));
+        label_12->setText(QCoreApplication::translate("MainWindow_teach", "Dynamic memory", nullptr));
+        label_13->setText(QCoreApplication::translate("MainWindow_teach", "Final test result", nullptr));
+        label_5->setText(QCoreApplication::translate("MainWindow_teach", "Arithmetic mean of all results", nullptr));
+        label_6->setText(QCoreApplication::translate("MainWindow_teach", "Loops", nullptr));
+        label_8->setText(QCoreApplication::translate("MainWindow_teach", "Arrays", nullptr));
+        label_7->setText(QCoreApplication::translate("MainWindow_teach", "Strings", nullptr));
+        pushButton_2->setText(QCoreApplication::translate("MainWindow_teach", "Apply changes", nullptr));
+        pushButton->setText(QCoreApplication::translate("MainWindow_teach", "Reset all scores", nullptr));
         QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
-        ___qtablewidgetitem->setText(QApplication::translate("MainWindow_teach", "First name", nullptr));
+        ___qtablewidgetitem->setText(QCoreApplication::translate("MainWindow_teach", "First name", nullptr));
         QTableWidgetItem *___qtablewidgetitem1 = tableWidget->horizontalHeaderItem(1);
-        ___qtablewidgetitem1->setText(QApplication::translate("MainWindow_teach", "Last name", nullptr));
+        ___qtablewidgetitem1->setText(QCoreApplication::translate("MainWindow_teach", "Last name", nullptr));
         QTableWidgetItem *___qtablewidgetitem2 = tableWidget->horizontalHeaderItem(2);
-        ___qtablewidgetitem2->setText(QApplication::translate("MainWindow_teach", "Loops", nullptr));
+        ___qtablewidgetitem2->setText(QCoreApplication::translate("MainWindow_teach", "Loops", nullptr));
         QTableWidgetItem *___qtablewidgetitem3 = tableWidget->horizontalHeaderItem(3);
-        ___qtablewidgetitem3->setText(QApplication::translate("MainWindow_teach", "Arrays", nullptr));
+        ___qtablewidgetitem3->setText(QCoreApplication::translate("MainWindow_teach", "Arrays", nullptr));
         QTableWidgetItem *___qtablewidgetitem4 = tableWidget->horizontalHeaderItem(4);
-        ___qtablewidgetitem4->setText(QApplication::translate("MainWindow_teach", "Strings", nullptr));
+        ___qtablewidgetitem4->setText(QCoreApplication::translate("MainWindow_teach", "Strings", nullptr));
         QTableWidgetItem *___qtablewidgetitem5 = tableWidget->horizontalHeaderItem(5);
-        ___qtablewidgetitem5->setText(QApplication::translate("MainWindow_teach", "Recursion", nullptr));
+        ___qtablewidgetitem5->setText(QCoreApplication::translate("MainWindow_teach", "Recursion", nullptr));
         QTableWidgetItem *___qtablewidgetitem6 = tableWidget->horizontalHeaderItem(6);
-        ___qtablewidgetitem6->setText(QApplication::translate("MainWindow_teach", "Stuctures", nullptr));
+        ___qtablewidgetitem6->setText(QCoreApplication::translate("MainWindow_teach", "Stuctures", nullptr));
         QTableWidgetItem *___qtablewidgetitem7 = tableWidget->horizontalHeaderItem(7);
-        ___qtablewidgetitem7->setText(QApplication::translate("MainWindow_teach", "Files", nullptr));
+        ___qtablewidgetitem7->setText(QCoreApplication::translate("MainWindow_teach", "Files", nullptr));
         QTableWidgetItem *___qtablewidgetitem8 = tableWidget->horizontalHeaderItem(8);
-        ___qtablewidgetitem8->setText(QApplication::translate("MainWindow_teach", "Pointers", nullptr));
+        ___qtablewidgetitem8->setText(QCoreApplication::translate("MainWindow_teach", "Pointers", nullptr));
         QTableWidgetItem *___qtablewidgetitem9 = tableWidget->horizontalHeaderItem(9);
-        ___qtablewidgetitem9->setText(QApplication::translate("MainWindow_teach", "Dynamics", nullptr));
+        ___qtablewidgetitem9->setText(QCoreApplication::translate("MainWindow_teach", "Dynamics", nullptr));
         QTableWidgetItem *___qtablewidgetitem10 = tableWidget->horizontalHeaderItem(10);
-        ___qtablewidgetitem10->setText(QApplication::translate("MainWindow_teach", "Final test", nullptr));
+        ___qtablewidgetitem10->setText(QCoreApplication::translate("MainWindow_teach", "Final test", nullptr));
         QTableWidgetItem *___qtablewidgetitem11 = tableWidget->horizontalHeaderItem(11);
-        ___qtablewidgetitem11->setText(QApplication::translate("MainWindow_teach", "Mean", nullptr));
+        ___qtablewidgetitem11->setText(QCoreApplication::translate("MainWindow_teach", "Mean", nullptr));
         groupBox_2->setTitle(QString());
         radioButton_A1->setText(QString());
         radioButton_A2->setText(QString());
         radioButton_A3->setText(QString());
         radioButton_A4->setText(QString());
-        comboBox_2->setItemText(0, QApplication::translate("MainWindow_teach", "Topic...", nullptr));
-        comboBox_2->setItemText(1, QApplication::translate("MainWindow_teach", "Loops", nullptr));
-        comboBox_2->setItemText(2, QApplication::translate("MainWindow_teach", "Arrays", nullptr));
-        comboBox_2->setItemText(3, QApplication::translate("MainWindow_teach", "Strings", nullptr));
-        comboBox_2->setItemText(4, QApplication::translate("MainWindow_teach", "Recursion", nullptr));
-        comboBox_2->setItemText(5, QApplication::translate("MainWindow_teach", "Structures", nullptr));
-        comboBox_2->setItemText(6, QApplication::translate("MainWindow_teach", "Files", nullptr));
-        comboBox_2->setItemText(7, QApplication::translate("MainWindow_teach", "Pointers", nullptr));
-        comboBox_2->setItemText(8, QApplication::translate("MainWindow_teach", "Dynamic memory", nullptr));
+        comboBox_2->setItemText(0, QCoreApplication::translate("MainWindow_teach", "Topic...", nullptr));
+        comboBox_2->setItemText(1, QCoreApplication::translate("MainWindow_teach", "Loops", nullptr));
+        comboBox_2->setItemText(2, QCoreApplication::translate("MainWindow_teach", "Arrays", nullptr));
+        comboBox_2->setItemText(3, QCoreApplication::translate("MainWindow_teach", "Strings", nullptr));
+        comboBox_2->setItemText(4, QCoreApplication::translate("MainWindow_teach", "Recursion", nullptr));
+        comboBox_2->setItemText(5, QCoreApplication::translate("MainWindow_teach", "Structures", nullptr));
+        comboBox_2->setItemText(6, QCoreApplication::translate("MainWindow_teach", "Files", nullptr));
+        comboBox_2->setItemText(7, QCoreApplication::translate("MainWindow_teach", "Pointers", nullptr));
+        comboBox_2->setItemText(8, QCoreApplication::translate("MainWindow_teach", "Dynamic memory", nullptr));
 
-        comboBox_3->setItemText(0, QApplication::translate("MainWindow_teach", "Question...", nullptr));
+        comboBox_3->setItemText(0, QCoreApplication::translate("MainWindow_teach", "Question...", nullptr));
 
-        pushButton_Add_Q->setText(QApplication::translate("MainWindow_teach", "+", nullptr));
-        pushButton_Rem_Q->setText(QApplication::translate("MainWindow_teach", "-", nullptr));
-        pushButton_apply->setText(QApplication::translate("MainWindow_teach", "Apply changes", nullptr));
-        menuFile->setTitle(QApplication::translate("MainWindow_teach", "File", nullptr));
-        menuEdit->setTitle(QApplication::translate("MainWindow_teach", "Edit", nullptr));
-        menuHelp->setTitle(QApplication::translate("MainWindow_teach", "Help", nullptr));
-        menuWindow->setTitle(QApplication::translate("MainWindow_teach", "Window", nullptr));
+        pushButton_Add_Q->setText(QCoreApplication::translate("MainWindow_teach", "+", nullptr));
+        pushButton_Rem_Q->setText(QCoreApplication::translate("MainWindow_teach", "-", nullptr));
+        pushButton_apply->setText(QCoreApplication::translate("MainWindow_teach", "Apply changes", nullptr));
+        menuFile->setTitle(QCoreApplication::translate("MainWindow_teach", "File", nullptr));
+        menuEdit->setTitle(QCoreApplication::translate("MainWindow_teach", "Edit", nullptr));
+        menuHelp->setTitle(QCoreApplication::translate("MainWindow_teach", "Help", nullptr));
+        menuWindow->setTitle(QCoreApplication::translate("MainWindow_teach", "Window", nullptr));
     } // retranslateUi
 
 };

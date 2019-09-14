@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'dialog3.ui'
 **
-** Created by: Qt User Interface Compiler version 5.12.2
+** Created by: Qt User Interface Compiler version 5.13.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -108,16 +108,16 @@ public:
 
     void retranslateUi(QDialog *Dialog3)
     {
-        Dialog3->setWindowTitle(QApplication::translate("Dialog3", "Select topic", nullptr));
-        label->setText(QApplication::translate("Dialog3", "Select topic", nullptr));
-        pushButton_Loops->setText(QApplication::translate("Dialog3", "Loops", nullptr));
-        pushButton_Arrays->setText(QApplication::translate("Dialog3", "Arrays", nullptr));
-        pushButton_Strings->setText(QApplication::translate("Dialog3", "Strings", nullptr));
-        pushButton_Recursion->setText(QApplication::translate("Dialog3", "Recursion", nullptr));
-        pushButton_Structures->setText(QApplication::translate("Dialog3", "Structures", nullptr));
-        pushButton_Files->setText(QApplication::translate("Dialog3", "Files", nullptr));
-        pushButton_Pointers->setText(QApplication::translate("Dialog3", "Pointers", nullptr));
-        pushButton_Dyn_Mem->setText(QApplication::translate("Dialog3", "Dynamic memory", nullptr));
+        Dialog3->setWindowTitle(QCoreApplication::translate("Dialog3", "Select topic", nullptr));
+        label->setText(QCoreApplication::translate("Dialog3", "Select topic", nullptr));
+        pushButton_Loops->setText(QCoreApplication::translate("Dialog3", "Loops", nullptr));
+        pushButton_Arrays->setText(QCoreApplication::translate("Dialog3", "Arrays", nullptr));
+        pushButton_Strings->setText(QCoreApplication::translate("Dialog3", "Strings", nullptr));
+        pushButton_Recursion->setText(QCoreApplication::translate("Dialog3", "Recursion", nullptr));
+        pushButton_Structures->setText(QCoreApplication::translate("Dialog3", "Structures", nullptr));
+        pushButton_Files->setText(QCoreApplication::translate("Dialog3", "Files", nullptr));
+        pushButton_Pointers->setText(QCoreApplication::translate("Dialog3", "Pointers", nullptr));
+        pushButton_Dyn_Mem->setText(QCoreApplication::translate("Dialog3", "Dynamic memory", nullptr));
     } // retranslateUi
 
 };

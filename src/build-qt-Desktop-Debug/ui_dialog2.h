@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'dialog2.ui'
 **
-** Created by: Qt User Interface Compiler version 5.12.2
+** Created by: Qt User Interface Compiler version 5.13.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -170,25 +170,25 @@ public:
 
     void retranslateUi(QDialog *Dialog2)
     {
-        Dialog2->setWindowTitle(QApplication::translate("Dialog2", "Dialog", nullptr));
-        label->setText(QApplication::translate("Dialog2", "Add question", nullptr));
-        comboBox->setItemText(0, QApplication::translate("Dialog2", "Topic...", nullptr));
-        comboBox->setItemText(1, QApplication::translate("Dialog2", "Loops", nullptr));
-        comboBox->setItemText(2, QApplication::translate("Dialog2", "Arrays", nullptr));
-        comboBox->setItemText(3, QApplication::translate("Dialog2", "Strings", nullptr));
-        comboBox->setItemText(4, QApplication::translate("Dialog2", "Recursion", nullptr));
-        comboBox->setItemText(5, QApplication::translate("Dialog2", "Structs", nullptr));
-        comboBox->setItemText(6, QApplication::translate("Dialog2", "Files", nullptr));
-        comboBox->setItemText(7, QApplication::translate("Dialog2", "Pointers", nullptr));
-        comboBox->setItemText(8, QApplication::translate("Dialog2", "Dynamic memory", nullptr));
+        Dialog2->setWindowTitle(QCoreApplication::translate("Dialog2", "Dialog", nullptr));
+        label->setText(QCoreApplication::translate("Dialog2", "Add question", nullptr));
+        comboBox->setItemText(0, QCoreApplication::translate("Dialog2", "Topic...", nullptr));
+        comboBox->setItemText(1, QCoreApplication::translate("Dialog2", "Loops", nullptr));
+        comboBox->setItemText(2, QCoreApplication::translate("Dialog2", "Arrays", nullptr));
+        comboBox->setItemText(3, QCoreApplication::translate("Dialog2", "Strings", nullptr));
+        comboBox->setItemText(4, QCoreApplication::translate("Dialog2", "Recursion", nullptr));
+        comboBox->setItemText(5, QCoreApplication::translate("Dialog2", "Structs", nullptr));
+        comboBox->setItemText(6, QCoreApplication::translate("Dialog2", "Files", nullptr));
+        comboBox->setItemText(7, QCoreApplication::translate("Dialog2", "Pointers", nullptr));
+        comboBox->setItemText(8, QCoreApplication::translate("Dialog2", "Dynamic memory", nullptr));
 
-        pushButton->setText(QApplication::translate("Dialog2", "Add", nullptr));
-        groupBox->setTitle(QApplication::translate("Dialog2", "Answers", nullptr));
+        pushButton->setText(QCoreApplication::translate("Dialog2", "Add", nullptr));
+        groupBox->setTitle(QCoreApplication::translate("Dialog2", "Answers", nullptr));
         radioButton->setText(QString());
         radioButton_2->setText(QString());
         radioButton_3->setText(QString());
         radioButton_4->setText(QString());
-        label_2->setText(QApplication::translate("Dialog2", "Question", nullptr));
+        label_2->setText(QCoreApplication::translate("Dialog2", "Question", nullptr));
     } // retranslateUi
 
 };

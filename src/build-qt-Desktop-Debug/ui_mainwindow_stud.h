@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow_stud.ui'
 **
-** Created by: Qt User Interface Compiler version 5.12.2
+** Created by: Qt User Interface Compiler version 5.13.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -497,62 +497,62 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow_stud)
     {
-        MainWindow_stud->setWindowTitle(QApplication::translate("MainWindow_stud", "Student's mode", nullptr));
-        actionFinal_test->setText(QApplication::translate("MainWindow_stud", "Final test", nullptr));
-        actionLog_out->setText(QApplication::translate("MainWindow_stud", "Log out", nullptr));
-        actionExit->setText(QApplication::translate("MainWindow_stud", "Exit", nullptr));
-#ifndef QT_NO_TOOLTIP
-        actionExit->setToolTip(QApplication::translate("MainWindow_stud", "Ctrl + Q", nullptr));
-#endif // QT_NO_TOOLTIP
-#ifndef QT_NO_SHORTCUT
-        actionExit->setShortcut(QApplication::translate("MainWindow_stud", "Ctrl+Q", nullptr));
-#endif // QT_NO_SHORTCUT
-        actionGet_help_online->setText(QApplication::translate("MainWindow_stud", "Get help (online)", nullptr));
-        actionAbout->setText(QApplication::translate("MainWindow_stud", "About", nullptr));
-        actionAbout_Qt->setText(QApplication::translate("MainWindow_stud", "About Qt", nullptr));
-        actionLoops->setText(QApplication::translate("MainWindow_stud", "Loops", nullptr));
-        actionArrays->setText(QApplication::translate("MainWindow_stud", "Arrays", nullptr));
-        actionStrings->setText(QApplication::translate("MainWindow_stud", "Strings", nullptr));
-        actionRecursion->setText(QApplication::translate("MainWindow_stud", "Recursion", nullptr));
-        actionStructs->setText(QApplication::translate("MainWindow_stud", "Structures", nullptr));
-        actionFiles->setText(QApplication::translate("MainWindow_stud", "Files", nullptr));
-        actionPointers->setText(QApplication::translate("MainWindow_stud", "Pointers", nullptr));
-        actionDynamic_memory->setText(QApplication::translate("MainWindow_stud", "Dynamic memory", nullptr));
-        actionLoops_2->setText(QApplication::translate("MainWindow_stud", "Loops", nullptr));
-        actionArrays_2->setText(QApplication::translate("MainWindow_stud", "Arrays", nullptr));
-        actionStrings_2->setText(QApplication::translate("MainWindow_stud", "Strings", nullptr));
-        actionRecursion_2->setText(QApplication::translate("MainWindow_stud", "Recursion", nullptr));
-        actionStructs_2->setText(QApplication::translate("MainWindow_stud", "Structures", nullptr));
-        actionFiles_2->setText(QApplication::translate("MainWindow_stud", "Files", nullptr));
-        actionPointers_2->setText(QApplication::translate("MainWindow_stud", "Pointers", nullptr));
-        actionDynamic_memory_2->setText(QApplication::translate("MainWindow_stud", "Dynamic memory", nullptr));
-        label_2->setText(QApplication::translate("MainWindow_stud", "ProTest", nullptr));
-        pushButton->setText(QApplication::translate("MainWindow_stud", "Pass training test", nullptr));
-        pushButton_2->setText(QApplication::translate("MainWindow_stud", "Pass test on selected topic", nullptr));
-        pushButton_3->setText(QApplication::translate("MainWindow_stud", "Pass final test", nullptr));
-        label->setText(QApplication::translate("MainWindow_stud", "ProTest", nullptr));
-        pushButton_apply->setText(QApplication::translate("MainWindow_stud", "Answer", nullptr));
+        MainWindow_stud->setWindowTitle(QCoreApplication::translate("MainWindow_stud", "Student's mode", nullptr));
+        actionFinal_test->setText(QCoreApplication::translate("MainWindow_stud", "Final test", nullptr));
+        actionLog_out->setText(QCoreApplication::translate("MainWindow_stud", "Log out", nullptr));
+        actionExit->setText(QCoreApplication::translate("MainWindow_stud", "Exit", nullptr));
+#if QT_CONFIG(tooltip)
+        actionExit->setToolTip(QCoreApplication::translate("MainWindow_stud", "Ctrl + Q", nullptr));
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(shortcut)
+        actionExit->setShortcut(QCoreApplication::translate("MainWindow_stud", "Ctrl+Q", nullptr));
+#endif // QT_CONFIG(shortcut)
+        actionGet_help_online->setText(QCoreApplication::translate("MainWindow_stud", "Get help (online)", nullptr));
+        actionAbout->setText(QCoreApplication::translate("MainWindow_stud", "About", nullptr));
+        actionAbout_Qt->setText(QCoreApplication::translate("MainWindow_stud", "About Qt", nullptr));
+        actionLoops->setText(QCoreApplication::translate("MainWindow_stud", "Loops", nullptr));
+        actionArrays->setText(QCoreApplication::translate("MainWindow_stud", "Arrays", nullptr));
+        actionStrings->setText(QCoreApplication::translate("MainWindow_stud", "Strings", nullptr));
+        actionRecursion->setText(QCoreApplication::translate("MainWindow_stud", "Recursion", nullptr));
+        actionStructs->setText(QCoreApplication::translate("MainWindow_stud", "Structures", nullptr));
+        actionFiles->setText(QCoreApplication::translate("MainWindow_stud", "Files", nullptr));
+        actionPointers->setText(QCoreApplication::translate("MainWindow_stud", "Pointers", nullptr));
+        actionDynamic_memory->setText(QCoreApplication::translate("MainWindow_stud", "Dynamic memory", nullptr));
+        actionLoops_2->setText(QCoreApplication::translate("MainWindow_stud", "Loops", nullptr));
+        actionArrays_2->setText(QCoreApplication::translate("MainWindow_stud", "Arrays", nullptr));
+        actionStrings_2->setText(QCoreApplication::translate("MainWindow_stud", "Strings", nullptr));
+        actionRecursion_2->setText(QCoreApplication::translate("MainWindow_stud", "Recursion", nullptr));
+        actionStructs_2->setText(QCoreApplication::translate("MainWindow_stud", "Structures", nullptr));
+        actionFiles_2->setText(QCoreApplication::translate("MainWindow_stud", "Files", nullptr));
+        actionPointers_2->setText(QCoreApplication::translate("MainWindow_stud", "Pointers", nullptr));
+        actionDynamic_memory_2->setText(QCoreApplication::translate("MainWindow_stud", "Dynamic memory", nullptr));
+        label_2->setText(QCoreApplication::translate("MainWindow_stud", "ProTest", nullptr));
+        pushButton->setText(QCoreApplication::translate("MainWindow_stud", "Pass training test", nullptr));
+        pushButton_2->setText(QCoreApplication::translate("MainWindow_stud", "Pass test on selected topic", nullptr));
+        pushButton_3->setText(QCoreApplication::translate("MainWindow_stud", "Pass final test", nullptr));
+        label->setText(QCoreApplication::translate("MainWindow_stud", "ProTest", nullptr));
+        pushButton_apply->setText(QCoreApplication::translate("MainWindow_stud", "Answer", nullptr));
         groupBox_2->setTitle(QString());
         radioButton->setText(QString());
         radioButton_2->setText(QString());
         radioButton_3->setText(QString());
         radioButton_4->setText(QString());
-        label_Mark->setText(QApplication::translate("MainWindow_stud", "Lb", nullptr));
-        label_3->setText(QApplication::translate("MainWindow_stud", "Results", nullptr));
-        pushButton_4->setText(QApplication::translate("MainWindow_stud", "OK", nullptr));
+        label_Mark->setText(QCoreApplication::translate("MainWindow_stud", "Lb", nullptr));
+        label_3->setText(QCoreApplication::translate("MainWindow_stud", "Results", nullptr));
+        pushButton_4->setText(QCoreApplication::translate("MainWindow_stud", "OK", nullptr));
         QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
-        ___qtablewidgetitem->setText(QApplication::translate("MainWindow_stud", "Question", nullptr));
+        ___qtablewidgetitem->setText(QCoreApplication::translate("MainWindow_stud", "Question", nullptr));
         QTableWidgetItem *___qtablewidgetitem1 = tableWidget->horizontalHeaderItem(1);
-        ___qtablewidgetitem1->setText(QApplication::translate("MainWindow_stud", "Your answer", nullptr));
+        ___qtablewidgetitem1->setText(QCoreApplication::translate("MainWindow_stud", "Your answer", nullptr));
         QTableWidgetItem *___qtablewidgetitem2 = tableWidget->horizontalHeaderItem(2);
-        ___qtablewidgetitem2->setText(QApplication::translate("MainWindow_stud", "Correct answer", nullptr));
+        ___qtablewidgetitem2->setText(QCoreApplication::translate("MainWindow_stud", "Correct answer", nullptr));
         QTableWidgetItem *___qtablewidgetitem3 = tableWidget->verticalHeaderItem(0);
-        ___qtablewidgetitem3->setText(QApplication::translate("MainWindow_stud", "1", nullptr));
-        menuFile->setTitle(QApplication::translate("MainWindow_stud", "File", nullptr));
-        menuNew->setTitle(QApplication::translate("MainWindow_stud", "New...", nullptr));
-        menuTraining_test->setTitle(QApplication::translate("MainWindow_stud", "Training test...", nullptr));
-        menuTest_on_topic->setTitle(QApplication::translate("MainWindow_stud", "Test on topic...", nullptr));
-        menuHelp->setTitle(QApplication::translate("MainWindow_stud", "Help", nullptr));
+        ___qtablewidgetitem3->setText(QCoreApplication::translate("MainWindow_stud", "1", nullptr));
+        menuFile->setTitle(QCoreApplication::translate("MainWindow_stud", "File", nullptr));
+        menuNew->setTitle(QCoreApplication::translate("MainWindow_stud", "New...", nullptr));
+        menuTraining_test->setTitle(QCoreApplication::translate("MainWindow_stud", "Training test...", nullptr));
+        menuTest_on_topic->setTitle(QCoreApplication::translate("MainWindow_stud", "Test on topic...", nullptr));
+        menuHelp->setTitle(QCoreApplication::translate("MainWindow_stud", "Help", nullptr));
     } // retranslateUi
 
 };

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.12.2
+** Created by: Qt User Interface Compiler version 5.13.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -145,15 +145,15 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "ProTest", nullptr));
-        pushButtonSignIn->setText(QApplication::translate("MainWindow", "Sign In", nullptr));
-        pushButtonSignUp->setText(QApplication::translate("MainWindow", "Sign Up", nullptr));
-        checkBox->setText(QApplication::translate("MainWindow", "Remember me", nullptr));
-        label->setText(QApplication::translate("MainWindow", "Authorize", nullptr));
-        label_4->setText(QApplication::translate("MainWindow", "ProTest", nullptr));
-        label_2->setText(QApplication::translate("MainWindow", "Login", nullptr));
+        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "ProTest", nullptr));
+        pushButtonSignIn->setText(QCoreApplication::translate("MainWindow", "Sign In", nullptr));
+        pushButtonSignUp->setText(QCoreApplication::translate("MainWindow", "Sign Up", nullptr));
+        checkBox->setText(QCoreApplication::translate("MainWindow", "Remember me", nullptr));
+        label->setText(QCoreApplication::translate("MainWindow", "Authorize", nullptr));
+        label_4->setText(QCoreApplication::translate("MainWindow", "ProTest", nullptr));
+        label_2->setText(QCoreApplication::translate("MainWindow", "Login", nullptr));
         lineLogin->setText(QString());
-        label_3->setText(QApplication::translate("MainWindow", "Password", nullptr));
+        label_3->setText(QCoreApplication::translate("MainWindow", "Password", nullptr));
     } // retranslateUi
 
 };

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'dialog1.ui'
 **
-** Created by: Qt User Interface Compiler version 5.12.2
+** Created by: Qt User Interface Compiler version 5.13.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -135,17 +135,17 @@ public:
 
     void retranslateUi(QDialog *Dialog1)
     {
-        Dialog1->setWindowTitle(QApplication::translate("Dialog1", "Sign Up", nullptr));
-        radioTeacher->setText(QApplication::translate("Dialog1", "Teacher", nullptr));
-        label_2->setText(QApplication::translate("Dialog1", "Login", nullptr));
-        label_4->setText(QApplication::translate("Dialog1", "ProTest", nullptr));
-        label_6->setText(QApplication::translate("Dialog1", "First name", nullptr));
-        radioStudent->setText(QApplication::translate("Dialog1", "Student", nullptr));
-        label->setText(QApplication::translate("Dialog1", "Sign up", nullptr));
-        label_5->setText(QApplication::translate("Dialog1", "Last name", nullptr));
-        label_3->setText(QApplication::translate("Dialog1", "Password", nullptr));
-        pushSignUp->setText(QApplication::translate("Dialog1", "Sign Up", nullptr));
-        label_7->setText(QApplication::translate("Dialog1", "Confirm Password", nullptr));
+        Dialog1->setWindowTitle(QCoreApplication::translate("Dialog1", "Sign Up", nullptr));
+        radioTeacher->setText(QCoreApplication::translate("Dialog1", "Teacher", nullptr));
+        label_2->setText(QCoreApplication::translate("Dialog1", "Login", nullptr));
+        label_4->setText(QCoreApplication::translate("Dialog1", "ProTest", nullptr));
+        label_6->setText(QCoreApplication::translate("Dialog1", "First name", nullptr));
+        radioStudent->setText(QCoreApplication::translate("Dialog1", "Student", nullptr));
+        label->setText(QCoreApplication::translate("Dialog1", "Sign up", nullptr));
+        label_5->setText(QCoreApplication::translate("Dialog1", "Last name", nullptr));
+        label_3->setText(QCoreApplication::translate("Dialog1", "Password", nullptr));
+        pushSignUp->setText(QCoreApplication::translate("Dialog1", "Sign Up", nullptr));
+        label_7->setText(QCoreApplication::translate("Dialog1", "Confirm Password", nullptr));
     } // retranslateUi
 
 };
