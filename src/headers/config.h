@@ -20,7 +20,7 @@
 #define HAVE_MEMORY_H 1
 
 /* Define if Qt will be used */
-#define HAVE_QT 1
+/* #undef HAVE_QT */
 
 /* Define to 1 if stdbool.h conforms to C99. */
 /* #undef HAVE_STDBOOL_H */
